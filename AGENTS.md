@@ -36,6 +36,8 @@ Regeln:
 Session-Typen und Trainingslogik:
 - Swim-Session-Typen: `Aerobic Short`, `Aerobic Long`, `Threshold`, `VO2max`.
 - Bei Swim-Einheiten am Anfang standardmäßig `10 x 50m Technik` einplanen; das genügt als Technikanteil.
+- Swim-Hauptsets darf das LLM selbst passend zu Session-Typ, Race-Nähe und aktueller Belastbarkeit wählen.
+- Swim-Hauptsets bewusst einfach halten: pro Einheit darf ein einzelnes Hauptset genügen; wenn mehrere Hauptsets sinnvoll sind, eher nur zwei, maximal drei unterschiedliche Hauptset-Strukturen verwenden.
 - Bike-Session-Typen: `Long`, `Basic`, `Tempo`, `Threshold`, `VO2max`, `Anaerobic`.
 - Run-Session-Typen: `Long`, `Basic`, `Tempo`, `Threshold`, `VO2max`, `Anaerobic`, optional kurze `Run off Bike` Sessions mit konkreter Pace.
 - Pro Woche und Sportart maximal eine Intervall-Session planen, z.B. maximal ein Bike-Intervall und maximal ein Run-Intervall.
@@ -46,6 +48,7 @@ Session-Typen und Trainingslogik:
 - Die Wochenstruktur aus `data/availability.md` unter `Standard Woche` ist die dauerhafte Standardstruktur für Wochenpläne.
 - Die Wochenstruktur soll grundsätzlich stabil bleiben: gleiche Session-Arten an gleichen Wochentagen planen, sofern Zustand, Rennen oder Verfügbarkeit nicht dagegen sprechen.
 - Inhalte, Intervallformate, Zielwerte und Umfänge selbstständig festlegen und progressiv entwickeln.
+- Zielwerte für Pace, Power und HR standardmäßig aus der Mitte der passenden Zone in `data/zones.md` ableiten, sofern keine spezifischere Vorgabe oder trainingslogische Abweichung dagegen spricht.
 - Intervall-Einheiten zu Beginn eines Aufbaus eher kurz und hart planen; in Richtung Race eher länger und race-specific planen.
 - Bei Intervall-Workouts standardmäßig `5min Warmup` und `2min Cooldown` verwenden, sofern nicht ausdrücklich anders gewünscht.
 - Bei Run-Intervallen standardmäßig eine `Trabpause` zwischen den aktiven Phasen verwenden, z.B. `8 x 2min @3:45/km,2min Trabpause`.
