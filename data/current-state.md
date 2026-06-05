@@ -14,5 +14,8 @@ Diese Zusammenfassung soll vor jeder Trainingsplanung oder Trainingsbewertung vo
 
 ## Neueste Updates
 
+### 2026-06-04
+- Aufgrund des anfänglichen Reinkommens und noch vieler privater Aufgaben nach dem Urlaub, die ich abarbeiten musste, habe ich das Long Bike nur verkürzt als Cafefahrt gemacht und den ersten Endruance Run komplett ausfallen lassen. Du kannst nächste Woche aber trotzdem weiter machen, als hätte ich diese gemacht. Es war ein rein zeitliches Problem, keins meines Körpers.
+
 ### 2026-06-02
 - Ich komme aus einer dreiwöchigen Trainingspause nach meinem Ironman-70.3 in Da Nang zurück.

@@ -27,6 +27,10 @@ Regeln:
 - Vor jeder Trainingsplan-Erzeugung alle noch nicht ausgewerteten `.fit`-Dateien unter `data/activities/` auswerten.
 - Eine `.fit`-Datei gilt als noch nicht ausgewertet, wenn keine gleichnamige `.md`-Datei daneben existiert oder wenn die `.fit`-Datei neuer ist als die `.md`-Auswertung.
 - FIT-Auswertungen als gleichnamige Markdown-Dateien neben der FIT-Datei speichern und knapp zusammenfassen: Kurzfassung, Einordnung, relevante Laps/Intervalle.
+- Bei Run-FIT-Auswertungen manuelle Timer-Stops von ungefähr `1-2min` als wahrscheinlichen GI-Hinweis interpretieren, insbesondere wenn sie ohne trainingslogische Pause auftreten.
+- Direkte Herzfrequenzabfälle nach solchen Stops nicht als normale Belastungsreaktion oder bessere Erholung fehlinterpretieren; sie können durch die unterbrochene Aktivität entstehen.
+- Wenn bei Runs wiederkehrende Stop-Muster auftreten, dies im Chat als möglichen GI-/Stuhldrang-Hinweis und mit praktischen Tipps ansprechen.
+- GI-/Stuhldrang-Muster nicht automatisch in die Wochenreview, die `Aktuelle Zusammenfassung` oder den Wochenplan schreiben, außer der Nutzer bittet ausdrücklich darum oder es ist für die Trainingsentscheidung zwingend relevant.
 - Bei Müdigkeit, Verletzung, schlechtem Schlaf, auffälliger HRV oder ungewöhnlich hohem Ruhepuls konservativ planen.
 - Health-Daten werden nicht regelmäßig automatisiert bereitgestellt. Nur außergewöhnliche Health-, Müdigkeits- oder Beschwerdewerte aus `data/current-state.md` berücksichtigen.
 - Unsicherheiten und fehlende Daten explizit nennen.
@@ -54,6 +58,25 @@ Session-Typen und Trainingslogik:
 - Bei Run-Intervallen standardmäßig eine `Trabpause` zwischen den aktiven Phasen verwenden, z.B. `8 x 2min @3:45/km,2min Trabpause`.
 - Bei Bike-Intervallen die Pausen standardmäßig mit `100W` ansetzen, z.B. `8 x 2min @336W,1min @100W`.
 - Von diesen Pausenstandards darf in besonderen Fällen abgewichen werden; jede Abweichung im Chat explizit nennen und begründen.
+
+Subjektive Intervallsteuerung:
+- Für Bike und Run die Progression von Intervall-Sessions getrennt bewerten.
+- Intervall-Sessions sollen den geplanten physiologischen Zielreiz klar treffen, aber nicht standardmäßig als maximale Tests geplant werden.
+- Die letzte Wiederholung soll fordernd sein, aber technisch sauber und kontrolliert bleiben.
+- Nach Intervall-Sessions `RPE` und `Gefühl` aus der FIT-Auswertung berücksichtigen, sofern vorhanden.
+- `RPE` prüft, ob die Einheit grob zum geplanten Session-Typ gepasst hat.
+- `Gefühl` ist der primäre Progressionsregler für die nächste ähnliche Intervall-Session derselben Sportart.
+- `RPE` gilt als grob passend, wenn es ungefähr im erwarteten Bereich des Session-Typs liegt; eine Toleranz von etwa `+/-2` ist akzeptabel.
+- Wenn `RPE` grob passt, nach `Gefühl` steuern: bei `+2` klar progressiv planen, bei `+1` leicht progressiv planen, bei `0` stabil halten, bei `-1` leicht entschärfen, bei `-2` deutlich entschärfen oder kontrollierteren Reiz wählen.
+- Wenn `RPE` deutlich zu niedrig ist und `Gefühl` neutral bis positiv ist, war der Reiz vermutlich zu soft; die nächste ähnliche Session stärker steigern.
+- Wenn `RPE` deutlich zu hoch ist, nicht stark progressieren, auch wenn `Gefühl` positiv ist; eher stabilisieren oder nur minimal steigern.
+- Wenn `Gefühl` negativ ist, vorsichtig planen, unabhängig davon ob `RPE` im Zielbereich lag.
+- Wenn objektive Daten gegen das subjektive Gefühl sprechen, z.B. ungewöhnlich hohe HF, deutlicher Leistungsabfall, abgebrochene Einheit oder auffällig hoher TSS, konservativ entscheiden.
+- Progression bevorzugt über eine Variable vornehmen, nicht gleichzeitig deutlich Umfang und Intensität erhöhen.
+- Bike-Progression bevorzugt über Wiederholungszahl, Intervalllänge, dann erst Zielpower steuern.
+- Run-Progression bevorzugt über Wiederholungszahl oder Intervalllänge steuern; Pace nur vorsichtig erhöhen.
+- Beim Run konservativer progressieren als beim Bike, weil das orthopädische Risiko höher ist.
+
 - Long Bike normal ungefähr `2:30h-4:00h` planen; in den letzten spezifischen Wochen vor dem wichtigsten Race gezielt bis maximal `5:00h`.
 - Long Run normal ungefähr `1:15h-1:50h` planen; in den letzten spezifischen Wochen vor dem wichtigsten Race gezielt bis maximal `2:15h`.
 - Die Long-Session-Maximalwerte sind Obergrenzen, keine wöchentlichen Zielwerte.
