@@ -8,11 +8,16 @@ Vor jeder Trainingsplanung oder Trainingsbewertung zuerst:
 - data/goals.md
 - data/races.md
 - data/availability.md
-- data/thresholds.md
+- data/thresholds/thresholds_bike.md
+- data/thresholds/thresholds_run.md
+- data/thresholds/thresholds_swim.md
+- data/VO2max/VO2max_bike.md
+- data/VO2max/VO2max_run.md
 - data/zones.md, falls vorhanden
+- data/health/latest.md, falls vorhanden
 - relevante neueste health-, activity- und injury-logs
-- noch nicht ausgewertete FIT-Dateien in `data/activities/`
-- Zonen in data/zones.md mithilfe der aktuellsten Thresholds aus data/thresholds.md neu berechnen mit den gegebenen Grenzen. Benutze für Bike-HR-Threshold den Wert für die Run-HR-Threshold minus 5.
+- noch nicht ausgewertete FIT-Dateien in `data/activities/YYYY-Www/`
+- Zonen in data/zones.md mithilfe der aktuellsten Thresholds aus `data/thresholds/` neu berechnen mit den gegebenen Grenzen. Benutze für Bike-HR-Threshold den Wert für die Run-HR-Threshold minus 5.
 
 Regeln:
 - data/current-state.md ist die einzige Quelle für den aktuellen Zustand.
@@ -24,9 +29,31 @@ Regeln:
 - Historische Dateien nie als aktuellen Zustand interpretieren, außer sie werden ausdrücklich als aktuell referenziert.
 - Wenn ein neuer Plan für dieselbe ISO-Woche erzeugt wird, die bestehende Datei `plans/YYYY-Www.html` ersatzlos überschreiben.
 - Pläne anderer ISO-Wochen nicht überschreiben, außer der Nutzer verlangt es ausdrücklich.
-- Vor jeder Trainingsplan-Erzeugung alle noch nicht ausgewerteten `.fit`-Dateien unter `data/activities/` auswerten.
+- Aktivitäten werden nach ISO-Wochen gruppiert: FIT-Dateien, Aktivitätsauswertungen und Wochenreviews liegen unter `data/activities/YYYY-Www/`.
+- Vor jeder Trainingsplan-Erzeugung alle noch nicht ausgewerteten `.fit`-Dateien rekursiv unter `data/activities/` auswerten.
+- Wenn `scripts/intervals_icu_sync.py` existiert und in `.env` ein gültiger `intervals_icu_api_key` hinterlegt ist, vor jeder Trainingsplan-Erzeugung Intervals.icu-Daten aktualisieren.
+- Intervals.icu-Sync schreibt Health-/Load-Kontext nach `data/health/`; `data/health/latest.md` als aktuellen ergänzenden Kontext verwenden.
+- Intervals.icu-Daten ergänzen den Trainingskontext, ersetzen aber nicht `data/current-state.md` als Quelle für den aktuellen subjektiven Zustand.
 - Eine `.fit`-Datei gilt als noch nicht ausgewertet, wenn keine gleichnamige `.md`-Datei daneben existiert oder wenn die `.fit`-Datei neuer ist als die `.md`-Auswertung.
 - FIT-Auswertungen als gleichnamige Markdown-Dateien neben der FIT-Datei speichern und knapp zusammenfassen: Kurzfassung, Einordnung, relevante Laps/Intervalle.
+- Vor jeder Trainingsplan-Erzeugung aus allen neuen Bike- und Run-FIT-Dateien die Garmin-Thresholds auslesen und die Threshold-Historie aktualisieren.
+- Bike-Thresholds unter `data/thresholds/thresholds_bike.md` speichern; beim Bike ausschließlich `FTP / W` tracken.
+- Bike-FTP aus FIT-Dateien aus `session.threshold_power` lesen.
+- Run-Thresholds unter `data/thresholds/thresholds_run.md` speichern; beim Run ausschließlich `LT / bpm` und `LT / min:sec/km` tracken.
+- Run-LTHR aus FIT-Dateien bevorzugt aus `unknown_79` (`global_mesg_num = 79`, FitFileViewer: `User Metrics`) Field `11` lesen; alternativ aus `zones_target.threshold_heart_rate` oder `time_in_zone.threshold_heart_rate`, wenn `unknown_79` fehlt.
+- Run-LTSpeed aus FIT-Dateien bevorzugt aus `unknown_79` (`global_mesg_num = 79`, FitFileViewer: `User Metrics`) Field `13` lesen; der Rohwert ist in `km/h * 10` codiert, z.B. `157` = `15.7km/h`, und muss in Pace `min:sec/km` umgerechnet werden.
+- Run-LTSpeed als Fallback aus `user_profile` Field `37` lesen, wenn `unknown_79` fehlt.
+- Run-Threshold-Power (`ltpower`, z.B. `unknown_79` Field `12`) nicht tracken.
+- Bike-Threshold-HR nicht tracken, da dieser Wert in FIT-Dateien statisch oder unzuverlässig sein kann.
+- Threshold-Einträge auf das Datum des jeweils letzten vorherigen FIT-Files derselben Sportart datieren, weil die Garmin-Thresholds im FIT die Einstellung zu Beginn der Session beschreiben und neue Thresholds erst eine Session später sichtbar werden.
+- Neue Thresholds nur eintragen, wenn sich der relevante Wert gegenüber dem letzten Eintrag der jeweiligen Threshold-Datei geändert hat; identische Wiederholungen mit neuem Datum nicht speichern.
+- Vor jeder Trainingsplan-Erzeugung aus allen neuen Bike- und Run-FIT-Dateien die Garmin-VO2max-Werte auslesen und die VO2max-Historie aktualisieren.
+- Bike-VO2max unter `data/VO2max/VO2max_bike.md` speichern; Run-VO2max unter `data/VO2max/VO2max_run.md` speichern.
+- VO2max bevorzugt aus `activity_metrics` (`global_mesg_num = 140`, FitFileViewer: `Activity Metrics`) Field `7` lesen; der Rohwert wird mit `raw / 18724.571428571428` in `ml/kg/min` umgerechnet.
+- `activity_metrics.vo2_max` beschreibt den Wert nach der Aktivität; VO2max-Einträge deshalb auf das Datum derselben FIT-Aktivität datieren und nicht auf das vorherige FIT-File zurückdatieren.
+- Wenn `activity_metrics` Field `7` fehlt oder `0` ist, als Fallback `user_metrics` (`global_mesg_num = 79`, FitFileViewer: `User Metrics`) Field `0` verwenden; der Rohwert wird mit `raw / 292.57142857142856` in `ml/kg/min` umgerechnet.
+- VO2max-Werte mit sinnvoller Nachkommastelle gemäß Datei/Parser speichern; bestehende Tabellenstruktur der jeweiligen `data/VO2max/VO2max_<sport>.md` beibehalten.
+- Neue VO2max-Werte nur eintragen, wenn sich der relevante Wert gegenüber dem letzten Eintrag der jeweiligen VO2max-Datei geändert hat; identische Wiederholungen mit neuem Datum nicht speichern.
 - Bei Run-FIT-Auswertungen manuelle Timer-Stops von ungefähr `1-2min` als wahrscheinlichen GI-Hinweis interpretieren, insbesondere wenn sie ohne trainingslogische Pause auftreten.
 - Direkte Herzfrequenzabfälle nach solchen Stops nicht als normale Belastungsreaktion oder bessere Erholung fehlinterpretieren; sie können durch die unterbrochene Aktivität entstehen.
 - Wenn bei Runs wiederkehrende Stop-Muster auftreten, dies im Chat als möglichen GI-/Stuhldrang-Hinweis und mit praktischen Tipps ansprechen.
@@ -92,9 +119,9 @@ Subjektive Intervallsteuerung:
 
 Wochenreview:
 - Vor jeder neuen Wochenplan-Erzeugung eine kurze Bewertung der letzten abgeschlossenen Trainingswoche erstellen.
-- Die kanonische Bewertung unter `data/weekly-reviews/YYYY-Www.md` speichern.
-- Der Dateiname der Wochenreview bezeichnet die bewertete ISO-Woche: `data/weekly-reviews/2026-W23.md` ist die Review für Woche 23.
-- Die Review einer abgeschlossenen Woche soll im Plan der folgenden Woche erscheinen, z.B. `data/weekly-reviews/2026-W23.md` im Plan `plans/2026-W24.html`.
+- Die kanonische Bewertung im jeweiligen Aktivitätsordner speichern: `data/activities/YYYY-Www/review_YYYY-Www.md`.
+- Der Dateiname der Wochenreview bezeichnet die bewertete ISO-Woche: `data/activities/2026-W23/review_2026-W23.md` ist die Review für Woche 23.
+- Die Review einer abgeschlossenen Woche soll im Plan der folgenden Woche erscheinen, z.B. `data/activities/2026-W23/review_2026-W23.md` im Plan `plans/2026-W24.html`.
 - Im HTML-Wochenplan eine kurze Box `Rückblick letzte Woche` anzeigen, die diese Bewertung knapp zusammenfasst.
 - Für die Wochenreview primär die FIT-Auswertungen und Aktivitätsnotizen der letzten abgeschlossenen ISO-Woche bzw. der letzten 7 Tage verwenden.
 - Als Grundlage für die Wochenreview `data/current-state.md`, FIT-Auswertungen, Aktivitätsnotizen, den Vorwochenplan, `data/goals.md` und `data/races.md` heranziehen.
