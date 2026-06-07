@@ -1,2 +1,7 @@
 desktop.ini
 .env
+__pycache__/
+*.pyc
+data/health/intervals-*.csv
+data/health/intervals-*.json
+hrv.csv

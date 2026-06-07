@@ -78,6 +78,7 @@ Alle aufgelisteten Werte sind zusätzliche eingenommen Substanzen, nicht die kom
 | Magnesium | 375mg |
 | Ubiquinol Q10 | 310mg |
 | Carnitin | 4g |
+| SuperMikroben®- Premium Biotika von fairment | 2 Kapseln |
 
 ## Ernährung und Race-Fueling
 

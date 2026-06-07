@@ -13,8 +13,13 @@ Vor jeder Trainingsplanung oder Trainingsbewertung zuerst:
 - data/thresholds/thresholds_swim.md
 - data/VO2max/VO2max_bike.md
 - data/VO2max/VO2max_run.md
-- data/zones.md, falls vorhanden
-- data/health/latest.md, falls vorhanden
+- data/health/hrv.md
+- data/health/resting_heart_rate.md
+- data/health/sleep.md
+- data/health/steps.md
+- data/health/weight.md
+- data/health/loads.md
+- data/zones.md
 - relevante neueste health-, activity- und injury-logs
 - noch nicht ausgewertete FIT-Dateien in `data/activities/YYYY-Www/`
 - Zonen in data/zones.md mithilfe der aktuellsten Thresholds aus `data/thresholds/` neu berechnen mit den gegebenen Grenzen. Benutze für Bike-HR-Threshold den Wert für die Run-HR-Threshold minus 5.
@@ -30,12 +35,76 @@ Regeln:
 - Wenn ein neuer Plan für dieselbe ISO-Woche erzeugt wird, die bestehende Datei `plans/YYYY-Www.html` ersatzlos überschreiben.
 - Pläne anderer ISO-Wochen nicht überschreiben, außer der Nutzer verlangt es ausdrücklich.
 - Aktivitäten werden nach ISO-Wochen gruppiert: FIT-Dateien, Aktivitätsauswertungen und Wochenreviews liegen unter `data/activities/YYYY-Www/`.
+- Wenn `scripts/pre_plan_sync.py` existiert und in `.env` ein gültiger `intervals_icu_api_key` hinterlegt ist, vor jeder Trainingsplan-Erzeugung dieses Skript ausführen.
+- `scripts/pre_plan_sync.py` führt die automatisierte Vorstufe aus: FIT-Download, Health-Markdown-Update, FIT-Auswertung und Load-Berechnung.
+- Die Einzelschritte liegen in `scripts/download_fit_files.py`, `scripts/update_health.py`, `scripts/analyze_fit_files.py` und `scripts/update_loads.py`.
+- Nach jeder automatisierten Vorstufe die erzeugten Änderungen und Skript-Warnungen als LLM plausibilisieren; Inkonsistenzen im Chat nennen, z.B. fehlende oder umbenannte Intervals.icu-Felder, unklare TSS-Quellen, nicht eindeutig gematchte Activities oder auffällige Werte.
+- Wenn `scripts/pre_plan_sync.py` fehlt, die Einzelschritte manuell mit den vorhandenen Skripten oder nach den folgenden Regeln ausführen.
+- `scripts/intervals_icu_sync.py` lädt keine FIT-Dateien herunter und benennt daher auch keine FIT-Dateien; es synchronisiert nur Intervals.icu-Roh-/Cache-Daten für Health, Activities und Sport Settings.
+- Manuell abgelegte oder künftig automatisch heruntergeladene FIT-Dateien unter `data/activities/YYYY-Www/` speichern.
+- FIT-Dateien mit lokalem Aktivitätsdatum und genau einem Leerzeichen nach dem Datum benennen: `YYYY-MM-DD Aktivitätsname.fit`, z.B. `2026-06-03 VO2max Bike 8x 2min @360W.fit`.
+- Emojis aus automatisch erzeugten FIT-Dateinamen entfernen; den Namen ansonsten gut lesbar lassen.
+- Ungültige Dateizeichen aus Aktivitätsnamen entfernen oder ersetzen, aber den Namen gut lesbar lassen.
+- Die Markdown-Auswertung einer FIT-Datei immer gleichnamig neben der FIT-Datei speichern, nur mit Endung `.md`, z.B. `YYYY-MM-DD Aktivitätsname.md`.
 - Vor jeder Trainingsplan-Erzeugung alle noch nicht ausgewerteten `.fit`-Dateien rekursiv unter `data/activities/` auswerten.
-- Wenn `scripts/intervals_icu_sync.py` existiert und in `.env` ein gültiger `intervals_icu_api_key` hinterlegt ist, vor jeder Trainingsplan-Erzeugung Intervals.icu-Daten aktualisieren.
-- Intervals.icu-Sync schreibt Health-/Load-Kontext nach `data/health/`; `data/health/latest.md` als aktuellen ergänzenden Kontext verwenden.
+- Intervals.icu-Sync darf Roh-/Cache-Dateien nach `data/health/` schreiben; diese Cache-Dateien sind nicht kanonisch.
 - Intervals.icu-Daten ergänzen den Trainingskontext, ersetzen aber nicht `data/current-state.md` als Quelle für den aktuellen subjektiven Zustand.
+- Intervals.icu wird erst seit `2026-06-05` genutzt; fehlende Intervals-Health-Daten vor diesem Datum sind erwartbar und nicht als Problem zu melden.
+- Vor jeder Trainingsplan-Erzeugung die kanonischen Health-Historien aus Intervals.icu-Wellness-/Daily-Daten aktualisieren, in den Markdown-Dateien speichern und für Trainingssteuerung, Wochenreview und Erklärungstext auswerten.
+- Wellness-Health-Metriken (`hrv.md`, `resting_heart_rate.md`, `sleep.md`, `steps.md`, `weight.md`) nur aus Intervals.icu-Wellness-/Daily-Daten ableiten, nicht aus einzelnen Aktivitätsdaten.
+- `data/health/loads.md` ist die Ausnahme: Load-Metriken werden aus den `TSS`-Werten der Aktivitätsauswertungen berechnet, nicht aus den Wellness-/Daily-Daten.
+- Health-Historien unter `data/health/` pflegen: `hrv.md`, `resting_heart_rate.md`, `sleep.md`, `steps.md`, `weight.md`, `loads.md`.
+- Health-Historien mit neuesten Einträgen oben führen.
+- Für Wellness-Historien jeden Kalendertag eine Zeile schreiben; fehlende Wellness-Werte mit `-` eintragen.
+- Gewicht täglich eintragen, auch wenn es temporär/interpoliert, unverändert oder nicht neu gemessen ist.
+- Wenn im Repo-Root eine manuelle Importdatei `hrv.csv` vorhanden ist, darf sie nur zum HRV-Backfill verwendet werden; kanonisch bleibt `data/health/hrv.md`.
+- `data/health/hrv.md`: Tages-RMSSD aus Intervals.icu `hrv` übernehmen.
+- `data/health/hrv.md`: `7-Tage-RMSSD` als geometrisches Mittel der Tages-RMSSD-Werte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
+- `data/health/hrv.md`: 90-Tage-RMSSD-Grenzen aus dem 90-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `45 von 90` Werten vorhanden sind.
+- `data/health/hrv.md`: HRV-Formeln verwenden: `7-Tage = ROUND(GEOMEAN(Werte),0)`, `Grenze unten = ROUND(GEOMEAN(Werte)/EXP(STDEVP(LN(Werte)))^0.5,0)`, `Grenze oben = ROUND(GEOMEAN(Werte)*EXP(STDEVP(LN(Werte)))^1.5,0)`.
+- `data/health/resting_heart_rate.md`: Ruhepuls aus Intervals.icu `restingHR` übernehmen.
+- `data/health/sleep.md`: Schlafdauer aus Intervals.icu `sleepSecs` in `h:mm` umrechnen und Sleep Score aus `sleepScore` übernehmen.
+- `data/health/steps.md`: Schritte aus Intervals.icu `steps` übernehmen.
+- `data/health/weight.md`: Gewicht aus Intervals.icu `weight` übernehmen.
+- `data/health/loads.md`: Vor jeder Trainingsplan-Erzeugung neu berechnen und mit den Spalten `Datum`, `Tages-TSS`, `ATL`, `CTL`, `TSB`, `ACR` führen.
+- `data/health/loads.md`: Für jeden Kalendertag eine Zeile schreiben; neueste Einträge oben.
+- `data/health/loads.md`: `Tages-TSS` als Summe aller Activity-`TSS`-Werte dieses Kalendertags berechnen; Ruhetage oder Tage ohne Aktivitäts-`TSS` mit `0` eintragen.
+- `data/health/loads.md`: Der älteste vorhandene Eintrag mit ATL/CTL gilt als Startwert; ältere Werte nicht rückwirkend neu erfinden, außer der Nutzer verlangt es ausdrücklich.
+- `data/health/loads.md`: Ab dem Startwert ATL und CTL vorwärts berechnen mit `ATL_heute = ATL_gestern + (TSS_heute - ATL_gestern) / 7` und `CTL_heute = CTL_gestern + (TSS_heute - CTL_gestern) / 42`.
+- `data/health/loads.md`: `TSB = CTL - ATL` berechnen.
+- `data/health/loads.md`: `ACR = ATL / CTL` berechnen; wenn `CTL = 0`, `ACR` als `-` eintragen.
+- `data/health/loads.md`: ATL, CTL und TSB auf sinnvolle ganze Werte runden; ACR mit drei Nachkommastellen speichern.
+- Vor jeder Trainingsplanung die neuesten Health-Werte analysieren: HRV-Status anhand Tages-RMSSD, 7-Tage-RMSSD und 90-Tage-Korridor; Ruhepuls-Trend; Schlafdauer und Sleep Score; Gewichtstrend; Schritte als Kontext für Alltagsbelastung.
+- Vor jeder Trainingsplanung Load-Status aus `data/health/loads.md` analysieren: Tages-TSS, ATL, CTL, TSB und ACR als Belastungs-, Ermüdungs- und Risikoindikatoren für die aktuelle Planwoche berücksichtigen.
+- Health-Analyse in die Trainingsentscheidung einbeziehen: bei HRV deutlich unter Korridor, auffällig hohem Ruhepuls, sehr schlechtem Schlaf, starkem Gewichtsabfall oder hoher Alltagsbelastung konservativer planen.
+- Wenn Health-Werte unauffällig oder gut sind, dürfen sie eine geplante Progression unterstützen, aber nicht allein eine aggressive Belastungssteigerung begründen.
 - Eine `.fit`-Datei gilt als noch nicht ausgewertet, wenn keine gleichnamige `.md`-Datei daneben existiert oder wenn die `.fit`-Datei neuer ist als die `.md`-Auswertung.
 - FIT-Auswertungen als gleichnamige Markdown-Dateien neben der FIT-Datei speichern und knapp zusammenfassen: Kurzfassung, Einordnung, relevante Laps/Intervalle.
+- Ältere Aktivitätsauswertungen können noch nach früheren Formatregeln erstellt worden sein; wenn eine Aktivitätsauswertung neu erstellt oder aktualisiert wird, an die aktuellen Regeln in dieser Datei anpassen.
+- In jeder FIT-Auswertung immer genau einen `TSS`-Wert angeben.
+- `TSS` in den Markdown-Auswertungen ist der einheitliche Planungs-Load, nicht zwingend FIT-/Garmin-TSS.
+- Für `TSS` bei Swim/Bike/Run bevorzugt `icu_training_load` aus Intervals.icu verwenden.
+- Bei Aktivitäten außerhalb von Swim/Bike/Run, z.B. Skifahren, bevorzugt `hr_load` aus Intervals.icu als `TSS`/Planungs-Load verwenden.
+- Wenn Intervals.icu keinen `icu_training_load` liefert, als Fallback FIT `session.training_load_peak` verwenden.
+- Wenn auch `training_load_peak` fehlt, als weiteren Fallback Intervals.icu `hr_load` verwenden.
+- Wenn keine belastbare TSS-/Load-Quelle verfügbar ist, `TSS: -` eintragen und diesen Eintrag für `data/health/loads.md` nicht als Belastungswert mitzählen.
+- Den `TSS`-Wert in der Markdown-Auswertung nur als `TSS: <Wert>` ausgeben und keine Quellenangabe in Klammern daneben schreiben.
+- FIT `session.training_stress_score` darf als ergänzende Information intern berücksichtigt werden, ersetzt aber den einheitlichen Planungs-`TSS` nur, wenn kein besserer Planungs-Load nach den obigen Prioritäten verfügbar ist.
+- In FIT-Auswertungen `Aerobic Training Effect` und `Anaerobic Training Effect` aufnehmen, sofern im FIT oder aus Intervals.icu verfügbar; fehlende Werte nicht schätzen.
+- Bei Bike- und Run-Auswertungen eine einfache Effizienzkennzahl aufnehmen: Bike als `Power/HF` in `W/bpm`, Run trendfähig als `Speed/HF` in `m/s/bpm` und zusätzlich lesbar als `Pace @ Avg HR`.
+- Bei `Basic`- und `Long`-Sessions von Bike und Run HR-Drift bzw. Decoupling berechnen, sofern die Datenqualität ausreicht.
+- HR-Drift über vergleichbare steady Abschnitte berechnen, bevorzugt erste vs. zweite Hälfte ohne Pausen, offensichtliche Stops, Warmup/Cooldown und nicht repräsentative Intervalle.
+- HR-Drift in Prozent angeben und kurz einordnen, z.B. stabil, moderat driftend oder deutlich driftend; bei unruhigem Profil oder zu kurzen Daten `HR-Drift: nicht sinnvoll berechenbar` schreiben.
+- Bei Run-Auswertungen Schrittfrequenz, Schrittlänge, Bodenkontaktzeit und vertikale Bewegung aufnehmen, sofern im FIT vorhanden.
+- Run-Technikwerte zeitabhängig darstellen: in der Lap-/Intervalltabelle zusätzliche Spalten für `Cadence`, `Stride`, `GCT` und `Vert.` verwenden, wenn diese Werte pro Lap oder Intervall sinnvoll aggregierbar sind.
+- Bei Bike-Auswertungen Kadenz, Links/Rechts-Balance und Torque Effectiveness aufnehmen, sofern im FIT vorhanden.
+- Bike-Technikwerte zeitabhängig darstellen: in der Lap-/Intervalltabelle zusätzliche Spalten für `Cadence`, `L/R Balance` und `Torque Eff.` verwenden, wenn diese Werte pro Lap oder Intervall sinnvoll aggregierbar sind.
+- Wenn sehr viele Laps vorhanden sind, die Technik- und Effizienzwerte nicht für jede irrelevante Auto-Lap ausbreiten; stattdessen relevante Arbeitsabschnitte, Intervalle oder aggregierte Blöcke darstellen.
+- Fehlende Sensorfelder in FIT-Auswertungen nicht als Problem behandeln, sondern einfach weglassen oder mit `-` markieren, wenn die Tabellenstruktur sonst klarer bleibt.
+- Run-off-Bike-Sessions selbstständig anhand der Uhrzeiten erkennen: Wenn an einem Tag ein Run zeitlich kurz nach einer Bike-Aktivität startet, diesen Run als möglichen Brick/Run off Bike einordnen.
+- Dafür Start- und Endzeitpunkte der FIT-Dateien vergleichen; ein Run innerhalb von ungefähr `0-30min` nach Bike-Ende gilt in der Regel als Run off Bike, innerhalb von ungefähr `30-90min` als wahrscheinlicher oder möglicher Run off Bike, abhängig von Kontext und Aktivitätsnamen.
+- Wenn die Uhrzeit-Erkennung unsicher ist, dies in der FIT-Auswertung und Wochenreview als wahrscheinlich/möglich formulieren und nicht als sichere Tatsache behaupten.
+- Erkannte Run-off-Bike-Sessions bei der Trainingsbewertung als spezifischen Kopplungsreiz berücksichtigen, nicht als isolierten normalen Run.
 - Vor jeder Trainingsplan-Erzeugung aus allen neuen Bike- und Run-FIT-Dateien die Garmin-Thresholds auslesen und die Threshold-Historie aktualisieren.
 - Bike-Thresholds unter `data/thresholds/thresholds_bike.md` speichern; beim Bike ausschließlich `FTP / W` tracken.
 - Bike-FTP aus FIT-Dateien aus `session.threshold_power` lesen.
@@ -59,10 +128,11 @@ Regeln:
 - Wenn bei Runs wiederkehrende Stop-Muster auftreten, dies im Chat als möglichen GI-/Stuhldrang-Hinweis und mit praktischen Tipps ansprechen.
 - GI-/Stuhldrang-Muster nicht automatisch in die Wochenreview, die `Aktuelle Zusammenfassung` oder den Wochenplan schreiben, außer der Nutzer bittet ausdrücklich darum oder es ist für die Trainingsentscheidung zwingend relevant.
 - Bei Müdigkeit, Verletzung, schlechtem Schlaf, auffälliger HRV oder ungewöhnlich hohem Ruhepuls konservativ planen.
-- Health-Daten werden nicht regelmäßig automatisiert bereitgestellt. Nur außergewöhnliche Health-, Müdigkeits- oder Beschwerdewerte aus `data/current-state.md` berücksichtigen.
+- Automatisierte Health-Historien aus `data/health/` als objektiven Kontext nutzen; subjektive oder außergewöhnliche Health-, Müdigkeits- und Beschwerdeangaben aus `data/current-state.md` zusätzlich berücksichtigen und bei Widersprüchen explizit einordnen.
 - Unsicherheiten und fehlende Daten explizit nennen.
 - Datumsformat: YYYY-MM-DD.
 - Wochenformat: ISO-Woche, z.B. 2026-W23.
+- Chronologische Historientabellen, z.B. VO2max-, Threshold- und absolvierte Race-Listen, mit den neuesten Einträgen oben führen; neue Einträge oben direkt unter dem Tabellenkopf einfügen.
 
 Session-Typen und Trainingslogik:
 - Swim-Session-Typen: `Aerobic Short`, `Aerobic Long`, `Threshold`, `VO2max`.
@@ -125,10 +195,12 @@ Wochenreview:
 - Im HTML-Wochenplan eine kurze Box `Rückblick letzte Woche` anzeigen, die diese Bewertung knapp zusammenfasst.
 - Für die Wochenreview primär die FIT-Auswertungen und Aktivitätsnotizen der letzten abgeschlossenen ISO-Woche bzw. der letzten 7 Tage verwenden.
 - Als Grundlage für die Wochenreview `data/current-state.md`, FIT-Auswertungen, Aktivitätsnotizen, den Vorwochenplan, `data/goals.md` und `data/races.md` heranziehen.
+- Health-Historien aus `data/health/hrv.md`, `data/health/resting_heart_rate.md`, `data/health/sleep.md`, `data/health/steps.md`, `data/health/weight.md` und `data/health/loads.md` in die Wochenreview einbeziehen.
+- Im Wochenfazit kurz einordnen, ob die Health-Werte die Trainingsbelastung der neuen Woche unterstützen oder ob sie für konservativere Planung sprechen.
 - Ältere FIT-Auswertungen und Aktivitätsnotizen nur berücksichtigen, wenn sie für den aktuellen Zustand, erkennbare Trends oder die Zielbewertung noch relevant sind.
 - Nicht alle historischen FIT-Dateien jedes Mal gleich stark gewichten; alte Aktivitäten sind Historie, nicht automatisch aktueller Zustand.
 - Wenn ein Plan der Vorwoche existiert, einen kurzen Abgleich `geplant vs. absolviert` aufnehmen, ohne daraus eine lange Kontrollliste zu machen.
-- Die Bewertung soll ungefähr 10 Sätze lang sein; wenn trainingslogisch nötig, darf sie etwas länger sein.
+- Die Bewertung soll ungefähr 10 bis 15 Sätze lang sein; wenn trainingslogisch nötig, darf sie etwas länger sein.
 - Kurz auf einzelne Sessions eingehen, wenn sie besonders gut, besonders schlecht oder trainingslogisch auffällig waren.
 - Daraus kurz ableiten, wie die aktuelle Form in den Sportarten Swim, Bike und Run momentan ist und ob diese in Einklang mit den Zielen in `data/goals.md` steht.
 - Die Wochenreview soll beurteilen, ob der Athlet auf gutem Kurs für die Ziele aus `data/goals.md` und die Rennen aus `data/races.md` ist.
@@ -157,6 +229,7 @@ Wochenplan-Format:
 - Ruhetage nicht als eigene Session mit `Ruhetag` darstellen; leere Tage bleiben leer.
 - Unter oder über dem Trainingsplan eine kurze Review-Box `Rückblick letzte Woche` anzeigen, sofern eine Wochenreview nach den Regeln oben erstellt wurde.
 - Unter dem Trainingsplan eine kurze Erklärungsbox anzeigen, die beschreibt, worauf die Woche abzielt und warum die wichtigsten Sessions so gewählt wurden.
+- In der Erklärungsbox knapp erwähnen, wenn Health-Werte die Planungsentscheidung relevant beeinflusst haben, z.B. konservativer Einstieg wegen niedriger HRV/schlechtem Schlaf oder normale Progression bei unauffälligem Health-Kontext.
 - Die Erklärungsbox soll die Race-Ausrichtung nennen, z.B. langfristig ist die Planung auf das wichtigste anstehende Race (Ironman am `2027-05-01`) ausgelegt (daher die Sessions X1 und X2), aber für die Spezifizierung auf das weniger priorisierte Race wurden Session (Y1 und Y2) erstellt. Damit ist ein guter Mix aus Vorbereitung auf ein weniger wichtiges akutes Race und das langfristige Ziel im Hinterkopf gewährleistet.
 - Die Erklärungsbox soll knapp bleiben und die Intention der Planung verständlich machen, ohne allgemeine Trainingslehre auszubreiten.
 - Keine weiteren erklärenden Hinweisboxen, Steuerungsboxen oder Kontextboxen im Wochenplan anzeigen, außer der Nutzer fragt ausdrücklich danach.
