@@ -39,6 +39,10 @@ Regeln:
 - `scripts/pre_plan_sync.py` führt die automatisierte Vorstufe aus: FIT-Download, Health-Markdown-Update, FIT-Auswertung und Load-Berechnung.
 - Die Einzelschritte liegen in `scripts/download_fit_files.py`, `scripts/update_health.py`, `scripts/analyze_fit_files.py` und `scripts/update_loads.py`.
 - Nach jeder automatisierten Vorstufe die erzeugten Änderungen und Skript-Warnungen als LLM plausibilisieren; Inkonsistenzen im Chat nennen, z.B. fehlende oder umbenannte Intervals.icu-Felder, unklare TSS-Quellen, nicht eindeutig gematchte Activities oder auffällige Werte.
+- Wenn bei einer Planerzeugung, FIT-Auswertung, Health-Aktualisierung, Load-Berechnung oder History-Aktualisierung Inkonsistenzen, Fehler oder wiederholungsgefährdete Schwächen auffallen, diese nicht nur im Chat melden, sondern auch die Ursache genauer beschreiben.
+- Wenn die Ursache durch eine Regel, Dokumentation oder Skriptlogik künftig vermeidbar ist, die passende Stelle im Repo direkt nachführen, z.B. `AGENTS.md`, README/Formatdateien oder das betroffene Skript.
+- Im Chat ausdrücklich sagen, ob die Korrektur für zukünftige Durchläufe bereits umgesetzt wurde oder ob sie noch offen ist.
+- Wenn eine Korrektur nicht sicher automatisierbar ist, im Chat klar benennen, welche Plausibilitätsprüfung beim nächsten Durchlauf weiterhin manuell durch das LLM erfolgen muss.
 - Wenn `scripts/pre_plan_sync.py` fehlt, die Einzelschritte manuell mit den vorhandenen Skripten oder nach den folgenden Regeln ausführen.
 - `scripts/intervals_icu_sync.py` lädt keine FIT-Dateien herunter und benennt daher auch keine FIT-Dateien; es synchronisiert nur Intervals.icu-Roh-/Cache-Daten für Health, Activities und Sport Settings.
 - Manuell abgelegte oder künftig automatisch heruntergeladene FIT-Dateien unter `data/activities/YYYY-Www/` speichern.
@@ -65,7 +69,9 @@ Regeln:
 - `data/health/resting_heart_rate.md`: Ruhepuls aus Intervals.icu `restingHR` übernehmen.
 - `data/health/sleep.md`: Schlafdauer aus Intervals.icu `sleepSecs` in `h:mm` umrechnen und Sleep Score aus `sleepScore` übernehmen.
 - `data/health/steps.md`: Schritte aus Intervals.icu `steps` übernehmen.
+- `data/health/steps.md`: `7-Tage-Mittel-Schritte` als arithmetisches Mittel der Schrittwerte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
 - `data/health/weight.md`: Gewicht aus Intervals.icu `weight` übernehmen.
+- `data/health/weight.md`: `7-Tage-Mittel-Gewicht` als arithmetisches Mittel der Gewichtswerte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
 - `data/health/loads.md`: Vor jeder Trainingsplan-Erzeugung neu berechnen und mit den Spalten `Datum`, `Tages-TSS`, `ATL`, `CTL`, `TSB`, `ACR` führen.
 - `data/health/loads.md`: Für jeden Kalendertag eine Zeile schreiben; neueste Einträge oben.
 - `data/health/loads.md`: `Tages-TSS` als Summe aller Activity-`TSS`-Werte dieses Kalendertags berechnen; Ruhetage oder Tage ohne Aktivitäts-`TSS` mit `0` eintragen.
@@ -79,7 +85,10 @@ Regeln:
 - Health-Analyse in die Trainingsentscheidung einbeziehen: bei HRV deutlich unter Korridor, auffällig hohem Ruhepuls, sehr schlechtem Schlaf, starkem Gewichtsabfall oder hoher Alltagsbelastung konservativer planen.
 - Wenn Health-Werte unauffällig oder gut sind, dürfen sie eine geplante Progression unterstützen, aber nicht allein eine aggressive Belastungssteigerung begründen.
 - Eine `.fit`-Datei gilt als noch nicht ausgewertet, wenn keine gleichnamige `.md`-Datei daneben existiert oder wenn die `.fit`-Datei neuer ist als die `.md`-Auswertung.
-- FIT-Auswertungen als gleichnamige Markdown-Dateien neben der FIT-Datei speichern und knapp zusammenfassen: Kurzfassung, Einordnung, relevante Laps/Intervalle.
+- FIT-Auswertungen als gleichnamige Markdown-Dateien neben der FIT-Datei speichern und knapp zusammenfassen: Kurzfassung, kurzer Bericht, Einordnung, relevante Laps/Intervalle.
+- Jede FIT-Auswertung muss einen Abschnitt `Bericht` enthalten, auch ältere bereits vorhandene Auswertungen, wenn sie erneut angefasst oder im Rahmen einer Nachpflege aktualisiert werden.
+- Der Bericht soll ca. 5 bis 6 kurze Sätze enthalten und die einzelne Einheit bewerten: Trainingsreiz, Qualität der Durchführung, auffällige Daten, mögliche Einschränkungen und kurze Konsequenz für die weitere Planung.
+- Der Bericht soll keine lange Wochenreview ersetzen; er bewertet nur diese eine Aktivität.
 - Ältere Aktivitätsauswertungen können noch nach früheren Formatregeln erstellt worden sein; wenn eine Aktivitätsauswertung neu erstellt oder aktualisiert wird, an die aktuellen Regeln in dieser Datei anpassen.
 - In jeder FIT-Auswertung immer genau einen `TSS`-Wert angeben.
 - `TSS` in den Markdown-Auswertungen ist der einheitliche Planungs-Load, nicht zwingend FIT-/Garmin-TSS.
@@ -115,6 +124,7 @@ Regeln:
 - Run-Threshold-Power (`ltpower`, z.B. `unknown_79` Field `12`) nicht tracken.
 - Bike-Threshold-HR nicht tracken, da dieser Wert in FIT-Dateien statisch oder unzuverlässig sein kann.
 - Threshold-Einträge auf das Datum des jeweils letzten vorherigen FIT-Files derselben Sportart datieren, weil die Garmin-Thresholds im FIT die Einstellung zu Beginn der Session beschreiben und neue Thresholds erst eine Session später sichtbar werden.
+- Wenn für ein FIT-File kein vorheriges FIT-File derselben Sportart im Repo vorhanden ist, den darin gefundenen Threshold nicht in die History schreiben, weil kein korrektes Rückdatierungsdatum bestimmt werden kann.
 - Neue Thresholds nur eintragen, wenn sich der relevante Wert gegenüber dem letzten Eintrag der jeweiligen Threshold-Datei geändert hat; identische Wiederholungen mit neuem Datum nicht speichern.
 - Vor jeder Trainingsplan-Erzeugung aus allen neuen Bike- und Run-FIT-Dateien die Garmin-VO2max-Werte auslesen und die VO2max-Historie aktualisieren.
 - Bike-VO2max unter `data/VO2max/VO2max_bike.md` speichern; Run-VO2max unter `data/VO2max/VO2max_run.md` speichern.
@@ -122,6 +132,7 @@ Regeln:
 - `activity_metrics.vo2_max` beschreibt den Wert nach der Aktivität; VO2max-Einträge deshalb auf das Datum derselben FIT-Aktivität datieren und nicht auf das vorherige FIT-File zurückdatieren.
 - Wenn `activity_metrics` Field `7` fehlt oder `0` ist, als Fallback `user_metrics` (`global_mesg_num = 79`, FitFileViewer: `User Metrics`) Field `0` verwenden; der Rohwert wird mit `raw / 292.57142857142856` in `ml/kg/min` umgerechnet.
 - VO2max-Werte mit sinnvoller Nachkommastelle gemäß Datei/Parser speichern; bestehende Tabellenstruktur der jeweiligen `data/VO2max/VO2max_<sport>.md` beibehalten.
+- Bei VO2max-Historien sind die Spaltennamen `VO2max / ml/min/kg` und `VO2max / ml/kg/min` inhaltlich gleich zu behandeln; bestehende Dateien nicht nur wegen dieser Einheitenschreibweise umformatieren.
 - Neue VO2max-Werte nur eintragen, wenn sich der relevante Wert gegenüber dem letzten Eintrag der jeweiligen VO2max-Datei geändert hat; identische Wiederholungen mit neuem Datum nicht speichern.
 - Bei Run-FIT-Auswertungen manuelle Timer-Stops von ungefähr `1-2min` als wahrscheinlichen GI-Hinweis interpretieren, insbesondere wenn sie ohne trainingslogische Pause auftreten.
 - Direkte Herzfrequenzabfälle nach solchen Stops nicht als normale Belastungsreaktion oder bessere Erholung fehlinterpretieren; sie können durch die unterbrochene Aktivität entstehen.
@@ -130,6 +141,7 @@ Regeln:
 - Bei Müdigkeit, Verletzung, schlechtem Schlaf, auffälliger HRV oder ungewöhnlich hohem Ruhepuls konservativ planen.
 - Automatisierte Health-Historien aus `data/health/` als objektiven Kontext nutzen; subjektive oder außergewöhnliche Health-, Müdigkeits- und Beschwerdeangaben aus `data/current-state.md` zusätzlich berücksichtigen und bei Widersprüchen explizit einordnen.
 - Unsicherheiten und fehlende Daten explizit nennen.
+- Im gesamten Repo sind deutsche Umlaute und `ß` erlaubt und gewünscht; neue oder aktualisierte deutsche Texte nicht in ASCII-Umschreibungen wie `ae`, `oe`, `ue` oder `ss` ausweichen lassen, wenn eigentlich `ä`, `ö`, `ü` oder `ß` gemeint ist.
 - Datumsformat: YYYY-MM-DD.
 - Wochenformat: ISO-Woche, z.B. 2026-W23.
 - Chronologische Historientabellen, z.B. VO2max-, Threshold- und absolvierte Race-Listen, mit den neuesten Einträgen oben führen; neue Einträge oben direkt unter dem Tabellenkopf einfügen.
@@ -188,15 +200,27 @@ Subjektive Intervallsteuerung:
 - Beispiele für klar zu kommunizierende Hinweise: mehr Schwimmeinheiten wären sinnvoll als die aktuelle Verfügbarkeit erlaubt; die Standardwoche sollte geändert werden; Brick Sessions wären sinnvoll; Vorgaben widersprechen sich; die langfristige Race-Ausrichtung passt nicht zur aktuellen Wochenstruktur.
 
 Wochenreview:
-- Vor jeder neuen Wochenplan-Erzeugung eine kurze Bewertung der letzten abgeschlossenen Trainingswoche erstellen.
+- Vor jeder neuen Wochenplan-Erzeugung eine ausführliche Bewertung der letzten abgeschlossenen Trainingswoche erstellen.
 - Die kanonische Bewertung im jeweiligen Aktivitätsordner speichern: `data/activities/YYYY-Www/review_YYYY-Www.md`.
 - Der Dateiname der Wochenreview bezeichnet die bewertete ISO-Woche: `data/activities/2026-W23/review_2026-W23.md` ist die Review für Woche 23.
 - Die Review einer abgeschlossenen Woche soll im Plan der folgenden Woche erscheinen, z.B. `data/activities/2026-W23/review_2026-W23.md` im Plan `plans/2026-W24.html`.
-- Im HTML-Wochenplan eine kurze Box `Rückblick letzte Woche` anzeigen, die diese Bewertung knapp zusammenfasst.
+- Im HTML-Wochenplan eine Box `Rückblick letzte Woche` anzeigen, die diese Bewertung ausführlich wiedergibt und nicht auf wenige Sätze verkürzt.
 - Für die Wochenreview primär die FIT-Auswertungen und Aktivitätsnotizen der letzten abgeschlossenen ISO-Woche bzw. der letzten 7 Tage verwenden.
 - Als Grundlage für die Wochenreview `data/current-state.md`, FIT-Auswertungen, Aktivitätsnotizen, den Vorwochenplan, `data/goals.md` und `data/races.md` heranziehen.
 - Health-Historien aus `data/health/hrv.md`, `data/health/resting_heart_rate.md`, `data/health/sleep.md`, `data/health/steps.md`, `data/health/weight.md` und `data/health/loads.md` in die Wochenreview einbeziehen.
 - Im Wochenfazit kurz einordnen, ob die Health-Werte die Trainingsbelastung der neuen Woche unterstützen oder ob sie für konservativere Planung sprechen.
+- Die Wochenreview soll vollständig trainingswissenschaftlich und athletenbezogen formuliert sein; technische Repo-, Skript-, Import-, Sync-, Parser-, Intervals-Matching- oder FIT-Verfügbarkeits-Hinweise gehören ausschließlich in den Chat, nicht in die Review und nicht in die HTML-Review-Box.
+- In der Wochenreview keine Formulierungen wie `FIT-Dateien wurden nachgeladen`, `fehlende Dateien`, `kein Intervals-Match`, `FIT-Fallback`, `Skriptwarnung`, `Parser`, `technische Datenlage` oder ähnliche technische Hinweise verwenden.
+- Wenn technische Unsicherheiten die Trainingsbewertung beeinflussen, diese im Chat benennen; in der Review nur die trainingsrelevante Konsequenz formulieren, z.B. `der rechnerische Belastungswert wirkt für die kurze Dauer auffällig hoch und wird daher konservativ interpretiert`.
+- Die Wochenreview soll nicht primär Einheiten nacherzählen, sondern erklären, was die Woche trainingslogisch bedeutet.
+- Aufbau der Wochenreview: 1. Kurzfazit zum Charakter der Woche; 2. knapper Abgleich geplant vs. absolviert mit Fokus auf relevante Abweichungen; 3. gesetzte Trainingsreize, z.B. aerobe Basis, VO2max, Threshold, race-specific oder Kopplung; 4. Belastungswirkung anhand TSS, ATL, CTL, TSB, ACR und Belastungsverteilung; 5. Health-Response anhand HRV, Ruhepuls, Schlaf, Gewicht, Schritte und subjektivem Zustand; 6. Sportarten-Entwicklung für Swim, Bike und Run mit Zusammenspiel und aktueller Limitierung; 7. Zielbezug zu kurzfristigen Rennen und langfristigem Hauptrennen; 8. Risiko oder Limitierung; 9. konkrete Konsequenz für die nächste Planwoche.
+- Key Sessions nur als Belege für diese Punkte verwenden, nicht als vollständige Nacherzählung jeder Einheit.
+- Zusammenhänge explizit erklären, z.B. warum eine gute Bike-Woche trotzdem zu vorsichtiger Laufplanung führen kann, oder warum gute Schlafwerte eine hohe akute Last nur teilweise kompensieren.
+- Health-Daten nicht isoliert aufzählen, sondern als Reaktion auf Training interpretieren, z.B. HRV unter Korridor nach hoher Wochenendlast, guter Schlaf als entlastender Faktor, hoher ACR als Grund für konservative Planung.
+- Die Wochenreview darf analytisch und interpretierend sein; sie soll klar sagen, welche Annahmen aus den Daten abgeleitet werden und wo trainingswissenschaftliche Unsicherheit bleibt.
+- Ton der Wochenreview: analytisch, erklärend, trainingswissenschaftlich und athletenbezogen.
+- Nicht nur beschreiben, was passiert ist, sondern warum es für die Entwicklung relevant ist.
+- Keine generische Trainingslehre; immer auf konkrete Daten, Ziele, Race-Kontext und aktuellen Zustand beziehen.
 - Ältere FIT-Auswertungen und Aktivitätsnotizen nur berücksichtigen, wenn sie für den aktuellen Zustand, erkennbare Trends oder die Zielbewertung noch relevant sind.
 - Nicht alle historischen FIT-Dateien jedes Mal gleich stark gewichten; alte Aktivitäten sind Historie, nicht automatisch aktueller Zustand.
 - Wenn ein Plan der Vorwoche existiert, einen kurzen Abgleich `geplant vs. absolviert` aufnehmen, ohne daraus eine lange Kontrollliste zu machen.
@@ -207,12 +231,17 @@ Wochenreview:
 - Dabei getrennt auf kurzfristige, weniger wichtige Rennen und langfristige, wichtigere Ziele eingehen.
 - Besonders das realistische Erreichen der Ziele beurteilen, z.B. Qualifikation, Leistungsaufbau, Rennspezifik und verbleibende Zeit.
 - Eine kurze Konsequenz für die aktuelle Planwoche nennen, z.B. Umfang steigern, Intensität begrenzen, spezifischen Reiz setzen oder konservativ bleiben.
-- Datenlücken wie fehlende Schlaf-, HRV- oder Müdigkeitsdaten nur dann erwähnen, wenn sie die Aussagekraft der Bewertung relevant begrenzen.
+- Trainingsrelevante Datenlücken wie fehlende Schlaf-, HRV- oder Müdigkeitsdaten nur dann erwähnen, wenn sie die Aussagekraft der Bewertung relevant begrenzen; technische Gründe für Datenlücken nur im Chat erklären.
 
 Wochenplan-Format:
 - Wochenpläne als HTML-Dateien unter `plans/YYYY-Www.html` speichern.
-- Zusätzlich im Repo-Root eine Datei `trainingplan.html` pflegen, die immer auf den aktuellsten Wochenplan verweist.
-- Nach jeder Wochenplan-Erzeugung `trainingplan.html` ersatzlos aktualisieren, sodass sie auf die neu erzeugte bzw. aktuelle `plans/YYYY-Www.html` weiterleitet.
+- Nach Fertigstellung des HTML-Wochenplans als letzten Schritt zusätzlich ein PDF `plans/YYYY-Www.pdf` aus genau dieser HTML-Datei erzeugen, sodass PDF und HTML dieselbe Darstellung, dasselbe CSS und dieselben SVG-Plots verwenden.
+- Für den PDF-Export nach Möglichkeit Browser-/Print-to-PDF-Rendering der fertigen HTML-Datei verwenden, nicht eine separate manuelle PDF-Nachbildung.
+- PDF-Wochenpläne im breiten Desktop-Layout exportieren: A3 quer, randlos bzw. ohne Browser-/Seitenränder, 7 Wochentage nebeneinander und zwei Trend-Plotspalten nebeneinander; dafür darf die Print-Schrift kleiner sein als in der normalen HTML-Ansicht.
+- Wenn kein lokaler Browser, Headless-Renderer oder PDF-Exportwerkzeug verfügbar ist, dies im Chat klar melden; die HTML-Datei bleibt dann die kanonische Darstellung.
+- Zusätzlich im Repo-Root eine Datei `trainingplan.html` pflegen, die anhand des aktuellen Datums im Browser automatisch auf den Plan der aktuellen ISO-Woche `plans/YYYY-Www.html` weiterleitet.
+- `trainingplan.html` nicht jede Woche auf einen hart codierten Planpfad aktualisieren; die Datei soll die ISO-Woche per JavaScript berechnen.
+- Wenn ein Plan bewusst für eine andere als die aktuelle ISO-Woche geöffnet werden soll, direkt die konkrete Datei unter `plans/YYYY-Www.html` öffnen.
 - Die HTML-Datei soll nur Struktur und Inhalte enthalten. Gemeinsames Styling liegt in `plans/training-plan.css`.
 - Jede Wochenplan-HTML soll im `<head>` `assets/calendar.png` als Favicon einbinden; aus `plans/YYYY-Www.html` relativ mit `<link rel="icon" type="image/png" href="../assets/calendar.png">`.
 - Die Wochenplan-Seite soll die volle Bildschirmbreite nutzen und keine maximale Content-Breite setzen.
@@ -227,9 +256,41 @@ Wochenplan-Format:
 - Session-Beschreibungen bewusst knapp halten. Bei einer einfachen Bike-/Run-Einheit reicht eine einzelne Angabe wie `60min @200W`; bei mehreren Schritten eine kurze Liste im gleichen Stil.
 - Bei Zugseil-Einheiten keinen zusätzlichen Beschreibungstext verwenden.
 - Ruhetage nicht als eigene Session mit `Ruhetag` darstellen; leere Tage bleiben leer.
-- Unter oder über dem Trainingsplan eine kurze Review-Box `Rückblick letzte Woche` anzeigen, sofern eine Wochenreview nach den Regeln oben erstellt wurde.
+- Unter oder über dem Trainingsplan eine ausführliche Review-Box `Rückblick letzte Woche` anzeigen, sofern eine Wochenreview nach den Regeln oben erstellt wurde.
 - Unter dem Trainingsplan eine kurze Erklärungsbox anzeigen, die beschreibt, worauf die Woche abzielt und warum die wichtigsten Sessions so gewählt wurden.
 - In der Erklärungsbox knapp erwähnen, wenn Health-Werte die Planungsentscheidung relevant beeinflusst haben, z.B. konservativer Einstieg wegen niedriger HRV/schlechtem Schlaf oder normale Progression bei unauffälligem Health-Kontext.
 - Die Erklärungsbox soll die Race-Ausrichtung nennen, z.B. langfristig ist die Planung auf das wichtigste anstehende Race (Ironman am `2027-05-01`) ausgelegt (daher die Sessions X1 und X2), aber für die Spezifizierung auf das weniger priorisierte Race wurden Session (Y1 und Y2) erstellt. Damit ist ein guter Mix aus Vorbereitung auf ein weniger wichtiges akutes Race und das langfristige Ziel im Hinterkopf gewährleistet.
 - Die Erklärungsbox soll knapp bleiben und die Intention der Planung verständlich machen, ohne allgemeine Trainingslehre auszubreiten.
+- Wenn `scripts/generate_trend_plots.py` existiert, nach jeder Wochenplan-Erzeugung die Trendplots für die Planwoche erzeugen und in den HTML-Wochenplan einbinden, bevorzugt mit `python scripts/generate_trend_plots.py --week YYYY-Www --newest YYYY-MM-DD --update-html`.
+- Trendplots als statische SVG-Dateien unter `plans/assets/trends/YYYY-Www/` speichern; die HTML-Datei bindet sie relativ mit `assets/trends/YYYY-Www/<datei>.svg` ein.
+- Für Trendplots ausschließlich kanonische Markdown-Historien aus `data/health/`, `data/thresholds/` und `data/VO2max/` verwenden; technische Cache-Dateien sind keine Plotquelle.
+- Die Plotsektion im Wochenplan heißt `Trends`, steht unter Review und Planungsintention und zeigt die Plotgruppen in dieser Reihenfolge: Performance, Belastung, Readiness, Alltag.
+- Die Trendsektion als zweispaltiges Dashboard anordnen: oben links `Performance (12 Monate)`, oben rechts `Belastung (90 Tage)`, darunter links `Readiness (90 Tage)` und darunter rechts `Alltag (30 Tage)`.
+- Innerhalb jeder Plotgruppe die zugehörigen Plot-Cards vertikal untereinander anordnen, nicht nebeneinander.
+- Die vier Plotgruppen im zweispaltigen Dashboard bündig als sauberes `2x2`-Grid ausrichten; Gruppen dürfen nicht durch abweichende Top-Margins gegeneinander vertikal versetzt sein.
+- Die Zeitdauer der Plotgruppen in die Gruppenüberschrift schreiben, z.B. `Alltag (30 Tage)`.
+- Plotgruppen mit gleicher Zeitdauer direkt untereinander bzw. nebeneinander mit identischer X-Achse darstellen.
+- Die Zeitdauer nur in den Plotgruppen-Überschriften anzeigen, z.B. `Alltag (30 Tage)`, nicht in den einzelnen SVG-/Card-Titeln; eine Card heißt z.B. nur `Gewicht`, nicht `Gewicht (30 Tage)`.
+- In den SVG-Plots rechts oben kompakte Legenden platzieren.
+- Plot-SVGs ausreichend hoch und gut lesbar gestalten; Schriftgrößen so wählen, dass die Werte im HTML-Plan ohne Zoomen erkennbar bleiben.
+- Legenden so platzieren, dass Marker und Beschriftung nicht überlappen. Zwischen Marker und zugehöriger Beschriftung einen klaren Abstand lassen; der Abstand zwischen zwei verschiedenen Legendeneinträgen soll deutlich größer sein als der Abstand zwischen Marker und Beschriftung.
+- Readiness über 90Tage plotten: HRV mit Tages-RMSSD als dezente graue Punkte mit sehr dünner grauer Verbindungslinie, 7-Tage-RMSSD als Linie und 90-Tage-Korridor als hellgrünes Band.
+- Die HRV-7-Tage-Linie grün zeichnen, wenn sie innerhalb des HRV-Korridors liegt, und orange, wenn sie außerhalb des Korridors liegt.
+- Ruhepuls zusammen mit Schlafdauer und Sleepscore in einem Plot mit mehreren kompakten Y-Skalen darstellen; Schlafdauer mit `0` als Minimalwert plotten und Ruhepuls so skalieren, dass er im unteren Drittel bleibt und Schlaf/Sleepscore gut lesbar bleiben.
+- Schlafdauer-Balken mit einem vertikalen Verlauf zeichnen: oben kräftiger, nach unten zur X-Achse transparenter, unten ungefähr `20%` Opacity.
+- Belastung über 90Tage plotten: Tages-TSS als sehr dünne Balken und ATL/CTL als Linien in einem Plot; zusätzlich einen dezenten grünen CTL-Korridor von `80%` bis `140%` der CTL-Linie darstellen.
+- Die Y-Achse im Load-Plot immer bei `0` starten lassen.
+- TSB über 90Tage direkt darunter bzw. daneben in einem zweiten Plot mit gleicher X-Achse darstellen; ACR nicht im Plot anzeigen. TSB invertiert plotten, sodass negativere Werte oben liegen.
+- TSB-Linie und TSB-Punkte schwarz zeichnen.
+- Im Balance-Plot TSB-Hintergrundzonen darstellen: `-10 bis -30` als hellgrüner Formaufbau-Korridor, `< -30` als dezenter Risikobereich, `-10 bis +10` als neutraler Bereich, `+10 bis +25` als dezenter `Race Ready`-Bereich und `> +25` als Bereich für möglichen Fitnessverlust.
+- Weil TSB invertiert geplottet wird, müssen die Hintergrundzonen ebenfalls invertiert positioniert werden: negativer TSB liegt im Plot weiter oben.
+- Körper/Alltag über 30Tage plotten: Gewicht als Tageswert-Balken plus 7-Tage-Mittel-Linie; Schritte im gleichen visuellen Stil als Tageswert-Balken plus 7-Tage-Mittel-Linie und mit `0` als Minimalwert.
+- Performance über 12Monate plotten: Thresholds in einem gemeinsamen Plot, Swim CSS blau, Bike FTP grün und Run Pace dunkelrot; Run-HR-Threshold nicht im Trendplot darstellen.
+- Für Load, Balance, Threshold und VO2max die aktuellsten Werte rechts außerhalb der inneren Plotfläche, aber innerhalb der äußeren SVG-Karte anzeigen; diese Endwerte ohne Präfixe wie `ATL`, `CTL` oder `TSB` schreiben.
+- Bei Load und Balance die rechte Endwertspalte schmal halten, weil dort nur kurze maximal dreistellige Zahlen ohne Einheit stehen; Threshold- und VO2max-Plots dürfen mehr rechten Platz für längere Labels behalten.
+- Den tagesaktuellen Tages-TSS-Wert nicht als Endwert anzeigen; Tages-TSS bleibt nur als dünner Balken und Legendenreihe sichtbar.
+- Plots ohne aktuelle Endwerte sollen die innere Plotfläche nach rechts deutlich weiter ausnutzen.
+- VO2max über 12Monate in einem gemeinsamen Plot darstellen, Bike grün und Run rot.
+- Wenn Plotdaten fehlen, sehr dünn sind oder Spaltennamen nicht erkannt werden, dies im Chat als technische Plausibilitätswarnung nennen und nicht in Wochenreview oder Planungsintention schreiben.
+- Die Plotdarstellung soll modern, schlicht und ruhig sein, ähnlich Apple-Health/Apple-Fitness: helle Flächen, dezente Raster, klare Linien, keine dekorativen Effekte.
 - Keine weiteren erklärenden Hinweisboxen, Steuerungsboxen oder Kontextboxen im Wochenplan anzeigen, außer der Nutzer fragt ausdrücklich danach.

@@ -84,10 +84,11 @@ Alle aufgelisteten Werte sind zusätzliche eingenommen Substanzen, nicht die kom
 
 | Feld | Wert |
 |-|-|
-| Kohlenhydrate im Training | 60-90 g/h |
-| Kohlenhydrate im Rennen | 80-100 g/h |
-| Flüssigkeit | 500-900 ml/h |
-| Natrium | 500-1000 mg/h |
+| Kohlenhydrate während Long Bike | 60-90 g/h |
+| Kohlenhydrate während sonstigen Trainings | 0 g/h |
+| Kohlenhydrate während Rennen | 80-100 g/h |
+| Flüssigkeit | 500-800 ml/h |
+| Natrium | 1000 mg/h |
 
 ## Planungsvorgaben
 

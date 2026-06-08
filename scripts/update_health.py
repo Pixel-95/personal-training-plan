@@ -18,8 +18,8 @@ HEALTH_DIR = ROOT / "data" / "health"
 TABLES = {
     "resting_heart_rate.md": ["Datum", "Ruhepuls / bpm"],
     "sleep.md": ["Datum", "Schlafdauer / hh:mm", "Sleepscore"],
-    "steps.md": ["Datum", "Schritte"],
-    "weight.md": ["Datum", "Gewicht / kg"],
+    "steps.md": ["Datum", "Schritte", "7-Tage-Mittel-Schritte"],
+    "weight.md": ["Datum", "Gewicht / kg", "7-Tage-Mittel-Gewicht / kg"],
     "hrv.md": [
         "Datum",
         "Tages-RMSSD / ms",
@@ -153,6 +153,40 @@ def recalc_hrv(rows: dict[str, list[str]]) -> None:
             cells[4] = "-"
 
 
+def recalc_weight(rows: dict[str, list[str]]) -> None:
+    daily = {date.fromisoformat(day): number_or_none(cells[1] if len(cells) > 1 else None) for day, cells in rows.items()}
+    for day, cells in rows.items():
+        current = date.fromisoformat(day)
+        while len(cells) < 3:
+            cells.append("-")
+        window7 = [
+            daily.get(current - timedelta(days=offset))
+            for offset in range(7)
+            if daily.get(current - timedelta(days=offset)) is not None
+        ]
+        if len(window7) >= 4:
+            cells[2] = fmt_float(str(sum(window7) / len(window7)), 1)
+        else:
+            cells[2] = "-"
+
+
+def recalc_steps(rows: dict[str, list[str]]) -> None:
+    daily = {date.fromisoformat(day): number_or_none(cells[1] if len(cells) > 1 else None) for day, cells in rows.items()}
+    for day, cells in rows.items():
+        current = date.fromisoformat(day)
+        while len(cells) < 3:
+            cells.append("-")
+        window7 = [
+            daily.get(current - timedelta(days=offset))
+            for offset in range(7)
+            if daily.get(current - timedelta(days=offset)) is not None
+        ]
+        if len(window7) >= 4:
+            cells[2] = str(round(sum(window7) / len(window7)))
+        else:
+            cells[2] = "-"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Update health Markdown histories from Intervals.icu.")
     parser.add_argument("--days", type=int, default=30, help="Number of days to update.")
@@ -174,6 +208,7 @@ def main() -> int:
     warnings: list[str] = []
 
     tables = {name: parse_table(HEALTH_DIR / name) for name in TABLES}
+    tables["weight.md"] = (TABLES["weight.md"], tables["weight.md"][1])
 
     last_weight = None
     weight_rows = tables["weight.md"][1]
@@ -215,20 +250,22 @@ def main() -> int:
         steps_value = fmt_int(row.get("steps"))
         if steps_value == "-":
             steps_value = existing_or_missing(steps, key, 1)
-        steps[key] = [key, steps_value]
+        steps[key] = [key, steps_value, "-"]
 
         weight = tables["weight.md"][1]
         raw_weight = fmt_float(row.get("weight"), 1)
         if raw_weight != "-":
             last_weight = (key, raw_weight)
-            weight[key] = [key, raw_weight]
+            weight[key] = [key, raw_weight, "-"]
         elif last_weight is not None:
-            weight[key] = [key, last_weight[1]]
+            weight[key] = [key, last_weight[1], "-"]
         else:
-            weight[key] = [key, "-"]
+            weight[key] = [key, "-", "-"]
             missing["weight"].append(key)
 
     recalc_hrv(tables["hrv.md"][1])
+    recalc_weight(tables["weight.md"][1])
+    recalc_steps(tables["steps.md"][1])
 
     for field, dates in sorted(missing.items()):
         if dates:

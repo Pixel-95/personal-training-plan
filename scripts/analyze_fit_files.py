@@ -349,6 +349,62 @@ def summarize(info: FitInfo, tss: str) -> list[str]:
     return lines
 
 
+def report(info: FitInfo, tss: str, activity: dict[str, Any] | None) -> str:
+    session = info.session
+    duration = seconds_to_hms(value(session, "total_timer_time"))
+    avg_hr = fmt(value(session, "avg_heart_rate"), "bpm")
+    max_hr = fmt(value(session, "max_heart_rate"), "bpm")
+    aerobic = fmt(value(session, "total_training_effect"), digits=1)
+    anaerobic = fmt(value(session, "total_anaerobic_training_effect"), digits=1)
+    if is_bike(info.sport):
+        avg_power = fmt(value(session, "avg_power"), "W")
+        np_power = fmt(value(session, "normalized_power"), "W")
+        sentences = [
+            f"Die Einheit war eine Bike-Einheit über {duration} mit {avg_power} im Schnitt und {np_power} NP.",
+            f"Mit TSS {tss}, {avg_hr} im Schnitt und {max_hr} maximal war der Reiz insgesamt gut einzuordnen.",
+            f"Der Training Effect lag aerob bei {aerobic} und anaerob bei {anaerobic}.",
+            "Für die Planung ist besonders relevant, ob die Leistung stabil zu Herzfrequenz und Kontext passt.",
+        ]
+    elif is_run(info.sport):
+        pace = pace_from_speed(value(session, "enhanced_avg_speed", "avg_speed"))
+        sentences = [
+            f"Die Einheit war ein Lauf über {duration} mit einer durchschnittlichen Pace von {pace}.",
+            f"Mit TSS {tss}, {avg_hr} im Schnitt und {max_hr} maximal war der Reiz insgesamt gut einzuordnen.",
+            f"Der Training Effect lag aerob bei {aerobic} und anaerob bei {anaerobic}.",
+            "Für die Planung ist besonders relevant, ob Pace, Herzfrequenz, Pausen und mögliche Beschwerden zusammenpassen.",
+        ]
+    elif is_swim(info.sport):
+        pace = pace_from_speed(value(session, "enhanced_avg_speed", "avg_speed"), swim=True)
+        distance = fmt(value(session, "total_distance"), "m")
+        sentences = [
+            f"Die Einheit war eine Schwimmeinheit über {distance} mit einer durchschnittlichen Pace von {pace}.",
+            f"Mit TSS {tss} und Training Effect aerob {aerobic}/anaerob {anaerobic} war der Reiz insgesamt gut einzuordnen.",
+            "Für die Planung ist besonders relevant, ob Umfang, Pace und Set-Struktur zum geplanten Swim-Typ passen.",
+            "Herzfrequenzdaten im Schwimmen werden nur ergänzend bewertet, weil sie je nach Sensor und Wasserlage weniger stabil sein können.",
+        ]
+    else:
+        sentences = [
+            f"Die Einheit dauerte {duration} und wurde als {sport_label(info.sport)} erkannt.",
+            f"Mit TSS {tss}, {avg_hr} im Schnitt und {max_hr} maximal war der Reiz insgesamt gut einzuordnen.",
+            f"Der Training Effect lag aerob bei {aerobic} und anaerob bei {anaerobic}.",
+            "Für die Planung wird diese Einheit vor allem als zusätzlicher Belastungskontext berücksichtigt.",
+        ]
+    drift = hr_drift(info)
+    if drift not in {"-", "nicht sinnvoll berechenbar"}:
+        sentences.append(f"Die HR-Drift lag bei {drift} und hilft bei der Einordnung der aeroben Stabilität.")
+    elif is_bike(info.sport) or is_run(info.sport):
+        sentences.append("Eine belastbare HR-Drift war aus dieser Datei nicht sinnvoll ableitbar.")
+    if activity is None:
+        sentences.append("Kein eindeutiges Intervals.icu-Match wurde gefunden, daher sollte der TSS-Wert besonders plausibilisiert werden.")
+    else:
+        sentences.append("Die Einheit sollte zusammen mit subjektivem Feedback und dem Wochenkontext für die weitere Planung bewertet werden.")
+    if tss == "-":
+        sentences.append("Für die Load-Steuerung ist die Einheit nur eingeschränkt nutzbar, bis eine belastbare TSS-Quelle verfügbar ist.")
+    else:
+        sentences.append("Für die Load-Steuerung kann der TSS-Wert genutzt werden, sollte aber bei auffälliger Dauer oder Intensität gegengeprüft werden.")
+    return " ".join(sentences[:6])
+
+
 def write_summary(info: FitInfo, activity: dict[str, Any] | None, dry_run: bool, warnings: list[str]) -> None:
     tss = get_tss(info, activity, warnings)
     target = info.path.with_suffix(".md")
@@ -362,15 +418,19 @@ def write_summary(info: FitInfo, activity: dict[str, Any] | None, dry_run: bool,
         "",
         *summarize(info, tss),
         "",
+        "## Bericht",
+        "",
+        report(info, tss, activity),
+        "",
         "## Einordnung",
         "",
-        "- Automatisch erzeugte FIT-Auswertung; Plausibilitaet durch das LLM vor Planerzeugung erforderlich.",
+        "- Automatisch erzeugte FIT-Auswertung; Plausibilität durch das LLM vor Planerzeugung erforderlich.",
     ]
     if activity is None:
         lines.append("- Kein eindeutiges Intervals.icu-Activity-Match gefunden; TSS nutzt FIT-Fallback oder `-`.")
     lines.extend(["", "## Laps", ""])
     header, rows = lap_rows(info)
-    lines.extend(markdown_table(header, rows) or ["Keine Lap-Daten verfuegbar."])
+    lines.extend(markdown_table(header, rows) or ["Keine Lap-Daten verfügbar."])
     text = "\n".join(lines) + "\n"
     if dry_run:
         print(f"Would write {target.relative_to(ROOT)}")
@@ -430,9 +490,11 @@ def read_table(path: Path) -> tuple[list[str], list[list[str]]]:
 
 def prepend_if_changed(path: Path, values: list[str], dry_run: bool) -> None:
     header, rows = read_table(path)
-    if rows and rows[0][1:] == values[1:]:
+    if any(row == values for row in rows):
         return
-    new_rows = [values] + rows
+    new_rows = normalize_history_rows(rows + [values])
+    if new_rows == rows:
+        return
     content = [
         "| " + " | ".join(header) + " |",
         "|" + "|".join("-" for _ in header) + "|",
@@ -445,30 +507,56 @@ def prepend_if_changed(path: Path, values: list[str], dry_run: bool) -> None:
     print(f"UPDATED {path.relative_to(ROOT)}")
 
 
-def threshold_date(info: FitInfo, all_infos: list[FitInfo]) -> str:
+def normalize_history_rows(rows: list[list[str]]) -> list[list[str]]:
+    def row_date(row: list[str]) -> str:
+        return row[0] if row else ""
+
+    unique: list[list[str]] = []
+    for row in rows:
+        if row not in unique:
+            unique.append(row)
+    ascending = sorted(unique, key=row_date)
+    changed: list[list[str]] = []
+    last_values: list[str] | None = None
+    for row in ascending:
+        current_values = row[1:]
+        if current_values == last_values:
+            continue
+        changed.append(row)
+        last_values = current_values
+    return sorted(changed, key=row_date, reverse=True)
+
+
+def threshold_date(info: FitInfo, all_infos: list[FitInfo]) -> str | None:
     if not info.start:
-        return date.today().isoformat()
+        return None
     same_sport = [
         other
         for other in all_infos
         if other.start and other.start < info.start and other.sport == info.sport
     ]
     if not same_sport:
-        return info.start.date().isoformat()
+        return None
     return max(same_sport, key=lambda item: item.start or datetime.min).start.date().isoformat()
 
 
 def update_histories(info: FitInfo, all_infos: list[FitInfo], dry_run: bool, warnings: list[str]) -> None:
     if is_bike(info.sport):
         ftp = extract_bike_ftp(info)
-        if ftp:
-            prepend_if_changed(THRESHOLDS_DIR / "thresholds_bike.md", [threshold_date(info, all_infos), str(ftp)], dry_run)
+        dated_to = threshold_date(info, all_infos)
+        if ftp and dated_to:
+            prepend_if_changed(THRESHOLDS_DIR / "thresholds_bike.md", [dated_to, str(ftp)], dry_run)
+        elif ftp and not dated_to:
+            warnings.append(f"{info.path.name}: Bike FTP found but not written because no previous Bike FIT exists for correct threshold dating")
         else:
             warnings.append(f"{info.path.name}: no Bike FTP threshold found")
     if is_run(info.sport):
         lthr, pace = extract_run_threshold(info)
-        if lthr and pace:
-            prepend_if_changed(THRESHOLDS_DIR / "thresholds_run.md", [threshold_date(info, all_infos), str(lthr), pace], dry_run)
+        dated_to = threshold_date(info, all_infos)
+        if lthr and pace and dated_to:
+            prepend_if_changed(THRESHOLDS_DIR / "thresholds_run.md", [dated_to, str(lthr), pace], dry_run)
+        elif lthr and pace and not dated_to:
+            warnings.append(f"{info.path.name}: Run threshold found but not written because no previous Run FIT exists for correct threshold dating")
         else:
             warnings.append(f"{info.path.name}: no complete Run threshold found")
     if is_bike(info.sport) or is_run(info.sport):
@@ -489,11 +577,12 @@ def needs_analysis(path: Path) -> bool:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Analyze FIT files into Markdown summaries.")
     parser.add_argument("--dry-run", action="store_true", help="Report changes without writing.")
+    parser.add_argument("--force", action="store_true", help="Recreate all Activity Markdown summaries, even when they are not older than the FIT file.")
     args = parser.parse_args()
 
     fit_paths = sorted(ACTIVITIES_DIR.rglob("*.fit"))
     infos = [read_fit(path) for path in fit_paths]
-    open_infos = [info for info in infos if needs_analysis(info.path)]
+    open_infos = infos if args.force else [info for info in infos if needs_analysis(info.path)]
     activities, warnings = load_intervals_activities(open_infos or infos)
 
     print(f"FIT files: {len(fit_paths)}")

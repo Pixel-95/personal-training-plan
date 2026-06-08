@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Schlaf + Ruhepuls">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1076" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Schlaf + Ruhepuls</text>
+<defs><linearGradient id="sleep-duration-gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7aa6d8" stop-opacity="0.95"/><stop offset="100%" stop-color="#7aa6d8" stop-opacity="0.2"/></linearGradient></defs>
+<line x1="70" y1="74.0" x2="1146" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1146" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1146" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1146" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1146" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">11.03.</text>
+<line x1="336.0" y1="74" x2="336.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="336.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">02.04.</text>
+<line x1="602.0" y1="74" x2="602.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="602.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">24.04.</text>
+<line x1="880.0" y1="74" x2="880.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="880.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">17.05.</text>
+<line x1="1146.0" y1="74" x2="1146.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1146.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">08.06.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">9.1h</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
+<text x="1158" y="79" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">100Score</text>
+<rect x="1117.9" y="125.7" width="7.9" height="360.3" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1129.9" y="118.1" width="7.9" height="367.9" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1142.0" y="119.6" width="7.9" height="366.4" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<polyline points="1121.8,111.1 1133.9,139.9 1146.0,102.8" fill="none" stroke="#6f5aa7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1121.8" cy="111.1" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1133.9" cy="139.9" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1146.0" cy="102.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<polyline points="1109.7,361.2 1121.8,436.1 1133.9,361.2 1146.0,461.0" fill="none" stroke="#b64b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1109.7" cy="361.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1121.8" cy="436.1" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1133.9" cy="361.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1146.0" cy="461.0" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Ruhepuls</text>
+<circle cx="1085.6" cy="28" r="4.5" fill="#b64b3a"/>
+<text x="1045.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Sleepscore</text>
+<circle cx="961.6" cy="28" r="4.5" fill="#6f5aa7"/>
+<text x="921.5999999999999" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Schlafdauer</text>
+<circle cx="830.8" cy="28" r="4.5" fill="#7aa6d8"/>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Load">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1046" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Load</text>
+<line x1="70" y1="74.0" x2="1116" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1116" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1116" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1116" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1116" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">11.03.</text>
+<line x1="328.6" y1="74" x2="328.6" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="328.6" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">02.04.</text>
+<line x1="587.1" y1="74" x2="587.1" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="587.1" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">24.04.</text>
+<line x1="857.4" y1="74" x2="857.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="857.4" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">17.05.</text>
+<line x1="1116.0" y1="74" x2="1116.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1116.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">08.06.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">174</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
+<polygon points="1022.0,353.1 1033.7,353.1 1045.5,349.8 1057.2,346.5 1069.0,339.8 1080.7,343.1 1092.5,336.5 1104.2,329.8 1104.2,396.8 1092.5,400.6 1080.7,404.4 1069.0,402.5 1057.2,406.3 1045.5,408.2 1033.7,410.1 1022.0,410.1" fill="#dcefe9" opacity="0.75"/>
+<rect x="1021.0" y="486.0" width="2.0" height="1.0" rx="2.2" fill="#d4dae2"/>
+<rect x="1032.7" y="346.9" width="2.0" height="139.1" rx="2.2" fill="#d4dae2"/>
+<rect x="1044.5" y="348.8" width="2.0" height="137.2" rx="2.2" fill="#d4dae2"/>
+<rect x="1056.2" y="248.0" width="2.0" height="238.0" rx="2.2" fill="#d4dae2"/>
+<rect x="1068.0" y="247.2" width="2.0" height="238.8" rx="2.2" fill="#d4dae2"/>
+<rect x="1079.7" y="469.4" width="2.0" height="16.6" rx="2.2" fill="#d4dae2"/>
+<rect x="1091.5" y="118.1" width="2.0" height="367.9" rx="2.2" fill="#d4dae2"/>
+<rect x="1103.3" y="201.2" width="2.0" height="284.8" rx="2.2" fill="#d4dae2"/>
+<polyline points="1022.0,379.2 1033.7,374.5 1045.5,372.1 1057.2,353.1 1069.0,338.9 1080.7,357.8 1092.5,322.2 1104.2,305.6" fill="none" stroke="#b64b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1022.0" cy="379.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1033.7" cy="374.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1045.5" cy="372.1" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1057.2" cy="353.1" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1069.0" cy="338.9" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1080.7" cy="357.8" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1092.5" cy="322.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1104.2" cy="305.6" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<polyline points="1022.0,391.1 1033.7,391.1 1045.5,388.7 1057.2,386.3 1069.0,381.6 1080.7,383.9 1092.5,379.2 1104.2,374.5" fill="none" stroke="#287c71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1022.0" cy="391.1" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1033.7" cy="391.1" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1045.5" cy="388.7" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1057.2" cy="386.3" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1069.0" cy="381.6" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1080.7" cy="383.9" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1092.5" cy="379.2" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1104.2" cy="374.5" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">80-140%CTL</text>
+<circle cx="1072.0" cy="28" r="4.5" fill="#dcefe9"/>
+<text x="1032.0" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">CTL</text>
+<circle cx="995.6" cy="28" r="4.5" fill="#287c71"/>
+<text x="955.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">ATL</text>
+<circle cx="919.2" cy="28" r="4.5" fill="#b64b3a"/>
+<text x="879.2" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">TSS</text>
+<circle cx="842.8" cy="28" r="4.5" fill="#d4dae2"/>
+<text x="1130" y="305.6" fill="#b64b3a" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">76</text>
+<text x="1130" y="394.5" fill="#287c71" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">47</text>
+</svg>

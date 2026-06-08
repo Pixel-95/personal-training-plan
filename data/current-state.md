@@ -1,15 +1,18 @@
 # Aktueller Zustand
 
-Zuletzt vom LLM zusammengefasst: 2026-06-03
+Zuletzt vom LLM zusammengefasst: 2026-06-07
 
 ## Aktuelle Zusammenfassung
 
 Diese Zusammenfassung soll vor jeder Trainingsplanung oder Trainingsbewertung vom LLM anhand der neuesten Updates unten aktualisiert werden.
 
-- Stand 2026-06-02: Rückkehr aus einer dreiwöchigen Trainingspause nach dem Ironman 70.3 Da Nang.
-- Am 2026-06-02 wurde ein Aerobic-Short-Swim mit 2700m absolviert; moderater aerober Reiz ohne notwendige Reduktion der restlichen Woche.
-- Für die nächste Trainingsplanung konservativ wieder einsteigen: Umfang und Intensität kontrolliert aufbauen, keine maximale Belastungswoche.
-- Keine aktuellen Angaben zu Verletzungen, Schlaf, HRV, Ruhepuls, Body Battery oder Stress.
+- Stand 2026-06-07: Wiedereinstieg nach der dreiwöchigen Trainingspause nach dem Ironman 70.3 Da Nang läuft, aber die kommende Woche sollte weiterhin kontrolliert aufgebaut werden.
+- In 2026-W23 wurden nach dem Wiedereinstieg mehrere Reize absolviert: Aerobic-Short-Swim, Bike-VO2max, Run-Threshold, CSS-Test und ein deutlich radlastiges Wochenende.
+- Am 2026-06-06 und 2026-06-07 wurde ein deutlich radlastiges Wochenende absolviert; die Laufbelastung am 2026-06-07 wurde wegen leichtem linken Kniegefühl bewusst kurz gehalten.
+- Seit 2026-06-07 besteht ein leichter Hinweis am linken Knie innen/oben; bei Schmerzen Training abbrechen und Laufumfang konservativ planen.
+- Health-Daten aus Intervals.icu seit 2026-06-05: Schlaf am 2026-06-06 und 2026-06-07 gut, Ruhepuls niedrig, HRV am 2026-06-07 etwas unter dem 90-Tage-Korridor.
+- Load-Status nach 2026-W23: ATL 76, CTL 47, TSB -29 und ACR 1.611; die akute Belastung ist dadurch hoch.
+- Für die nächste Trainingsplanung: Standardwoche grundsätzlich beibehalten, aber Bike-Intervall kontrolliert, Run-Intervall deutlich entschärft und Long Run wegen Knie und Load defensiv planen.
 
 ## Neueste Updates
 

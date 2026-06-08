@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Gewicht">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1076" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Gewicht</text>
+<line x1="70" y1="74.0" x2="1146" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1146" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1146" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1146" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1146" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">10.05.</text>
+<line x1="329.7" y1="74" x2="329.7" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="329.7" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">17.05.</text>
+<line x1="589.4" y1="74" x2="589.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="589.4" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">24.05.</text>
+<line x1="886.3" y1="74" x2="886.3" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="886.3" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">01.06.</text>
+<line x1="1146.0" y1="74" x2="1146.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1146.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">08.06.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">83.4kg</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">79</text>
+<rect x="1028.2" y="280.0" width="13.0" height="206.0" rx="2.2" fill="#b9c3cf"/>
+<rect x="1065.3" y="280.0" width="13.0" height="206.0" rx="2.2" fill="#b9c3cf"/>
+<rect x="1102.4" y="280.0" width="13.0" height="206.0" rx="2.2" fill="#b9c3cf"/>
+<rect x="1139.5" y="280.0" width="13.0" height="206.0" rx="2.2" fill="#b9c3cf"/>
+<circle cx="1146.0" cy="280.0" r="5.2" fill="#1d252d"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">7-Tage-Mittel</text>
+<circle cx="1051.6" cy="28" r="4.5" fill="#1d252d"/>
+<text x="1011.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Tageswert</text>
+<circle cx="934.4" cy="28" r="4.5" fill="#b9c3cf"/>
+</svg>
