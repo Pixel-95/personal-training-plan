@@ -61,6 +61,7 @@ Regeln:
 - Health-Historien mit neuesten Einträgen oben führen.
 - Für Wellness-Historien jeden Kalendertag eine Zeile schreiben; fehlende Wellness-Werte mit `-` eintragen.
 - Gewicht täglich eintragen, auch wenn es temporär/interpoliert, unverändert oder nicht neu gemessen ist.
+- Wenn möglich das Körpergewicht standardisiert morgens direkt nach dem Aufstehen, nach dem Toilettengang und vor dem ersten Essen oder Trinken messen; diesen Messzeitpunkt als bevorzugten Referenzwert für die Gewichtshistorie behandeln.
 - Wenn im Repo-Root eine manuelle Importdatei `hrv.csv` vorhanden ist, darf sie nur zum HRV-Backfill verwendet werden; kanonisch bleibt `data/health/hrv.md`.
 - `data/health/hrv.md`: Tages-RMSSD aus Intervals.icu `hrv` übernehmen.
 - `data/health/hrv.md`: `7-Tage-RMSSD` als geometrisches Mittel der Tages-RMSSD-Werte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
@@ -140,6 +141,8 @@ Regeln:
 - GI-/Stuhldrang-Muster nicht automatisch in die Wochenreview, die `Aktuelle Zusammenfassung` oder den Wochenplan schreiben, außer der Nutzer bittet ausdrücklich darum oder es ist für die Trainingsentscheidung zwingend relevant.
 - Bei Müdigkeit, Verletzung, schlechtem Schlaf, auffälliger HRV oder ungewöhnlich hohem Ruhepuls konservativ planen.
 - Automatisierte Health-Historien aus `data/health/` als objektiven Kontext nutzen; subjektive oder außergewöhnliche Health-, Müdigkeits- und Beschwerdeangaben aus `data/current-state.md` zusätzlich berücksichtigen und bei Widersprüchen explizit einordnen.
+- Manuelle Anpassungen des Athleten am Wochenplan, z.B. geänderte Umfänge, verschobene Einheiten oder bewusst härter/weicher gefahrene Intervalle je nach Tagesform, als relevantes Trainingssignal behandeln und nicht nur als einfache Planabweichung.
+- Wenn Einheiten nur zwischen Wochentagen getauscht wurden, dies als organisatorische Verschiebung erkennen und beim Matching `geplant vs. absolviert` berücksichtigen; nicht krampfhaft die falsche absolvierte Einheit mit einer anderen geplanten Einheit matchen, wenn inhaltlich eigentlich nur ein Tagestausch vorliegt.
 - Unsicherheiten und fehlende Daten explizit nennen.
 - Im gesamten Repo sind deutsche Umlaute und `ß` erlaubt und gewünscht; neue oder aktualisierte deutsche Texte nicht in ASCII-Umschreibungen wie `ae`, `oe`, `ue` oder `ss` ausweichen lassen, wenn eigentlich `ä`, `ö`, `ü` oder `ß` gemeint ist.
 - Datumsformat: YYYY-MM-DD.
@@ -224,6 +227,10 @@ Wochenreview:
 - Ältere FIT-Auswertungen und Aktivitätsnotizen nur berücksichtigen, wenn sie für den aktuellen Zustand, erkennbare Trends oder die Zielbewertung noch relevant sind.
 - Nicht alle historischen FIT-Dateien jedes Mal gleich stark gewichten; alte Aktivitäten sind Historie, nicht automatisch aktueller Zustand.
 - Wenn ein Plan der Vorwoche existiert, einen kurzen Abgleich `geplant vs. absolviert` aufnehmen, ohne daraus eine lange Kontrollliste zu machen.
+- Wenn der Athlet den Plan manuell angepasst hat, diese Anpassungen bewusst erkennen und trainingslogisch einordnen: Was wurde geändert, warum war die Anpassung wahrscheinlich sinnvoll oder nicht sinnvoll, und ob daraus ein Muster für die zukünftige Planung ableitbar ist.
+- Reine Tagestausche von Einheiten aus privaten/organisatorischen Gründen im Wochenreview normalerweise nicht ausdrücklich hervorheben, außer sie hatten trainingslogisch relevante Nachteile oder Risiken, z.B. ungünstige orthopädische Belastungsreihenfolge.
+- Solche manuellen Anpassungen als mögliches Lernsignal für die nächste Planung nutzen, z.B. wenn Intervalle regelmäßig über Zielleistung gefahren werden, wenn Umfang an bestimmten Tagen wiederholt besser toleriert wird oder wenn bestimmte Einheiten systematisch reduziert/verschoben werden.
+- Reine organisatorische Tagestausche nicht als neues Planungsmuster für die nächste Woche lernen; für die neue Woche gilt weiterhin die Standardwoche, sofern nicht trainingslogisch begründet davon abgewichen werden sollte.
 - Die Bewertung soll ungefähr 10 bis 15 Sätze lang sein; wenn trainingslogisch nötig, darf sie etwas länger sein.
 - Kurz auf einzelne Sessions eingehen, wenn sie besonders gut, besonders schlecht oder trainingslogisch auffällig waren.
 - Daraus kurz ableiten, wie die aktuelle Form in den Sportarten Swim, Bike und Run momentan ist und ob diese in Einklang mit den Zielen in `data/goals.md` steht.

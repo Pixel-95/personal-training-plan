@@ -16,6 +16,9 @@ Diese Zusammenfassung soll vor jeder Trainingsplanung oder Trainingsbewertung vo
 
 ## Neueste Updates
 
+### 2026-06-08
+Beim heutigen Long Bike habe ich mein Knie überhaupt nicht gemerkt. Es könnte sein, dass die Knieschmerzen v.a. von meinem Mountainbike am Wochenende kamen, da dies etwas zu klein ist. Solange ich keine neuen Schmerzen habe, würde ich den Vorfall ab jetzt zwar im Hinterkopf behalten aber vorerst nicht mehr beachten.
+
 ### 2026-06-07
 Ich habe bei der gestrigen Ausfahrt mein linkes Knie innen oben etwas gespürt. Daher habe ich den heutigen Long Run nur ca. 20min gehalten. Am Ende des Runs habe ich das Knie wieder leicht gespürt. Es ist nicht schlimm, ich werde nur etwas langsam machen, damit nicht weiteres schlimmes passiert. Du kannst etwas vorsichtiger planen, aber musst nicht übertreiben. Wenn mir etwas weh tun sollte, würde ich sofort aufhören und nicht weiter stuhr den Plan durchziehen.
 
