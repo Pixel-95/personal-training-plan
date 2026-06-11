@@ -232,6 +232,7 @@ h1 {
   color: var(--recovery);
 }
 
+.analysis,
 .review,
 .explanation {
   margin-top: 16px;
@@ -242,6 +243,7 @@ h1 {
   box-shadow: var(--shadow);
 }
 
+.analysis h2,
 .review h2,
 .explanation h2 {
   margin: 0 0 8px;
@@ -249,11 +251,18 @@ h1 {
   line-height: 1.25;
 }
 
+.analysis p,
 .review p,
 .explanation p {
   margin: 0;
   color: var(--muted);
   font-size: 14px;
+}
+
+.analysis p + p,
+.review p + p,
+.explanation p + p {
+  margin-top: 12px;
 }
 
 .trends {
@@ -279,6 +288,33 @@ h1 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   align-items: start;
+}
+
+.trend-middle {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.trend-middle-top {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.trend-middle-bottom {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.trend-middle-bottom .trend-wide {
+  grid-column: span 3;
+}
+
+.trend-middle-bottom .trend-narrow {
+  grid-column: span 1;
 }
 
 .trend-board .trend-group {
@@ -329,8 +365,15 @@ h1 {
 
   .trend-grid,
   .trend-grid.three,
-  .trend-board {
+  .trend-board,
+  .trend-middle-top,
+  .trend-middle-bottom {
     grid-template-columns: 1fr;
+  }
+
+  .trend-middle-bottom .trend-wide,
+  .trend-middle-bottom .trend-narrow {
+    grid-column: auto;
   }
 }
 
@@ -461,6 +504,7 @@ h1 {
     padding-left: 13px;
   }
 
+  .analysis,
   .review,
   .explanation {
     box-shadow: none;
@@ -469,11 +513,13 @@ h1 {
     break-inside: avoid;
   }
 
+  .analysis h2,
   .review h2,
   .explanation h2 {
     font-size: 12px;
   }
 
+  .analysis p,
   .review p,
   .explanation p {
     font-size: 9.5px;
@@ -490,6 +536,21 @@ h1 {
 
   .trend-board {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .trend-middle {
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .trend-middle-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .trend-middle-bottom {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
   }
 
@@ -512,5 +573,98 @@ h1 {
 
   .trend-grid img {
     box-shadow: none;
+  }
+
+  body.pdf-mobile main {
+    width: 100%;
+    padding: 8px 10px;
+  }
+
+  body.pdf-mobile header {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  body.pdf-mobile .summary,
+  body.pdf-mobile .week,
+  body.pdf-mobile .trend-grid,
+  body.pdf-mobile .trend-grid.three,
+  body.pdf-mobile .trend-board,
+  body.pdf-mobile .trend-middle-top,
+  body.pdf-mobile .trend-middle-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  body.pdf-mobile .summary {
+    gap: 6px;
+  }
+
+  body.pdf-mobile .metric {
+    min-height: 52px;
+    padding: 8px 10px;
+  }
+
+  body.pdf-mobile .metric strong {
+    font-size: 16px;
+  }
+
+  body.pdf-mobile .week {
+    gap: 8px;
+  }
+
+  body.pdf-mobile .day-head {
+    padding: 8px 10px;
+  }
+
+  body.pdf-mobile .sessions {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  body.pdf-mobile .session {
+    padding: 8px 9px;
+  }
+
+  body.pdf-mobile .session h3 {
+    margin-right: 46px;
+    font-size: 10px;
+  }
+
+  body.pdf-mobile .session p,
+  body.pdf-mobile .session ul {
+    font-size: 9px;
+  }
+
+  body.pdf-mobile .amount {
+    top: 10px;
+    right: 9px;
+    font-size: 9px;
+  }
+
+  body.pdf-mobile .trend-middle-bottom .trend-wide,
+  body.pdf-mobile .trend-middle-bottom .trend-narrow {
+    grid-column: auto;
+  }
+
+  body.pdf-mobile .trend-grid img,
+  body.pdf-mobile .trend-middle img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background: var(--paper);
+  }
+
+  body.pdf-mobile .analysis,
+  body.pdf-mobile .review,
+  body.pdf-mobile .explanation {
+    margin-top: 8px;
+    padding: 10px 12px;
+  }
+
+  body.pdf-mobile .analysis p,
+  body.pdf-mobile .review p,
+  body.pdf-mobile .explanation p {
+    font-size: 9px;
   }
 }

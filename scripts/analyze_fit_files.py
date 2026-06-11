@@ -115,6 +115,271 @@ def pace_from_kmh(kmh: float) -> str:
     return f"{seconds // 60}:{seconds % 60:02d}"
 
 
+def calculate_grade_adjusted_running_speed(speed_in_mps: float, elevation_gain_in_m_per_km: float) -> float:
+    if not math.isfinite(speed_in_mps) or speed_in_mps <= 0:
+        return 0.0
+    if not math.isfinite(elevation_gain_in_m_per_km):
+        return speed_in_mps
+    grade = min(max(elevation_gain_in_m_per_km / 1000, -0.45), 0.45)
+    cost_flat = 3.6
+    cost_hilly = 155.4 * grade**5 - 30.4 * grade**4 - 43.3 * grade**3 + 46.3 * grade**2 + 19.5 * grade + cost_flat
+    return speed_in_mps * cost_hilly / cost_flat
+
+
+def gain_per_km(distance_m: Any, ascent_m: Any) -> float | None:
+    if distance_m in (None, "", 0) or ascent_m in (None, ""):
+        return None
+    distance = float(distance_m)
+    ascent = float(ascent_m)
+    if distance <= 0:
+        return None
+    return ascent / (distance / 1000)
+
+
+def gap_speed_from_summary(speed_mps: Any, distance_m: Any, ascent_m: Any) -> float | None:
+    if speed_mps in (None, "", 0):
+        return None
+    speed = float(speed_mps)
+    if speed <= 0:
+        return None
+    gain = gain_per_km(distance_m, ascent_m)
+    if gain is None:
+        return speed
+    return calculate_grade_adjusted_running_speed(speed, gain)
+
+
+def gap_label_from_summary(speed_mps: Any, distance_m: Any, ascent_m: Any) -> str:
+    gap_speed = gap_speed_from_summary(speed_mps, distance_m, ascent_m)
+    return pace_from_speed(gap_speed) if gap_speed else "-"
+
+
+def parse_pace_seconds(label: str) -> float | None:
+    if not label or label.strip() in {"-", "/"}:
+        return None
+    match = re.fullmatch(r"(\d+):(\d{2})", label.strip())
+    if not match:
+        return None
+    return int(match.group(1)) * 60 + int(match.group(2))
+
+
+ZONE_TABLE_CACHE: dict[str, list[dict[str, str]]] = {}
+
+
+def zone_table(section: str) -> list[dict[str, str]]:
+    cached = ZONE_TABLE_CACHE.get(section)
+    if cached is not None:
+        return cached
+    path = ROOT / "data" / "zones.md"
+    text = path.read_text(encoding="utf-8-sig", errors="replace")
+    match = re.search(rf"## {re.escape(section)}\n\n((?:\|.*\n)+)", text)
+    if not match:
+        ZONE_TABLE_CACHE[section] = []
+        return []
+    lines = [line.strip() for line in match.group(1).splitlines() if line.strip().startswith("|")]
+    header = [cell.strip() for cell in lines[0].strip("|").split("|")]
+    rows: list[dict[str, str]] = []
+    for line in lines[2:]:
+        cells = [cell.strip() for cell in line.strip("|").split("|")]
+        if len(cells) == len(header):
+            rows.append(dict(zip(header, cells)))
+    ZONE_TABLE_CACHE[section] = rows
+    return rows
+
+
+def sport_zone_order(sport: str) -> list[str]:
+    if is_swim(sport):
+        return ["Z1", "Z2", "Z3", "Z4", "Z5"]
+    return ["Z1", "Z2", "Z3", "Z4", "Z5", "Z6"]
+
+
+def classify_bike_power_zone(power_w: float | None) -> str | None:
+    if power_w is None or power_w <= 0:
+        return None
+    rows = zone_table("Bike")
+    for row in rows:
+        zone = row.get("Zone", "")
+        lower = row.get("Untere Power-Grenze / W", "/")
+        upper = row.get("Obere Power-Grenze / W", "/")
+        lo = float(lower) if lower not in {"/", "-", ""} else None
+        hi = float(upper) if upper not in {"/", "-", ""} else None
+        if lo is None and hi is not None and power_w < hi:
+            return zone
+        if lo is not None and hi is None and power_w >= lo:
+            return zone
+        if lo is not None and hi is not None and lo <= power_w < hi:
+            return zone
+    return None
+
+
+def classify_run_gap_zone(gap_pace_seconds: float | None) -> str | None:
+    if gap_pace_seconds is None or gap_pace_seconds <= 0:
+        return None
+    rows = zone_table("Run")
+    for row in rows:
+        zone = row.get("Zone", "")
+        slower = parse_pace_seconds(row.get("Untere Pace-Grenze / min:sec/km", ""))
+        faster = parse_pace_seconds(row.get("Obere Pace-Grenze / min:sec/km", ""))
+        if slower is None and faster is not None and gap_pace_seconds > faster:
+            return zone
+        if slower is not None and faster is None and gap_pace_seconds <= slower:
+            return zone
+        if slower is not None and faster is not None and faster < gap_pace_seconds <= slower:
+            return zone
+    return None
+
+
+def classify_swim_zone(pace_seconds_100m: float | None) -> str | None:
+    if pace_seconds_100m is None or pace_seconds_100m <= 0:
+        return None
+    rows = zone_table("Swim")
+    if not rows:
+        return None
+    z2_slow = parse_pace_seconds(rows[-1].get("Untere Grenze", "")) if rows else None
+    if z2_slow is not None and pace_seconds_100m > z2_slow:
+        return "Z1"
+    for row in rows:
+        zone = row.get("Zone", "")
+        slower = parse_pace_seconds(row.get("Untere Grenze", ""))
+        faster = parse_pace_seconds(row.get("Obere Grenze", ""))
+        if slower is not None and faster is not None and faster < pace_seconds_100m <= slower:
+            return zone
+        if slower is not None and faster is None and pace_seconds_100m <= slower:
+            return zone
+    return rows[0].get("Zone") if rows else None
+
+
+def run_gap_record_points(info: FitInfo) -> list[tuple[datetime, float, float]]:
+    points: list[tuple[datetime, float, float]] = []
+    prev: dict[str, Any] | None = None
+    for rec in info.records:
+        timestamp = rec.get("timestamp")
+        hr = rec.get("heart_rate")
+        speed = value(rec, "enhanced_speed", "speed")
+        distance = rec.get("distance")
+        altitude = value(rec, "enhanced_altitude", "altitude")
+        if not (isinstance(timestamp, datetime) and hr and speed and distance not in (None, "")):
+            prev = rec
+            continue
+        gap_speed = float(speed)
+        if prev is not None:
+            prev_distance = prev.get("distance")
+            prev_altitude = value(prev, "enhanced_altitude", "altitude")
+            if prev_distance not in (None, "") and prev_altitude not in (None, "") and altitude not in (None, ""):
+                delta_distance = float(distance) - float(prev_distance)
+                delta_altitude = float(altitude) - float(prev_altitude)
+                if delta_distance > 0:
+                    gain = delta_altitude / (delta_distance / 1000)
+                    gap_speed = calculate_grade_adjusted_running_speed(float(speed), gain)
+        if float(hr) > 0 and gap_speed > 0:
+            points.append((timestamp, float(hr), gap_speed))
+        prev = rec
+    return points
+
+
+def segment_delta_seconds(prev_ts: datetime | None, current_ts: datetime | None) -> float | None:
+    if not (isinstance(prev_ts, datetime) and isinstance(current_ts, datetime)):
+        return None
+    delta = (current_ts - prev_ts).total_seconds()
+    if delta <= 0 or delta > 30:
+        return None
+    return delta
+
+
+def bike_zone_seconds(info: FitInfo) -> dict[str, float]:
+    totals = {zone: 0.0 for zone in sport_zone_order(info.sport)}
+    prev: dict[str, Any] | None = None
+    for rec in info.records:
+        if prev is None:
+            prev = rec
+            continue
+        delta = segment_delta_seconds(prev.get("timestamp"), rec.get("timestamp"))
+        power = prev.get("power")
+        zone = classify_bike_power_zone(float(power)) if power not in (None, "") else None
+        if delta and zone:
+            totals[zone] += delta
+        prev = rec
+    return totals
+
+
+def run_zone_seconds(info: FitInfo) -> dict[str, float]:
+    totals = {zone: 0.0 for zone in sport_zone_order(info.sport)}
+    prev: dict[str, Any] | None = None
+    for rec in info.records:
+        if prev is None:
+            prev = rec
+            continue
+        delta = segment_delta_seconds(prev.get("timestamp"), rec.get("timestamp"))
+        if not delta:
+            prev = rec
+            continue
+        prev_speed = value(prev, "enhanced_speed", "speed")
+        prev_distance = prev.get("distance")
+        current_distance = rec.get("distance")
+        prev_altitude = value(prev, "enhanced_altitude", "altitude")
+        current_altitude = value(rec, "enhanced_altitude", "altitude")
+        gap_speed = float(prev_speed) if prev_speed not in (None, "") else None
+        if (
+            gap_speed is not None
+            and prev_distance not in (None, "")
+            and current_distance not in (None, "")
+            and prev_altitude not in (None, "")
+            and current_altitude not in (None, "")
+        ):
+            delta_distance = float(current_distance) - float(prev_distance)
+            delta_altitude = float(current_altitude) - float(prev_altitude)
+            if delta_distance > 0:
+                gain = delta_altitude / (delta_distance / 1000)
+                gap_speed = calculate_grade_adjusted_running_speed(gap_speed, gain)
+        zone = classify_run_gap_zone((1000 / gap_speed) if gap_speed and gap_speed > 0 else None)
+        if zone:
+            totals[zone] += delta
+        prev = rec
+    return totals
+
+
+def swim_zone_distance(info: FitInfo) -> dict[str, float]:
+    totals = {zone: 0.0 for zone in sport_zone_order(info.sport)}
+    pool_length = value(info.session, "pool_length")
+    if pool_length not in (None, "", 0) and info.messages.get("length"):
+        for length in info.messages.get("length", []):
+            if str(length.get("length_type") or "").lower() != "active":
+                continue
+            speed = value(length, "avg_speed")
+            if speed in (None, "", 0):
+                continue
+            pace_seconds = 100 / float(speed)
+            zone = classify_swim_zone(pace_seconds)
+            if zone:
+                totals[zone] += float(pool_length)
+        return totals
+    for lap in info.laps:
+        distance = value(lap, "total_distance")
+        speed = value(lap, "enhanced_avg_speed", "avg_speed")
+        if distance in (None, "", 0) or speed in (None, "", 0):
+            continue
+        pace_seconds = 100 / float(speed)
+        zone = classify_swim_zone(pace_seconds)
+        if zone:
+            totals[zone] += float(distance)
+    return totals
+
+
+def zone_distribution(info: FitInfo) -> dict[str, float]:
+    if is_bike(info.sport):
+        return bike_zone_seconds(info)
+    if is_run(info.sport):
+        return run_zone_seconds(info)
+    if is_swim(info.sport):
+        return swim_zone_distance(info)
+    return {}
+
+
+def format_zone_value(info: FitInfo, value_seconds_or_meters: float) -> str:
+    if is_swim(info.sport):
+        return fmt(round(value_seconds_or_meters), "m")
+    return seconds_to_hms(value_seconds_or_meters)
+
+
 def value(data: dict[str, Any], *keys: str) -> Any:
     for key in keys:
         item = data.get(key)
@@ -219,10 +484,14 @@ def efficiency(info: FitInfo) -> str:
         power = value(info.session, "avg_power", "normalized_power")
         return "-" if not power else f"{float(power) / float(avg_hr):.2f}W/bpm"
     if is_run(info.sport):
-        speed = value(info.session, "enhanced_avg_speed", "avg_speed")
-        if not speed:
+        gap_speed = gap_speed_from_summary(
+            value(info.session, "enhanced_avg_speed", "avg_speed"),
+            value(info.session, "total_distance"),
+            value(info.session, "total_ascent"),
+        )
+        if not gap_speed:
             return "-"
-        return f"{float(speed) / float(avg_hr):.4f}m/s/bpm ({pace_from_speed(speed)} @ {round(float(avg_hr))}bpm)"
+        return f"{float(gap_speed) / float(avg_hr):.4f}m/s/bpm ({pace_from_speed(gap_speed)} GAP @ {round(float(avg_hr))}bpm)"
     return "-"
 
 
@@ -233,12 +502,15 @@ def hr_drift(info: FitInfo) -> str:
     if "basic" not in name and "long" not in name:
         return "-"
     points: list[tuple[datetime, float, float]] = []
-    for rec in info.records:
-        timestamp = rec.get("timestamp")
-        hr = rec.get("heart_rate")
-        work = rec.get("power") if is_bike(info.sport) else value(rec, "enhanced_speed", "speed")
-        if isinstance(timestamp, datetime) and hr and work and float(hr) > 0 and float(work) > 0:
-            points.append((timestamp, float(hr), float(work)))
+    if is_bike(info.sport):
+        for rec in info.records:
+            timestamp = rec.get("timestamp")
+            hr = rec.get("heart_rate")
+            work = rec.get("power")
+            if isinstance(timestamp, datetime) and hr and work and float(hr) > 0 and float(work) > 0:
+                points.append((timestamp, float(hr), float(work)))
+    else:
+        points = run_gap_record_points(info)
     if len(points) < 60:
         return "nicht sinnvoll berechenbar"
     points.sort(key=lambda item: item[0])
@@ -272,14 +544,18 @@ def lap_rows(info: FitInfo) -> tuple[list[str], list[list[str]]]:
             ])
         return header, rows
     if is_run(info.sport):
-        header = ["Lap", "Dauer", "Distanz", "Pace", "Avg HR", "Max HR", "Cadence", "Stride", "GCT", "Vert."]
+        header = ["Lap", "Dauer", "Distanz", "GAP", "Avg HR", "Max HR", "Cadence", "Stride", "GCT", "Vert."]
         rows = []
         for idx, lap in enumerate(info.laps[:25], 1):
             rows.append([
                 str(idx),
                 seconds_to_hms(value(lap, "total_timer_time")),
                 meters_to_km(value(lap, "total_distance")),
-                pace_from_speed(value(lap, "enhanced_avg_speed", "avg_speed")),
+                gap_label_from_summary(
+                    value(lap, "enhanced_avg_speed", "avg_speed"),
+                    value(lap, "total_distance"),
+                    value(lap, "total_ascent"),
+                ),
                 fmt(value(lap, "avg_heart_rate"), "bpm"),
                 fmt(value(lap, "max_heart_rate"), "bpm"),
                 fmt(value(lap, "avg_cadence", "avg_running_cadence"), "spm"),
@@ -288,18 +564,40 @@ def lap_rows(info: FitInfo) -> tuple[list[str], list[list[str]]]:
                 fmt(value(lap, "avg_vertical_oscillation"), "mm"),
             ])
         return header, rows
-    header = ["Lap", "Dauer", "Distanz", "Pace", "Avg HR", "Max HR"]
+    header = ["Lap", "Dauer", "Distanz", "Pace", "Avg HR", "Max HR", "Zone"]
     rows = []
     for idx, lap in enumerate(info.laps[:25], 1):
+        pace_value = value(lap, "enhanced_avg_speed", "avg_speed")
+        pace_label = pace_from_speed(pace_value, swim=is_swim(info.sport))
+        zone = "-"
+        if is_swim(info.sport):
+            pace_seconds = 100 / float(pace_value) if pace_value not in (None, "", 0) else None
+            zone = classify_swim_zone(pace_seconds) or "-"
         rows.append([
             str(idx),
             seconds_to_hms(value(lap, "total_timer_time")),
             fmt(value(lap, "total_distance"), "m"),
-            pace_from_speed(value(lap, "enhanced_avg_speed", "avg_speed"), swim=is_swim(info.sport)),
+            pace_label,
             fmt(value(lap, "avg_heart_rate"), "bpm"),
             fmt(value(lap, "max_heart_rate"), "bpm"),
+            zone,
         ])
     return header, rows
+
+
+def zone_table_lines(info: FitInfo) -> list[str]:
+    totals = zone_distribution(info)
+    if not totals:
+        return ["Keine Zonendaten verfügbar."]
+    header = ["Zone", "Distanz"] if is_swim(info.sport) else ["Zone", "Zeit"]
+    rows = []
+    for zone in sport_zone_order(info.sport):
+        value_item = totals.get(zone, 0.0)
+        if is_swim(info.sport):
+            rows.append([zone, format_zone_value(info, value_item)])
+        else:
+            rows.append([zone, format_zone_value(info, value_item)])
+    return markdown_table(header, rows)
 
 
 def torque_efficiency(lap: dict[str, Any]) -> str:
@@ -336,7 +634,10 @@ def summarize(info: FitInfo, tss: str) -> list[str]:
             f"- Max Power: {fmt(value(session, 'max_power'), 'W')}",
         ])
     if is_run(info.sport) or is_swim(info.sport):
-        lines.append(f"- Avg Pace: {pace_from_speed(value(session, 'enhanced_avg_speed', 'avg_speed'), swim=swim)}")
+        if is_run(info.sport):
+            lines.append(f"- Avg GAP: {gap_label_from_summary(value(session, 'enhanced_avg_speed', 'avg_speed'), value(session, 'total_distance'), value(session, 'total_ascent'))}")
+        else:
+            lines.append(f"- Avg Pace: {pace_from_speed(value(session, 'enhanced_avg_speed', 'avg_speed'), swim=swim)}")
     lines.extend([
         f"- Avg HR: {fmt(value(session, 'avg_heart_rate'), 'bpm')}",
         f"- Max HR: {fmt(value(session, 'max_heart_rate'), 'bpm')}",
@@ -366,12 +667,16 @@ def report(info: FitInfo, tss: str, activity: dict[str, Any] | None) -> str:
             "Für die Planung ist besonders relevant, ob die Leistung stabil zu Herzfrequenz und Kontext passt.",
         ]
     elif is_run(info.sport):
-        pace = pace_from_speed(value(session, "enhanced_avg_speed", "avg_speed"))
+        gap = gap_label_from_summary(
+            value(session, "enhanced_avg_speed", "avg_speed"),
+            value(session, "total_distance"),
+            value(session, "total_ascent"),
+        )
         sentences = [
-            f"Die Einheit war ein Lauf über {duration} mit einer durchschnittlichen Pace von {pace}.",
+            f"Die Einheit war ein Lauf über {duration} mit einem durchschnittlichen GAP von {gap}.",
             f"Mit TSS {tss}, {avg_hr} im Schnitt und {max_hr} maximal war der Reiz insgesamt gut einzuordnen.",
             f"Der Training Effect lag aerob bei {aerobic} und anaerob bei {anaerobic}.",
-            "Für die Planung ist besonders relevant, ob Pace, Herzfrequenz, Pausen und mögliche Beschwerden zusammenpassen.",
+            "Für die Planung ist besonders relevant, ob GAP, Herzfrequenz, Pausen und mögliche Beschwerden zusammenpassen.",
         ]
     elif is_swim(info.sport):
         pace = pace_from_speed(value(session, "enhanced_avg_speed", "avg_speed"), swim=True)
@@ -428,6 +733,8 @@ def write_summary(info: FitInfo, activity: dict[str, Any] | None, dry_run: bool,
     ]
     if activity is None:
         lines.append("- Kein eindeutiges Intervals.icu-Activity-Match gefunden; TSS nutzt FIT-Fallback oder `-`.")
+    lines.extend(["", "## Zonen", ""])
+    lines.extend(zone_table_lines(info))
     lines.extend(["", "## Laps", ""])
     header, rows = lap_rows(info)
     lines.extend(markdown_table(header, rows) or ["Keine Lap-Daten verfügbar."])

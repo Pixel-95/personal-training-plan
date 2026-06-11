@@ -1,7 +1,7 @@
 # 2026-06-01 Weiler-Simmerberg - Cafefahrt
 
 Quelle: `2026-06-01 Weiler-Simmerberg - Cafefahrt.fit`
-Auswertung: 2026-06-07
+Auswertung: 2026-06-11
 
 ## Kurzfassung
 
@@ -30,6 +30,17 @@ Die Einheit war eine Bike-Einheit über 1:25:55 mit 177W im Schnitt und 219W NP.
 
 - Automatisch erzeugte FIT-Auswertung; Plausibilität durch das LLM vor Planerzeugung erforderlich.
 - Kein eindeutiges Intervals.icu-Activity-Match gefunden; TSS nutzt FIT-Fallback oder `-`.
+
+## Zonen
+
+| Zone | Zeit |
+|-|-|
+| Z1 | 26:30 |
+| Z2 | 19:31 |
+| Z3 | 14:24 |
+| Z4 | 7:12 |
+| Z5 | 1:43 |
+| Z6 | 4:11 |
 
 ## Laps
 

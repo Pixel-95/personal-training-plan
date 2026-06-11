@@ -5,3 +5,4 @@ __pycache__/
 data/health/intervals-*.csv
 data/health/intervals-*.json
 hrv.csv
+plans/*.__pdf_mobile__.html

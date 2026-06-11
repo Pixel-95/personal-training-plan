@@ -8,22 +8,29 @@
 <line x1="70" y1="383.0" x2="1146" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
 <line x1="70" y1="486.0" x2="1146" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
 <line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">10.05.</text>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">13.05.</text>
 <line x1="329.7" y1="74" x2="329.7" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="329.7" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">17.05.</text>
+<text x="329.7" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.05.</text>
 <line x1="589.4" y1="74" x2="589.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="589.4" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">24.05.</text>
+<text x="589.4" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">27.05.</text>
 <line x1="886.3" y1="74" x2="886.3" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="886.3" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">01.06.</text>
+<text x="886.3" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">04.06.</text>
 <line x1="1146.0" y1="74" x2="1146.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="1146.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">08.06.</text>
-<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">6703</text>
+<text x="1146.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">11.06.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">9977</text>
 <text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
-<rect x="1028.2" y="340.6" width="13.0" height="145.4" rx="2.2" fill="#8a98a8"/>
-<rect x="1065.3" y="333.1" width="13.0" height="152.9" rx="2.2" fill="#8a98a8"/>
-<rect x="1102.4" y="118.1" width="13.0" height="367.9" rx="2.2" fill="#8a98a8"/>
-<rect x="1139.5" y="457.8" width="13.0" height="28.2" rx="2.2" fill="#8a98a8"/>
-<circle cx="1146.0" cy="312.4" r="5.2" fill="#1d252d"/>
+<rect x="916.9" y="388.3" width="13.0" height="97.7" rx="2.2" fill="#8a98a8"/>
+<rect x="954.0" y="383.3" width="13.0" height="102.7" rx="2.2" fill="#8a98a8"/>
+<rect x="991.1" y="238.8" width="13.0" height="247.2" rx="2.2" fill="#8a98a8"/>
+<rect x="1028.2" y="418.5" width="13.0" height="67.5" rx="2.2" fill="#8a98a8"/>
+<rect x="1065.3" y="118.1" width="13.0" height="367.9" rx="2.2" fill="#8a98a8"/>
+<rect x="1102.4" y="424.6" width="13.0" height="61.4" rx="2.2" fill="#8a98a8"/>
+<rect x="1139.5" y="478.6" width="13.0" height="7.4" rx="2.2" fill="#8a98a8"/>
+<polyline points="1034.7,357.2 1071.8,309.4 1108.9,328.6 1146.0,350.0" fill="none" stroke="#1d252d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1034.7" cy="357.2" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1071.8" cy="309.4" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1108.9" cy="328.6" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1146.0" cy="350.0" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
 <text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">7-Tage-Mittel</text>
 <circle cx="1051.6" cy="28" r="4.5" fill="#1d252d"/>
 <text x="1011.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Tageswert</text>

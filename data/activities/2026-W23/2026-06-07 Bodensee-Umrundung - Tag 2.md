@@ -1,7 +1,7 @@
 # 2026-06-07 Bodensee-Umrundung - Tag 2
 
 Quelle: `2026-06-07 Bodensee-Umrundung - Tag 2.fit`
-Auswertung: 2026-06-07
+Auswertung: 2026-06-11
 
 ## Kurzfassung
 
@@ -29,6 +29,17 @@ Die Einheit war eine Bike-Einheit über 3:39:29 mit 150W im Schnitt und 165W NP.
 ## Einordnung
 
 - Automatisch erzeugte FIT-Auswertung; Plausibilität durch das LLM vor Planerzeugung erforderlich.
+
+## Zonen
+
+| Zone | Zeit |
+|-|-|
+| Z1 | 2:08:47 |
+| Z2 | 54:49 |
+| Z3 | 12:56 |
+| Z4 | 3:46 |
+| Z5 | 0:47 |
+| Z6 | 2:45 |
 
 ## Laps
 

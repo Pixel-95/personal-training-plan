@@ -19,7 +19,13 @@ TABLES = {
     "resting_heart_rate.md": ["Datum", "Ruhepuls / bpm"],
     "sleep.md": ["Datum", "Schlafdauer / hh:mm", "Sleepscore"],
     "steps.md": ["Datum", "Schritte", "7-Tage-Mittel-Schritte"],
-    "weight.md": ["Datum", "Gewicht / kg", "7-Tage-Mittel-Gewicht / kg"],
+    "weight.md": [
+        "Datum",
+        "Gewicht / kg",
+        "7-Tage-Mittel-Gewicht / kg",
+        "Körperfettanteil / %",
+        "7-Tage-Mittel-Körperfettanteil / %",
+    ],
     "hrv.md": [
         "Datum",
         "Tages-RMSSD / ms",
@@ -155,19 +161,29 @@ def recalc_hrv(rows: dict[str, list[str]]) -> None:
 
 def recalc_weight(rows: dict[str, list[str]]) -> None:
     daily = {date.fromisoformat(day): number_or_none(cells[1] if len(cells) > 1 else None) for day, cells in rows.items()}
+    bodyfat = {date.fromisoformat(day): number_or_none(cells[3] if len(cells) > 3 else None) for day, cells in rows.items()}
     for day, cells in rows.items():
         current = date.fromisoformat(day)
-        while len(cells) < 3:
+        while len(cells) < 5:
             cells.append("-")
-        window7 = [
+        weight_window7 = [
             daily.get(current - timedelta(days=offset))
             for offset in range(7)
             if daily.get(current - timedelta(days=offset)) is not None
         ]
-        if len(window7) >= 4:
-            cells[2] = fmt_float(str(sum(window7) / len(window7)), 1)
+        if len(weight_window7) >= 4:
+            cells[2] = fmt_float(str(sum(weight_window7) / len(weight_window7)), 1)
         else:
             cells[2] = "-"
+        bodyfat_window7 = [
+            bodyfat.get(current - timedelta(days=offset))
+            for offset in range(7)
+            if bodyfat.get(current - timedelta(days=offset)) is not None
+        ]
+        if len(bodyfat_window7) >= 4:
+            cells[4] = fmt_float(str(sum(bodyfat_window7) / len(bodyfat_window7)), 1)
+        else:
+            cells[4] = "-"
 
 
 def recalc_steps(rows: dict[str, list[str]]) -> None:
@@ -254,14 +270,23 @@ def main() -> int:
 
         weight = tables["weight.md"][1]
         raw_weight = fmt_float(row.get("weight"), 1)
+        raw_bodyfat = fmt_float(row.get("bodyFat"), 1)
         if raw_weight != "-":
             last_weight = (key, raw_weight)
-            weight[key] = [key, raw_weight, "-"]
+            bodyfat_value = raw_bodyfat
+            if bodyfat_value == "-":
+                bodyfat_value = existing_or_missing(weight, key, 3)
+                missing["bodyFat"].append(key)
+            weight[key] = [key, raw_weight, "-", bodyfat_value, "-"]
         elif last_weight is not None:
-            weight[key] = [key, last_weight[1], "-"]
+            bodyfat_value = existing_or_missing(weight, key, 3)
+            if bodyfat_value == "-":
+                missing["bodyFat"].append(key)
+            weight[key] = [key, last_weight[1], "-", bodyfat_value, "-"]
         else:
-            weight[key] = [key, "-", "-"]
+            weight[key] = [key, "-", "-", "-", "-"]
             missing["weight"].append(key)
+            missing["bodyFat"].append(key)
 
     recalc_hrv(tables["hrv.md"][1])
     recalc_weight(tables["weight.md"][1])

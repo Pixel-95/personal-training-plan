@@ -9,30 +9,39 @@
 <line x1="70" y1="383.0" x2="1146" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
 <line x1="70" y1="486.0" x2="1146" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
 <line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">11.03.</text>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">14.03.</text>
 <line x1="336.0" y1="74" x2="336.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="336.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">02.04.</text>
+<text x="336.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">05.04.</text>
 <line x1="602.0" y1="74" x2="602.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="602.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">24.04.</text>
+<text x="602.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">27.04.</text>
 <line x1="880.0" y1="74" x2="880.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="880.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">17.05.</text>
+<text x="880.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.05.</text>
 <line x1="1146.0" y1="74" x2="1146.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
-<text x="1146.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">08.06.</text>
-<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">9.1h</text>
+<text x="1146.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">11.06.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">9.4h</text>
 <text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
 <text x="1158" y="79" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">100Score</text>
-<rect x="1117.9" y="125.7" width="7.9" height="360.3" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1081.6" y="137.8" width="7.9" height="348.2" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1093.7" y="130.5" width="7.9" height="355.5" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1105.8" y="132.0" width="7.9" height="354.0" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1117.9" y="130.5" width="7.9" height="355.5" rx="2.2" fill="url(#sleep-duration-gradient)"/>
 <rect x="1129.9" y="118.1" width="7.9" height="367.9" rx="2.2" fill="url(#sleep-duration-gradient)"/>
-<rect x="1142.0" y="119.6" width="7.9" height="366.4" rx="2.2" fill="url(#sleep-duration-gradient)"/>
-<polyline points="1121.8,111.1 1133.9,139.9 1146.0,102.8" fill="none" stroke="#6f5aa7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="1121.8" cy="111.1" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
-<circle cx="1133.9" cy="139.9" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
-<circle cx="1146.0" cy="102.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
-<polyline points="1109.7,361.2 1121.8,436.1 1133.9,361.2 1146.0,461.0" fill="none" stroke="#b64b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="1109.7" cy="361.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
-<circle cx="1121.8" cy="436.1" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
-<circle cx="1133.9" cy="361.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
-<circle cx="1146.0" cy="461.0" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<rect x="1142.0" y="146.5" width="7.9" height="339.5" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<polyline points="1085.6,111.1 1097.6,139.9 1109.7,102.8 1121.8,164.6 1133.9,144.0 1146.0,86.4" fill="none" stroke="#6f5aa7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1085.6" cy="111.1" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1097.6" cy="139.9" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1109.7" cy="102.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1121.8" cy="164.6" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1133.9" cy="144.0" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1146.0" cy="86.4" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<polyline points="1073.5,382.0 1085.6,444.4 1097.6,382.0 1109.7,465.2 1121.8,361.2 1133.9,465.2 1146.0,465.2" fill="none" stroke="#b64b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1073.5" cy="382.0" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1085.6" cy="444.4" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1097.6" cy="382.0" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1109.7" cy="465.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1121.8" cy="361.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1133.9" cy="465.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1146.0" cy="465.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
 <text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Ruhepuls</text>
 <circle cx="1085.6" cy="28" r="4.5" fill="#b64b3a"/>
 <text x="1045.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Sleepscore</text>

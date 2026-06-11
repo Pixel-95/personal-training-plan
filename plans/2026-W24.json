@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "week": "2026-W24",
+  "analysis_week": "2026-W23",
+  "days": [
+    {
+      "date": "2026-06-08",
+      "sessions": [
+        {
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "16min",
+          "duration": "16min"
+        },
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "2:30h",
+          "duration": "2:30h",
+          "content": ["2:30h @203W"]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-09",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Basic",
+          "amount": "25min",
+          "duration": "25min",
+          "content": ["25min @135bpm"]
+        },
+        {
+          "sport": "swim",
+          "title": "Aerobic Long",
+          "amount": "2900m",
+          "duration": "70min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "3x700m @1:47/100m",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-10",
+      "sessions": [
+        {
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "16min",
+          "duration": "16min"
+        },
+        {
+          "sport": "bike",
+          "title": "Tempo",
+          "amount": "37min",
+          "duration": "37min",
+          "content": [
+            "5min @203W",
+            "3x8min @256W,2min @100W",
+            "2min @100W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Tempo",
+          "amount": "27min",
+          "duration": "27min",
+          "content": [
+            "5min @135bpm",
+            "4x3min @4:20/km,2min Trabpause",
+            "2min @4:53/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Threshold",
+          "amount": "2600m",
+          "duration": "60min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "9x200m @1:35/100m",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Basic",
+          "amount": "45min",
+          "duration": "45min",
+          "content": ["45min @203W"]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Long",
+          "amount": "45min",
+          "duration": "45min",
+          "content": ["45min @135bpm"]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14",
+      "sessions": []
+    }
+  ]
+}
