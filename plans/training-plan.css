@@ -10,11 +10,13 @@
   --swim: #2f6fa3;
   --strength: #6f5aa7;
   --recovery: #7a7f87;
+  --race: #b07b1a;
   --soft-bike: #e7f3f1;
   --soft-run: #f7ebe8;
   --soft-swim: #e8f1f8;
   --soft-strength: #f0edf7;
   --soft-recovery: #eef0f2;
+  --soft-race: #f7f1e3;
   --shadow: 0 18px 55px rgba(30, 42, 56, 0.08);
 }
 
@@ -230,6 +232,16 @@ h1 {
 .recovery .tag {
   background: rgba(122, 127, 135, 0.14);
   color: var(--recovery);
+}
+
+.race {
+  background: var(--soft-race);
+  border-color: rgba(176, 123, 26, 0.24);
+}
+
+.race .tag {
+  background: rgba(176, 123, 26, 0.14);
+  color: var(--race);
 }
 
 .analysis,

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Schritte">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1076" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Schritte</text>
+<line x1="70" y1="74.0" x2="1146" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1146" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1146" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1146" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1146" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">16.05.</text>
+<line x1="329.7" y1="74" x2="329.7" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="329.7" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">23.05.</text>
+<line x1="589.4" y1="74" x2="589.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="589.4" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">30.05.</text>
+<line x1="886.3" y1="74" x2="886.3" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="886.3" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">07.06.</text>
+<line x1="1146.0" y1="74" x2="1146.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1146.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">14.06.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">29228</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
+<rect x="805.6" y="452.7" width="13.0" height="33.3" rx="2.2" fill="#8a98a8"/>
+<rect x="842.7" y="450.9" width="13.0" height="35.1" rx="2.2" fill="#8a98a8"/>
+<rect x="879.8" y="401.6" width="13.0" height="84.4" rx="2.2" fill="#8a98a8"/>
+<rect x="916.9" y="463.0" width="13.0" height="23.0" rx="2.2" fill="#8a98a8"/>
+<rect x="954.0" y="360.4" width="13.0" height="125.6" rx="2.2" fill="#8a98a8"/>
+<rect x="991.1" y="465.0" width="13.0" height="21.0" rx="2.2" fill="#8a98a8"/>
+<rect x="1028.2" y="432.6" width="13.0" height="53.4" rx="2.2" fill="#8a98a8"/>
+<rect x="1065.3" y="370.8" width="13.0" height="115.2" rx="2.2" fill="#8a98a8"/>
+<rect x="1102.4" y="118.1" width="13.0" height="367.9" rx="2.2" fill="#8a98a8"/>
+<rect x="1139.5" y="453.7" width="13.0" height="32.3" rx="2.2" fill="#8a98a8"/>
+<polyline points="923.4,442.0 960.5,425.7 997.6,432.3 1034.7,432.3 1071.8,420.6 1108.9,373.1 1146.0,380.5" fill="none" stroke="#1d252d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="923.4" cy="442.0" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="960.5" cy="425.7" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="997.6" cy="432.3" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1034.7" cy="432.3" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1071.8" cy="420.6" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1108.9" cy="373.1" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1146.0" cy="380.5" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">7-Tage-Mittel</text>
+<circle cx="1051.6" cy="28" r="4.5" fill="#1d252d"/>
+<text x="1011.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Tageswert</text>
+<circle cx="934.4" cy="28" r="4.5" fill="#8a98a8"/>
+</svg>

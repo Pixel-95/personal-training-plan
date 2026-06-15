@@ -36,6 +36,7 @@ SPORT_TAGS = {
     "run": "Run",
     "strength": "Strength",
     "recovery": "Recovery",
+    "race": "Race",
 }
 
 BROWSER_CANDIDATES = [
@@ -108,6 +109,14 @@ def review_paragraphs(analysis_week: str | None) -> list[str]:
 
 
 def summary_from_plan(plan: dict[str, Any]) -> dict[str, str]:
+    override = plan.get("summary_override")
+    if override:
+        return {
+            "total": override["total"],
+            "swim": override["swim"],
+            "bike": override["bike"],
+            "run": override["run"],
+        }
     total_minutes = 0
     bike_minutes = 0
     run_minutes = 0

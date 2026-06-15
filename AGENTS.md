@@ -274,6 +274,8 @@ Wochenplan-Format:
 - Das LLM soll Wochenpläne künftig nicht mehr direkt als HTML schreiben, sondern den inhaltlichen Plan in `plans/YYYY-Www.json` pflegen.
 - Jede Tageszeile im JSON enthält `date` und `sessions`; jede Session enthält mindestens `sport`, `title`, `amount` und `duration`, optional `tag` und `content`.
 - `amount` ist der rechts oben angezeigte Wert in der Card; `duration` ist die für Summen und Rendering maßgebliche Dauer der Session. Bei Swim ist `amount` typischerweise die Distanz, während `duration` die geschätzte Dauer für den Gesamtumfang bleibt.
+- Wenn eine Woche eine Race-Session als einen gemeinsamen Block enthält und die vier Umfangsboxen dadurch nicht sauber automatisch aus Swim/Bike/Run ableitbar sind, darf das JSON zusätzlich ein `summary_override` mit `total`, `swim`, `bike` und `run` enthalten.
+- Für Wettkampftage darf ein eigener Session-Typ `race` verwendet werden.
 - Nach jeder JSON-Änderung den Wochenplan mit `python scripts/render_plan.py --plan plans/YYYY-Www.json --newest YYYY-MM-DD --pdf` rendern, sofern PDF ebenfalls aktualisiert werden soll.
 - `scripts/render_plan.py` ist der kanonische Renderer für Wochenpläne. Er liest das Plan-JSON, zieht die Analyse aus `data/activities/YYYY-Www/review_YYYY-Www.md`, erzeugt daraus HTML, stößt die Trendplot-Erzeugung an und rendert optional das PDF.
 - Der PDF-Export soll nicht im breiten Desktop-Layout erfolgen, sondern in einer erzwungenen schmalen `pdf-mobile`-Variante, die dem kleinsten responsiven HTML-Modus entspricht: genau eine Tagesspalte, einspaltige Plotgruppen und insgesamt auf großen Handy-Querformat-Screens gut lesbar.

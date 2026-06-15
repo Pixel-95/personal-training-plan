@@ -36,7 +36,7 @@ def main() -> int:
         ("FIT download", ["scripts/download_fit_files.py", *common, *dry]),
         ("Health update", ["scripts/update_health.py", *common, *dry]),
         ("FIT analysis", ["scripts/analyze_fit_files.py", *dry]),
-        ("Load update", ["scripts/update_loads.py", *dry]),
+        ("Load update", ["scripts/update_loads.py", "--newest", args.newest, *dry]),
     ]
 
     codes = [run_step(name, command) for name, command in steps]

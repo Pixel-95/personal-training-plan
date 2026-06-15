@@ -119,10 +119,34 @@ def write_loads(rows: dict[str, list[str]], dry_run: bool) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Recalculate load history from Activity Markdown files.")
+    parser.add_argument("--newest", help="Newest date YYYY-MM-DD to include as trailing zero-load days if needed.")
     parser.add_argument("--dry-run", action="store_true", help="Report calculated loads without writing.")
     args = parser.parse_args()
 
     rows = calculate()
+    if args.newest:
+        target_newest = date.fromisoformat(args.newest)
+        if rows:
+            ordered_days = sorted(date.fromisoformat(day) for day in rows)
+            start = ordered_days[0]
+            if target_newest > ordered_days[-1]:
+                existing = {date.fromisoformat(key): value for key, value in rows.items()}
+                atl = float(existing[ordered_days[-1]][2])
+                ctl = float(existing[ordered_days[-1]][3])
+                for day in date_iter(ordered_days[-1] + timedelta(days=1), target_newest):
+                    tss = 0.0
+                    atl = atl + (tss - atl) / 7
+                    ctl = ctl + (tss - ctl) / 42
+                    tsb = ctl - atl
+                    acr = "-" if round(ctl) == 0 and abs(ctl) < 0.0001 else f"{atl / ctl:.3f}"
+                    rows[day.isoformat()] = [
+                        day.isoformat(),
+                        fmt_number(tss),
+                        str(round(atl)),
+                        str(round(ctl)),
+                        str(round(tsb)),
+                        acr,
+                    ]
     write_loads(rows, args.dry_run)
     return 0
 

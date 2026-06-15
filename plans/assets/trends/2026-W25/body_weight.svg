@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Gewicht">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="992" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Gewicht</text>
+<line x1="70" y1="74.0" x2="1062" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1062" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1062" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1062" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1062" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">16.05.</text>
+<line x1="309.4" y1="74" x2="309.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="309.4" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">23.05.</text>
+<line x1="548.9" y1="74" x2="548.9" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="548.9" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">30.05.</text>
+<line x1="822.6" y1="74" x2="822.6" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="822.6" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">07.06.</text>
+<line x1="1062.0" y1="74" x2="1062.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1062.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">14.06.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">92.8kg</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
+<rect x="747.6" y="430.2" width="13.0" height="55.8" rx="2.2" fill="#c9534f"/>
+<rect x="747.6" y="119.0" width="13.0" height="311.2" rx="2.2" fill="#b9c3cf"/>
+<rect x="781.8" y="430.2" width="13.0" height="55.8" rx="2.2" fill="#c9534f"/>
+<rect x="781.8" y="119.0" width="13.0" height="311.2" rx="2.2" fill="#b9c3cf"/>
+<rect x="816.1" y="430.2" width="13.0" height="55.8" rx="2.2" fill="#c9534f"/>
+<rect x="816.1" y="119.0" width="13.0" height="311.2" rx="2.2" fill="#b9c3cf"/>
+<rect x="850.3" y="430.2" width="13.0" height="55.8" rx="2.2" fill="#c9534f"/>
+<rect x="850.3" y="119.0" width="13.0" height="311.2" rx="2.2" fill="#b9c3cf"/>
+<rect x="884.5" y="430.4" width="13.0" height="55.6" rx="2.2" fill="#c9534f"/>
+<rect x="884.5" y="120.4" width="13.0" height="310.1" rx="2.2" fill="#b9c3cf"/>
+<rect x="918.7" y="431.4" width="13.0" height="54.6" rx="2.2" fill="#c9534f"/>
+<rect x="918.7" y="122.1" width="13.0" height="309.3" rx="2.2" fill="#b9c3cf"/>
+<rect x="952.9" y="429.5" width="13.0" height="56.5" rx="2.2" fill="#c9534f"/>
+<rect x="952.9" y="119.0" width="13.0" height="310.5" rx="2.2" fill="#b9c3cf"/>
+<rect x="987.1" y="429.0" width="13.0" height="57.0" rx="2.2" fill="#c9534f"/>
+<rect x="987.1" y="118.1" width="13.0" height="310.8" rx="2.2" fill="#b9c3cf"/>
+<rect x="1021.3" y="431.2" width="13.0" height="54.8" rx="2.2" fill="#c9534f"/>
+<rect x="1021.3" y="120.4" width="13.0" height="310.8" rx="2.2" fill="#b9c3cf"/>
+<rect x="1055.5" y="432.9" width="13.0" height="53.1" rx="2.2" fill="#c9534f"/>
+<rect x="1055.5" y="127.0" width="13.0" height="305.9" rx="2.2" fill="#b9c3cf"/>
+<polyline points="856.8,119.0 891.0,119.5 925.2,119.9 959.4,119.5 993.6,119.5 1027.8,119.9 1062.0,120.8" fill="none" stroke="#1d252d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="856.8" cy="119.0" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="891.0" cy="119.5" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="925.2" cy="119.9" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="959.4" cy="119.5" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="993.6" cy="119.5" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1027.8" cy="119.9" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1062.0" cy="120.8" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<polyline points="856.8,430.2 891.0,430.3 925.2,430.4 959.4,430.3 993.6,430.3 1027.8,430.4 1062.0,430.5" fill="none" stroke="#9f2f25" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="856.8" cy="430.2" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="891.0" cy="430.3" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="925.2" cy="430.4" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="959.4" cy="430.3" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="993.6" cy="430.3" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1027.8" cy="430.4" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1062.0" cy="430.5" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">7-Tage-Mittel Körperfett</text>
+<circle cx="976.8" cy="28" r="4.5" fill="#9f2f25"/>
+<text x="936.8" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Körperfett</text>
+<circle cx="852.8" cy="28" r="4.5" fill="#c9534f"/>
+<text x="812.8" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">7-Tage-Mittel Gewicht</text>
+<circle cx="654.0" cy="28" r="4.5" fill="#1d252d"/>
+<text x="614.0" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Gewicht</text>
+<circle cx="550.4" cy="28" r="4.5" fill="#b9c3cf"/>
+<text x="1076" y="120.8" fill="#1d252d" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">82.3kg</text>
+<text x="1076" y="450.5" fill="#9f2f25" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">15.2%</text>
+</svg>

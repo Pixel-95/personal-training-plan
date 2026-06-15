@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "week": "2026-W25",
+  "analysis_week": "2026-W24",
+  "summary_override": {
+    "total": "8:38h",
+    "swim": "6500m",
+    "bike": "4:03h",
+    "run": "1:38h"
+  },
+  "days": [
+    {
+      "date": "2026-06-15",
+      "sessions": [
+        {
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "16min",
+          "duration": "16min"
+        },
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "1:45h",
+          "duration": "1:45h",
+          "content": [
+            "1:45h @203W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-16",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Basic",
+          "amount": "35min",
+          "duration": "35min",
+          "content": [
+            "35min @135bpm"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Aerobic Short",
+          "amount": "2800m",
+          "duration": "65min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "5x400m @1:48/100m",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-17",
+      "sessions": [
+        {
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "16min",
+          "duration": "16min"
+        },
+        {
+          "sport": "bike",
+          "title": "Tempo",
+          "amount": "33min",
+          "duration": "33min",
+          "content": [
+            "5min @203W",
+            "4x5min @256W,2min @100W",
+            "2min @100W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-18",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Tempo",
+          "amount": "23min",
+          "duration": "23min",
+          "content": [
+            "5min @135bpm",
+            "4x2min @4:20/km,2min Trabpause",
+            "2min @4:53/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Threshold",
+          "amount": "2200m",
+          "duration": "50min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "7x200m @1:40/100m",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-19",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Basic",
+          "amount": "35min",
+          "duration": "35min",
+          "content": [
+            "35min @203W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-20",
+      "sessions": []
+    },
+    {
+      "date": "2026-06-21",
+      "sessions": [
+        {
+          "sport": "race",
+          "title": "Rothsee DM",
+          "amount": "OD",
+          "duration": "2:20h",
+          "content": [
+            "Deutsche Meisterschaft Rothsee Triathlon"
+          ]
+        }
+      ]
+    }
+  ]
+}
