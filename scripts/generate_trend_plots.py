@@ -11,10 +11,13 @@ from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
+from markdown_tables import read_table as read_markdown_table
+from markdown_tables import rows_as_dicts, write_text_atomic
+from profile_paths import DATA_DIR, PROFILE_PLANS_DIR, ROOT
 
-ROOT = Path(__file__).resolve().parents[1]
-PLAN_DIR = ROOT / "plans"
-TREND_DIR = PLAN_DIR / "assets" / "trends"
+
+PLAN_DIR = PROFILE_PLANS_DIR
+TREND_DIR = PLAN_DIR / "assets"
 
 W = 1180
 H = 540
@@ -102,25 +105,8 @@ def esc(value: object) -> str:
 
 
 def read_table(path: Path) -> list[dict[str, str]]:
-    if not path.exists():
-        return []
-    lines = [
-        line.strip()
-        for line in path.read_text(encoding="utf-8-sig", errors="replace").splitlines()
-        if line.strip().startswith("|")
-    ]
-    if len(lines) < 2:
-        return []
-    header = [cell.strip() for cell in lines[0].strip("|").split("|")]
-    rows: list[dict[str, str]] = []
-    for line in lines[2:]:
-        cells = [cell.strip() for cell in line.strip("|").split("|")]
-        if len(cells) != len(header):
-            continue
-        row = dict(zip(header, cells))
-        if row.get("Datum"):
-            rows.append(row)
-    return rows
+    header, rows = read_markdown_table(path)
+    return [row for row in rows_as_dicts(header, rows) if row.get("Datum")]
 
 
 def parse_day(value: str) -> date | None:
@@ -220,7 +206,7 @@ def points_from_first_available(path: Path, cols: list[str], parser=parse_float)
 
 
 def parse_activity_summary(path: Path) -> dict[str, str]:
-    text = path.read_text(encoding="utf-8-sig", errors="replace")
+    text = path.read_text(encoding="utf-8-sig")
     summary: dict[str, str] = {}
     for match in re.finditer(r"^- ([^:\n]+): (.+)$", text, re.MULTILINE):
         summary[match.group(1).strip()] = match.group(2).strip()
@@ -277,7 +263,7 @@ def trailing_weeks(week: str, count: int) -> list[str]:
 
 
 def activity_md_paths(week: str) -> list[Path]:
-    folder = ROOT / "data" / "activities" / week
+    folder = DATA_DIR / "activities" / week
     if not folder.exists():
         return []
     return sorted(path for path in folder.glob("*.md") if not path.name.startswith("review_"))
@@ -314,7 +300,7 @@ def week_activity_stats(week: str) -> WeeklyStats:
         "run": {zone: 0.0 for zone in ["Z1", "Z2", "Z3", "Z4", "Z5", "Z6"]},
     }
     for path in activity_md_paths(week):
-        text = path.read_text(encoding="utf-8-sig", errors="replace")
+        text = path.read_text(encoding="utf-8-sig")
         summary = parse_activity_summary(path)
         sport = sport_key(summary.get("Sport", ""))
         if sport is None:
@@ -342,7 +328,7 @@ def weekly_stats_series(week: str, count: int = 12) -> list[WeeklyStats]:
 
 
 def update_review_stats_block(stats: WeeklyStats) -> None:
-    review_path = ROOT / "data" / "activities" / stats.week / f"review_{stats.week}.md"
+    review_path = DATA_DIR / "activities" / stats.week / f"review_{stats.week}.md"
     if not review_path.exists():
         return
     table = "\n".join(
@@ -355,13 +341,13 @@ def update_review_stats_block(stats: WeeklyStats) -> None:
             f"| TSS | {number_label(stats.tss['swim'], digits=1)} | {number_label(stats.tss['bike'], digits=1)} | {number_label(stats.tss['run'], digits=1)} |",
         ]
     )
-    text = review_path.read_text(encoding="utf-8-sig", errors="replace").rstrip() + "\n"
+    text = review_path.read_text(encoding="utf-8-sig").rstrip() + "\n"
     pattern = re.compile(r"\n## Wochenstatistik\n[\s\S]*?(?=\n## |\Z)")
     if pattern.search(text):
         text = pattern.sub("\n" + table + "\n", text)
     else:
         text = text + "\n\n" + table + "\n"
-    review_path.write_text(text, encoding="utf-8")
+    write_text_atomic(review_path, text)
 
 
 def update_review_stats_blocks(series: list[WeeklyStats]) -> None:
@@ -620,8 +606,7 @@ def add_horizontal_zone(parts: list[str], lower_value: float, upper_value: float
 
 
 def write_svg(path: Path, parts: list[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(parts) + "\n" + svg_close(), encoding="utf-8")
+    write_text_atomic(path, "\n".join(parts) + "\n" + svg_close() + "\n")
 
 
 def render_single_line(path: Path, title: str, points: list[Point], start: date, end: date, color: str, unit: str = "", include_zero: bool = False) -> str | None:
@@ -641,7 +626,7 @@ def render_hrv(path: Path, newest: date) -> list[str]:
     global ACTIVE_RIGHT
     ACTIVE_RIGHT = RIGHT_COMPACT
     start = newest - timedelta(days=89)
-    rows = read_table(ROOT / "data" / "health" / "hrv.md")
+    rows = read_table(DATA_DIR / "health" / "hrv.md")
     daily: list[Point] = []
     mean7: list[Point] = []
     lower: list[Point] = []
@@ -684,7 +669,7 @@ def render_weight(path: Path, newest: date) -> list[str]:
     global ACTIVE_RIGHT
     ACTIVE_RIGHT = RIGHT_LABELS
     start = newest - timedelta(days=89)
-    table = ROOT / "data" / "health" / "weight.md"
+    table = DATA_DIR / "health" / "weight.md"
     daily = window(points_from_table(table, "Gewicht / kg"), start, newest)
     trend = window(points_from_table(table, "7-Tage-Mittel-Gewicht / kg"), start, newest)
     bodyfat_daily = window(points_from_table(table, "Körperfettanteil / %"), start, newest)
@@ -763,8 +748,8 @@ def render_steps(path: Path, newest: date) -> list[str]:
     global ACTIVE_RIGHT
     ACTIVE_RIGHT = RIGHT_COMPACT
     start = newest - timedelta(days=89)
-    daily = window(points_from_table(ROOT / "data" / "health" / "steps.md", "Schritte"), start, newest)
-    trend = window(points_from_table(ROOT / "data" / "health" / "steps.md", "7-Tage-Mittel-Schritte"), start, newest)
+    daily = window(points_from_table(DATA_DIR / "health" / "steps.md", "Schritte"), start, newest)
+    trend = window(points_from_table(DATA_DIR / "health" / "steps.md", "7-Tage-Mittel-Schritte"), start, newest)
     _, hi = domain([p.value for p in daily + trend], include_zero=True)
     lo = 0
     parts = svg_open("Schritte")
@@ -974,9 +959,9 @@ def render_readiness_sleep(path: Path, newest: date) -> list[str]:
     global ACTIVE_RIGHT
     ACTIVE_RIGHT = RIGHT_COMPACT
     start = newest - timedelta(days=89)
-    duration = window(points_from_table(ROOT / "data" / "health" / "sleep.md", "Schlafdauer / hh:mm", parse_hhmm), start, newest)
-    score = window(points_from_table(ROOT / "data" / "health" / "sleep.md", "Sleepscore"), start, newest)
-    rhr = window(points_from_table(ROOT / "data" / "health" / "resting_heart_rate.md", "Ruhepuls / bpm"), start, newest)
+    duration = window(points_from_table(DATA_DIR / "health" / "sleep.md", "Schlafdauer / hh:mm", parse_hhmm), start, newest)
+    score = window(points_from_table(DATA_DIR / "health" / "sleep.md", "Sleepscore"), start, newest)
+    rhr = window(points_from_table(DATA_DIR / "health" / "resting_heart_rate.md", "Ruhepuls / bpm"), start, newest)
     _, sleep_hi = domain([p.value for p in duration], include_zero=True)
     sleep_lo = 0
     score_lo, score_hi = 0, 100
@@ -1011,7 +996,7 @@ def render_loads(out_dir: Path, newest: date) -> list[str]:
     global ACTIVE_RIGHT
     ACTIVE_RIGHT = RIGHT_LOAD
     start = newest - timedelta(days=89)
-    table = ROOT / "data" / "health" / "loads.md"
+    table = DATA_DIR / "health" / "loads.md"
     tss = window(points_from_table(table, "Tages-TSS"), start, newest)
     atl = window(points_from_table(table, "ATL"), start, newest)
     ctl = window(points_from_table(table, "CTL"), start, newest)
@@ -1065,9 +1050,9 @@ def render_thresholds(path: Path, newest: date) -> list[str]:
     ACTIVE_RIGHT = RIGHT_LABELS
     start = newest - timedelta(days=364)
     series = [
-        ("Swim CSS", COLORS["swim"], window(points_from_table(ROOT / "data" / "thresholds" / "thresholds_swim.md", "CSS / min:sec/100m", parse_pace_seconds), start, newest), True, "/100m"),
-        ("Bike FTP", COLORS["bike"], window(points_from_table(ROOT / "data" / "thresholds" / "thresholds_bike.md", "FTP / W"), start, newest), False, "W"),
-        ("Run LT", COLORS["run_pace"], window(points_from_table(ROOT / "data" / "thresholds" / "thresholds_run.md", "LT / min:sec/km", parse_pace_seconds), start, newest), True, "/km"),
+        ("Swim CSS", COLORS["swim"], window(points_from_table(DATA_DIR / "thresholds" / "thresholds_swim.md", "CSS / min:sec/100m", parse_pace_seconds), start, newest), True, "/100m"),
+        ("Bike FTP", COLORS["bike"], window(points_from_table(DATA_DIR / "thresholds" / "thresholds_bike.md", "FTP / W"), start, newest), False, "W"),
+        ("Run LT", COLORS["run_pace"], window(points_from_table(DATA_DIR / "thresholds" / "thresholds_run.md", "LT / min:sec/km", parse_pace_seconds), start, newest), True, "/km"),
     ]
     parts = svg_open("Thresholds")
     add_grid(parts, start, newest, 0, 1, show_y_labels=False)
@@ -1100,8 +1085,8 @@ def render_vo2(path: Path, newest: date) -> list[str]:
     ACTIVE_RIGHT = RIGHT_LABELS
     start = newest - timedelta(days=364)
     vo2_cols = ["VO2max / ml/kg/min", "VO2max / ml/min/kg"]
-    bike = window(points_from_first_available(ROOT / "data" / "VO2max" / "VO2max_bike.md", vo2_cols), start, newest)
-    run = window(points_from_first_available(ROOT / "data" / "VO2max" / "VO2max_run.md", vo2_cols), start, newest)
+    bike = window(points_from_first_available(DATA_DIR / "VO2max" / "VO2max_bike.md", vo2_cols), start, newest)
+    run = window(points_from_first_available(DATA_DIR / "VO2max" / "VO2max_run.md", vo2_cols), start, newest)
     lo, hi = domain([p.value for p in bike + run])
     parts = svg_open("VO2max")
     add_grid(parts, start, newest, lo, hi, left_label=f"{hi:.1f}")
@@ -1144,7 +1129,7 @@ def generate(week: str, newest: date) -> list[str]:
 
 
 def trend_section_html(week: str) -> str:
-    base = f"assets/trends/{week}"
+    base = f"assets/{week}"
     return f"""    <section class="trends" aria-label="Zeitreihen">
       <h2>Trends</h2>
 
@@ -1210,7 +1195,25 @@ def update_plan_html(week: str, html_path: Path) -> None:
         if marker not in content:
             raise ValueError(f"Could not find </main> marker in {html_path}")
         content = content.replace(marker, "\n\n" + section + marker, 1)
-    html_path.write_text(content, encoding="utf-8")
+    write_text_atomic(html_path, content)
+
+
+def resolve_plan_html_path(value: str | None, week: str) -> Path:
+    requested = Path(value) if value else PLAN_DIR / f"{week}.html"
+    if requested.is_absolute():
+        resolved = requested.resolve()
+    elif len(requested.parts) == 1:
+        resolved = (PLAN_DIR / requested).resolve()
+    else:
+        resolved = (ROOT / requested).resolve()
+    plans_root = PLAN_DIR.resolve()
+    if not resolved.is_relative_to(plans_root):
+        raise ValueError(
+            f"Plan HTML must belong to the active profile and be below {plans_root}: {resolved}"
+        )
+    if resolved.suffix.lower() != ".html":
+        raise ValueError(f"Plan must be an HTML file: {resolved}")
+    return resolved
 
 
 def infer_week(newest: date) -> str:
@@ -1223,7 +1226,10 @@ def main() -> int:
     parser.add_argument("--week", help="ISO week target, e.g. 2026-W24. Defaults to week of --newest.")
     parser.add_argument("--newest", help="Last date for plots, YYYY-MM-DD. Defaults to today.")
     parser.add_argument("--update-html", action="store_true", help="Insert or replace the trend section in the weekly plan HTML.")
-    parser.add_argument("--plan-html", help="Plan HTML path. Defaults to plans/<week>.html when --update-html is used.")
+    parser.add_argument(
+        "--plan-html",
+        help="Plan HTML path. Defaults to the active profile's plans/<week>.html.",
+    )
     args = parser.parse_args()
 
     newest = parse_day(args.newest) if args.newest else date.today()
@@ -1238,10 +1244,11 @@ def main() -> int:
         for warning in warnings:
             print(f"- {warning}")
     if args.update_html:
-        html_path = Path(args.plan_html) if args.plan_html else PLAN_DIR / f"{week}.html"
-        if not html_path.is_absolute():
-            html_path = ROOT / html_path
-        update_plan_html(week, html_path)
+        try:
+            html_path = resolve_plan_html_path(args.plan_html, week)
+            update_plan_html(week, html_path)
+        except (FileNotFoundError, ValueError) as exc:
+            parser.error(str(exc))
         print(f"Updated plan HTML: {html_path}")
     return 0
 

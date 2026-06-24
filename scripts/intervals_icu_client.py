@@ -6,7 +6,6 @@ from __future__ import annotations
 import base64
 import csv
 import json
-import os
 import re
 import sys
 import unicodedata
@@ -14,13 +13,14 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date
 from pathlib import Path
 from typing import Any
 
+from markdown_tables import write_text_atomic
+from profile_paths import DATA_DIR, load_env_values
 
-ROOT = Path(__file__).resolve().parents[1]
-ENV_PATH = ROOT / ".env"
+
 API_BASE = "https://intervals.icu/api/v1"
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -36,32 +36,25 @@ class IntervalsError(RuntimeError):
 
 
 def load_env() -> dict[str, str]:
-    values: dict[str, str] = {}
-    if ENV_PATH.exists():
-        for line in ENV_PATH.read_text(encoding="utf-8-sig", errors="replace").splitlines():
-            line = line.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            key, value = line.split("=", 1)
-            values[key.strip()] = value.strip().strip('"').strip("'")
-    values.update({k: v for k, v in os.environ.items() if k.startswith("intervals_icu_")})
-    values.update({k: v for k, v in os.environ.items() if k.startswith("INTERVALS_ICU_")})
-    return values
+    return load_env_values(environment_prefixes=("intervals_icu_", "INTERVALS_ICU_"))
 
 
 def get_api_key(env: dict[str, str]) -> str:
     api_key = env.get("intervals_icu_api_key") or env.get("INTERVALS_ICU_API_KEY")
     if api_key:
         return api_key
-    if env.get("intervals_icu_login") == "API_KEY" and env.get("intervals_icu_password"):
-        return env["intervals_icu_password"]
     raise IntervalsError(
         "Missing Intervals.icu API key. Add intervals_icu_api_key=<key> to .env."
     )
 
 
 def get_athlete_id(env: dict[str, str]) -> str:
-    return env.get("intervals_icu_athlete_id") or env.get("INTERVALS_ICU_ATHLETE_ID") or "0"
+    athlete_id = env.get("intervals_icu_athlete_id") or env.get("INTERVALS_ICU_ATHLETE_ID")
+    if athlete_id:
+        return athlete_id
+    raise IntervalsError(
+        "Missing Intervals.icu athlete id. Add intervals_icu_athlete_id=<id> to .env."
+    )
 
 
 def read_csv_rows(text: str) -> list[dict[str, str]]:
@@ -102,9 +95,14 @@ class IntervalsClient:
         except urllib.error.HTTPError as exc:
             body = exc.read(500).decode("utf-8", errors="replace")
             raise IntervalsError(f"HTTP {exc.code} for {path}: {body}", exc.code) from exc
+        except urllib.error.URLError as exc:
+            raise IntervalsError(f"Network error for {path}: {exc.reason}") from exc
 
     def request_json(self, path: str, params: dict[str, Any] | None = None) -> Any:
-        return json.loads(self.request(path, params).decode("utf-8"))
+        try:
+            return json.loads(self.request(path, params).decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise IntervalsError(f"Invalid JSON response for {path}: {exc}") from exc
 
     def wellness_csv(self, oldest: date, newest: date) -> str:
         return self.request(
@@ -143,15 +141,9 @@ def parse_date(value: str) -> date:
     return date.fromisoformat(value[:10])
 
 
-def date_range_from_days(days: int, newest: str | None = None) -> tuple[date, date]:
-    newest_date = date.today() if newest is None else date.fromisoformat(newest)
-    oldest_date = newest_date.fromordinal(newest_date.toordinal() - max(days, 1) + 1)
-    return oldest_date, newest_date
-
-
 def iso_week_folder(day: date) -> Path:
     year, week, _ = day.isocalendar()
-    return ROOT / "data" / "activities" / f"{year}-W{week:02d}"
+    return DATA_DIR / "activities" / f"{year}-W{week:02d}"
 
 
 def sanitize_activity_name(name: str) -> str:
@@ -187,4 +179,4 @@ def looks_like_fit(data: bytes) -> bool:
 
 
 def write_json(path: Path, data: Any) -> None:
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_text_atomic(path, json.dumps(data, ensure_ascii=False, indent=2) + "\n")

@@ -7,12 +7,14 @@ import argparse
 import math
 from collections import defaultdict
 from datetime import date, timedelta
-from pathlib import Path
 
-from intervals_icu_client import IntervalsClient, ROOT, date_range_from_days, load_env, read_csv_rows
+from date_utils import date_range_from_days, inclusive_dates
+from intervals_icu_client import IntervalsClient, read_csv_rows
+from markdown_tables import read_table, render_table, rows_by_key, write_text_atomic
+from profile_paths import DATA_DIR, ROOT
 
 
-HEALTH_DIR = ROOT / "data" / "health"
+HEALTH_DIR = DATA_DIR / "health"
 
 
 TABLES = {
@@ -36,43 +38,25 @@ TABLES = {
 }
 
 
-def parse_table(path: Path) -> tuple[list[str], dict[str, list[str]]]:
-    if not path.exists():
-        return TABLES[path.name], {}
-    lines = [line.strip() for line in path.read_text(encoding="utf-8-sig", errors="replace").splitlines() if line.strip()]
-    if len(lines) < 2:
-        return TABLES[path.name], {}
-    header = [cell.strip() for cell in lines[0].strip("|").split("|")]
-    rows: dict[str, list[str]] = {}
-    for line in lines[2:]:
-        cells = [cell.strip() for cell in line.strip("|").split("|")]
-        if cells and cells[0]:
-            rows[cells[0]] = cells
-    return header, rows
+def parse_health_table(name: str) -> dict[str, list[str]]:
+    header, rows = read_table(HEALTH_DIR / name)
+    expected_header = TABLES[name]
+    if header and len(header) != len(expected_header):
+        raise ValueError(
+            f"Unexpected column count in {HEALTH_DIR / name}: "
+            f"expected {len(expected_header)}, got {len(header)}"
+        )
+    return rows_by_key(rows)
 
 
-def write_table(path: Path, header: list[str], rows: dict[str, list[str]], dry_run: bool) -> None:
+def write_health_table(name: str, rows: dict[str, list[str]], dry_run: bool) -> None:
+    path = HEALTH_DIR / name
+    header = TABLES[name]
     ordered = sorted(rows.values(), key=lambda cells: cells[0], reverse=True)
-    content = [
-        "| " + " | ".join(header) + " |",
-        "|" + "|".join("-" for _ in header) + "|",
-    ]
-    content.extend("| " + " | ".join(cells[: len(header)]) + " |" for cells in ordered)
-    text = "\n".join(content) + "\n"
     if dry_run:
         print(f"Would write {path.relative_to(ROOT)} ({len(ordered)} rows)")
         return
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
-
-
-def date_iter(oldest: date, newest: date) -> list[date]:
-    days = []
-    current = oldest
-    while current <= newest:
-        days.append(current)
-        current += timedelta(days=1)
-    return days
+    write_text_atomic(path, render_table(header, ordered))
 
 
 def fmt_int(value: str | None) -> str:
@@ -221,40 +205,33 @@ def main() -> int:
     args = parser.parse_args()
 
     oldest, newest = date_range_from_days(args.days, args.newest)
-    env = load_env()
-    configured_start = env.get("intervals_icu_health_start") or env.get("INTERVALS_ICU_HEALTH_START")
-    if configured_start:
-        start_date = date.fromisoformat(configured_start)
-        if oldest < start_date:
-            oldest = start_date
     client = IntervalsClient.from_env()
     wellness_rows = read_csv_rows(client.wellness_csv(oldest, newest))
     by_date = {row.get("date", ""): row for row in wellness_rows if row.get("date")}
     missing: dict[str, list[str]] = defaultdict(list)
     warnings: list[str] = []
 
-    tables = {name: parse_table(HEALTH_DIR / name) for name in TABLES}
-    tables["weight.md"] = (TABLES["weight.md"], tables["weight.md"][1])
+    tables = {name: parse_health_table(name) for name in TABLES}
 
-    for day in date_iter(oldest, newest):
+    for day in inclusive_dates(oldest, newest):
         key = day.isoformat()
         row = by_date.get(key, {})
 
-        hrv = tables["hrv.md"][1]
+        hrv = tables["hrv.md"]
         hrv_value = fmt_int(row.get("hrv"))
         if hrv_value == "-":
             hrv_value = existing_or_missing(hrv, key, 1)
             missing["hrv"].append(key)
         hrv[key] = [key, hrv_value, "-", "-", "-"]
 
-        rhr = tables["resting_heart_rate.md"][1]
+        rhr = tables["resting_heart_rate.md"]
         rhr_value = fmt_int(row.get("restingHR"))
         if rhr_value == "-":
             rhr_value = existing_or_missing(rhr, key, 1)
             missing["restingHR"].append(key)
         rhr[key] = [key, rhr_value]
 
-        sleep = tables["sleep.md"][1]
+        sleep = tables["sleep.md"]
         sleep_duration = fmt_sleep(row.get("sleepSecs"))
         sleep_score = fmt_int(row.get("sleepScore"))
         if sleep_duration == "-":
@@ -265,13 +242,13 @@ def main() -> int:
             missing["sleepScore"].append(key)
         sleep[key] = [key, sleep_duration, sleep_score]
 
-        steps = tables["steps.md"][1]
+        steps = tables["steps.md"]
         steps_value = fmt_int(row.get("steps"))
         if steps_value == "-":
             steps_value = existing_or_missing(steps, key, 1)
         steps[key] = [key, steps_value, "-"]
 
-        weight = tables["weight.md"][1]
+        weight = tables["weight.md"]
         raw_weight = fmt_float(row.get("weight"), 1)
         raw_bodyfat = fmt_float(row.get("bodyFat"), 1)
         if raw_weight != "-":
@@ -287,9 +264,9 @@ def main() -> int:
                 missing["bodyFat"].append(key)
             weight[key] = [key, "-", "-", bodyfat_value, "-"]
 
-    recalc_hrv(tables["hrv.md"][1])
-    recalc_weight(tables["weight.md"][1])
-    recalc_steps(tables["steps.md"][1])
+    recalc_hrv(tables["hrv.md"])
+    recalc_weight(tables["weight.md"])
+    recalc_steps(tables["steps.md"])
 
     for field, dates in sorted(missing.items()):
         if dates:
@@ -297,8 +274,8 @@ def main() -> int:
             extra = "" if len(dates) <= 3 else f", ... ({len(dates)} days total)"
             warnings.append(f"Intervals.icu wellness field {field} missing for {sample}{extra}")
 
-    for name, (header, rows) in tables.items():
-        write_table(HEALTH_DIR / name, header, rows, args.dry_run)
+    for name, rows in tables.items():
+        write_health_table(name, rows, args.dry_run)
 
     if warnings:
         print("WARNINGS:")

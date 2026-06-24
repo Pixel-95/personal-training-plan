@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-"""Download activity FIT files from Intervals.icu into data/activities/YYYY-Www."""
+"""Download activity FIT files into the active profile's weekly activity folders."""
 
 from __future__ import annotations
 
 import argparse
 from datetime import date
 
+from date_utils import date_range_from_days
 from intervals_icu_client import (
     IntervalsClient,
     IntervalsError,
-    ROOT,
     activity_target_path,
-    date_range_from_days,
     looks_like_fit,
 )
+from markdown_tables import write_bytes_atomic
+from profile_paths import ROOT
 
 
 ACTIVITY_FIELDS = ["id", "start_date_local", "type", "name"]
@@ -76,8 +77,7 @@ def main() -> int:
 
         data, source, activity_warnings = download_fit(client, activity_id)
         warnings.extend(activity_warnings)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(data)
+        write_bytes_atomic(target, data)
         downloaded += 1
         print(f"WROTE {target.relative_to(ROOT)} ({source})")
 

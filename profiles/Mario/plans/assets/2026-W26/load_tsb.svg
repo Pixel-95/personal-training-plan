@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Balance">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1046" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Balance</text>
+<line x1="70" y1="74.0" x2="1116" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1116" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1116" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1116" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1116" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">25.03.</text>
+<line x1="328.6" y1="74" x2="328.6" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="328.6" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">16.04.</text>
+<line x1="587.1" y1="74" x2="587.1" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="587.1" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">08.05.</text>
+<line x1="857.4" y1="74" x2="857.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="857.4" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">31.05.</text>
+<line x1="1116.0" y1="74" x2="1116.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1116.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">22.06.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">47TSB</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">-44</text>
+<rect x="70" y="74.0" width="1046" height="76.3" fill="#f7d9d6" opacity="0.42"/>
+<text x="82" y="92.0" fill="#66717d" font-size="12" font-weight="650" font-family="Inter, system-ui, sans-serif">Risiko &lt; -30</text>
+<rect x="70" y="150.3" width="1046" height="91.0" fill="#dcefe9" opacity="0.7"/>
+<text x="82" y="168.3" fill="#66717d" font-size="12" font-weight="650" font-family="Inter, system-ui, sans-serif">Formaufbau -10 bis -30</text>
+<rect x="70" y="241.3" width="1046" height="91.0" fill="#dfe4ea" opacity="0.82"/>
+<text x="82" y="259.3" fill="#66717d" font-size="12" font-weight="650" font-family="Inter, system-ui, sans-serif">neutral -10 bis +10</text>
+<rect x="70" y="332.3" width="1046" height="68.3" fill="#f5f6f8" opacity="0.82"/>
+<text x="82" y="350.3" fill="#66717d" font-size="12" font-weight="650" font-family="Inter, system-ui, sans-serif">Race Ready +10 bis +25</text>
+<rect x="70" y="400.6" width="1046" height="85.4" fill="#f7e3cf" opacity="0.5"/>
+<text x="82" y="418.6" fill="#66717d" font-size="12" font-weight="650" font-family="Inter, system-ui, sans-serif">Fitnessverlust &gt; +25</text>
+<line x1="70" y1="286.8" x2="1116" y2="286.8" stroke="#cfd6df" stroke-width="1.4"/>
+<polyline points="857.4,264.1 869.2,259.5 880.9,250.4 892.7,223.1 904.4,200.3 916.2,232.2 928.0,182.1 939.7,154.8 951.5,145.7 963.2,154.8 975.0,145.7 986.7,159.4 998.5,173.0 1010.2,186.7 1022.0,227.7 1033.7,209.5 1045.5,214.0 1057.2,227.7 1069.0,250.4 1080.7,255.0 1092.5,286.8 1104.2,113.9 1116.0,173.0" fill="none" stroke="#1d252d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="857.4" cy="264.1" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="869.2" cy="259.5" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="880.9" cy="250.4" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="892.7" cy="223.1" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="904.4" cy="200.3" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="916.2" cy="232.2" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="928.0" cy="182.1" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="939.7" cy="154.8" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="951.5" cy="145.7" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="963.2" cy="154.8" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="975.0" cy="145.7" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="986.7" cy="159.4" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="998.5" cy="173.0" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1010.2" cy="186.7" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1022.0" cy="227.7" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1033.7" cy="209.5" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1045.5" cy="214.0" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1057.2" cy="227.7" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1069.0" cy="250.4" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1080.7" cy="255.0" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1092.5" cy="286.8" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1104.2" cy="113.9" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1116.0" cy="173.0" r="3.8" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">TSB invertiert</text>
+<circle cx="1044.8" cy="28" r="4.5" fill="#1d252d"/>
+<text x="1130" y="173.0" fill="#1d252d" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">-25</text>
+</svg>
+

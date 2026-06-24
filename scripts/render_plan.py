@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Render a weekly training plan JSON into HTML and PDF artifacts."""
 
 from __future__ import annotations
@@ -7,18 +7,19 @@ import argparse
 import html
 import json
 import re
+import shutil
 import subprocess
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
 from generate_trend_plots import generate as generate_trends
 from generate_trend_plots import trend_section_html
+from markdown_tables import write_text_atomic
+from profile_paths import DATA_DIR, PROFILE_PLANS_DIR, ROOT
 
 
-ROOT = Path(__file__).resolve().parents[1]
-PLANS_DIR = ROOT / "plans"
-ACTIVITIES_DIR = ROOT / "data" / "activities"
+ACTIVITIES_DIR = DATA_DIR / "activities"
 
 GERMAN_WEEKDAYS = {
     0: "Mo",
@@ -44,7 +45,14 @@ BROWSER_CANDIDATES = [
     Path(r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"),
     Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe"),
     Path(r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"),
+    Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
+    Path("/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"),
 ]
+
+TOP_LEVEL_KEYS = {"schema_version", "week", "analysis_week", "summary_override", "days"}
+DAY_KEYS = {"date", "sessions"}
+SESSION_KEYS = {"sport", "tag", "title", "amount", "duration", "content"}
+SUMMARY_KEYS = {"total", "swim", "bike", "run"}
 
 
 def esc(text: Any) -> str:
@@ -97,7 +105,7 @@ def review_paragraphs(analysis_week: str | None) -> list[str]:
     path = ACTIVITIES_DIR / analysis_week / f"review_{analysis_week}.md"
     if not path.exists():
         raise FileNotFoundError(f"Review not found: {path}")
-    text = path.read_text(encoding="utf-8-sig", errors="replace")
+    text = path.read_text(encoding="utf-8-sig")
     text = re.split(r"\n## ", text, maxsplit=1)[0].strip()
     lines = text.splitlines()
     if lines and lines[0].startswith("# "):
@@ -141,10 +149,15 @@ def summary_from_plan(plan: dict[str, Any]) -> dict[str, str]:
 
 
 def validate_plan(plan: dict[str, Any]) -> None:
+    if not isinstance(plan, dict):
+        raise ValueError("Plan must be a JSON object")
     required_top = {"schema_version", "week", "days"}
     missing = required_top - set(plan)
     if missing:
         raise ValueError(f"Missing plan keys: {sorted(missing)}")
+    extra = set(plan) - TOP_LEVEL_KEYS
+    if extra:
+        raise ValueError(f"Unknown plan keys: {sorted(extra)}")
     if plan["schema_version"] != 1:
         raise ValueError(f"Unsupported schema_version: {plan['schema_version']}")
     week = plan["week"]
@@ -155,8 +168,15 @@ def validate_plan(plan: dict[str, Any]) -> None:
         raise ValueError("days must be a non-empty list")
     seen_dates: set[str] = set()
     for day in days:
+        if not isinstance(day, dict):
+            raise ValueError("Each day must be an object")
+        extra_day_keys = set(day) - DAY_KEYS
+        if extra_day_keys:
+            raise ValueError(f"Unknown day keys: {sorted(extra_day_keys)}")
         if "date" not in day:
             raise ValueError("Each day needs a date")
+        if "sessions" not in day or not isinstance(day["sessions"], list):
+            raise ValueError(f"Day {day['date']} needs a sessions list")
         day_str = day["date"]
         if day_str in seen_dates:
             raise ValueError(f"Duplicate day date: {day_str}")
@@ -166,12 +186,31 @@ def validate_plan(plan: dict[str, Any]) -> None:
         if f"{iso_year}-W{iso_week:02d}" != week:
             raise ValueError(f"Day {day_str} does not belong to week {week}")
         for session in day.get("sessions", []):
+            if not isinstance(session, dict):
+                raise ValueError(f"Each session on {day_str} must be an object")
+            extra_session_keys = set(session) - SESSION_KEYS
+            if extra_session_keys:
+                raise ValueError(
+                    f"Session on {day_str} has unknown keys: {sorted(extra_session_keys)}"
+                )
             for key in ("sport", "title", "amount", "duration"):
                 if key not in session:
                     raise ValueError(f"Session on {day_str} missing key: {key}")
+                if not isinstance(session[key], str) or not session[key].strip():
+                    raise ValueError(f"Session on {day_str} has invalid {key}")
+            content = session.get("content", [])
+            if not isinstance(content, list) or not all(isinstance(item, str) for item in content):
+                raise ValueError(f"Session on {day_str} has invalid content")
             parse_duration_minutes(session["duration"])
             if session["sport"] == "swim":
                 parse_distance_m(session["amount"])
+
+    override = plan.get("summary_override")
+    if override is not None:
+        if not isinstance(override, dict) or set(override) != SUMMARY_KEYS:
+            raise ValueError(f"summary_override must contain exactly {sorted(SUMMARY_KEYS)}")
+        if not all(isinstance(value, str) for value in override.values()):
+            raise ValueError("summary_override values must be strings")
 
 
 def render_session(session: dict[str, Any]) -> str:
@@ -242,8 +281,8 @@ def build_html(plan: dict[str, Any], newest: date, include_trends: bool) -> str:
         '  <meta charset="utf-8">',
         '  <meta name="viewport" content="width=device-width, initial-scale=1">',
         f"  <title>Trainingsplan {esc(week)}</title>",
-        '  <link rel="icon" type="image/png" href="../assets/calendar.png">',
-        '  <link rel="stylesheet" href="training-plan.css">',
+        '  <link rel="icon" type="image/png" href="../../../assets/calendar.png">',
+        '  <link rel="stylesheet" href="../../../plan-format/training-plan.css">',
         "</head>",
         "<body>",
         "  <main>",
@@ -275,15 +314,40 @@ def build_html(plan: dict[str, Any], newest: date, include_trends: bool) -> str:
 
 def write_html(plan_path: Path, html_text: str) -> Path:
     output = plan_path.with_suffix(".html")
-    output.write_text(html_text, encoding="utf-8")
+    write_text_atomic(output, html_text)
     return output
 
 
 def detect_browser() -> Path:
+    for executable in ("msedge", "google-chrome", "google-chrome-stable", "chromium", "chromium-browser"):
+        resolved = shutil.which(executable)
+        if resolved:
+            return Path(resolved)
     for candidate in BROWSER_CANDIDATES:
         if candidate.exists():
             return candidate
     raise FileNotFoundError("No supported browser found for PDF export.")
+
+
+def resolve_plan_path(value: str) -> Path:
+    requested = Path(value)
+    if requested.is_absolute():
+        resolved = requested.resolve()
+    elif len(requested.parts) == 1:
+        resolved = (PROFILE_PLANS_DIR / requested).resolve()
+    else:
+        resolved = (ROOT / requested).resolve()
+
+    plans_root = PROFILE_PLANS_DIR.resolve()
+    if not resolved.is_relative_to(plans_root):
+        raise ValueError(
+            f"Plan must belong to active profile and be located below {plans_root}: {resolved}"
+        )
+    if resolved.suffix.lower() != ".json":
+        raise ValueError(f"Plan must be a JSON file: {resolved}")
+    if not resolved.is_file():
+        raise FileNotFoundError(f"Plan not found: {resolved}")
+    return resolved
 
 
 def render_pdf(html_path: Path) -> Path:
@@ -322,22 +386,19 @@ def render_pdf(html_path: Path) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Render weekly training plan JSON into HTML and PDF.")
-    parser.add_argument("--plan", required=True, help="Path to plans/YYYY-Www.json")
+    parser.add_argument("--plan", required=True, help="Path to profiles/<profile>/plans/YYYY-Www.json")
     parser.add_argument("--newest", help="Newest date for trend plots, YYYY-MM-DD. Defaults to today.")
     parser.add_argument("--skip-trends", action="store_true", help="Do not regenerate or embed trend plots.")
     parser.add_argument("--pdf", action="store_true", help="Also export PDF from the rendered HTML.")
     args = parser.parse_args()
 
-    plan_path = Path(args.plan)
-    if not plan_path.is_absolute():
-        plan_path = ROOT / plan_path
-
-    newest = parse_day(args.newest) if args.newest else date.today()
-    if newest is None:
-        raise SystemExit("--newest must use YYYY-MM-DD")
-
-    plan = json.loads(plan_path.read_text(encoding="utf-8"))
-    validate_plan(plan)
+    try:
+        plan_path = resolve_plan_path(args.plan)
+        newest = parse_day(args.newest) if args.newest else date.today()
+        plan = json.loads(plan_path.read_text(encoding="utf-8-sig"))
+        validate_plan(plan)
+    except (FileNotFoundError, json.JSONDecodeError, UnicodeDecodeError, ValueError) as exc:
+        parser.error(str(exc))
 
     warnings: list[str] = []
     include_trends = not args.skip_trends

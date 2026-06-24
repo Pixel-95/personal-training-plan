@@ -7,10 +7,9 @@ import argparse
 import subprocess
 import sys
 from datetime import date
-from pathlib import Path
 
+from profile_paths import ROOT
 
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def run_step(name: str, args: list[str]) -> int:

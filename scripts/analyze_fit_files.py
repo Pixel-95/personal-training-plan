@@ -13,12 +13,14 @@ from typing import Any
 
 import fitdecode
 
-from intervals_icu_client import IntervalsClient, IntervalsError, ROOT, sanitize_activity_name
+from intervals_icu_client import IntervalsClient, IntervalsError, sanitize_activity_name
+from markdown_tables import write_text_atomic
+from profile_paths import DATA_DIR, ROOT
 
 
-ACTIVITIES_DIR = ROOT / "data" / "activities"
-THRESHOLDS_DIR = ROOT / "data" / "thresholds"
-VO2MAX_DIR = ROOT / "data" / "VO2max"
+ACTIVITIES_DIR = DATA_DIR / "activities"
+THRESHOLDS_DIR = DATA_DIR / "thresholds"
+VO2MAX_DIR = DATA_DIR / "VO2max"
 
 
 @dataclass
@@ -217,8 +219,8 @@ def zone_table(section: str) -> list[dict[str, str]]:
     cached = ZONE_TABLE_CACHE.get(section)
     if cached is not None:
         return cached
-    path = ROOT / "data" / "zones.md"
-    text = path.read_text(encoding="utf-8-sig", errors="replace")
+    path = DATA_DIR / "zones.md"
+    text = path.read_text(encoding="utf-8-sig")
     match = re.search(rf"## {re.escape(section)}\n\n((?:\|.*\n)+)", text)
     if not match:
         ZONE_TABLE_CACHE[section] = []
@@ -893,7 +895,7 @@ def write_summary(info: FitInfo, activity: dict[str, Any] | None, dry_run: bool,
     if dry_run:
         print(f"Would write {target.relative_to(ROOT)}")
         return
-    target.write_text(text, encoding="utf-8")
+    write_text_atomic(target, text)
     print(f"WROTE {target.relative_to(ROOT)}")
 
 
@@ -940,7 +942,11 @@ def extract_vo2max(info: FitInfo) -> float | None:
 
 
 def read_table(path: Path) -> tuple[list[str], list[list[str]]]:
-    lines = [line.strip() for line in path.read_text(encoding="utf-8-sig", errors="replace").splitlines() if line.strip()]
+    lines = [
+        line.strip()
+        for line in path.read_text(encoding="utf-8-sig").splitlines()
+        if line.strip()
+    ]
     header = [cell.strip() for cell in lines[0].strip("|").split("|")]
     rows = [[cell.strip() for cell in line.strip("|").split("|")] for line in lines[2:] if line.startswith("|")]
     return header, rows
@@ -961,7 +967,7 @@ def prepend_if_changed(path: Path, values: list[str], dry_run: bool) -> None:
     if dry_run:
         print(f"Would update {path.relative_to(ROOT)} with {' | '.join(values)}")
         return
-    path.write_text("\n".join(content) + "\n", encoding="utf-8")
+    write_text_atomic(path, "\n".join(content) + "\n")
     print(f"UPDATED {path.relative_to(ROOT)}")
 
 

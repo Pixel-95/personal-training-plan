@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync selected Intervals.icu cache data into data/health.
+"""Sync selected Intervals.icu cache data into the active profile.
 
 This script does not download FIT files and does not write latest.md. Use
 download_fit_files.py for FIT files and update_health.py for canonical health
@@ -11,10 +11,13 @@ from __future__ import annotations
 import argparse
 from datetime import date
 
-from intervals_icu_client import IntervalsClient, ROOT, date_range_from_days, read_csv_rows, write_json
+from date_utils import date_range_from_days
+from intervals_icu_client import IntervalsClient, read_csv_rows, write_json
+from markdown_tables import write_text_atomic
+from profile_paths import DATA_DIR, ROOT
 
 
-OUT_DIR = ROOT / "data" / "health"
+OUT_DIR = DATA_DIR / "health"
 
 
 ACTIVITY_FIELDS = [
@@ -60,7 +63,7 @@ def main() -> int:
         return 0
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    (OUT_DIR / "intervals-wellness.csv").write_text(wellness_csv, encoding="utf-8")
+    write_text_atomic(OUT_DIR / "intervals-wellness.csv", wellness_csv)
     write_json(OUT_DIR / "intervals-activities.json", activities)
     write_json(OUT_DIR / "intervals-sport-settings.json", sport_settings)
 

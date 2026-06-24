@@ -1,31 +1,40 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aktueller Trainingsplan</title>
   <link rel="icon" type="image/png" href="assets/calendar.png">
+  <script src="active-profile.js"></script>
   <script>
-    function isoWeekPlanPath(date) {
+    function isoWeek(date) {
       const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
       const day = utcDate.getUTCDay() || 7;
       utcDate.setUTCDate(utcDate.getUTCDate() + 4 - day);
       const year = utcDate.getUTCFullYear();
       const yearStart = new Date(Date.UTC(year, 0, 1));
       const week = Math.ceil((((utcDate - yearStart) / 86400000) + 1) / 7);
-      return `plans/${year}-W${String(week).padStart(2, "0")}.html`;
+      return `${year}-W${String(week).padStart(2, "0")}`;
     }
 
-    const currentPlan = isoWeekPlanPath(new Date());
-    window.location.replace(currentPlan);
+    function planPath(profile, week) {
+      return `profiles/${encodeURIComponent(profile)}/plans/${week}.html`;
+    }
+
+    const week = isoWeek(new Date());
+    const profile = window.TRAINING_PROFILE;
+    if (profile) {
+      window.location.replace(planPath(profile, week));
+    }
+
     window.addEventListener("DOMContentLoaded", () => {
-      const link = document.getElementById("current-plan-link");
-      link.href = currentPlan;
-      link.textContent = currentPlan;
+      if (!profile) {
+        document.getElementById("profile-error").hidden = false;
+      }
     });
   </script>
 </head>
 <body>
-  <p>Aktuellen Trainingsplan öffnen: <a id="current-plan-link" href="plans/2026-W24.html">plans/2026-W24.html</a></p>
+  <p id="profile-error" hidden>Aktives Profil fehlt. Zuerst ein profilfähiges Python-Skript ausführen.</p>
 </body>
 </html>

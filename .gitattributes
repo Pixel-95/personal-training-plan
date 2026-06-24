@@ -1,0 +1,9 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.fit binary
+*.pdf binary
+*.png binary

@@ -1,0 +1,2 @@
+﻿| Datum | Ruhepuls / bpm |
+|-|-|
