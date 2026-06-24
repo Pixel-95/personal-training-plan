@@ -1,8 +1,11 @@
 desktop.ini
+.DS_Store
 .env
+active-profile.js
+.venv/
 __pycache__/
 *.pyc
-data/health/intervals-*.csv
-data/health/intervals-*.json
-hrv.csv
-plans/*.__pdf_mobile__.html
+*.tmp
+profiles/*/data/health/intervals-*.csv
+profiles/*/data/health/intervals-*.json
+profiles/*/plans/*.__pdf_mobile__.html
