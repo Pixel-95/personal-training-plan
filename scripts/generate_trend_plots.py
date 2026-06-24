@@ -683,37 +683,76 @@ def render_hrv(path: Path, newest: date) -> list[str]:
 def render_weight(path: Path, newest: date) -> list[str]:
     global ACTIVE_RIGHT
     ACTIVE_RIGHT = RIGHT_LABELS
-    start = newest - timedelta(days=29)
+    start = newest - timedelta(days=89)
     table = ROOT / "data" / "health" / "weight.md"
     daily = window(points_from_table(table, "Gewicht / kg"), start, newest)
     trend = window(points_from_table(table, "7-Tage-Mittel-Gewicht / kg"), start, newest)
     bodyfat_daily = window(points_from_table(table, "Körperfettanteil / %"), start, newest)
     bodyfat_trend = window(points_from_table(table, "7-Tage-Mittel-Körperfettanteil / %"), start, newest)
-    bodyfat_daily_by_day = {p.day: p.value for p in bodyfat_daily}
-    daily_fat_mass: list[Point] = []
-    daily_lean_mass: list[Point] = []
-    for p in daily:
-        bodyfat_pct = bodyfat_daily_by_day.get(p.day)
-        fat_mass = p.value * bodyfat_pct / 100 if bodyfat_pct is not None else 0.0
-        daily_fat_mass.append(Point(p.day, fat_mass))
-        daily_lean_mass.append(Point(p.day, max(p.value - fat_mass, 0.0)))
-    trend_by_day = {p.day: p.value for p in trend}
-    bodyfat_trend_by_day = {p.day: p.value for p in bodyfat_trend}
-    fat_trend_mass: list[Point] = []
-    for day in sorted(set(trend_by_day) & set(bodyfat_trend_by_day)):
-        fat_trend_mass.append(Point(day, trend_by_day[day] * bodyfat_trend_by_day[day] / 100))
-    _, hi = domain([p.value for p in daily + trend], include_zero=True)
-    lo = 0
+    weight_lo, weight_hi = domain([p.value for p in daily + trend])
+    bodyfat_lo, bodyfat_hi = domain([p.value for p in bodyfat_daily + bodyfat_trend])
     parts = svg_open("Gewicht")
-    add_grid(parts, start, newest, lo, hi, left_label=f"{hi:.1f}kg")
-    add_stacked_bars(parts, daily_fat_mass, daily_lean_mass, start, newest, lo, hi, COLORS["body_fat"], COLORS["weight"], baseline=0)
-    add_line(parts, trend, start, newest, lo, hi, COLORS["weight_trend"], width=3)
-    add_line(parts, fat_trend_mass, start, newest, lo, hi, COLORS["body_fat_trend"], width=3)
-    add_legend(parts, [("Gewicht", COLORS["weight"]), ("7-Tage-Mittel Gewicht", COLORS["weight_trend"]), ("Körperfett", COLORS["body_fat"]), ("7-Tage-Mittel Körperfett", COLORS["body_fat_trend"])])
+    parts.extend([
+        "<defs>",
+        '  <linearGradient id="weightBarFade" x1="0" y1="0" x2="0" y2="1">',
+        f'    <stop offset="0%" stop-color="{COLORS["weight"]}" stop-opacity="0.78"/>',
+        f'    <stop offset="100%" stop-color="{COLORS["weight"]}" stop-opacity="0.18"/>',
+        "  </linearGradient>",
+        "</defs>",
+    ])
+    add_grid(parts, start, newest, weight_lo, weight_hi, show_y_labels=False)
+    plot_top = TOP
+    plot_bottom = H - BOTTOM
+    plot_height = plot_bottom - plot_top
+    weight_top = plot_top
+    weight_bottom = plot_top + plot_height * 0.48
+    fat_top = plot_top + plot_height * 0.50
+    fat_bottom = plot_bottom
+    parts.append(f'<text x="{LEFT - 12}" y="{TOP + 5}" text-anchor="end" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{weight_hi:.1f}kg</text>')
+    parts.append(f'<text x="{LEFT - 12}" y="{weight_bottom:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{weight_lo:.1f}kg</text>')
+    parts.append(f'<text x="{LEFT - 12}" y="{fat_top + 5:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{bodyfat_hi:.1f}%</text>')
+    parts.append(f'<text x="{LEFT - 12}" y="{fat_bottom:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{bodyfat_lo:.1f}%</text>')
+    parts.append(f'<line x1="{LEFT}" y1="{fat_top:.1f}" x2="{W - ACTIVE_RIGHT}" y2="{fat_top:.1f}" stroke="{COLORS["grid"]}" stroke-width="1" stroke-dasharray="6 8"/>')
+
+    def scaled_y(value: float, lo: float, hi: float, top: float, bottom: float) -> float:
+        if math.isclose(lo, hi):
+            return (top + bottom) / 2
+        return bottom - ((value - lo) / (hi - lo)) * (bottom - top)
+
+    def add_scaled_bars(points: list[Point], lo: float, hi: float, top: float, bottom: float, fill: str, baseline_y: float, opacity: float = 1.0, width_factor: float = 0.7, max_width: float = 10) -> None:
+        days = max((newest - start).days + 1, 1)
+        bar_w = max(1.2, min(max_width, (W - LEFT - RIGHT) / days * width_factor))
+        for p in points:
+            x = x_for(p.day, start, newest) - bar_w / 2
+            y = scaled_y(p.value, lo, hi, top, bottom)
+            height = abs(baseline_y - y)
+            rect_top = min(baseline_y, y)
+            parts.append(f'<rect x="{x:.1f}" y="{rect_top:.1f}" width="{bar_w:.1f}" height="{max(height, 1):.1f}" rx="1.8" fill="{fill}" opacity="{opacity}"/>')
+
+    def add_scaled_line(points: list[Point], lo: float, hi: float, top: float, bottom: float, color: str, width: float = 3.0) -> None:
+        if not points:
+            return
+        if len(points) == 1:
+            x = x_for(points[0].day, start, newest)
+            y = scaled_y(points[0].value, lo, hi, top, bottom)
+            parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5.2" fill="{color}"/>')
+            return
+        coords = " ".join(f'{x_for(p.day, start, newest):.1f},{scaled_y(p.value, lo, hi, top, bottom):.1f}' for p in points)
+        parts.append(f'<polyline points="{coords}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="round" stroke-linejoin="round"/>')
+        for p in points:
+            x = x_for(p.day, start, newest)
+            y = scaled_y(p.value, lo, hi, top, bottom)
+            parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.2" fill="{color}" stroke="{COLORS["paper"]}" stroke-width="1.6"/>')
+
+    add_scaled_bars(daily, weight_lo, weight_hi, weight_top, weight_bottom, "url(#weightBarFade)", fat_bottom, opacity=1.0, width_factor=0.72, max_width=10)
+    add_scaled_bars(bodyfat_daily, bodyfat_lo, bodyfat_hi, fat_top, fat_bottom, "#ff4f55", fat_bottom, opacity=0.82, width_factor=0.45, max_width=7)
+    add_scaled_line(trend, weight_lo, weight_hi, weight_top, weight_bottom, COLORS["weight_trend"], width=4.2)
+    add_scaled_line(bodyfat_trend, bodyfat_lo, bodyfat_hi, fat_top, fat_bottom, COLORS["body_fat_trend"], width=4.2)
+    add_legend(parts, [("7-Tage-Mittel Gewicht", COLORS["weight_trend"]), ("7-Tage-Mittel Körperfett", COLORS["body_fat_trend"])])
     if trend:
-        add_latest_label(parts, y_for(trend[-1].value, lo, hi), number_label(trend[-1].value, "kg", 1), COLORS["weight_trend"])
-    if fat_trend_mass and bodyfat_trend:
-        add_latest_label(parts, y_for(fat_trend_mass[-1].value, lo, hi), number_label(bodyfat_trend[-1].value, "%", 1), COLORS["body_fat_trend"], dy=20)
+        add_latest_label(parts, scaled_y(trend[-1].value, weight_lo, weight_hi, weight_top, weight_bottom), number_label(trend[-1].value, "kg", 2), COLORS["weight_trend"])
+    if bodyfat_trend:
+        add_latest_label(parts, scaled_y(bodyfat_trend[-1].value, bodyfat_lo, bodyfat_hi, fat_top, fat_bottom), number_label(bodyfat_trend[-1].value, "%", 2), COLORS["body_fat_trend"], dy=20)
     if not daily:
         add_no_data(parts)
     write_svg(path, parts)
@@ -723,7 +762,7 @@ def render_weight(path: Path, newest: date) -> list[str]:
 def render_steps(path: Path, newest: date) -> list[str]:
     global ACTIVE_RIGHT
     ACTIVE_RIGHT = RIGHT_COMPACT
-    start = newest - timedelta(days=29)
+    start = newest - timedelta(days=89)
     daily = window(points_from_table(ROOT / "data" / "health" / "steps.md", "Schritte"), start, newest)
     trend = window(points_from_table(ROOT / "data" / "health" / "steps.md", "7-Tage-Mittel-Schritte"), start, newest)
     _, hi = domain([p.value for p in daily + trend], include_zero=True)
@@ -1148,10 +1187,10 @@ def trend_section_html(week: str) -> str:
         </div>
 
         <div class="trend-group">
-          <h3>Alltag (30 Tage)</h3>
+          <h3>Alltag (90 Tage)</h3>
           <div class="trend-grid stack">
-            <img src="{base}/body_weight.svg" alt="Gewicht und Körperfett mit Tageswerten und 7-Tage-Mitteln der letzten 30Tage">
-            <img src="{base}/body_steps.svg" alt="Schritte mit Tageswerten und 7-Tage-Mittel der letzten 30Tage">
+            <img src="{base}/body_weight.svg" alt="Gewicht und Körperfett mit Tageswerten und 7-Tage-Mitteln der letzten 90Tage">
+            <img src="{base}/body_steps.svg" alt="Schritte mit Tageswerten und 7-Tage-Mittel der letzten 90Tage">
           </div>
         </div>
       </div>

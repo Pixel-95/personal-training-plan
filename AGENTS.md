@@ -65,7 +65,7 @@ Regeln:
 - Health-Historien unter `data/health/` pflegen: `hrv.md`, `resting_heart_rate.md`, `sleep.md`, `steps.md`, `weight.md`, `loads.md`.
 - Health-Historien mit neuesten Einträgen oben führen.
 - Für Wellness-Historien jeden Kalendertag eine Zeile schreiben; fehlende Wellness-Werte mit `-` eintragen.
-- Gewicht täglich eintragen, auch wenn es temporär/interpoliert, unverändert oder nicht neu gemessen ist.
+- Gewicht täglich eintragen; wenn Intervals.icu in der Wellness-Tageszeile kein `weight` liefert, `-` eintragen und nicht das letzte bekannte Gewicht fortschreiben.
 - Wenn möglich das Körpergewicht standardisiert morgens direkt nach dem Aufstehen, nach dem Toilettengang und vor dem ersten Essen oder Trinken messen; diesen Messzeitpunkt als bevorzugten Referenzwert für die Gewichtshistorie behandeln.
 - Wenn im Repo-Root eine manuelle Importdatei `hrv.csv` vorhanden ist, darf sie nur zum HRV-Backfill verwendet werden; kanonisch bleibt `data/health/hrv.md`.
 - `data/health/hrv.md`: Tages-RMSSD aus Intervals.icu `hrv` übernehmen.
@@ -77,9 +77,9 @@ Regeln:
 - `data/health/steps.md`: Schritte aus Intervals.icu `steps` übernehmen.
 - `data/health/steps.md`: `7-Tage-Mittel-Schritte` als arithmetisches Mittel der Schrittwerte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
 - `data/health/weight.md`: Gewicht aus Intervals.icu `weight` übernehmen.
-- `data/health/weight.md`: `7-Tage-Mittel-Gewicht` als arithmetisches Mittel der Gewichtswerte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
+- `data/health/weight.md`: `7-Tage-Mittel-Gewicht` im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; bei `5-7` vorhandenen Werten höchsten und niedrigsten Wert streichen und das arithmetische Mittel der übrigen Werte bilden; bei genau `4` vorhandenen Werten das normale arithmetische Mittel bilden; bei weniger als `4` vorhandenen Werten `-` eintragen; den Mittelwert immer mit `2` Nachkommastellen speichern.
 - `data/health/weight.md`: Körperfett aus Intervals.icu `bodyFat` übernehmen.
-- `data/health/weight.md`: `7-Tage-Mittel-Körperfettanteil` als arithmetisches Mittel der `bodyFat`-Werte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
+- `data/health/weight.md`: `7-Tage-Mittel-Körperfettanteil` im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; bei `5-7` vorhandenen Werten höchsten und niedrigsten Wert streichen und das arithmetische Mittel der übrigen Werte bilden; bei genau `4` vorhandenen Werten das normale arithmetische Mittel bilden; bei weniger als `4` vorhandenen Werten `-` eintragen; den Mittelwert immer mit `2` Nachkommastellen speichern.
 - Langfristig ist ein Körperfettanteil von ungefähr `12%` als leistungsorientiertes Ziel hinterlegt; dieses Ziel bei der langfristigen Health- und Performance-Einordnung mitdenken, aber nicht als kurzfristiges Wochenziel aggressiv erzwingen.
 - `data/health/loads.md`: Vor jeder Trainingsplan-Erzeugung neu berechnen und mit den Spalten `Datum`, `Tages-TSS`, `ATL`, `CTL`, `TSB`, `ACR` führen.
 - `data/health/loads.md`: Für jeden Kalendertag eine Zeile schreiben; neueste Einträge oben.
@@ -297,7 +297,9 @@ Wochenplan-Format:
 - Gesamtumfang, Bike und Run in `h:mmh` angeben, z.B. `7:44h`; Swim in Metern, z.B. `3700m`.
 - Keine Leerzeichen zwischen Zahlen und Einheiten verwenden, z.B. `60min`, `200W`, `136bpm`, `1700m`, `7:44h`.
 - Keine Von-bis-Werte in Trainingsvorgaben verwenden. Immer konkrete Zielwerte angeben, z.B. `60min @200W`, `45min @136bpm`.
+- Wenn fachlich ein Zielbereich gemeint ist, im Plan den Mittelwert als konkreten Zielwert schreiben, z.B. statt `295-305W` nur `300W`.
 - Keine abstrakten Zonenangaben in Workout-Vorgaben verwenden. Statt `Z2`, `Z3` usw. konkrete Pace-, Power- oder HR-Werte aus `data/zones.md` ableiten.
+- Pausen bei Intervallen knapp im gleichen Stil wie Belastungen angeben, z.B. `5min @100W`; keine erklärenden Zusätze wie `zwischen den Intervallen` verwenden.
 - Bei Swim-Einheiten immer `200m Warmup` und `100m Cooldown` verwenden, sofern nicht ausdrücklich anders gewünscht.
 - Die Dauer oder der Umfang einer Einheit steht oben rechts in der Session-Karte, auf gleicher Höhe wie das Sportart-Label.
 - Die Dauer oder der Umfang steht nicht im Session-Namen.
@@ -331,12 +333,12 @@ Wochenplan-Format:
 - Für den Long-Session-Plot zwei Y-Achsen verwenden, eine für Bike und eine für Run.
 - Der Long-Session-Plot soll trotz schmalerer Card dieselbe visuelle Höhe, Schriftgröße, Punktgröße und allgemeine Lesbarkeit wie die übrigen Plots behalten; dafür die SVG intrinsisch schmäler rendern statt sie nur im HTML kleiner zu skalieren.
 - Wenn der Long-Session-Plot gegenüber dem linken Nachbarplot noch minimal zu niedrig wirkt, die intrinsische SVG-Höhe weiter erhöhen statt die Schrift künstlich zu skalieren; Ziel ist gleiche visuelle Höhe bei schmalerer Breite.
-- Die Trendsektion als zweispaltiges Dashboard anordnen: oben links `Performance (12 Monate)`, oben rechts `Belastung (90 Tage)`, darunter links `Readiness (90 Tage)` und darunter rechts `Alltag (30 Tage)`.
+- Die Trendsektion als zweispaltiges Dashboard anordnen: oben links `Performance (12 Monate)`, oben rechts `Belastung (90 Tage)`, darunter links `Readiness (90 Tage)` und darunter rechts `Alltag (90 Tage)`.
 - Innerhalb jeder Plotgruppe die zugehörigen Plot-Cards vertikal untereinander anordnen, nicht nebeneinander.
 - Die vier Plotgruppen im zweispaltigen Dashboard bündig als sauberes `2x2`-Grid ausrichten; Gruppen dürfen nicht durch abweichende Top-Margins gegeneinander vertikal versetzt sein.
-- Die Zeitdauer der Plotgruppen in die Gruppenüberschrift schreiben, z.B. `Alltag (30 Tage)`.
+- Die Zeitdauer der Plotgruppen in die Gruppenüberschrift schreiben, z.B. `Alltag (90 Tage)`.
 - Plotgruppen mit gleicher Zeitdauer direkt untereinander bzw. nebeneinander mit identischer X-Achse darstellen.
-- Die Zeitdauer nur in den Plotgruppen-Überschriften anzeigen, z.B. `Alltag (30 Tage)`, nicht in den einzelnen SVG-/Card-Titeln; eine Card heißt z.B. nur `Gewicht`, nicht `Gewicht (30 Tage)`.
+- Die Zeitdauer nur in den Plotgruppen-Überschriften anzeigen, z.B. `Alltag (90 Tage)`, nicht in den einzelnen SVG-/Card-Titeln; eine Card heißt z.B. nur `Gewicht`, nicht `Gewicht (90 Tage)`.
 - In den SVG-Plots rechts oben kompakte Legenden platzieren.
 - Plot-SVGs ausreichend hoch und gut lesbar gestalten; Schriftgrößen so wählen, dass die Werte im HTML-Plan ohne Zoomen erkennbar bleiben.
 - Legenden so platzieren, dass Marker und Beschriftung nicht überlappen. Zwischen Marker und zugehöriger Beschriftung einen klaren Abstand lassen; der Abstand zwischen zwei verschiedenen Legendeneinträgen soll deutlich größer sein als der Abstand zwischen Marker und Beschriftung.
@@ -350,11 +352,16 @@ Wochenplan-Format:
 - TSB-Linie und TSB-Punkte schwarz zeichnen.
 - Im Balance-Plot TSB-Hintergrundzonen darstellen: `-10 bis -30` als hellgrüner Formaufbau-Korridor, `< -30` als dezenter Risikobereich, `-10 bis +10` als neutraler Bereich, `+10 bis +25` als dezenter `Race Ready`-Bereich und `> +25` als Bereich für möglichen Fitnessverlust.
 - Weil TSB invertiert geplottet wird, müssen die Hintergrundzonen ebenfalls invertiert positioniert werden: negativer TSB liegt im Plot weiter oben.
-- Körper/Alltag über 30Tage plotten: Gewicht im Plot immer mit `0` als Minimalwert darstellen.
-- Im Gewichtsplot Tagesbalken als gestapelte Körperkomposition zeichnen: der untere Anteil entsprechend dem aktuellen Körperfettanteil in Rot, der restliche obere Anteil als restliche Körpermasse in Grau.
+- Körper/Alltag für Gewicht, Körperfett und Schritte über 90Tage plotten.
+- Im Gewichtsplot Gewicht und Körperfett in einem gemeinsamen Chart mit getrennter vertikaler Signalfläche und getrennten Skalen darstellen: Gewicht in der oberen Charthälfte, Körperfett in der unteren Charthälfte.
+- Im Gewichtsplot die vier sichtbaren Y-Achsen-Minimum-/Maximum-Labels für Gewicht und Körperfett alle links anzeigen, nicht zwischen linker und rechter Seite aufteilen.
+- Gewicht im Plot nicht bei `0` starten lassen, sondern dynamisch auf den sichtbaren 90-Tage-Wertebereich mit Padding skalieren.
+- Gewicht als helle graublaue Tagesbalken im Hintergrund zeichnen, die nach unten über die gesamte Charthöhe transparenter/heller ausfaden; die eigentlichen Gewichtswerte und die Gewichtslinie müssen in der oberen Charthälfte liegen.
+- Körperfett im Gewichtsplot als hellrote Tagesbalken in der unteren Charthälfte mit eigener Körperfett-Skala zeichnen; fehlende Tageswerte nicht zeichnen und niemals als `0` darstellen.
 - Im Gewichtsplot zusätzlich zwei 7-Tage-Mittel-Linien zeichnen: Gesamtgewicht als dunkle Linie und Körperfett als dunklere rote Linie; beide im gleichen visuellen Stil mit Linie und Punkten wie die bisherige Gewichts-Mittellinie.
-- Im Gewichtsplot die aktuellsten 7-Tage-Mittelwerte rechts innerhalb der Card anzeigen, analog zu Threshold/VO2max/Load/Balance: Gewicht in `kg` in der Gewichtslinienfarbe und Körperfett in `%` in der Körperfett-Linienfarbe.
-- Schritte im gleichen visuellen Stil als Tageswert-Balken plus 7-Tage-Mittel-Linie und mit `0` als Minimalwert plotten.
+- Im Gewichtsplot die aktuellsten 7-Tage-Mittelwerte rechts innerhalb der Card anzeigen, analog zu Threshold/VO2max/Load/Balance: Gewicht in `kg` in der Gewichtslinienfarbe und Körperfett in `%` in der Körperfett-Linienfarbe; beide Werte mit `2` Nachkommastellen anzeigen.
+- Im Gewichtsplot in der Legende nur die beiden 7-Tage-Mittelwert-Linien benennen; Tageswert-Balken nicht zusätzlich als Zahlen oder Legendeneinträge ausweisen.
+- Schritte im gleichen visuellen Stil als Tageswert-Balken plus 7-Tage-Mittel-Linie über 90Tage und mit `0` als Minimalwert plotten.
 - Performance über 12Monate plotten: Thresholds in einem gemeinsamen Plot, Swim CSS blau, Bike FTP grün und Run LT dunkelrot; Run-HR-Threshold nicht im Trendplot darstellen.
 - Für Load, Balance, Threshold und VO2max die aktuellsten Werte rechts außerhalb der inneren Plotfläche, aber innerhalb der äußeren SVG-Karte anzeigen; diese Endwerte ohne Präfixe wie `ATL`, `CTL` oder `TSB` schreiben.
 - Bei Load und Balance die rechte Endwertspalte schmal halten, weil dort nur kurze maximal dreistellige Zahlen ohne Einheit stehen; Threshold- und VO2max-Plots dürfen mehr rechten Platz für längere Labels behalten.

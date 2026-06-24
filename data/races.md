@@ -1,8 +1,8 @@
 # Geplant
 | Datum | Name | Typ | Wichtigkeit / 10 |
 |-|-|-|-|
-| 2026-06-21 | Deutsche Meisterschaft Rothsee Triathlon | Olympische Distanz Triathlon | 3 |
-| 2026-09-13 | Ironman 70.3 WM Nizza | Ironman 70.3 Triathlon | 4 |
+| 2026-09-13 | Ironman 70.3 WM Nizza | Ironman 70.3 Triathlon | 5 |
+| 2026-10-03 | Neustädter Söhrenberg-Triathlon (Waiblingen) | Sprint-Triathlon | 1 |
 | 2026-10-16 | Ironman 70.3 Sharm El-Sheikh | Ironman 70.3 Triathlon | 6 |
 | 2027-05-01 | Ironman Race TBD | Ironman Triathlon | 10 |
 
@@ -10,6 +10,7 @@
 ## Triathlon
 | Datum | Name | Typ | Gesamtzeit | Schwimm-Zeit | T1 | Bike-Zeit | T2 | Lauf-Zeit |
 |-|-|-|-|-|-|-|-|-|
+| 2026-06-21 | Deutsche Meisterschaft Rothsee Triathlon | Olympische Distanz Triathlon | 02:19:04 | 00:28:05 | 02:40 | 01:04:51 | 01:46 | 00:41:43 |
 | 2026-05-10 | Ironman 70.3 Da Nang (Vietnam) | Ironman 70.3 | 4:30:08 | 0:32:37 | 0:03:14 | 2:17:35 | 0:03:24 | 1:33:18 |
 | 2026-04-12 | Weiler (Deutschland) | Triathlon olympische Distanz | 2:24:56 | 0:25:22 | 0:07:11 | 1:09:36 | 0:02:09 | 0:40:38 |
 | 2025-08-17 | Allgäu (Deutschland) | Ironman 70.3 | 5:16:17 | 0:38:07 | 0:06:17 | 2:53:22 | 0:02:11 | 1:36:20 |

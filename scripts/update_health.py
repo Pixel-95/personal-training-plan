@@ -93,6 +93,12 @@ def fmt_float(value: str | None, digits: int = 1) -> str:
         return "-"
 
 
+def fmt_fixed_float(value: float | None, digits: int) -> str:
+    if value is None:
+        return "-"
+    return f"{value:.{digits}f}"
+
+
 def fmt_sleep(seconds: str | None) -> str:
     if seconds in (None, ""):
         return "-"
@@ -128,6 +134,14 @@ def stdevp_logs(values: list[float]) -> float:
     logs = [math.log(v) for v in values]
     mean = sum(logs) / len(logs)
     return math.sqrt(sum((item - mean) ** 2 for item in logs) / len(logs))
+
+
+def trimmed_weight_mean(values: list[float]) -> float | None:
+    if len(values) < 4:
+        return None
+    if len(values) >= 5:
+        values = sorted(values)[1:-1]
+    return sum(values) / len(values)
 
 
 def recalc_hrv(rows: dict[str, list[str]]) -> None:
@@ -171,19 +185,15 @@ def recalc_weight(rows: dict[str, list[str]]) -> None:
             for offset in range(7)
             if daily.get(current - timedelta(days=offset)) is not None
         ]
-        if len(weight_window7) >= 4:
-            cells[2] = fmt_float(str(sum(weight_window7) / len(weight_window7)), 1)
-        else:
-            cells[2] = "-"
+        weight_mean = trimmed_weight_mean(weight_window7)
+        cells[2] = fmt_fixed_float(weight_mean, 2)
         bodyfat_window7 = [
             bodyfat.get(current - timedelta(days=offset))
             for offset in range(7)
             if bodyfat.get(current - timedelta(days=offset)) is not None
         ]
-        if len(bodyfat_window7) >= 4:
-            cells[4] = fmt_float(str(sum(bodyfat_window7) / len(bodyfat_window7)), 1)
-        else:
-            cells[4] = "-"
+        bodyfat_mean = trimmed_weight_mean(bodyfat_window7)
+        cells[4] = fmt_fixed_float(bodyfat_mean, 2)
 
 
 def recalc_steps(rows: dict[str, list[str]]) -> None:
@@ -226,13 +236,6 @@ def main() -> int:
     tables = {name: parse_table(HEALTH_DIR / name) for name in TABLES}
     tables["weight.md"] = (TABLES["weight.md"], tables["weight.md"][1])
 
-    last_weight = None
-    weight_rows = tables["weight.md"][1]
-    for day in sorted(weight_rows):
-        value = number_or_none(weight_rows[day][1] if len(weight_rows[day]) > 1 else None)
-        if value is not None and (last_weight is None or day > last_weight[0]):
-            last_weight = (day, weight_rows[day][1])
-
     for day in date_iter(oldest, newest):
         key = day.isoformat()
         row = by_date.get(key, {})
@@ -272,21 +275,17 @@ def main() -> int:
         raw_weight = fmt_float(row.get("weight"), 1)
         raw_bodyfat = fmt_float(row.get("bodyFat"), 1)
         if raw_weight != "-":
-            last_weight = (key, raw_weight)
             bodyfat_value = raw_bodyfat
             if bodyfat_value == "-":
                 bodyfat_value = existing_or_missing(weight, key, 3)
                 missing["bodyFat"].append(key)
             weight[key] = [key, raw_weight, "-", bodyfat_value, "-"]
-        elif last_weight is not None:
+        else:
+            missing["weight"].append(key)
             bodyfat_value = existing_or_missing(weight, key, 3)
             if bodyfat_value == "-":
                 missing["bodyFat"].append(key)
-            weight[key] = [key, last_weight[1], "-", bodyfat_value, "-"]
-        else:
-            weight[key] = [key, "-", "-", "-", "-"]
-            missing["weight"].append(key)
-            missing["bodyFat"].append(key)
+            weight[key] = [key, "-", "-", bodyfat_value, "-"]
 
     recalc_hrv(tables["hrv.md"][1])
     recalc_weight(tables["weight.md"][1])

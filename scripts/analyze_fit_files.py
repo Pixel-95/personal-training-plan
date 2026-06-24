@@ -7,7 +7,7 @@ import argparse
 import math
 import re
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -42,7 +42,8 @@ def read_fit(path: Path) -> FitInfo:
         for frame in fit:
             if isinstance(frame, fitdecode.records.FitDataMessage):
                 messages.setdefault(frame.name, []).append(field_dict(frame))
-    session = (messages.get("session") or [{}])[0]
+    sessions = messages.get("session") or [{}]
+    session = aggregate_multisport_session(sessions) if is_multisport_sessions(sessions) else sessions[0]
     laps = messages.get("lap") or []
     records = messages.get("record") or []
     start = session.get("start_time")
@@ -50,6 +51,47 @@ def read_fit(path: Path) -> FitInfo:
     if not sport:
         sport = infer_sport_from_name(path.name)
     return FitInfo(path, messages, session, laps, records, start, sport)
+
+
+def is_transition_session(session: dict[str, Any]) -> bool:
+    return str(session.get("sport") or "").lower() == "transition"
+
+
+def is_multisport_sessions(sessions: list[dict[str, Any]]) -> bool:
+    sports = {
+        str(session.get("sport") or "").lower()
+        for session in sessions
+        if session and not is_transition_session(session)
+    }
+    return len(sports) > 1
+
+
+def aggregate_multisport_session(sessions: list[dict[str, Any]]) -> dict[str, Any]:
+    start_times = [session.get("start_time") for session in sessions if isinstance(session.get("start_time"), datetime)]
+    totals = {
+        "total_timer_time": sum(float(value(session, "total_timer_time") or 0) for session in sessions),
+        "total_elapsed_time": sum(float(value(session, "total_elapsed_time") or 0) for session in sessions),
+        "total_distance": sum(float(value(session, "total_distance") or 0) for session in sessions),
+        "total_calories": sum(float(value(session, "total_calories") or 0) for session in sessions),
+        "training_load_peak": max((float(value(session, "training_load_peak", "total_training_load") or 0) for session in sessions), default=0),
+        "total_training_effect": max((float(value(session, "total_training_effect") or 0) for session in sessions), default=0),
+        "total_anaerobic_training_effect": max((float(value(session, "total_anaerobic_training_effect") or 0) for session in sessions), default=0),
+    }
+    hr_weighted = [
+        (float(value(session, "avg_heart_rate") or 0), float(value(session, "total_timer_time") or 0))
+        for session in sessions
+        if value(session, "avg_heart_rate") not in (None, "") and float(value(session, "total_timer_time") or 0) > 0
+    ]
+    max_hr_values = [float(value(session, "max_heart_rate") or 0) for session in sessions if value(session, "max_heart_rate") not in (None, "")]
+    aggregate = {
+        "sport": "multisport",
+        "sub_sport": "triathlon",
+        "start_time": min(start_times) if start_times else None,
+        "avg_heart_rate": round(sum(hr * duration for hr, duration in hr_weighted) / sum(duration for _, duration in hr_weighted)) if hr_weighted else None,
+        "max_heart_rate": round(max(max_hr_values)) if max_hr_values else None,
+    }
+    aggregate.update(totals)
+    return aggregate
 
 
 def infer_sport_from_name(name: str) -> str:
@@ -75,7 +117,13 @@ def is_swim(sport: str) -> bool:
     return sport in {"swimming", "swim"}
 
 
+def is_multisport(sport: str) -> bool:
+    return sport in {"multisport", "triathlon"}
+
+
 def sport_label(sport: str) -> str:
+    if is_multisport(sport):
+        return "Triathlon"
     if is_bike(sport):
         return "Radfahren"
     if is_run(sport):
@@ -365,6 +413,8 @@ def swim_zone_distance(info: FitInfo) -> dict[str, float]:
 
 
 def zone_distribution(info: FitInfo) -> dict[str, float]:
+    if is_multisport(info.sport):
+        return {}
     if is_bike(info.sport):
         return bike_zone_seconds(info)
     if is_run(info.sport):
@@ -404,6 +454,8 @@ def normalize_name(name: str) -> str:
 
 
 def intervals_type_for_sport(sport: str) -> str:
+    if is_multisport(sport):
+        return ""
     if is_bike(sport):
         return "Ride"
     if is_run(sport):
@@ -456,6 +508,20 @@ def match_activity(info: FitInfo, activities: list[dict[str, Any]]) -> dict[str,
 
 
 def get_tss(info: FitInfo, activity: dict[str, Any] | None, warnings: list[str]) -> str:
+    if is_multisport(info.sport):
+        if activity and activity.get("icu_training_load") not in (None, ""):
+            return fmt(activity.get("icu_training_load"), digits=1)
+        fallback_values = [
+            float(value(session, "training_load_peak", "total_training_load") or 0)
+            for session in info.messages.get("session", [])
+        ]
+        fallback = max(fallback_values, default=0)
+        if fallback > 0:
+            return fmt(fallback, digits=1)
+        if activity and activity.get("hr_load") not in (None, ""):
+            return fmt(activity.get("hr_load"), digits=1)
+        warnings.append(f"{info.path.name}: no reliable multisport TSS/load source found")
+        return "-"
     non_tri_sport = not (is_swim(info.sport) or is_bike(info.sport) or is_run(info.sport))
     if non_tri_sport and activity and activity.get("hr_load") not in (None, ""):
         return fmt(activity.get("hr_load"), digits=1)
@@ -526,6 +592,31 @@ def hr_drift(info: FitInfo) -> str:
 
 
 def lap_rows(info: FitInfo) -> tuple[list[str], list[list[str]]]:
+    if is_multisport(info.sport):
+        header = ["Segment", "Dauer", "Distanz", "Pace/Speed", "Avg HR", "Max HR", "Avg Power", "NP"]
+        rows = []
+        for session in info.messages.get("session", []):
+            sport = str(session.get("sport") or "").lower()
+            speed = value(session, "enhanced_avg_speed", "avg_speed")
+            if is_swim(sport):
+                pace_or_speed = pace_from_speed(speed, swim=True)
+            elif is_run(sport):
+                pace_or_speed = gap_label_from_summary(speed, value(session, "total_distance"), value(session, "total_ascent"))
+            elif is_bike(sport):
+                pace_or_speed = f"{float(speed) * 3.6:.1f}km/h" if speed not in (None, "", 0) else "-"
+            else:
+                pace_or_speed = pace_from_speed(speed) if speed not in (None, "", 0) else "-"
+            rows.append([
+                sport_label(sport),
+                seconds_to_hms(value(session, "total_timer_time")),
+                meters_to_km(value(session, "total_distance")),
+                pace_or_speed,
+                fmt(value(session, "avg_heart_rate"), "bpm"),
+                fmt(value(session, "max_heart_rate"), "bpm"),
+                fmt(value(session, "avg_power"), "W"),
+                fmt(value(session, "normalized_power"), "W"),
+            ])
+        return header, rows
     if is_bike(info.sport):
         header = ["Lap", "Dauer", "Distanz", "Avg Power", "NP", "Avg HR", "Max HR", "Cadence", "L/R Balance", "Torque Eff."]
         rows = []
@@ -586,6 +677,17 @@ def lap_rows(info: FitInfo) -> tuple[list[str], list[list[str]]]:
 
 
 def zone_table_lines(info: FitInfo) -> list[str]:
+    if is_multisport(info.sport):
+        lines: list[str] = []
+        for session in info.messages.get("session", []):
+            sport = str(session.get("sport") or "").lower()
+            if not (is_swim(sport) or is_bike(sport) or is_run(sport)):
+                continue
+            segment_info = segment_info_for_session(info, session)
+            lines.extend([f"### {sport_label(sport)}", ""])
+            lines.extend(zone_table_lines(segment_info))
+            lines.append("")
+        return lines[:-1] if lines else ["Keine Zonendaten verfügbar."]
     totals = zone_distribution(info)
     if not totals:
         return ["Keine Zonendaten verfügbar."]
@@ -598,6 +700,26 @@ def zone_table_lines(info: FitInfo) -> list[str]:
         else:
             rows.append([zone, format_zone_value(info, value_item)])
     return markdown_table(header, rows)
+
+
+def segment_info_for_session(info: FitInfo, session: dict[str, Any]) -> FitInfo:
+    start = session.get("start_time")
+    duration = value(session, "total_timer_time")
+    end = start + timedelta(seconds=float(duration)) if isinstance(start, datetime) and duration not in (None, "") else None
+
+    def in_segment(item: dict[str, Any]) -> bool:
+        timestamp = item.get("start_time") or item.get("timestamp")
+        return isinstance(timestamp, datetime) and isinstance(start, datetime) and isinstance(end, datetime) and start <= timestamp < end
+
+    return FitInfo(
+        path=info.path,
+        messages=info.messages,
+        session=session,
+        laps=[lap for lap in info.laps if in_segment(lap)],
+        records=[record for record in info.records if in_segment(record)],
+        start=start if isinstance(start, datetime) else None,
+        sport=str(session.get("sport") or "").lower(),
+    )
 
 
 def torque_efficiency(lap: dict[str, Any]) -> str:
@@ -618,6 +740,28 @@ def markdown_table(header: list[str], rows: list[list[str]]) -> list[str]:
 
 def summarize(info: FitInfo, tss: str) -> list[str]:
     session = info.session
+    if is_multisport(info.sport):
+        lines = [
+            f"- Sport: {sport_label(info.sport)}",
+            f"- Start: {info.start.isoformat(sep=' ') if info.start else '-'}",
+            f"- Dauer: {seconds_to_hms(value(session, 'total_timer_time'))}",
+            f"- Verstrichene Zeit: {seconds_to_hms(value(session, 'total_elapsed_time'))}",
+            f"- Distanz: {meters_to_km(value(session, 'total_distance'))}",
+            f"- Kalorien: {fmt(value(session, 'total_calories'), 'kcal')}",
+            f"- Avg HR: {fmt(value(session, 'avg_heart_rate'), 'bpm')}",
+            f"- Max HR: {fmt(value(session, 'max_heart_rate'), 'bpm')}",
+            f"- TSS: {tss}",
+            f"- Aerobic Training Effect: {fmt(value(session, 'total_training_effect'), digits=1)}",
+            f"- Anaerobic Training Effect: {fmt(value(session, 'total_anaerobic_training_effect'), digits=1)}",
+        ]
+        for segment in info.messages.get("session", []):
+            segment_info = segment_info_for_session(info, segment)
+            lines.append(
+                f"- {sport_label(segment_info.sport)}: {seconds_to_hms(value(segment, 'total_timer_time'))}, "
+                f"{meters_to_km(value(segment, 'total_distance'))}, "
+                f"{fmt(value(segment, 'avg_heart_rate'), 'bpm')} avg HR"
+            )
+        return lines
     swim = is_swim(info.sport)
     lines = [
         f"- Sport: {sport_label(info.sport)}",
@@ -657,7 +801,14 @@ def report(info: FitInfo, tss: str, activity: dict[str, Any] | None) -> str:
     max_hr = fmt(value(session, "max_heart_rate"), "bpm")
     aerobic = fmt(value(session, "total_training_effect"), digits=1)
     anaerobic = fmt(value(session, "total_anaerobic_training_effect"), digits=1)
-    if is_bike(info.sport):
+    if is_multisport(info.sport):
+        sentences = [
+            f"Die Einheit war ein Triathlon über {duration} mit {avg_hr} im Schnitt und {max_hr} maximal.",
+            f"Mit TSS {tss} und Training Effect aerob {aerobic}/anaerob {anaerobic} war der Wettkampfreiz hoch und planungsrelevant.",
+            "Die Segmente werden getrennt bewertet, weil Schwimmen, Radfahren, Wechsel und Laufen unterschiedliche Belastungsmarker haben.",
+            "Für die Planung sind vor allem die Radleistung, der anschließende Laufverlauf und die Wechselzeiten relevant.",
+        ]
+    elif is_bike(info.sport):
         avg_power = fmt(value(session, "avg_power"), "W")
         np_power = fmt(value(session, "normalized_power"), "W")
         sentences = [
@@ -735,7 +886,7 @@ def write_summary(info: FitInfo, activity: dict[str, Any] | None, dry_run: bool,
         lines.append("- Kein eindeutiges Intervals.icu-Activity-Match gefunden; TSS nutzt FIT-Fallback oder `-`.")
     lines.extend(["", "## Zonen", ""])
     lines.extend(zone_table_lines(info))
-    lines.extend(["", "## Laps", ""])
+    lines.extend(["", "## Segmente" if is_multisport(info.sport) else "## Laps", ""])
     header, rows = lap_rows(info)
     lines.extend(markdown_table(header, rows) or ["Keine Lap-Daten verfügbar."])
     text = "\n".join(lines) + "\n"
