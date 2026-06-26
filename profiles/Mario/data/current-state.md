@@ -19,6 +19,12 @@ Diese Zusammenfassung soll vor jeder Trainingsplanung oder Trainingsbewertung vo
 ## Neueste Updates
 
 ### 2026-06-26
+Nächste Woche werde ich nur am Montag, Dienstag und Mittwoch mit allen Disziplinen trainieren können. Du kannst daher diese Tage sehr hart machen. Am Donnerstag und Freitag kann ich noch Läufe machen, sowohl weiterhin harte MIT-Threshold-Trainings als auch Recovery-Läfue. Am Samstag und Sonntag werde ich nicht strukturiert trainieren können, sodnern entspannt beim Canyoning sein.
+
+### 2026-06-26
+Die Threshold-Woche hat mich nicht sonderlich gestresst. Natürlich merke ich während den Trainings schon einge gewisse Ermüdung, aber diese ist auf keinen Fall lang anhaltend. Schon abends merke ich das Training vom Nachmittag schon nicht mehr, und das obwohl es ja eine harte MIT_Woche sein sollte. Ev. sollte ich den zweiten MIT-Teil nächste Woche nochmal etwas härter/länger gestalten, um einen maximal guten Trainingseffekt zu haben.
+
+### 2026-06-25
 Ich merke nach wie vor, dass mich Intervaltrainings (egal ob high intensity oder medium intensity) muskulär deutlich weniger fertig machen als z.B. ein 4h Long Bike (low intensity). Ist das normal oder gibt das irgendwelche Hinweise auf meinen Fitnesszustand oder darauf, was ich trainineren sollte.
 
 ### 2026-06-25

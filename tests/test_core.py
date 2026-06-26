@@ -16,7 +16,14 @@ if str(SCRIPTS) not in sys.path:
 import generate_trend_plots
 import update_health
 import update_loads
-from date_utils import date_range_from_days, expand_range_with_overlap, inclusive_dates
+from date_utils import (
+    date_range_from_days,
+    expand_range_with_overlap,
+    inclusive_dates,
+    iso_week_id,
+    monday_of_iso_week,
+    previous_iso_week,
+)
 from intervals_icu_client import IntervalsError, get_api_key, get_athlete_id, sanitize_activity_name
 from markdown_tables import read_table, render_table, write_text_atomic
 from profile_paths import PROFILE_PLANS_DIR
@@ -45,6 +52,11 @@ class DateUtilsTests(unittest.TestCase):
             expand_range_with_overlap(oldest, newest, None),
             (date(2026, 6, 26), date(2026, 6, 27)),
         )
+
+    def test_iso_week_helpers(self) -> None:
+        self.assertEqual(iso_week_id(date(2026, 6, 26)), "2026-W26")
+        self.assertEqual(monday_of_iso_week("2026-W27"), date(2026, 6, 29))
+        self.assertEqual(previous_iso_week("2026-W01"), "2025-W52")
 
 
 class MarkdownTableTests(unittest.TestCase):

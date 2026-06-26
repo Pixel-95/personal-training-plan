@@ -27,7 +27,7 @@ Die Standard-Verfügbarkeit steht in `data/availability.md`.
 
 | Feld | Wert |
 |-|-|
-| Typische Wochenstunden | 10-14 h |
+| Typische Wochenstunden | 12-14 h |
 | Maximale Wochenstunden in Belastungswochen | 16 h |
 | Bevorzugter Ruhetag | Samstag oder Sonntag |
 | Indoor Bike Setup | Smart Trainer mit Powermeter |

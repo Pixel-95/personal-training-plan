@@ -106,6 +106,26 @@ Regeln:
 - Vor jeder Trainingsplan-Erzeugung alle noch nicht ausgewerteten `.fit`-Dateien rekursiv unter `profiles/<TRAINING_PROFILE>/data/activities/` auswerten.
 - Intervals.icu-Sync darf Roh-/Cache-Dateien nach `profiles/<TRAINING_PROFILE>/data/health/` schreiben; diese Cache-Dateien sind nicht kanonisch.
 - Intervals.icu-Daten ergänzen den Trainingskontext, ersetzen aber nicht `profiles/<TRAINING_PROFILE>/data/current-state.md` als Quelle für den aktuellen subjektiven Zustand.
+
+Zwei-Phasen-Planung:
+- Neue Wochenpläne standardmäßig in zwei Phasen erstellen: zuerst Planvorschlag im Chat, danach erst nach ausdrücklicher Freigabe finaler Wochenplan als JSON/HTML/PDF.
+- Wenn der Nutzer einen Planvorschlag anfordert, zuerst `python scripts/prepare_plan_context.py --week YYYY-Www` ausführen, sofern das Skript existiert. Falls keine Zielwoche genannt wurde, die gemeinte Woche im Chat konkret benennen und die vom Skript ausgegebene Zielwoche verwenden.
+- `scripts/prepare_plan_context.py` führt nur die deterministische Vorbereitung aus: Planungsvalidierung, automatisierte Vorstufe bzw. Sync, Zielwoche, Analysewoche und Kontext-Checkliste. Das Skript erzeugt keinen Wochenplan.
+- Nach dem Vorbereitungsskript die erzeugten Änderungen und Warnungen plausibilisieren, alle Pflichtkontextdateien lesen, relevante neueste Logs prüfen, `current-state.md` aktualisieren und die Wochenreview der Analysewoche erstellen oder aktualisieren.
+- Im Vorschlagsmodus darf die Review-Datei `profiles/<TRAINING_PROFILE>/data/activities/YYYY-Www/review_YYYY-Www.md` geschrieben werden, weil sie kanonische Historie ist. Planartefakte unter `profiles/<TRAINING_PROFILE>/plans/` dürfen im Vorschlagsmodus nicht erzeugt oder überschrieben werden.
+- Den ersten Trainingsplan nur im Chat vorschlagen, in einfacher Tagesform mit den wichtigsten Einheiten, z.B. `Mo: Threshold Run (3x15min @4:00/km)`.
+- Direkt nach dem einfachen Chat-Vorschlag die neue Trainingswoche in ungefähr `5 bis 10` Sätzen begründen, je nach Datenlage und notwendiger Erklärungstiefe.
+- Diese Begründung muss die letzte Trainingswoche, die aktuellen Alltags- und Health-Parameter wie Ruhepuls, Schlaf, HRV, Gewicht, Schritte und Load-Status sowie das aktuelle Feedback aus `current-state.md` zusammenführen.
+- Die Begründung soll erklären, warum Umfang, Intensität, Session-Typen und Entlastungstage der vorgeschlagenen Woche zur aktuellen Belastbarkeit, zur verbleibenden Zeit bis zu den kommenden Races/Zielen und zu deren Wichtigkeit passen.
+- Dieselbe inhaltliche Begründung muss beim Finalisieren in die Wochenreview der Analysewoche aufgenommen werden, damit sie in der `Wochenanalyse`-Box des finalen Plans erscheint.
+- Im Chat-Vorschlag keine Von-bis-Angaben verwenden. Immer konkrete Zielwerte nennen, z.B. `295W` statt `290-300W`.
+- Wenn ein fachlicher Zielbereich gemeint ist, im Chat-Vorschlag den Mittelwert oder den sinnvollsten Einzelzielwert verwenden.
+- Swim-Einheiten im Chat-Vorschlag nur mit Session-Typ und Hauptset darstellen, ohne Warmup, Cooldown und Technikblock, z.B. `Aerobic Short Swim (10x100m + 5x200m)`.
+- Endurance-, Basic- und Long-Sessions bei Bike und Run im Chat-Vorschlag kompakt als Session-Typ mit Dauer und Zielwert darstellen, z.B. `Long Run (1:20h @5:00/km)` oder `Basic Bike (60min @200W)`.
+- Ruhetage im Chat-Vorschlag als `Rest` oder leerer Tag darstellen; keine künstliche Session daraus machen.
+- Nach Nutzerkommentaren den Chat-Vorschlag iterativ anpassen und Rückfragen beantworten, ohne Planartefakte zu schreiben.
+- Erst bei ausdrücklicher Freigabe wie `Erstelle jetzt den finalen Plan für 2026-W27` den finalen Plan erzeugen. Dann `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.json` schreiben, validieren und mit `scripts/render_plan.py` zu HTML/PDF rendern.
+- Ohne ausdrückliche Finalisierungsfreigabe keine Datei unter `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.json`, `.html` oder `.pdf` erzeugen oder überschreiben.
 - Für laufbezogene Auswertungen, Statistiken und Rückblicke standardmäßig `GAP` (Grade Adjusted Pace) bzw. grade-adjusted running speed verwenden, nicht die rohe Pace, sofern Höhendaten vorliegen.
 - Wenn Höhendaten in einer Run-Aktivität fehlen oder nicht belastbar sind, `GAP = Pace` setzen und trotzdem durchgehend als `GAP` sprechen.
 - Diese GAP-Regel gilt für Run-FIT-Auswertungen, Run-Lap-Tabellen, Run-Effizienzkennzahlen, Run-HR-Drift/Decoupling, Wochenreview und sonstige laufbezogene statistische Einordnungen aus absolvierten Aktivitäten.
@@ -262,6 +282,9 @@ Subjektive Intervallsteuerung:
 - Die dort hinterlegten Long-Session-Maximalwerte sind Obergrenzen, keine wöchentlichen Zielwerte.
 - Keine formalen Trainingsphasen erzwingen. Trainingsentscheidungen aus Zielen, Race-Kalender, aktueller Belastbarkeit und Standard-Wochenstruktur ableiten.
 - Die Ausrichtung der Sessions nach der Wichtigkeit der Rennen in `profiles/<TRAINING_PROFILE>/data/races.md` gewichten.
+- Die neue Trainingswoche so planen, dass sie die kommenden Ziele aus `profiles/<TRAINING_PROFILE>/data/goals.md` und die geplanten Rennen aus `profiles/<TRAINING_PROFILE>/data/races.md` möglichst gut abdeckt.
+- Die Priorisierung der Trainingsreize aus der Kombination von verbleibender Zeit bis zum Race/Ziel, Wichtigkeit des Race/Ziels, aktueller Belastbarkeit und nötigem Anpassungsreiz ableiten.
+- Nahe, wichtige Ziele dürfen die Woche stärker spezifisch prägen; weiter entfernte oder weniger wichtige Ziele sollen eher über grundlegende, nachhaltige Entwicklungsreize berücksichtigt werden.
 - Das geplante Rennen mit der höchsten Wichtigkeit in `profiles/<TRAINING_PROFILE>/data/races.md` dynamisch als aktuelles Hauptrennen bestimmen; dieses Hauptrennen dominiert die langfristige Trainingsausrichtung.
 - Kurz vor weniger priorisierten Rennen dürfen einzelne spezifische Sessions für diese Rennen geplant werden, solange sie die langfristige Ausrichtung auf das wichtigste Rennen nicht unverhältnismäßig stören.
 - Beim Generieren neuer Pläne primär an die bestehenden Vorgaben halten.

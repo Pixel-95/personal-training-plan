@@ -33,3 +33,20 @@ def expand_range_with_overlap(
     if overlap_day is None or overlap_day > newest:
         return oldest, newest
     return min(oldest, overlap_day), newest
+
+
+def iso_week_id(day: date) -> str:
+    year, week, _ = day.isocalendar()
+    return f"{year}-W{week:02d}"
+
+
+def monday_of_iso_week(week: str) -> date:
+    try:
+        year_text, week_text = week.split("-W", 1)
+        return date.fromisocalendar(int(year_text), int(week_text), 1)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"Invalid ISO week: {week}") from exc
+
+
+def previous_iso_week(week: str) -> str:
+    return iso_week_id(monday_of_iso_week(week) - timedelta(days=7))
