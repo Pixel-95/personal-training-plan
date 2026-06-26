@@ -88,6 +88,9 @@ Regeln:
 - Wenn `scripts/pre_plan_sync.py` existiert und in `profiles/<TRAINING_PROFILE>/.env` ein gültiger `intervals_icu_api_key` hinterlegt ist, vor jeder Trainingsplan-Erzeugung dieses Skript ausführen.
 - `scripts/pre_plan_sync.py` führt die automatisierte Vorstufe aus: FIT-Download, Health-Markdown-Update, FIT-Auswertung und Load-Berechnung.
 - Die Einzelschritte liegen in `scripts/download_fit_files.py`, `scripts/update_health.py`, `scripts/analyze_fit_files.py` und `scripts/update_loads.py`.
+- Bei jedem Intervals.icu-Sync den lokal neuesten bereits synchronisierten Kalendertag zusätzlich als Überlappungstag erneut abrufen, auch wenn er knapp außerhalb des normalen `--days`-Fensters liegt.
+- Den Überlappungstag nach dem frischen Abruf gegen die lokale Darstellung abgleichen und in den technischen Cache-Dateien sowie den kanonischen Health-Historien gezielt überschreiben, damit unvollständige Werte eines laufenden Tages nicht dauerhaft hängen bleiben.
+- Teilwerte des aktuellen Tages aus Intervals.icu, z.B. Schritte während des laufenden Tages, sind erwartbar unvollständig; sie dürfen gespeichert werden, müssen aber bei späteren Syncs desselben Tages oder am Folgetag erneut ersetzt werden.
 - Nach jeder automatisierten Vorstufe die erzeugten Änderungen und Skript-Warnungen als LLM plausibilisieren; Inkonsistenzen im Chat nennen, z.B. fehlende oder umbenannte Intervals.icu-Felder, unklare TSS-Quellen, nicht eindeutig gematchte Activities oder auffällige Werte.
 - Wenn bei einer Planerzeugung, FIT-Auswertung, Health-Aktualisierung, Load-Berechnung oder History-Aktualisierung Inkonsistenzen, Fehler oder wiederholungsgefährdete Schwächen auffallen, diese nicht nur im Chat melden, sondern auch die Ursache genauer beschreiben.
 - Wenn die Ursache durch eine Regel, Dokumentation oder Skriptlogik künftig vermeidbar ist, die passende Stelle im Repo direkt nachführen, z.B. `AGENTS.md`, README/Formatdateien oder das betroffene Skript.

@@ -7,8 +7,9 @@ import argparse
 import math
 from collections import defaultdict
 from datetime import date, timedelta
+from typing import Iterable
 
-from date_utils import date_range_from_days, inclusive_dates
+from date_utils import date_range_from_days, expand_range_with_overlap, inclusive_dates
 from intervals_icu_client import IntervalsClient, read_csv_rows
 from markdown_tables import read_table, render_table, rows_by_key, write_text_atomic
 from profile_paths import DATA_DIR, ROOT
@@ -57,6 +58,16 @@ def write_health_table(name: str, rows: dict[str, list[str]], dry_run: bool) -> 
         print(f"Would write {path.relative_to(ROOT)} ({len(ordered)} rows)")
         return
     write_text_atomic(path, render_table(header, ordered))
+
+
+def newest_health_date(tables: Iterable[dict[str, list[str]]]) -> date | None:
+    newest: date | None = None
+    for rows in tables:
+        for key in rows:
+            current = date.fromisoformat(key)
+            if newest is None or current > newest:
+                newest = current
+    return newest
 
 
 def fmt_int(value: str | None) -> str:
@@ -204,48 +215,67 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="Report changes without writing.")
     args = parser.parse_args()
 
-    oldest, newest = date_range_from_days(args.days, args.newest)
+    tables = {name: parse_health_table(name) for name in TABLES}
+    requested_oldest, newest = date_range_from_days(args.days, args.newest)
+    refresh_day = newest_health_date(tables.values())
+    oldest, newest = expand_range_with_overlap(requested_oldest, newest, refresh_day)
+
+    if refresh_day and refresh_day < requested_oldest:
+        print(
+            f"Including latest existing health day {refresh_day.isoformat()} for refresh "
+            f"before updating {requested_oldest.isoformat()} to {newest.isoformat()}."
+        )
+
     client = IntervalsClient.from_env()
     wellness_rows = read_csv_rows(client.wellness_csv(oldest, newest))
     by_date = {row.get("date", ""): row for row in wellness_rows if row.get("date")}
     missing: dict[str, list[str]] = defaultdict(list)
     warnings: list[str] = []
 
-    tables = {name: parse_health_table(name) for name in TABLES}
-
     for day in inclusive_dates(oldest, newest):
         key = day.isoformat()
         row = by_date.get(key, {})
+        is_refresh_day = refresh_day is not None and day == refresh_day
 
         hrv = tables["hrv.md"]
         hrv_value = fmt_int(row.get("hrv"))
-        if hrv_value == "-":
+        if hrv_value == "-" and not is_refresh_day:
             hrv_value = existing_or_missing(hrv, key, 1)
+            missing["hrv"].append(key)
+        elif hrv_value == "-":
             missing["hrv"].append(key)
         hrv[key] = [key, hrv_value, "-", "-", "-"]
 
         rhr = tables["resting_heart_rate.md"]
         rhr_value = fmt_int(row.get("restingHR"))
-        if rhr_value == "-":
+        if rhr_value == "-" and not is_refresh_day:
             rhr_value = existing_or_missing(rhr, key, 1)
+            missing["restingHR"].append(key)
+        elif rhr_value == "-":
             missing["restingHR"].append(key)
         rhr[key] = [key, rhr_value]
 
         sleep = tables["sleep.md"]
         sleep_duration = fmt_sleep(row.get("sleepSecs"))
         sleep_score = fmt_int(row.get("sleepScore"))
-        if sleep_duration == "-":
+        if sleep_duration == "-" and not is_refresh_day:
             sleep_duration = existing_or_missing(sleep, key, 1)
             missing["sleepSecs"].append(key)
-        if sleep_score == "-":
+        elif sleep_duration == "-":
+            missing["sleepSecs"].append(key)
+        if sleep_score == "-" and not is_refresh_day:
             sleep_score = existing_or_missing(sleep, key, 2)
+            missing["sleepScore"].append(key)
+        elif sleep_score == "-":
             missing["sleepScore"].append(key)
         sleep[key] = [key, sleep_duration, sleep_score]
 
         steps = tables["steps.md"]
         steps_value = fmt_int(row.get("steps"))
-        if steps_value == "-":
+        if steps_value == "-" and not is_refresh_day:
             steps_value = existing_or_missing(steps, key, 1)
+        elif steps_value == "-":
+            missing["steps"].append(key)
         steps[key] = [key, steps_value, "-"]
 
         weight = tables["weight.md"]
@@ -253,13 +283,17 @@ def main() -> int:
         raw_bodyfat = fmt_float(row.get("bodyFat"), 1)
         if raw_weight != "-":
             bodyfat_value = raw_bodyfat
-            if bodyfat_value == "-":
+            if bodyfat_value == "-" and not is_refresh_day:
                 bodyfat_value = existing_or_missing(weight, key, 3)
+                missing["bodyFat"].append(key)
+            elif bodyfat_value == "-":
                 missing["bodyFat"].append(key)
             weight[key] = [key, raw_weight, "-", bodyfat_value, "-"]
         else:
             missing["weight"].append(key)
-            bodyfat_value = existing_or_missing(weight, key, 3)
+            bodyfat_value = "-"
+            if not is_refresh_day:
+                bodyfat_value = existing_or_missing(weight, key, 3)
             if bodyfat_value == "-":
                 missing["bodyFat"].append(key)
             weight[key] = [key, "-", "-", bodyfat_value, "-"]

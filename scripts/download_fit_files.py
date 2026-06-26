@@ -6,18 +6,29 @@ from __future__ import annotations
 import argparse
 from datetime import date
 
-from date_utils import date_range_from_days
+from date_utils import date_range_from_days, expand_range_with_overlap
 from intervals_icu_client import (
     IntervalsClient,
     IntervalsError,
     activity_target_path,
     looks_like_fit,
+    parse_date,
 )
 from markdown_tables import write_bytes_atomic
-from profile_paths import ROOT
+from profile_paths import DATA_DIR, ROOT
 
 
 ACTIVITY_FIELDS = ["id", "start_date_local", "type", "name"]
+
+
+def newest_downloaded_fit_date() -> date | None:
+    dates: list[date] = []
+    for path in (DATA_DIR / "activities").rglob("*.fit"):
+        try:
+            dates.append(parse_date(path.name))
+        except ValueError:
+            continue
+    return max(dates) if dates else None
 
 
 def download_fit(client: IntervalsClient, activity_id: str) -> tuple[bytes, str, list[str]]:
@@ -44,7 +55,16 @@ def main() -> int:
     parser.add_argument("--overwrite", action="store_true", help="Overwrite existing FIT files.")
     args = parser.parse_args()
 
-    oldest, newest = date_range_from_days(args.days, args.newest)
+    requested_oldest, newest = date_range_from_days(args.days, args.newest)
+    refresh_day = newest_downloaded_fit_date()
+    oldest, newest = expand_range_with_overlap(requested_oldest, newest, refresh_day)
+
+    if refresh_day and refresh_day < requested_oldest:
+        print(
+            f"Including latest local FIT day {refresh_day.isoformat()} for refresh "
+            f"before inspecting {requested_oldest.isoformat()} to {newest.isoformat()}."
+        )
+
     client = IntervalsClient.from_env()
     activities = client.activities(oldest, newest, ACTIVITY_FIELDS)
 
@@ -64,7 +84,10 @@ def main() -> int:
             warnings.append(str(exc))
             continue
 
-        if target.exists() and not args.overwrite:
+        activity_day = parse_date(str(activity.get("start_date_local", "")))
+        should_refresh = refresh_day is not None and activity_day == refresh_day
+
+        if target.exists() and not args.overwrite and not should_refresh:
             skipped += 1
             print(f"SKIP existing {target.relative_to(ROOT)}")
             continue

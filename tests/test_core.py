@@ -16,7 +16,7 @@ if str(SCRIPTS) not in sys.path:
 import generate_trend_plots
 import update_health
 import update_loads
-from date_utils import date_range_from_days, inclusive_dates
+from date_utils import date_range_from_days, expand_range_with_overlap, inclusive_dates
 from intervals_icu_client import IntervalsError, get_api_key, get_athlete_id, sanitize_activity_name
 from markdown_tables import read_table, render_table, write_text_atomic
 from profile_paths import PROFILE_PLANS_DIR
@@ -34,6 +34,17 @@ class DateUtilsTests(unittest.TestCase):
     def test_date_range_rejects_non_positive_days(self) -> None:
         with self.assertRaises(ValueError):
             date_range_from_days(0, "2026-06-01")
+
+    def test_overlap_expands_range_to_latest_synced_day(self) -> None:
+        oldest, newest = date_range_from_days(2, "2026-06-27")
+        self.assertEqual(
+            expand_range_with_overlap(oldest, newest, date(2026, 6, 25)),
+            (date(2026, 6, 25), date(2026, 6, 27)),
+        )
+        self.assertEqual(
+            expand_range_with_overlap(oldest, newest, None),
+            (date(2026, 6, 26), date(2026, 6, 27)),
+        )
 
 
 class MarkdownTableTests(unittest.TestCase):
@@ -53,6 +64,15 @@ class MarkdownTableTests(unittest.TestCase):
 
 
 class HealthCalculationTests(unittest.TestCase):
+    def test_newest_health_date_detects_latest_existing_row(self) -> None:
+        newest = update_health.newest_health_date(
+            [
+                {"2026-06-20": ["2026-06-20", "50"]},
+                {"2026-06-26": ["2026-06-26", "8000"]},
+            ]
+        )
+        self.assertEqual(newest, date(2026, 6, 26))
+
     def test_trimmed_weight_mean(self) -> None:
         self.assertIsNone(update_health.trimmed_weight_mean([1, 2, 3]))
         self.assertEqual(update_health.trimmed_weight_mean([1, 2, 3, 100]), 26.5)

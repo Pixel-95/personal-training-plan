@@ -22,3 +22,14 @@ def date_range_from_days(days: int, newest: str | None = None) -> tuple[date, da
         raise ValueError("days must be at least 1")
     newest_date = date.today() if newest is None else date.fromisoformat(newest)
     return newest_date - timedelta(days=days - 1), newest_date
+
+
+def expand_range_with_overlap(
+    oldest: date,
+    newest: date,
+    overlap_day: date | None,
+) -> tuple[date, date]:
+    """Expand a range so the latest already synced day is fetched again."""
+    if overlap_day is None or overlap_day > newest:
+        return oldest, newest
+    return min(oldest, overlap_day), newest
