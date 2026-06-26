@@ -16,6 +16,9 @@ from update_loads import HEADER as LOADS_HEADER
 
 
 TEXT_SUFFIXES = {".css", ".html", ".json", ".md", ".py", ".txt"}
+OPTIONAL_HEALTH_TABLES = {
+    "calories.md": ["Datum", "Ruhe-Kalorien", "Aktiv-Kalorien"],
+}
 REQUIRED_DATA_PATHS = [
     "athlete-profile.md",
     "availability.md",
@@ -100,6 +103,9 @@ def validate_profile_structure() -> list[str]:
 def validate_health_tables() -> list[str]:
     errors: list[str] = []
     expected = {**HEALTH_TABLES, "loads.md": LOADS_HEADER}
+    for name, expected_header in OPTIONAL_HEALTH_TABLES.items():
+        if (DATA_DIR / "health" / name).exists():
+            expected[name] = expected_header
     for name, expected_header in expected.items():
         path = DATA_DIR / "health" / name
         try:

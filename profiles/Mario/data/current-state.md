@@ -19,7 +19,7 @@ Diese Zusammenfassung soll vor jeder Trainingsplanung oder Trainingsbewertung vo
 ## Neueste Updates
 
 ### 2026-06-26
-Ich merke nach wie vor, dass mich Interval trainings (egal ob high intensity oder medium intensity) muskulär deutlich weniger fertig machen als z.B. ein 4h Long Bike (low intensity). Ist das normal oder gibt das irgendwelche Hinweise auf meinen Fitnesszustand oder darauf, was ich trainineren sollte.
+Ich merke nach wie vor, dass mich Intervaltrainings (egal ob high intensity oder medium intensity) muskulär deutlich weniger fertig machen als z.B. ein 4h Long Bike (low intensity). Ist das normal oder gibt das irgendwelche Hinweise auf meinen Fitnesszustand oder darauf, was ich trainineren sollte.
 
 ### 2026-06-25
 Ich habe beim rothsee Triathlon vergangenden Sonntag 3 Immodium-Tabletten geonmmen. Das war soweit gut für Wettkampf, weil ich v.a. während des Laufens keinen Stuhldrang hatte. Entscheidend ist v.a. die Tabletten nicht direkt vor dem Laufen oder erst im Wettkampf zu nehmen, sondern schon morgens, also vor dem Wettkampf. Ich habe das Gefühl, Immodium hat seinen Peak erst Stunden nach der Einnahme. Allerdings waren die 3 Tabletten für einen olympischen Triathlon vermutlich zu viel, denn bis heute (Donnerstag) merke ich noch, dass mein Stoffwechsel extrem verlangsamt ist und ich kaum groß auf Klo muss. Selbst beim Laufen gestern am Mittwoch hatte ich keinen Stuhldrang, was zwar gut für das Training an sich ist, aber ein Lauf ohne Stuhldrang schon ewig nicht mehr vorgekommen ist.

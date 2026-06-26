@@ -41,6 +41,9 @@ COLORS = {
     "sleep": "#7aa6d8",
     "sleep_score": "#6f5aa7",
     "steps": "#8a98a8",
+    "rest_calories": "#f6c36b",
+    "active_calories": "#d9822b",
+    "total_calories": "#8f4f12",
     "weight": "#b9c3cf",
     "weight_trend": "#1d252d",
     "body_fat": "#c9534f",
@@ -763,6 +766,58 @@ def render_steps(path: Path, newest: date) -> list[str]:
     return [] if daily else ["Schritte: keine Daten im Zeitraum."]
 
 
+def render_calories(path: Path, newest: date) -> list[str]:
+    global ACTIVE_RIGHT
+    ACTIVE_RIGHT = RIGHT_LABELS
+    start = newest - timedelta(days=89)
+    table = DATA_DIR / "health" / "calories.md"
+    rest = window(points_from_table(table, "Ruhe-Kalorien"), start, newest)
+    active = window(points_from_table(table, "Aktiv-Kalorien"), start, newest)
+    rest_by_day = {p.day: p.value for p in rest}
+    active_by_day = {p.day: p.value for p in active}
+    total = [
+        Point(day, rest_by_day.get(day, 0.0) + active_by_day.get(day, 0.0))
+        for day in sorted(set(rest_by_day) | set(active_by_day))
+    ]
+    _, hi = domain([p.value for p in total], include_zero=True)
+    lo = 0
+    parts = svg_open("Kalorien")
+    add_grid(parts, start, newest, lo, hi, left_label=f"{hi:.0f}kcal")
+    add_stacked_bars(
+        parts,
+        rest,
+        active,
+        start,
+        newest,
+        lo,
+        hi,
+        COLORS["rest_calories"],
+        COLORS["active_calories"],
+        baseline=0,
+    )
+    add_legend(
+        parts,
+        [
+            ("Ruhe-Kalorien", COLORS["rest_calories"]),
+            ("Aktiv-Kalorien", COLORS["active_calories"]),
+        ],
+    )
+    if active:
+        active_mean = sum(p.value for p in active) / len(active)
+        add_latest_label(parts, TOP + 34, f"∅ {active_mean:.0f}kcal", COLORS["active_calories"])
+    if total:
+        total_mean = sum(p.value for p in total) / len(total)
+        add_latest_label(parts, TOP + 58, f"∅ {total_mean:.0f}kcal", COLORS["total_calories"])
+    if not rest and not active:
+        add_no_data(parts)
+    write_svg(path, parts)
+    return [] if rest or active else ["Kalorien: keine Daten im Zeitraum."]
+
+
+def has_calories_table() -> bool:
+    return (DATA_DIR / "health" / "calories.md").exists()
+
+
 def add_stacked_vertical_bars(
     parts: list[str],
     x_positions: list[float],
@@ -1116,7 +1171,16 @@ def generate(week: str, newest: date) -> list[str]:
     warnings += render_hrv(out_dir / "readiness_hrv.svg", newest)
     warnings += render_readiness_sleep(out_dir / "readiness_sleep_resting_hr.svg", newest)
     warnings += render_weight(out_dir / "body_weight.svg", newest)
-    warnings += render_steps(out_dir / "body_steps.svg", newest)
+    if has_calories_table():
+        stale_steps = out_dir / "body_steps.svg"
+        if stale_steps.exists():
+            stale_steps.unlink()
+        warnings += render_calories(out_dir / "body_calories.svg", newest)
+    else:
+        stale_calories = out_dir / "body_calories.svg"
+        if stale_calories.exists():
+            stale_calories.unlink()
+        warnings += render_steps(out_dir / "body_steps.svg", newest)
     warnings += render_weekly_duration(out_dir / "weekly_duration.svg", week)
     warnings += render_weekly_tss(out_dir / "weekly_tss.svg", week)
     warnings += render_weekly_zones(out_dir / "weekly_zones.svg", week)
@@ -1130,6 +1194,10 @@ def generate(week: str, newest: date) -> list[str]:
 
 def trend_section_html(week: str) -> str:
     base = f"assets/{week}"
+    if has_calories_table():
+        body_activity_img = f'<img src="{base}/body_calories.svg" alt="Ruhe- und Aktivkalorien als gestapelte Tagesbalken der letzten 90Tage">'
+    else:
+        body_activity_img = f'<img src="{base}/body_steps.svg" alt="Schritte mit Tageswerten und 7-Tage-Mittel der letzten 90Tage">'
     return f"""    <section class="trends" aria-label="Zeitreihen">
       <h2>Trends</h2>
 
@@ -1175,7 +1243,7 @@ def trend_section_html(week: str) -> str:
           <h3>Alltag (90 Tage)</h3>
           <div class="trend-grid stack">
             <img src="{base}/body_weight.svg" alt="Gewicht und Körperfett mit Tageswerten und 7-Tage-Mitteln der letzten 90Tage">
-            <img src="{base}/body_steps.svg" alt="Schritte mit Tageswerten und 7-Tage-Mittel der letzten 90Tage">
+            {body_activity_img}
           </div>
         </div>
       </div>

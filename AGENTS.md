@@ -111,7 +111,7 @@ Regeln:
 - Vor jeder Trainingsplan-Erzeugung die kanonischen Health-Historien aus Intervals.icu-Wellness-/Daily-Daten aktualisieren, in den Markdown-Dateien speichern und für Trainingssteuerung, Wochenreview und Erklärungstext auswerten.
 - Wellness-Health-Metriken (`hrv.md`, `resting_heart_rate.md`, `sleep.md`, `steps.md`, `weight.md`) nur aus Intervals.icu-Wellness-/Daily-Daten ableiten, nicht aus einzelnen Aktivitätsdaten.
 - `profiles/<TRAINING_PROFILE>/data/health/loads.md` ist die Ausnahme: Load-Metriken werden aus den `TSS`-Werten der Aktivitätsauswertungen berechnet, nicht aus den Wellness-/Daily-Daten.
-- Health-Historien unter `profiles/<TRAINING_PROFILE>/data/health/` pflegen: `hrv.md`, `resting_heart_rate.md`, `sleep.md`, `steps.md`, `weight.md`, `loads.md`.
+- Health-Historien unter `profiles/<TRAINING_PROFILE>/data/health/` pflegen: `hrv.md`, `resting_heart_rate.md`, `sleep.md`, `steps.md`, `weight.md`, `loads.md` und optional manuell `calories.md`.
 - Health-Historien mit neuesten Einträgen oben führen.
 - Für Wellness-Historien jeden Kalendertag eine Zeile schreiben; fehlende Wellness-Werte mit `-` eintragen.
 - Gewicht täglich eintragen; wenn Intervals.icu in der Wellness-Tageszeile kein `weight` liefert, `-` eintragen und nicht das letzte bekannte Gewicht fortschreiben.
@@ -124,6 +124,8 @@ Regeln:
 - `profiles/<TRAINING_PROFILE>/data/health/sleep.md`: Schlafdauer aus Intervals.icu `sleepSecs` in `h:mm` umrechnen und Sleep Score aus `sleepScore` übernehmen.
 - `profiles/<TRAINING_PROFILE>/data/health/steps.md`: Schritte aus Intervals.icu `steps` übernehmen.
 - `profiles/<TRAINING_PROFILE>/data/health/steps.md`: `7-Tage-Mittel-Schritte` als arithmetisches Mittel der Schrittwerte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
+- `profiles/<TRAINING_PROFILE>/data/health/calories.md` ist optional und wird manuell gepflegt, nicht aus Intervals.icu abgeleitet. Wenn vorhanden, enthält die Datei die Spalten `Datum`, `Ruhe-Kalorien` und `Aktiv-Kalorien`; neueste Einträge stehen oben.
+- Die Schritte-Tabelle `profiles/<TRAINING_PROFILE>/data/health/steps.md` weiterhin automatisiert pflegen, auch wenn im Plan statt des Schritte-Plots ein Kalorien-Plot angezeigt wird.
 - `profiles/<TRAINING_PROFILE>/data/health/weight.md`: Gewicht aus Intervals.icu `weight` übernehmen.
 - `profiles/<TRAINING_PROFILE>/data/health/weight.md`: `7-Tage-Mittel-Gewicht` im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; bei `5-7` vorhandenen Werten höchsten und niedrigsten Wert streichen und das arithmetische Mittel der übrigen Werte bilden; bei genau `4` vorhandenen Werten das normale arithmetische Mittel bilden; bei weniger als `4` vorhandenen Werten `-` eintragen; den Mittelwert immer mit `2` Nachkommastellen speichern.
 - `profiles/<TRAINING_PROFILE>/data/health/weight.md`: Körperfett aus Intervals.icu `bodyFat` übernehmen.
@@ -406,7 +408,9 @@ Wochenplan-Format:
 - Im Gewichtsplot zusätzlich zwei 7-Tage-Mittel-Linien zeichnen: Gesamtgewicht als dunkle Linie und Körperfett als dunklere rote Linie; beide im gleichen visuellen Stil mit Linie und Punkten wie die bisherige Gewichts-Mittellinie.
 - Im Gewichtsplot die aktuellsten 7-Tage-Mittelwerte rechts innerhalb der Card anzeigen, analog zu Threshold/VO2max/Load/Balance: Gewicht in `kg` in der Gewichtslinienfarbe und Körperfett in `%` in der Körperfett-Linienfarbe; beide Werte mit `2` Nachkommastellen anzeigen.
 - Im Gewichtsplot in der Legende nur die beiden 7-Tage-Mittelwert-Linien benennen; Tageswert-Balken nicht zusätzlich als Zahlen oder Legendeneinträge ausweisen.
-- Schritte im gleichen visuellen Stil als Tageswert-Balken plus 7-Tage-Mittel-Linie über 90Tage und mit `0` als Minimalwert plotten.
+- Wenn `profiles/<TRAINING_PROFILE>/data/health/calories.md` existiert, im Alltag-Block statt des Schritte-Plots einen Kalorien-Plot über 90Tage anzeigen. Ruhe-Kalorien als hellorange unteren Balken und Aktiv-Kalorien als dunkelorange oben gestapelt plotten; die Y-Achse startet immer bei `0`.
+- Im Kalorien-Plot rechts zwei Mittelwerte anzeigen: durchschnittliche Aktiv-Kalorien und durchschnittliche Gesamt-Kalorien über die im sichtbaren 90-Tage-Zeitraum vorhandenen Kalorientage, jeweils als `∅ XXXXkcal`.
+- Wenn `profiles/<TRAINING_PROFILE>/data/health/calories.md` nicht existiert, Schritte im gleichen visuellen Stil als Tageswert-Balken plus 7-Tage-Mittel-Linie über 90Tage und mit `0` als Minimalwert plotten.
 - Performance über 12Monate plotten: Thresholds in einem gemeinsamen Plot, Swim CSS blau, Bike FTP grün und Run LT dunkelrot; Run-HR-Threshold nicht im Trendplot darstellen.
 - Für Load, Balance, Threshold und VO2max die aktuellsten Werte rechts außerhalb der inneren Plotfläche, aber innerhalb der äußeren SVG-Karte anzeigen; diese Endwerte ohne Präfixe wie `ATL`, `CTL` oder `TSB` schreiben.
 - Bei Load und Balance die rechte Endwertspalte schmal halten, weil dort nur kurze maximal dreistellige Zahlen ohne Einheit stehen; Threshold- und VO2max-Plots dürfen mehr rechten Platz für längere Labels behalten.

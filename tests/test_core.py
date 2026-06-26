@@ -166,6 +166,31 @@ class TrendPlotTests(unittest.TestCase):
             self.assertEqual(daily[0].value, 15.0)
             self.assertEqual(trend[0].value, 15.0)
 
+    def test_calories_plot_replaces_steps_when_table_exists(self) -> None:
+        original_data_dir = generate_trend_plots.DATA_DIR
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                data_dir = Path(directory)
+                health_dir = data_dir / "health"
+                health_dir.mkdir()
+                generate_trend_plots.DATA_DIR = data_dir
+
+                self.assertIn("body_steps.svg", generate_trend_plots.trend_section_html("2026-W26"))
+                self.assertNotIn("body_calories.svg", generate_trend_plots.trend_section_html("2026-W26"))
+
+                (health_dir / "calories.md").write_text(
+                    render_table(
+                        ["Datum", "Ruhe-Kalorien", "Aktiv-Kalorien"],
+                        [["2026-06-25", "2266", "1155"]],
+                    ),
+                    encoding="utf-8",
+                )
+                html = generate_trend_plots.trend_section_html("2026-W26")
+                self.assertIn("body_calories.svg", html)
+                self.assertNotIn("body_steps.svg", html)
+        finally:
+            generate_trend_plots.DATA_DIR = original_data_dir
+
 
 if __name__ == "__main__":
     unittest.main()
