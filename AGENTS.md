@@ -4,7 +4,7 @@ Dieses Repo ist der zentrale Trainingskontext für meine Triathlonplanung.
 
 Aktives Profil:
 - Vor jeder profilbezogenen Arbeit `.env` lesen und den Wert von `TRAINING_PROFILE` exakt und ohne eigene Interpretation übernehmen.
-- `<TRAINING_PROFILE>` in allen Pfaden durch genau diesen Wert ersetzen. Profilnamen niemals aus vorhandenen Ordnern ableiten oder in Regeln, Skripten oder Antworten hart codieren.
+- `<TRAINING_PROFILE>` in allen profilbezogenen Pfaden durch genau diesen Wert ersetzen. Profilnamen nicht aus vorhandenen Ordnern ableiten oder in profilbezogener Logik hart codieren. Ausnahme: `trainingplan.html` ist ein bewusst fester Root-Einstieg auf Marios aktuellen Wochenplan.
 - Wenn `TRAINING_PROFILE` fehlt, leer ist oder der zugehörige Ordner unter `profiles/` nicht existiert, die profilbezogene Arbeit mit einer klaren Fehlermeldung abbrechen.
 - Vor der ersten Trainingsplanung für ein Profil `python scripts/validate_repo.py --planning-ready` ausführen. Bei Platzhaltern wie `DEMO`, `1900-01-01` oder `-1` keinen Plan erzeugen, sondern die fehlenden persönlichen Angaben beim Nutzer abfragen und ausschließlich mit bestätigten Werten ersetzen.
 - Leere skriptgenerierte Historien sind kein Setup-Fehler. Manuell gepflegte Stammdaten, Ziele, Verfügbarkeit und geplante Rennen müssen jedoch vor der ersten Planung echte Werte enthalten.
@@ -85,7 +85,7 @@ Regeln:
 - Wenn ein neuer Plan für dieselbe ISO-Woche erzeugt wird, die bestehende Datei `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.html` ersatzlos überschreiben.
 - Pläne anderer ISO-Wochen nicht überschreiben, außer der Nutzer verlangt es ausdrücklich.
 - Aktivitäten werden nach ISO-Wochen gruppiert: FIT-Dateien, Aktivitätsauswertungen und Wochenreviews liegen unter `profiles/<TRAINING_PROFILE>/data/activities/YYYY-Www/`.
-- Wenn `scripts/pre_plan_sync.py` existiert und in `.env` ein gültiger `intervals_icu_api_key` hinterlegt ist, vor jeder Trainingsplan-Erzeugung dieses Skript ausführen.
+- Wenn `scripts/pre_plan_sync.py` existiert und in `profiles/<TRAINING_PROFILE>/.env` ein gültiger `intervals_icu_api_key` hinterlegt ist, vor jeder Trainingsplan-Erzeugung dieses Skript ausführen.
 - `scripts/pre_plan_sync.py` führt die automatisierte Vorstufe aus: FIT-Download, Health-Markdown-Update, FIT-Auswertung und Load-Berechnung.
 - Die Einzelschritte liegen in `scripts/download_fit_files.py`, `scripts/update_health.py`, `scripts/analyze_fit_files.py` und `scripts/update_loads.py`.
 - Nach jeder automatisierten Vorstufe die erzeugten Änderungen und Skript-Warnungen als LLM plausibilisieren; Inkonsistenzen im Chat nennen, z.B. fehlende oder umbenannte Intervals.icu-Felder, unklare TSS-Quellen, nicht eindeutig gematchte Activities oder auffällige Werte.
@@ -332,7 +332,7 @@ Wochenplan-Format:
 - Nach Fertigstellung des HTML-Wochenplans als letzten Schritt zusätzlich ein PDF `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.pdf` aus genau dieser HTML-Datei erzeugen, sodass PDF und HTML dieselbe Darstellung, dasselbe CSS und dieselben SVG-Plots verwenden.
 - Für den PDF-Export nach Möglichkeit Browser-/Print-to-PDF-Rendering der fertigen HTML-Datei verwenden, nicht eine separate manuelle PDF-Nachbildung.
 - Wenn kein lokaler Browser, Headless-Renderer oder PDF-Exportwerkzeug verfügbar ist, dies im Chat klar melden; die HTML-Datei bleibt dann die kanonische Darstellung.
-- Zusätzlich im Repo-Root eine Datei `trainingplan.html` pflegen, die anhand des aktuellen Datums und des lokal aus `.env` erzeugten `active-profile.js` automatisch auf den Plan der aktuellen ISO-Woche `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.html` weiterleitet.
+- Zusätzlich im Repo-Root eine Datei `trainingplan.html` pflegen, die anhand des aktuellen Datums immer auf Marios Plan der aktuellen ISO-Woche `profiles/Mario/plans/YYYY-Www.html` weiterleitet.
 - `trainingplan.html` nicht jede Woche auf einen hart codierten Planpfad aktualisieren; die Datei soll die ISO-Woche per JavaScript berechnen.
 - Wenn ein Plan bewusst für eine andere als die aktuelle ISO-Woche geöffnet werden soll, direkt die konkrete Datei unter `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.html` öffnen.
 - Die HTML-Datei soll nur Struktur und Inhalte enthalten. Gemeinsames Styling liegt in `plan-format/training-plan.css`; aus `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.html` wird es relativ mit `../../../plan-format/training-plan.css` eingebunden.

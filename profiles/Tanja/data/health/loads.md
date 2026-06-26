@@ -1,2 +1,2 @@
-﻿| Datum | Tages-TSS | ATL | CTL | TSB | ACR |
+| Datum | Tages-TSS | ATL | CTL | TSB | ACR |
 |-|-|-|-|-|-|

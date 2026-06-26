@@ -44,7 +44,8 @@ def get_api_key(env: dict[str, str]) -> str:
     if api_key:
         return api_key
     raise IntervalsError(
-        "Missing Intervals.icu API key. Add intervals_icu_api_key=<key> to .env."
+        "Missing Intervals.icu API key. Add intervals_icu_api_key=<key> to "
+        "profiles/<TRAINING_PROFILE>/.env."
     )
 
 
@@ -53,7 +54,8 @@ def get_athlete_id(env: dict[str, str]) -> str:
     if athlete_id:
         return athlete_id
     raise IntervalsError(
-        "Missing Intervals.icu athlete id. Add intervals_icu_athlete_id=<id> to .env."
+        "Missing Intervals.icu athlete id. Add intervals_icu_athlete_id=<id> to "
+        "profiles/<TRAINING_PROFILE>/.env."
     )
 
 

@@ -1,3 +1,3 @@
 ﻿| Ziel | Wichtigkeit / 10 |
 |-|-|
-| DEMO Ziel ersetzen | -1 |
+| Olympischen Triathlon unter 3h finishen | 10 |

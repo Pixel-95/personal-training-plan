@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aktueller Trainingsplan</title>
   <link rel="icon" type="image/png" href="assets/calendar.png">
-  <script src="active-profile.js"></script>
   <script>
+    const PROFILE = "Mario";
+
     function isoWeek(date) {
       const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
       const day = utcDate.getUTCDay() || 7;
@@ -17,24 +18,15 @@
       return `${year}-W${String(week).padStart(2, "0")}`;
     }
 
-    function planPath(profile, week) {
-      return `profiles/${encodeURIComponent(profile)}/plans/${week}.html`;
+    function planPath(week) {
+      return `profiles/${PROFILE}/plans/${week}.html`;
     }
 
     const week = isoWeek(new Date());
-    const profile = window.TRAINING_PROFILE;
-    if (profile) {
-      window.location.replace(planPath(profile, week));
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      if (!profile) {
-        document.getElementById("profile-error").hidden = false;
-      }
-    });
+    window.location.replace(planPath(week));
   </script>
 </head>
 <body>
-  <p id="profile-error" hidden>Aktives Profil fehlt. Zuerst ein profilfähiges Python-Skript ausführen.</p>
+  <p>Weiterleitung zum aktuellen Trainingsplan...</p>
 </body>
 </html>

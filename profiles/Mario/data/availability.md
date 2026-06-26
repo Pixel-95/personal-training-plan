@@ -7,7 +7,7 @@
 | Do | Interval Run + Threshold/VO2max Swim |
 | Fr | Basic Bike |
 | Sa | Long Run |
-| So |  |
+| So | - |
 
 # Standard Verfügbarkeit
 | Wochentag | Swim | Bike | Run |

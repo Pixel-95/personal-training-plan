@@ -1,28 +1,30 @@
 ﻿# Standard Woche
 | Wochentag | Sessions |
 |-|-|
-| Mo | DEMO: anpassen |
-| Di | DEMO: anpassen |
-| Mi | DEMO: anpassen |
-| Do | DEMO: anpassen |
-| Fr | DEMO: anpassen |
-| Sa | DEMO: anpassen |
-| So | DEMO: anpassen |
+| Mo | Interval Bike |
+| Di | Aerobic Long/Short Swim |
+| Mi | Long Bike |
+| Do | Threshold/VO2max Swim |
+| Fr | abwechselnd Long Run und Interval Run |
+| Sa | - |
+| So | - |
 
 # Standard Verfügbarkeit
 | Wochentag | Swim | Bike | Run |
 |-|-|-|-|
-| Mo | - | - | - |
-| Di | - | - | - |
-| Mi | - | - | - |
-| Do | - | - | - |
-| Fr | - | - | - |
-| Sa | - | - | - |
-| So | - | - | - |
+|Mo|✗|✓|✓|
+|Di|✓|✓|✓|
+|Mi|✗|✓|✓|
+|Do|✓|✓|✓|
+|Fr|✗|✓|✓|
+|Sa|✗|✗|✗|
+|So|✗|✗|✗|
 
 # Bevorzugte Tage für Long Sessions
-Bike: -
-Run: -
+Bike: Mittwoch
+Run: Freitag
 
 # Weitere Restriktionen
-- DEMO: ersetzen oder löschen
+- Am Wochenende kein Workout planen
+- Direkt nach Schwimmtrainings (ohne weitere Session dazwischen) steht mir ein Dampfbad mit 50°C/100% Luftfeuchte zur Verfügung
+- An allen Tagen steht mir ein Zugseil zur Verfügung

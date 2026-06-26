@@ -11,7 +11,6 @@ Stand: 2026-06-02
 | Geschlecht | männlich |
 | Wohnort / Zeitzone | Weiler im Allgäu, Deutschland / Europe/Berlin |
 | Größe | 192 cm |
-| Gewicht aktuell | 82 kg |
 | Beruf / Alltag | Bürojob, überwiegend sitzend |
 | Schlafbedarf | 7,5-8,5 h |
 
@@ -102,4 +101,4 @@ Alle aufgelisteten Werte sind zusätzliche eingenommen Substanzen, nicht die kom
 | Maximaler spezifischer Long Bike Umfang vor Hauptrennen | 5:00h |
 | Normaler Long Run Umfang | 1:15h-1:50h |
 | Maximaler spezifischer Long Run Umfang vor Hauptrennen | 2:15h |
-| Langfristiges Körperfettziel | ungefähr 12% |
+| Langfristiges Körperfettziel | 10 - 12% |

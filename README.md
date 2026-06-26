@@ -7,7 +7,7 @@ Dieses Repository verwaltet profilabhängige Triathlon-Daten, synchronisiert Int
 - Python 3.11 oder neuer
 - Git
 - Google Chrome, Chromium oder Microsoft Edge für den PDF-Export
-- Ein Intervals.icu-API-Key für Synchronisationen
+- Ein Intervals.icu-API-Key je Profil für Synchronisationen
 
 Unter macOS können Git und Python beispielsweise über die Xcode Command Line Tools und Homebrew installiert werden. Codex kann die Repository-Skripte ausführen, ersetzt aber keine fehlende lokale Python- oder Git-Installation.
 
@@ -19,22 +19,32 @@ cd personal-training-plan
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
-Copy-Item .env.example .env
 ```
 
-Unter macOS oder Linux wird die virtuelle Umgebung mit `source .venv/bin/activate` aktiviert und `.env.example` mit `cp .env.example .env` kopiert.
+Unter macOS oder Linux wird die virtuelle Umgebung mit `source .venv/bin/activate` aktiviert.
 
-In `.env` müssen anschließend genau diese Werte gepflegt werden:
+Lege im Repository-Root lokal eine `.env` an. Diese Datei wird nicht versioniert.
+
+In der Root-`.env` wird nur das aktive Profil gesetzt:
 
 ```text
 TRAINING_PROFILE=PROFILE_DIRECTORY_NAME
-intervals_icu_api_key=YOUR_INTERVALS_ICU_API_KEY
-intervals_icu_athlete_id=YOUR_INTERVALS_ICU_ATHLETE_ID
 ```
 
 `TRAINING_PROFILE` entspricht exakt dem Verzeichnisnamen unter `profiles/`. Skripte und LLM-Regeln leiten das aktive Profil ausschließlich daraus ab.
 
-Ein lokaler Checkout hat immer genau ein aktives Profil. Prozesse mit unterschiedlichen `TRAINING_PROFILE`-Werten dürfen nicht parallel im selben Checkout laufen, weil `trainingplan.html` eine gemeinsame lokale Profilweiterleitung verwendet.
+Die Intervals.icu-Zugangsdaten liegen lokal im jeweiligen Profil und werden nicht versioniert:
+
+```text
+profiles/<TRAINING_PROFILE>/.env
+```
+
+```text
+intervals_icu_api_key=YOUR_INTERVALS_ICU_API_KEY
+intervals_icu_athlete_id=YOUR_INTERVALS_ICU_ATHLETE_ID
+```
+
+Ein lokaler Checkout hat immer genau ein aktives Profil für Skripte. Die Root-Datei `trainingplan.html` leitet unabhängig davon immer auf Marios aktuellen Wochenplan weiter.
 
 ## Wichtige Befehle
 
@@ -68,4 +78,4 @@ Ein vorbereitetes Demo-Profil besteht die normale Strukturprüfung, aber nicht `
 - `tests/`: Regressionstests ohne externe Testbibliothek
 - `AGENTS.md`: verbindliche fachliche Regeln für Codex und andere LLM-Agenten
 
-`.env`, API-Schlüssel, technische Intervals.icu-Caches und temporäre PDF-Dateien werden nicht versioniert. Profildaten werden in diesem privaten Repository bewusst versioniert.
+`.env`, `profiles/*/.env`, API-Schlüssel, technische Intervals.icu-Caches und temporäre PDF-Dateien werden nicht versioniert. Profildaten werden in diesem privaten Repository bewusst versioniert.

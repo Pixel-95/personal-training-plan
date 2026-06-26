@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 
 from markdown_tables import read_table
-from profile_paths import BROWSER_PROFILE_PATH, DATA_DIR, PROFILE, PROFILE_DIR, PROFILE_PLANS_DIR, ROOT
+from profile_paths import DATA_DIR, PROFILE, PROFILE_DIR, PROFILE_PLANS_DIR, ROOT
 from render_plan import validate_plan
 from update_health import TABLES as HEALTH_TABLES
 from update_loads import HEADER as LOADS_HEADER
@@ -65,7 +65,7 @@ NEGATIVE_PLACEHOLDER_RE = re.compile(
 def validate_text_files() -> list[str]:
     errors: list[str] = []
     roots = [ROOT / "scripts", ROOT / "plan-format", ROOT / "profiles", ROOT / "tests"]
-    files = [ROOT / "AGENTS.md", ROOT / "trainingplan.html", ROOT / ".env.example"]
+    files = [ROOT / "AGENTS.md", ROOT / "trainingplan.html"]
     for directory in roots:
         files.extend(
             path
@@ -91,7 +91,7 @@ def validate_profile_structure() -> list[str]:
     for relative in REQUIRED_DATA_PATHS:
         path = DATA_DIR / relative
         if not path.exists():
-            errors.append(f"Missing active-profile path: {path.relative_to(ROOT)}")
+            errors.append(f"Missing active profile path: {path.relative_to(ROOT)}")
     if not PROFILE_PLANS_DIR.is_dir():
         errors.append(f"Missing plans directory: {PROFILE_PLANS_DIR.relative_to(ROOT)}")
     return errors
@@ -125,16 +125,6 @@ def validate_plans() -> list[str]:
         except (OSError, ValueError, json.JSONDecodeError) as exc:
             errors.append(f"Invalid plan {path.relative_to(ROOT)}: {exc}")
     return errors
-
-
-def validate_browser_profile() -> list[str]:
-    expected = f"window.TRAINING_PROFILE = {json.dumps(PROFILE, ensure_ascii=False)};\n"
-    if not BROWSER_PROFILE_PATH.exists():
-        return [f"Missing generated browser profile: {BROWSER_PROFILE_PATH.relative_to(ROOT)}"]
-    actual = BROWSER_PROFILE_PATH.read_text(encoding="utf-8")
-    if actual != expected:
-        return ["active-profile.js does not match TRAINING_PROFILE"]
-    return []
 
 
 def validate_planning_readiness(data_dir: Path = DATA_DIR) -> list[str]:
@@ -177,7 +167,6 @@ def main() -> int:
         validate_profile_structure,
         validate_health_tables,
         validate_plans,
-        validate_browser_profile,
     ]
     if args.planning_ready:
         checks.append(validate_planning_readiness)

@@ -1,35 +1,48 @@
 ﻿#!/usr/bin/env python3
-"""Resolve active training profile paths from the repository .env file."""
+"""Resolve active training profile paths from local environment files."""
 
 from __future__ import annotations
 
-import json
 import os
 from pathlib import Path
-
-from markdown_tables import write_text_atomic
 
 
 ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env"
 PROFILES_DIR = ROOT / "profiles"
-BROWSER_PROFILE_PATH = ROOT / "active-profile.js"
+
+
+def parse_env_file(path: Path) -> dict[str, str]:
+    values: dict[str, str] = {}
+    if not path.exists():
+        return values
+
+    for line in path.read_text(encoding="utf-8-sig").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        values[key.strip()] = value.strip().strip('"').strip("'")
+    return values
 
 
 def load_env_values(*, environment_prefixes: tuple[str, ...] = ()) -> dict[str, str]:
-    """Load .env values and optionally overlay matching process variables."""
-    values: dict[str, str] = {}
-    if ENV_PATH.exists():
-        for line in ENV_PATH.read_text(encoding="utf-8-sig").splitlines():
-            line = line.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            key, value = line.split("=", 1)
-            values[key.strip()] = value.strip().strip('"').strip("'")
+    """Load root and active profile .env values, then overlay process variables."""
+    values = parse_env_file(ENV_PATH)
     allowed_keys = {"TRAINING_PROFILE"}
+
     for key, value in os.environ.items():
-        if key in allowed_keys or any(key.startswith(prefix) for prefix in environment_prefixes):
+        if key in allowed_keys:
             values[key] = value
+
+    profile = values.get("TRAINING_PROFILE", "").strip()
+    if profile and not any(part in profile for part in ("/", "\\", "..")):
+        values.update(parse_env_file(PROFILES_DIR / profile / ".env"))
+
+    for key, value in os.environ.items():
+        if any(key.startswith(prefix) for prefix in environment_prefixes):
+            values[key] = value
+
     return values
 
 
@@ -56,10 +69,4 @@ def require_profile() -> None:
         )
 
 
-def write_browser_profile_config() -> None:
-    profile_json = json.dumps(PROFILE, ensure_ascii=False)
-    write_text_atomic(BROWSER_PROFILE_PATH, f"window.TRAINING_PROFILE = {profile_json};\n")
-
-
 require_profile()
-write_browser_profile_config()

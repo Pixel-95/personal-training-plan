@@ -1,14 +1,12 @@
 ﻿# Aktueller Zustand
 
-Zuletzt vom LLM zusammengefasst: 1900-01-01
+Zuletzt vom LLM zusammengefasst: 2026-06-25
 
 ## Aktuelle Zusammenfassung
 
-Diese Zusammenfassung soll vor jeder Trainingsplanung oder Trainingsbewertung vom LLM anhand der neuesten Updates unten aktualisiert werden.
-
-- DEMO: aktuellen Zustand ersetzen.
+- Am 2026-06-30 findet Tanjas letzter Technik-Schwimmkurs statt. Diesen Termin bei der kurzfristigen Trainingsplanung berücksichtigen.
 
 ## Neueste Updates
 
-### 1900-01-01
-DEMO: ersten echten Athleten-Update hier eintragen und diesen Platzhalter löschen.
+### 2026-06-25
+Ich habe am 2026-06-30 zum letzten Mal einen Technik-Schwimmkurs.
