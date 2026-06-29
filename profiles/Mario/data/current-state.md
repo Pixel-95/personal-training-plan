@@ -1,20 +1,19 @@
 # Aktueller Zustand
 
-Zuletzt vom LLM zusammengefasst: 2026-06-22
+Zuletzt vom LLM zusammengefasst: 2026-06-29
 
 ## Aktuelle Zusammenfassung
 
-Diese Zusammenfassung soll vor jeder Trainingsplanung oder Trainingsbewertung vom LLM anhand der neuesten Updates unten aktualisiert werden.
-
-- Stand 2026-06-22: Rothsee Triathlon 2026 wurde in 2:19:04 absolviert; Platz 8 in M AK 30 bei der Deutschen Meisterschaft, mit starkem Radsegment und solidem Lauf.
+- Stand 2026-06-29: Rothsee Triathlon 2026 wurde in 2:19:04 absolviert; Platz 8 in M AK 30 bei der Deutschen Meisterschaft, mit starkem Radsegment und solidem Lauf.
 - Das linke Knie war am 2026-06-08 auf dem Rennrad nicht spürbar; seitdem liegt kein neuer klarer Schmerz-Hinweis vor, es soll aber weiter beobachtet werden.
 - Long Sessions wirken aktuell systemisch belastender als Intervall-Sessions; besonders der Long Run am 2026-06-13 war für den geplanten Charakter kardiovaskulär zu hart.
+- Der erste MIT-Block in 2026-W26 wurde subjektiv gut toleriert: harte Threshold-Einheiten erzeugten während der Einheit Ermüdung, aber keine lang anhaltende Belastung bis in den Abend oder Folgetag.
+- Objektiv zeigte W26 viel Bike-Threshold-Zeit mit stabiler Ausführung um 299W; die Canyoning-Zustiege/Rückwege am 2026-06-27/28 zählen als zusätzliche Outdoor-Belastung, nicht als strukturiertes Triathlontraining.
+- Health-Status am 2026-06-29 ist sehr gut: HRV 120ms mit 7-Tage-Wert 116ms im Korridor, Ruhepuls 37bpm, Schlaf 7:49h bei Sleepscore 94.
+- Load-Status am 2026-06-29 ist kontrolliert: ATL 54, CTL 52, TSB -2 und ACR 1.044; die rechnerische Ermüdung spricht nicht gegen eine kurze zweite MIT-Blockhälfte.
 - Swim-Pace-Vorgaben auf Basis der aktuellen CSS wirken im normalen Trainingskontext derzeit eher zu ambitioniert; die Schwimmvorgaben sollten bis zu einer erneuten Validierung mit Vorsicht interpretiert werden.
 - Race-Analyse Rothsee 2026: größtes relatives Potenzial liegt im Schwimmen und in T1; Bike war stark, aber mit vermeidbaren Leistungsspitzen, der Lauf war nicht eingebrochen und hatte noch einen späten Endspurt.
-- Health-Status am 2026-06-22 ist gut: HRV 104ms mit 7-Tage-Wert 100ms im Korridor, Ruhepuls 38bpm, Schlaf 8:46h bei Sleepscore 94; der kurze Schlaf am Race-Tag 2026-06-21 war auffällig, aber am Folgetag gut kompensiert.
-- Load-Status am 2026-06-22: ATL 81, CTL 55, TSB -25 und ACR 1.460; die Race-Belastung von 2026-06-21 ist deutlich sichtbar und spricht kurzfristig für vorsichtige Belastungssteuerung.
-- Für 2026-W26 ist ein maximal wirksamer, Bike-dominanter MIT-Block gewünscht; 2026-06-27 und 2026-06-28 sind kompletter Rest.
-- Geplante zweite MIT-Blockhälfte für 2026-W27: 2026-06-29 Threshold Bike, 2026-06-30 Threshold Run + Threshold Swim, 2026-07-01 Threshold Bike; 2026-07-02 bis 2026-07-05 kompletter Rest.
+- Für 2026-W27 ist eine zweite, etwas härtere MIT-Blockhälfte sinnvoll, solange sie klar auf 2026-06-29 bis 2026-07-02 begrenzt bleibt und 2026-07-03 bis 2026-07-05 ohne strukturiertes Training bleiben.
 
 ## Neueste Updates
 

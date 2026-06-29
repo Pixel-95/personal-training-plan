@@ -72,6 +72,7 @@ def main() -> int:
     downloaded = 0
     planned = 0
     skipped = 0
+    seen_targets: set[str] = set()
 
     for activity in sorted(activities, key=lambda item: str(item.get("start_date_local", ""))):
         activity_id = str(activity.get("id") or "")
@@ -83,6 +84,16 @@ def main() -> int:
         except ValueError as exc:
             warnings.append(str(exc))
             continue
+
+        target_key = str(target.resolve())
+        if target_key in seen_targets:
+            skipped += 1
+            warnings.append(
+                f"{activity_id}: duplicate target skipped after earlier activity mapped to "
+                f"{target.relative_to(ROOT)}"
+            )
+            continue
+        seen_targets.add(target_key)
 
         activity_day = parse_date(str(activity.get("start_date_local", "")))
         should_refresh = refresh_day is not None and activity_day == refresh_day

@@ -1,7 +1,7 @@
 # 2026-06-21 Rothsee Triathlon Olympisch - Deutsche M'schaft
 
 Quelle: `2026-06-21 Rothsee Triathlon Olympisch - Deutsche M'schaft.fit`
-Auswertung: 2026-06-22
+Auswertung: 2026-06-29
 
 ## Kurzfassung
 
@@ -13,7 +13,7 @@ Auswertung: 2026-06-22
 - Kalorien: 2509kcal
 - Avg HR: 153bpm
 - Max HR: 171bpm
-- TSS: 364.6
+- TSS: 58
 - Aerobic Training Effect: 5
 - Anaerobic Training Effect: 2.2
 - Schwimmen: 28:04, 1.47km, 145bpm avg HR
@@ -24,12 +24,11 @@ Auswertung: 2026-06-22
 
 ## Bericht
 
-Die Einheit war ein Triathlon über 2:19:11 mit 153bpm im Schnitt und 171bpm maximal. Mit TSS 364.6 und Training Effect aerob 5/anaerob 2.2 war der Wettkampfreiz hoch und planungsrelevant. Die Segmente werden getrennt bewertet, weil Schwimmen, Radfahren, Wechsel und Laufen unterschiedliche Belastungsmarker haben. Für die Planung sind vor allem die Radleistung, der anschließende Laufverlauf und die Wechselzeiten relevant. Kein eindeutiges Intervals.icu-Match wurde gefunden, daher sollte der TSS-Wert besonders plausibilisiert werden. Für die Load-Steuerung kann der TSS-Wert genutzt werden, sollte aber bei auffälliger Dauer oder Intensität gegengeprüft werden.
+Die Einheit war ein Triathlon über 2:19:11 mit 153bpm im Schnitt und 171bpm maximal. Mit TSS 58 und Training Effect aerob 5/anaerob 2.2 war der Wettkampfreiz hoch und planungsrelevant. Die Segmente werden getrennt bewertet, weil Schwimmen, Radfahren, Wechsel und Laufen unterschiedliche Belastungsmarker haben. Für die Planung sind vor allem die Radleistung, der anschließende Laufverlauf und die Wechselzeiten relevant. Die Einheit sollte zusammen mit subjektivem Feedback und dem Wochenkontext für die weitere Planung bewertet werden. Für die Load-Steuerung kann der TSS-Wert genutzt werden, sollte aber bei auffälliger Dauer oder Intensität gegengeprüft werden.
 
 ## Einordnung
 
 - Automatisch erzeugte FIT-Auswertung; Plausibilität durch das LLM vor Planerzeugung erforderlich.
-- Kein eindeutiges Intervals.icu-Activity-Match gefunden; TSS nutzt FIT-Fallback oder `-`.
 
 ## Zonen
 

@@ -381,6 +381,7 @@ Wochenplan-Format:
 - Wenn fachlich ein Zielbereich gemeint ist, im Plan den Mittelwert als konkreten Zielwert schreiben, z.B. statt `295-305W` nur `300W`.
 - Keine abstrakten Zonenangaben in Workout-Vorgaben verwenden. Statt `Z2`, `Z3` usw. konkrete Pace-, Power- oder HR-Werte aus `profiles/<TRAINING_PROFILE>/data/zones.md` ableiten.
 - Pausen bei Intervallen knapp im gleichen Stil wie Belastungen angeben, z.B. `5min @<Pausenleistung>`; keine erklärenden Zusätze wie `zwischen den Intervallen` verwenden.
+- Bei Intervallpausen keine eigene Wiederholungszahl vor die Pause schreiben. Statt `3x16min @300W,2x4min @100W` immer `3x16min @300W,4min @100W` schreiben.
 - Bei Swim-Einheiten immer `200m Warmup` und `100m Cooldown` verwenden, sofern nicht ausdrücklich anders gewünscht.
 - Die Dauer oder der Umfang einer Einheit steht oben rechts in der Session-Karte, auf gleicher Höhe wie das Sportart-Label.
 - Die Dauer oder der Umfang steht nicht im Session-Namen.

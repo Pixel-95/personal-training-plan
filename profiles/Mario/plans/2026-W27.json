@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "week": "2026-W27",
+  "analysis_week": "2026-W26",
+  "days": [
+    {
+      "date": "2026-06-29",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Threshold",
+          "amount": "63min",
+          "duration": "63min",
+          "content": [
+            "5min @203W",
+            "3x16min @300W,2x4min @100W",
+            "2min @100W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-06-30",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Threshold",
+          "amount": "45min",
+          "duration": "45min",
+          "content": [
+            "5min @5:00/km",
+            "4x8min @4:00/km,3x2min Trabpause",
+            "2min @5:00/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Threshold",
+          "amount": "2800m",
+          "duration": "65min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "12x100m @1:43/100m,20s Pause",
+            "4x200m @1:45/100m,30s Pause",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-01",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Threshold",
+          "amount": "60min",
+          "duration": "60min",
+          "content": [
+            "5min @203W",
+            "2x24min @300W,5min @100W",
+            "2min @100W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-02",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Threshold",
+          "amount": "37min",
+          "duration": "37min",
+          "content": [
+            "5min @5:00/km",
+            "30min @4:08/km",
+            "2min @5:00/km"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-03",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-04",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-05",
+      "sessions": []
+    }
+  ]
+}
