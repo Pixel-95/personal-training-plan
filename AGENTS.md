@@ -176,6 +176,9 @@ Zwei-Phasen-Planung:
 - `TSS` in den Markdown-Auswertungen ist der einheitliche Planungs-Load, nicht zwingend FIT-/Garmin-TSS.
 - Für `TSS` bei Swim/Bike/Run bevorzugt `icu_training_load` aus Intervals.icu verwenden.
 - Bei Aktivitäten außerhalb von Swim/Bike/Run, z.B. Skifahren, bevorzugt `hr_load` aus Intervals.icu als `TSS`/Planungs-Load verwenden.
+- Wenn im Aktivitätsnamen `Zustieg` oder `Rückweg` steht, die Aktivität als Hin- bzw. Rückweg fürs Canyoning einordnen.
+- Canyoning-Zustiege und -Rückwege nicht als sportartspezifische Swim/Bike/Run-Trainingseinheiten interpretieren, sondern als relevante zusätzliche Outdoor-/Alltagsbelastung mit möglicher muskulärer und orthopädischer Ermüdung.
+- Diese Aktivitäten bei Load, Wochenreview und Planungsentscheidung als Kontext berücksichtigen, besonders bei vielen Schritten, Höhenmetern, langer Dauer, hoher Herzfrequenz oder müden Beinen.
 - Wenn Intervals.icu keinen `icu_training_load` liefert, als Fallback FIT `session.training_load_peak` verwenden.
 - Wenn auch `training_load_peak` fehlt, als weiteren Fallback Intervals.icu `hr_load` verwenden.
 - Wenn keine belastbare TSS-/Load-Quelle verfügbar ist, `TSS: -` eintragen und diesen Eintrag für `profiles/<TRAINING_PROFILE>/data/health/loads.md` nicht als Belastungswert mitzählen.
@@ -287,10 +290,15 @@ Subjektive Intervallsteuerung:
 - Nahe, wichtige Ziele dürfen die Woche stärker spezifisch prägen; weiter entfernte oder weniger wichtige Ziele sollen eher über grundlegende, nachhaltige Entwicklungsreize berücksichtigt werden.
 - Das geplante Rennen mit der höchsten Wichtigkeit in `profiles/<TRAINING_PROFILE>/data/races.md` dynamisch als aktuelles Hauptrennen bestimmen; dieses Hauptrennen dominiert die langfristige Trainingsausrichtung.
 - Kurz vor weniger priorisierten Rennen dürfen einzelne spezifische Sessions für diese Rennen geplant werden, solange sie die langfristige Ausrichtung auf das wichtigste Rennen nicht unverhältnismäßig stören.
-- Beim Generieren neuer Pläne primär an die bestehenden Vorgaben halten.
-- Wenn Vorgaben aus Trainingssicht nicht optimal sind, inkonsistent wirken oder eine Anpassung sinnvoll wäre, dies klar im Chatfenster kommunizieren und nicht stillschweigend ändern.
-- Von Standardvorgaben darf abgewichen werden, wenn Zustand, Race-Nähe, Trainingslogik oder Inkonsistenzen es klar rechtfertigen.
-- Jede Abweichung von Standardwoche, Verfügbarkeit, Session-Typen oder Formatvorgaben im Chat explizit nennen und begründen.
+
+Planungsurteil vor Regelbefolgung:
+- Bei jeder Planerstellung die bestehenden Vorgaben, Standardwoche, Verfügbarkeit, Long-Session-Richtwerte, Intervallbegrenzungen, Session-Typen und bisherigen Wochenrhythmus aktiv gegen den aktuellen Kontext prüfen.
+- Regeln sind Leitplanken, keine blinde Ausführungsanweisung. Wenn aktuelle Belastbarkeit, Health-Werte, subjektives Feedback, Race-Nähe, Zielpriorität, Verletzungsrisiko oder Trainingslogik gegen die Standardlösung sprechen, soll das LLM eine bessere abweichende Lösung vorschlagen.
+- Sinnvolle Abweichungen können z.B. geänderte Wochentage, veränderte Long-Session-Dauer, weniger oder andere Intervalle, ein anderer Wochenrhythmus, ein Tempodauerlauf, Sweet-Spot-Finish in einer Long Session, zusätzliche Entlastung, eine bewusst gestrichene Einheit oder eine andere Session-Art sein.
+- Eine Abweichung darf nur erfolgen, wenn sie trainingslogisch begründet ist und das Ziel besser erfüllt als die Standardvorgabe.
+- Jede relevante Abweichung von Standardwoche, Verfügbarkeit, Long-Session-Richtwerten, Intervallregeln oder üblichen Session-Typen im Chat klar nennen und begründen.
+- Wenn die Standardvorgaben trotz Alternativen sinnvoll bleiben, dies kurz begründen, insbesondere wenn naheliegende Abweichungen bewusst nicht gewählt wurden.
+- Im Planvorschlag nicht nur ausführen, was erlaubt ist, sondern aktiv erklären, warum die gewählte Woche im Vergleich zu naheliegenden Alternativen die sinnvollere Lösung ist.
 - Beispiele für klar zu kommunizierende Hinweise: mehr Schwimmeinheiten wären sinnvoll als die aktuelle Verfügbarkeit erlaubt; die Standardwoche sollte geändert werden; Brick Sessions wären sinnvoll; Vorgaben widersprechen sich; die langfristige Race-Ausrichtung passt nicht zur aktuellen Wochenstruktur.
 
 Wochenreview:

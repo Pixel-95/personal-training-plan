@@ -16,19 +16,19 @@
 | 🎯 | 2026-09-13 | Ironman 70.3 WM Nizza |  |  |  | Mittel |  | x1 | (1) |
 | 🎯 | 2026-10-03 | Neustädter Söhrenberg-Triathlon (Waiblingen) |  |  |  | Sprint |  | x1 | (9) |
 | 🎯 | 2026-10-16 | Ironman 70.3 Sharm El-Sheikh |  |  |  | Mittel |  | x1 | (8) |
-| ❔ | 2026-07-19 | Kratschmayer Triathlon Waldenburg | ❌ | 3:00h | TdF-WE | Sprint |  | x1 |  |
-| ❔ | 2026-07-25 | Hofheimer Triathlon | ✔️ | 3:50h | freies WE | Sprint |  | x1 |  |
-| ❔ | 2026-07-26 | Schongau Triathlon | ❌ | 1:20h | freies WE | Sprint/Kurz |  | x1 |  |
-| ❔ | 2026-07-26 | Passau Triathlon | ✔️ | 3:50h | freies WE | Sprint/Kurz |  | x1 |  |
-| ❔ | 2026-08-15 | Nordschwarzwald Triathlon | ❌ | 2:40h | Tata Hyrox-Camp | Sprint |  | x1 |  |
-| ❔ | 2026-08-15 | Jannersee Triathlon | ❌ | 0:30h | Tata Hyrox-Camp | Sprint/Kurz |  | x1 |  |
-| ❔ | 2026-08-16 | Thiersee Triathlon | ✔️ | 3:00h | Tata Hyrox-Camp | Kurz |  | x1 |  |
-| ❔ | 2026-08-23 | Rißtal Triathlon | ❌ | 1:20h | freies WE | Sprint |  | x1 |  |
-| ❔ | 2026-08-29 | Schwarzachtal Triathlon | ✔️ | 1:20h | Tata Muddy-Angle | Sprint |  | x1 |  |
-| ❔ | 2026-08-30 | Aischgrund Triathlon | ✔️ | 3:15h | Tata Muddy-Angle | Sprint |  | x1 |  |
-| ❔ | 2026-09-06 | Löhne Triathlon | ✔️ | 1:20h | Tata Hannover Triathlon | Sprint |  | x1 |  |
+| 📧 | 2026-07-19 | Kratschmayer Triathlon Waldenburg | ❌ | 3:00h | TdF-WE | Sprint |  | x1 |  |
+| ❓ | 2026-07-25 | Hofheimer Triathlon | ✔️ | 3:50h | freies WE | Sprint |  | x1 |  |
+| 📧 | 2026-07-26 | Schongau Triathlon | ❌ | 1:20h | freies WE | Sprint/Kurz |  | x1 |  |
+| ❓ | 2026-07-26 | Passau Triathlon | ✔️ | 3:50h | freies WE | Sprint/Kurz |  | x1 |  |
+| 📧 | 2026-08-15 | Nordschwarzwald Triathlon | ❌ | 2:40h | Tata Hyrox-Camp | Sprint |  | x1 |  |
+| 📧 | 2026-08-15 | Jannersee Triathlon | ❌ | 0:30h | Tata Hyrox-Camp | Sprint/Kurz |  | x1 |  |
+| 🎯 | 2026-08-16 | Thiersee Triathlon |  |  |  | Kurz |  | x1 | (8) |
+| 📧 | 2026-08-23 | Rißtal Triathlon | ❌ | 1:20h | freies WE | Sprint |  | x1 |  |
+| 🎯 | 2026-08-29 | Schwarzachtal Triathlon |  |  |  | Sprint |  | x1 | (8) |
+| 🎯 | 2026-08-30 | Aischgrund Triathlon |  |  |  | Sprint |  | x1 | (8) |
+| 🎯 | 2026-09-06 | Löhne Triathlon |  |  |  | Sprint |  | x1 | (8) |
 
 ### Gesamt
 20
 ### Gesamt-Prognose
-(38)
+(70)

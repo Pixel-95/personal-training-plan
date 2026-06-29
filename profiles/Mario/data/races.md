@@ -1,10 +1,16 @@
 # Geplant
 | Datum | Name | Typ | Wichtigkeit / 10 |
 |-|-|-|-|
+| 2026-08-16 | Thiersee Triathlon | Kurz Triathlon | 1 |
+| 2026-08-29 | Schwarzachtal Triathlon | Sprint Triathlon | 1 |
+| 2026-08-30 | Aischgrund Triathlon | Sprint Triathlon | 1 |
+| 2026-09-06 | Löhne Triathlon | Sprint Triathlon | 1 |
 | 2026-09-13 | Ironman 70.3 WM Nizza | Ironman 70.3 Triathlon | 5 |
 | 2026-10-03 | Neustädter Söhrenberg-Triathlon (Waiblingen) | Sprint-Triathlon | 1 |
 | 2026-10-16 | Ironman 70.3 Sharm El-Sheikh | Ironman 70.3 Triathlon | 6 |
 | 2027-05-01 | Ironman Race TBD | Ironman Triathlon | 10 |
+
+
 
 # Gemacht
 ## Triathlon
