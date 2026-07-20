@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "week": "2026-W28",
+  "analysis_week": "2026-W27",
+  "days": [
+    {
+      "date": "2026-07-06",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Threshold",
+          "amount": "67min",
+          "duration": "67min",
+          "content": [
+            "5min @203W",
+            "4x12min @305W,4min @100W",
+            "2min @100W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-08",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "3:00h",
+          "duration": "3:00h",
+          "content": [
+            "2:30h @200W",
+            "30min @255W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "sessions": [
+        {
+          "sport": "swim",
+          "title": "Threshold",
+          "amount": "2800m",
+          "duration": "65min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "10x100m @1:43/100m,20s Pause",
+            "5x200m @1:45/100m,30s Pause",
+            "100m Cooldown"
+          ]
+        },
+        {
+          "sport": "run",
+          "title": "Basic",
+          "amount": "45min",
+          "duration": "45min",
+          "content": [
+            "45min @5:00/km"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Long",
+          "amount": "1:25h",
+          "duration": "1:25h",
+          "content": [
+            "1:25h @5:00/km"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-11",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Basic",
+          "amount": "75min",
+          "duration": "75min",
+          "content": [
+            "75min @200W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-12",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Threshold",
+          "amount": "49min",
+          "duration": "49min",
+          "content": [
+            "5min @5:00/km",
+            "3x12min @4:03/km,3min Trabpause",
+            "2min @5:00/km"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -20,6 +20,8 @@ from profile_paths import DATA_DIR, PROFILE_PLANS_DIR, ROOT
 
 
 ACTIVITIES_DIR = DATA_DIR / "activities"
+MARIO_PLANS_DIR = ROOT / "profiles" / "Mario" / "plans"
+ROOT_TRAININGPLAN_PATH = ROOT / "trainingplan.html"
 
 GERMAN_WEEKDAYS = {
     0: "Mo",
@@ -318,6 +320,44 @@ def write_html(plan_path: Path, html_text: str) -> Path:
     return output
 
 
+def latest_rendered_plan_week(plans_dir: Path) -> str:
+    weeks = [
+        path.stem
+        for path in plans_dir.glob("*.html")
+        if re.fullmatch(r"\d{4}-W\d{2}", path.stem)
+    ]
+    if not weeks:
+        raise FileNotFoundError(f"No rendered weekly plan found in {plans_dir}")
+    return max(weeks)
+
+
+def update_root_trainingplan() -> str:
+    week = latest_rendered_plan_week(MARIO_PLANS_DIR)
+    content = "\n".join(
+        [
+            "<!doctype html>",
+            '<html lang="de">',
+            "<head>",
+            '  <meta charset="utf-8">',
+            '  <meta name="viewport" content="width=device-width, initial-scale=1">',
+            "  <title>Aktueller Trainingsplan</title>",
+            '  <link rel="icon" type="image/png" href="assets/calendar.png">',
+            "  <script>",
+            f'    const LATEST_PLAN = "{week}";',
+            "    window.location.replace(`profiles/Mario/plans/${LATEST_PLAN}.html`);",
+            "  </script>",
+            "</head>",
+            "<body>",
+            "  <p>Weiterleitung zum neuesten Trainingsplan...</p>",
+            "</body>",
+            "</html>",
+            "",
+        ]
+    )
+    write_text_atomic(ROOT_TRAININGPLAN_PATH, content)
+    return week
+
+
 def detect_browser() -> Path:
     for executable in ("msedge", "google-chrome", "google-chrome-stable", "chromium", "chromium-browser"):
         resolved = shutil.which(executable)
@@ -408,6 +448,9 @@ def main() -> int:
     html_text = build_html(plan, newest, include_trends)
     html_path = write_html(plan_path, html_text)
     print(f"Rendered HTML: {html_path}")
+    if plan_path.parent.resolve() == MARIO_PLANS_DIR.resolve():
+        week = update_root_trainingplan()
+        print(f"Updated root trainingplan.html: {week}")
 
     if warnings:
         print("Trend warnings:")

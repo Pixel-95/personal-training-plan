@@ -1,4 +1,4 @@
-﻿# Ausgerechnete Zonen
+# Ausgerechnete Zonen
 
 ## Swim
 
@@ -13,21 +13,20 @@
 
 | Zone | Zonenname | Untere HR-Grenze / bpm | Obere HR-Grenze / bpm | Untere Power-Grenze / W | Obere Power-Grenze / W |
 |-|-|-|-|-|-|
-| Z6 | Anaerobic | 174 | / | 339 | / |
-| Z5 | VO2max | 164 | 174 | 323 | 339 |
-| Z4 | Threshold | 150 | 164 | 277 | 323 |
-| Z3 | Tempo | 130 | 150 | 228 | 277 |
-| Z2 | Endurance | 119 | 130 | 172 | 228 |
-| Z1 | Recovery | / | 119 | / | 172 |
+| Z6 | Anaerobic | 169 | / | 343 | / |
+| Z5 | VO2max | 160 | 169 | 328 | 343 |
+| Z4 | Threshold | 146 | 160 | 281 | 328 |
+| Z3 | Tempo | 126 | 146 | 231 | 281 |
+| Z2 | Endurance | 116 | 126 | 175 | 231 |
+| Z1 | Recovery | / | 116 | / | 175 |
 
 ## Run
 
 | Zone | Zonenname | Untere HR-Grenze / bpm | Obere HR-Grenze / bpm | Untere Pace-Grenze / min:sec/km | Obere Pace-Grenze / min:sec/km |
 |-|-|-|-|-|-|
-| Z6 | Anaerobic | 179 | / | 3:38 | / |
-| Z5 | VO2max | 170 | 179 | 3:48 | 3:38 |
-| Z4 | Threshold | 155 | 170 | 4:13 | 3:48 |
-| Z3 | Tempo | 142 | 155 | 4:30 | 4:13 |
-| Z2 | Endurance | 130 | 142 | 4:54 | 4:30 |
-| Z1 | Recovery | / | 130 | / | 4:54 |
-
+| Z6 | Anaerobic | 175 | / | 3:38 | / |
+| Z5 | VO2max | 165 | 175 | 3:48 | 3:38 |
+| Z4 | Threshold | 151 | 165 | 4:13 | 3:48 |
+| Z3 | Tempo | 138 | 151 | 4:30 | 4:13 |
+| Z2 | Endurance | 127 | 138 | 4:54 | 4:30 |
+| Z1 | Recovery | / | 127 | / | 4:54 |

@@ -35,6 +35,7 @@ def main() -> int:
         ("FIT download", ["scripts/download_fit_files.py", *common, *dry]),
         ("Health update", ["scripts/update_health.py", *common, *dry]),
         ("FIT analysis", ["scripts/analyze_fit_files.py", *dry]),
+        ("Zone update", ["scripts/update_zones.py", *dry]),
         ("Load update", ["scripts/update_loads.py", "--newest", args.newest, *dry]),
     ]
 

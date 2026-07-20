@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 from datetime import date
+from pathlib import Path
 
 from date_utils import date_range_from_days, expand_range_with_overlap
 from intervals_icu_client import (
@@ -19,6 +20,10 @@ from profile_paths import DATA_DIR, ROOT
 
 
 ACTIVITY_FIELDS = ["id", "start_date_local", "type", "name"]
+
+
+def is_multisport_component_duplicate(existing_types: set[str], activity_type: str) -> bool:
+    return activity_type == "Transition" or "Transition" in existing_types
 
 
 def newest_downloaded_fit_date() -> date | None:
@@ -47,6 +52,10 @@ def download_fit(client: IntervalsClient, activity_id: str) -> tuple[bytes, str,
     return data, "generated", warnings
 
 
+def fit_content_is_unchanged(path: Path, data: bytes) -> bool:
+    return path.exists() and path.read_bytes() == data
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Download missing FIT files from Intervals.icu.")
     parser.add_argument("--days", type=int, default=30, help="Number of days to inspect.")
@@ -72,7 +81,7 @@ def main() -> int:
     downloaded = 0
     planned = 0
     skipped = 0
-    seen_targets: set[str] = set()
+    seen_targets: dict[str, set[str]] = {}
 
     for activity in sorted(activities, key=lambda item: str(item.get("start_date_local", ""))):
         activity_id = str(activity.get("id") or "")
@@ -88,12 +97,20 @@ def main() -> int:
         target_key = str(target.resolve())
         if target_key in seen_targets:
             skipped += 1
-            warnings.append(
-                f"{activity_id}: duplicate target skipped after earlier activity mapped to "
-                f"{target.relative_to(ROOT)}"
-            )
+            activity_type = str(activity.get("type") or "")
+            if is_multisport_component_duplicate(seen_targets[target_key], activity_type):
+                print(
+                    f"SKIP multisport component {activity_id} -> "
+                    f"{target.relative_to(ROOT)}"
+                )
+            else:
+                warnings.append(
+                    f"{activity_id}: duplicate target skipped after earlier activity mapped to "
+                    f"{target.relative_to(ROOT)}"
+                )
+            seen_targets[target_key].add(activity_type)
             continue
-        seen_targets.add(target_key)
+        seen_targets[target_key] = {str(activity.get("type") or "")}
 
         activity_day = parse_date(str(activity.get("start_date_local", "")))
         should_refresh = refresh_day is not None and activity_day == refresh_day
@@ -111,6 +128,10 @@ def main() -> int:
 
         data, source, activity_warnings = download_fit(client, activity_id)
         warnings.extend(activity_warnings)
+        if fit_content_is_unchanged(target, data):
+            skipped += 1
+            print(f"SKIP unchanged overlap {target.relative_to(ROOT)}")
+            continue
         write_bytes_atomic(target, data)
         downloaded += 1
         print(f"WROTE {target.relative_to(ROOT)} ({source})")

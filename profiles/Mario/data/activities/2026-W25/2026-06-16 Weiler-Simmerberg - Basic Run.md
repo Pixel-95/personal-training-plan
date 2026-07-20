@@ -18,11 +18,11 @@ Auswertung: 2026-06-22
 - Aerobic Training Effect: 3.2
 - Anaerobic Training Effect: 0.1
 - Effizienz: 0.0275m/s/bpm (4:12/km GAP @ 144bpm)
-- HR-Drift: 8.3% (deutlich driftend)
+- HR-Drift: 8.4% (deutlich driftend)
 
 ## Bericht
 
-Die Einheit war ein Lauf über 31:32 mit einem durchschnittlichen GAP von 4:12/km. Mit TSS 42, 144bpm im Schnitt und 156bpm maximal war der Reiz insgesamt gut einzuordnen. Der Training Effect lag aerob bei 3.2 und anaerob bei 0.1. Für die Planung ist besonders relevant, ob GAP, Herzfrequenz, Pausen und mögliche Beschwerden zusammenpassen. Die HR-Drift lag bei 8.3% (deutlich driftend) und hilft bei der Einordnung der aeroben Stabilität. Die Einheit sollte zusammen mit subjektivem Feedback und dem Wochenkontext für die weitere Planung bewertet werden.
+Die Einheit war ein Lauf über 31:32 mit einem durchschnittlichen GAP von 4:12/km. Mit TSS 42, 144bpm im Schnitt und 156bpm maximal war der Reiz insgesamt gut einzuordnen. Der Training Effect lag aerob bei 3.2 und anaerob bei 0.1. Für die Planung ist besonders relevant, ob GAP, Herzfrequenz, Pausen und mögliche Beschwerden zusammenpassen. Die HR-Drift lag bei 8.4% (deutlich driftend) und hilft bei der Einordnung der aeroben Stabilität. Die Einheit sollte zusammen mit subjektivem Feedback und dem Wochenkontext für die weitere Planung bewertet werden.
 
 ## Einordnung
 

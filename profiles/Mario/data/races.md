@@ -11,11 +11,11 @@
 | 2027-05-01 | Ironman Race TBD | Ironman Triathlon | 10 |
 
 
-
 # Gemacht
 ## Triathlon
 | Datum | Name | Typ | Gesamtzeit | Schwimm-Zeit | T1 | Bike-Zeit | T2 | Lauf-Zeit |
 |-|-|-|-|-|-|-|-|-|
+| 2026-07-19 | Kratschmayer Triathlon Waldenburg | Sprint Triathlon | 1:04:37 | 00:10:20 | 00:01:52 | 00:33:37 | 00:00:47 | 00:18:01 |
 | 2026-06-21 | Deutsche Meisterschaft Rothsee Triathlon | Olympische Distanz Triathlon | 02:19:04 | 00:28:05 | 02:40 | 01:04:51 | 01:46 | 00:41:43 |
 | 2026-05-10 | Ironman 70.3 Da Nang (Vietnam) | Ironman 70.3 | 4:30:08 | 0:32:37 | 0:03:14 | 2:17:35 | 0:03:24 | 1:33:18 |
 | 2026-04-12 | Weiler (Deutschland) | Triathlon olympische Distanz | 2:24:56 | 0:25:22 | 0:07:11 | 1:09:36 | 0:02:09 | 0:40:38 |

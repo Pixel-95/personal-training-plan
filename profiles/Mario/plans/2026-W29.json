@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "week": "2026-W29",
+  "analysis_week": "2026-W28",
+  "summary_override": {
+    "total": "13:52h",
+    "swim": "5700m",
+    "bike": "8:32h",
+    "run": "2:52h"
+  },
+  "days": [
+    {
+      "date": "2026-07-13",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Basic",
+          "amount": "40min",
+          "duration": "40min",
+          "content": [
+            "40min @5:05/km"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Long",
+          "amount": "1:15h",
+          "duration": "1:15h",
+          "content": [
+            "1:15h @5:05/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Aerobic Long",
+          "amount": "2800m",
+          "duration": "65min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "10x100m @1:50/100m,20s Pause",
+            "5x200m @1:52/100m,30s Pause",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Threshold",
+          "amount": "60min",
+          "duration": "60min",
+          "content": [
+            "5min @203W",
+            "3x15min @305W,4min @100W",
+            "2min @100W"
+          ]
+        },
+        {
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "15min",
+          "duration": "15min"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Threshold",
+          "amount": "37min",
+          "duration": "37min",
+          "content": [
+            "5min @5:05/km",
+            "3x8min @4:05/km,3min Trabpause",
+            "2min @5:05/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Aerobic Short",
+          "amount": "2400m",
+          "duration": "55min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "16x100m @1:48/100m,20s Pause",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "3:30h",
+          "duration": "3:30h",
+          "content": [
+            "3:30h @185W NP",
+            "90g Kohlenhydrate/h"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-18",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "3:30h",
+          "duration": "3:30h",
+          "content": [
+            "3:30h @175W NP",
+            "90g Kohlenhydrate/h"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-19",
+      "sessions": [
+        {
+          "sport": "race",
+          "title": "Kratschmayer Triathlon Waldenburg",
+          "amount": "Sprint",
+          "duration": "1:05h",
+          "content": [
+            "500m Swim + 20km Bike + 5km Run",
+            "Trainingswettkampf ohne Taper"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,19 +1,19 @@
 # 2026-06-21 Rothsee Triathlon Olympisch - Deutsche M'schaft
 
 Quelle: `2026-06-21 Rothsee Triathlon Olympisch - Deutsche M'schaft.fit`
-Auswertung: 2026-06-29
+Auswertung: 2026-07-15
 
 ## Kurzfassung
 
 - Sport: Triathlon
-- Start: 2026-06-21 06:59:42+00:00
+- Start: 2026-06-21 08:59:42+00:00
 - Dauer: 2:19:11
 - Verstrichene Zeit: 2:19:11
 - Distanz: 54.63km
 - Kalorien: 2509kcal
 - Avg HR: 153bpm
 - Max HR: 171bpm
-- TSS: 58
+- TSS: 167
 - Aerobic Training Effect: 5
 - Anaerobic Training Effect: 2.2
 - Schwimmen: 28:04, 1.47km, 145bpm avg HR
@@ -24,7 +24,7 @@ Auswertung: 2026-06-29
 
 ## Bericht
 
-Die Einheit war ein Triathlon über 2:19:11 mit 153bpm im Schnitt und 171bpm maximal. Mit TSS 58 und Training Effect aerob 5/anaerob 2.2 war der Wettkampfreiz hoch und planungsrelevant. Die Segmente werden getrennt bewertet, weil Schwimmen, Radfahren, Wechsel und Laufen unterschiedliche Belastungsmarker haben. Für die Planung sind vor allem die Radleistung, der anschließende Laufverlauf und die Wechselzeiten relevant. Die Einheit sollte zusammen mit subjektivem Feedback und dem Wochenkontext für die weitere Planung bewertet werden. Für die Load-Steuerung kann der TSS-Wert genutzt werden, sollte aber bei auffälliger Dauer oder Intensität gegengeprüft werden.
+Die Einheit war ein Triathlon über 2:19:11 mit 153bpm im Schnitt und 171bpm maximal. Mit TSS 167 und Training Effect aerob 5/anaerob 2.2 war der Wettkampfreiz hoch und planungsrelevant. Die Segmente werden getrennt bewertet, weil Schwimmen, Radfahren, Wechsel und Laufen unterschiedliche Belastungsmarker haben. Für die Planung sind vor allem die Radleistung, der anschließende Laufverlauf und die Wechselzeiten relevant. Die Einheit sollte zusammen mit subjektivem Feedback und dem Wochenkontext für die weitere Planung bewertet werden. Für die Load-Steuerung kann der TSS-Wert genutzt werden, sollte aber bei auffälliger Dauer oder Intensität gegengeprüft werden.
 
 ## Einordnung
 
@@ -46,23 +46,23 @@ Die Einheit war ein Triathlon über 2:19:11 mit 153bpm im Schnitt und 171bpm max
 
 | Zone | Zeit |
 |-|-|
-| Z1 | 1:55 |
-| Z2 | 5:51 |
-| Z3 | 21:03 |
-| Z4 | 20:06 |
-| Z5 | 3:31 |
-| Z6 | 9:11 |
+| Z1 | 1:57 |
+| Z2 | 6:32 |
+| Z3 | 22:38 |
+| Z4 | 19:14 |
+| Z5 | 2:36 |
+| Z6 | 8:40 |
 
 ### Laufen
 
 | Zone | Zeit |
 |-|-|
-| Z1 | 8:15 |
-| Z2 | 3:14 |
-| Z3 | 8:50 |
-| Z4 | 13:05 |
-| Z5 | 0:34 |
-| Z6 | 7:51 |
+| Z1 | 7:47 |
+| Z2 | 3:10 |
+| Z3 | 5:47 |
+| Z4 | 15:55 |
+| Z5 | 1:14 |
+| Z6 | 7:56 |
 
 ## Segmente
 

@@ -44,15 +44,125 @@ def read_fit(path: Path) -> FitInfo:
         for frame in fit:
             if isinstance(frame, fitdecode.records.FitDataMessage):
                 messages.setdefault(frame.name, []).append(field_dict(frame))
+    trim_accidental_multisport_finish_restart(messages)
     sessions = messages.get("session") or [{}]
     session = aggregate_multisport_session(sessions) if is_multisport_sessions(sessions) else sessions[0]
     laps = messages.get("lap") or []
     records = messages.get("record") or []
-    start = session.get("start_time")
+    start = local_activity_start(messages, session.get("start_time"))
     sport = str(session.get("sport") or session.get("sub_sport") or "").lower()
     if not sport:
         sport = infer_sport_from_name(path.name)
     return FitInfo(path, messages, session, laps, records, start, sport)
+
+
+def trim_accidental_multisport_finish_restart(messages: dict[str, list[dict[str, Any]]]) -> None:
+    """Remove a short stationary tail caused by restarting the watch after a race finish."""
+    sessions = messages.get("session") or []
+    if not is_multisport_sessions(sessions):
+        return
+    sport_sessions = [session for session in sessions if not is_transition_session(session)]
+    if not sport_sessions:
+        return
+    final_session = sport_sessions[-1]
+    final_start = final_session.get("start_time")
+    final_duration = value(final_session, "total_timer_time")
+    if not isinstance(final_start, datetime) or final_duration in (None, ""):
+        return
+    final_end = final_start + timedelta(seconds=float(final_duration))
+
+    events = sorted(
+        (event for event in messages.get("event", []) if isinstance(event.get("timestamp"), datetime)),
+        key=lambda event: event["timestamp"],
+    )
+    restart: datetime | None = None
+    for index, event in enumerate(events[:-1]):
+        stop_time = event["timestamp"]
+        if not (final_start < stop_time < final_end):
+            continue
+        if str(event.get("event_type") or "").lower() != "stop_all":
+            continue
+        next_event = events[index + 1]
+        next_time = next_event["timestamp"]
+        if (
+            str(next_event.get("event_type") or "").lower() == "start"
+            and 0 <= (next_time - stop_time).total_seconds() <= 5
+        ):
+            restart = next_time
+            break
+    if restart is None:
+        return
+
+    final_sport = str(final_session.get("sport") or "").lower()
+    final_laps = [
+        lap
+        for lap in messages.get("lap", [])
+        if str(lap.get("sport") or "").lower() == final_sport
+        and isinstance(lap.get("start_time"), datetime)
+    ]
+    trailing_laps = [lap for lap in final_laps if lap["start_time"] >= restart]
+    retained_laps = [lap for lap in final_laps if lap["start_time"] < restart]
+    trailing_duration = sum(float(value(lap, "total_timer_time") or 0) for lap in trailing_laps)
+    trailing_distance = sum(float(value(lap, "total_distance") or 0) for lap in trailing_laps)
+    if not retained_laps or trailing_duration < 15 or trailing_distance > 50:
+        return
+
+    messages["lap"] = [lap for lap in messages.get("lap", []) if lap not in trailing_laps]
+    messages["record"] = [
+        record
+        for record in messages.get("record", [])
+        if not isinstance(record.get("timestamp"), datetime) or record["timestamp"] < restart
+    ]
+    recompute_session_from_laps(final_session, retained_laps)
+
+
+def recompute_session_from_laps(session: dict[str, Any], laps: list[dict[str, Any]]) -> None:
+    durations = [float(value(lap, "total_timer_time") or 0) for lap in laps]
+    timer_time = sum(durations)
+    elapsed_time = sum(float(value(lap, "total_elapsed_time") or 0) for lap in laps)
+    distance = sum(float(value(lap, "total_distance") or 0) for lap in laps)
+    session["total_timer_time"] = timer_time
+    session["total_elapsed_time"] = elapsed_time
+    session["total_distance"] = distance
+    if timer_time > 0:
+        session["enhanced_avg_speed"] = distance / timer_time
+
+    for field in ("avg_heart_rate", "avg_power", "avg_cadence", "avg_running_cadence", "avg_step_length", "avg_stance_time", "avg_vertical_oscillation"):
+        weighted = [
+            (float(lap[field]), duration)
+            for lap, duration in zip(laps, durations)
+            if lap.get(field) not in (None, "") and duration > 0
+        ]
+        if weighted:
+            session[field] = sum(item * duration for item, duration in weighted) / sum(duration for _, duration in weighted)
+    for field in ("max_heart_rate", "max_power"):
+        values = [float(lap[field]) for lap in laps if lap.get(field) not in (None, "")]
+        if values:
+            session[field] = max(values)
+    normalized = [
+        (float(lap["normalized_power"]), duration)
+        for lap, duration in zip(laps, durations)
+        if lap.get("normalized_power") not in (None, "") and duration > 0
+    ]
+    if normalized:
+        session["normalized_power"] = (
+            sum(power**4 * duration for power, duration in normalized) / sum(duration for _, duration in normalized)
+        ) ** 0.25
+    for field in ("total_ascent", "total_descent", "total_calories"):
+        values = [float(lap[field]) for lap in laps if lap.get(field) not in (None, "")]
+        if values:
+            session[field] = sum(values)
+
+
+def local_activity_start(
+    messages: dict[str, list[dict[str, Any]]],
+    fallback: datetime | None,
+) -> datetime | None:
+    for activity in messages.get("activity", []):
+        local_timestamp = activity.get("local_timestamp")
+        if isinstance(local_timestamp, datetime):
+            return local_timestamp
+    return fallback
 
 
 def is_transition_session(session: dict[str, Any]) -> bool:
@@ -502,6 +612,26 @@ def match_activity(info: FitInfo, activities: list[dict[str, Any]]) -> dict[str,
     if not candidates:
         return None
     fit_name = normalize_name(info.path.stem[11:] if re.match(r"\d{4}-\d{2}-\d{2} ", info.path.stem) else info.path.stem)
+    if is_multisport(info.sport):
+        named = [
+            item
+            for item in candidates
+            if fit_name
+            and (
+                fit_name in normalize_name(str(item.get("name") or ""))
+                or normalize_name(str(item.get("name") or "")) in fit_name
+            )
+        ]
+        matches = named or candidates
+        names = {normalize_name(str(item.get("name") or "")) for item in matches}
+        if len(names) == 1:
+            combined = dict(matches[0])
+            for field in ("icu_training_load", "hr_load"):
+                values = [float(item[field]) for item in matches if item.get(field) not in (None, "")]
+                if values:
+                    combined[field] = sum(values)
+            return combined
+        return None
     for item in candidates:
         activity_name = normalize_name(str(item.get("name") or ""))
         if fit_name and (fit_name in activity_name or activity_name in fit_name):
@@ -579,11 +709,32 @@ def hr_drift(info: FitInfo) -> str:
                 points.append((timestamp, float(hr), float(work)))
     else:
         points = run_gap_record_points(info)
+    return hr_drift_from_points(points)
+
+
+def hr_drift_from_points(points: list[tuple[datetime, float, float]]) -> str:
     if len(points) < 60:
         return "nicht sinnvoll berechenbar"
     points.sort(key=lambda item: item[0])
-    midpoint = len(points) // 2
-    first, second = points[:midpoint], points[midpoint:]
+    duration = (points[-1][0] - points[0][0]).total_seconds()
+    if duration <= 0:
+        return "nicht sinnvoll berechenbar"
+    start = points[0][0] + timedelta(seconds=duration * 0.1)
+    end = points[0][0] + timedelta(seconds=duration * 0.9)
+    comparable = [point for point in points if start <= point[0] <= end]
+    if len(comparable) < 60:
+        return "nicht sinnvoll berechenbar"
+    median_hr = sorted(hr for _, hr, _ in comparable)[len(comparable) // 2]
+    minimum_plausible_hr = max(60.0, median_hr * 0.65)
+    comparable = [point for point in comparable if point[1] >= minimum_plausible_hr]
+    if len(comparable) < 60:
+        return "nicht sinnvoll berechenbar"
+    midpoint = len(comparable) // 2
+    first, second = comparable[:midpoint], comparable[midpoint:]
+    work1 = sum(work for _, _, work in first) / len(first)
+    work2 = sum(work for _, _, work in second) / len(second)
+    if work1 <= 0 or abs(work2 - work1) / work1 > 0.15:
+        return "nicht sinnvoll berechenbar"
     ef1 = sum(work for _, _, work in first) / sum(hr for _, hr, _ in first)
     ef2 = sum(work for _, _, work in second) / sum(hr for _, hr, _ in second)
     if ef1 <= 0:

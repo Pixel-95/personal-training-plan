@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8">
@@ -6,27 +6,11 @@
   <title>Aktueller Trainingsplan</title>
   <link rel="icon" type="image/png" href="assets/calendar.png">
   <script>
-    const PROFILE = "Mario";
-
-    function isoWeek(date) {
-      const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-      const day = utcDate.getUTCDay() || 7;
-      utcDate.setUTCDate(utcDate.getUTCDate() + 4 - day);
-      const year = utcDate.getUTCFullYear();
-      const yearStart = new Date(Date.UTC(year, 0, 1));
-      const week = Math.ceil((((utcDate - yearStart) / 86400000) + 1) / 7);
-      return `${year}-W${String(week).padStart(2, "0")}`;
-    }
-
-    function planPath(week) {
-      return `profiles/${PROFILE}/plans/${week}.html`;
-    }
-
-    const week = isoWeek(new Date());
-    window.location.replace(planPath(week));
+    const LATEST_PLAN = "2026-W30";
+    window.location.replace(`profiles/Mario/plans/${LATEST_PLAN}.html`);
   </script>
 </head>
 <body>
-  <p>Weiterleitung zum aktuellen Trainingsplan...</p>
+  <p>Weiterleitung zum neuesten Trainingsplan...</p>
 </body>
 </html>

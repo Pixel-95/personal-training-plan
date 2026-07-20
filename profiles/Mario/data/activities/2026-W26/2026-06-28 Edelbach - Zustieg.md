@@ -1,7 +1,7 @@
 # 2026-06-28 Edelbach - Zustieg
 
 Quelle: `2026-06-28 Edelbach - Zustieg.fit`
-Auswertung: 2026-06-29
+Auswertung: 2026-07-06
 
 ## Kurzfassung
 

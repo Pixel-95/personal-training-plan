@@ -148,6 +148,7 @@ Zwei-Phasen-Planung:
 - `profiles/<TRAINING_PROFILE>/data/health/steps.md`: Schritte aus Intervals.icu `steps` übernehmen.
 - `profiles/<TRAINING_PROFILE>/data/health/steps.md`: `7-Tage-Mittel-Schritte` als arithmetisches Mittel der Schrittwerte im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; nur berechnen, wenn mindestens `4 von 7` Werten vorhanden sind.
 - `profiles/<TRAINING_PROFILE>/data/health/calories.md` ist optional und wird manuell gepflegt, nicht aus Intervals.icu abgeleitet. Wenn vorhanden, enthält die Datei die Spalten `Datum`, `Ruhe-Kalorien` und `Aktiv-Kalorien`; neueste Einträge stehen oben.
+- Wenn `profiles/<TRAINING_PROFILE>/data/health/calories.md` existiert, vor jedem Planvorschlag prüfen, ob Kalorien mindestens bis zum jeweils gestrigen Kalendertag eingetragen sind. Wenn der neueste Kalorientag älter als gestern ist, dies vor dem Planvorschlag im Chat melden.
 - Die Schritte-Tabelle `profiles/<TRAINING_PROFILE>/data/health/steps.md` weiterhin automatisiert pflegen, auch wenn im Plan statt des Schritte-Plots ein Kalorien-Plot angezeigt wird.
 - `profiles/<TRAINING_PROFILE>/data/health/weight.md`: Gewicht aus Intervals.icu `weight` übernehmen.
 - `profiles/<TRAINING_PROFILE>/data/health/weight.md`: `7-Tage-Mittel-Gewicht` im 7-Kalendertage-Fenster inklusive aktuellem Tag berechnen; fehlende Tageswerte ignorieren; bei `5-7` vorhandenen Werten höchsten und niedrigsten Wert streichen und das arithmetische Mittel der übrigen Werte bilden; bei genau `4` vorhandenen Werten das normale arithmetische Mittel bilden; bei weniger als `4` vorhandenen Werten `-` eintragen; den Mittelwert immer mit `2` Nachkommastellen speichern.
@@ -255,6 +256,7 @@ Session-Typen und Trainingslogik:
 - Die hauptsächliche Planung soll auf den genannten Session-Typen beruhen. Falls trainingslogisch nötig, dürfen vereinzelt weitere Session-Typen genutzt werden.
 - Die Wochenstruktur aus `profiles/<TRAINING_PROFILE>/data/availability.md` unter `Standard Woche` ist die dauerhafte Standardstruktur für Wochenpläne.
 - Die Wochenstruktur soll grundsätzlich stabil bleiben: gleiche Session-Arten an gleichen Wochentagen planen, sofern Zustand, Rennen oder Verfügbarkeit nicht dagegen sprechen.
+- Bei Sonderverfügbarkeiten möglichst alle wesentlichen Session-Arten der Standardwoche sinnvoll auf die verfügbaren Tage verteilen oder durch gleichwertige geplante Belastungen ersetzen. Keine Einheit nur zur Vollständigkeit zusätzlich erzwingen, wenn sie den Wochenreiz unnötig dupliziert oder Erholung und Trainingswirkung verschlechtert.
 - Inhalte, Intervallformate, Zielwerte und Umfänge selbstständig festlegen und progressiv entwickeln.
 - Zielwerte für Pace, Power und HR standardmäßig aus der Mitte der passenden Zone in `profiles/<TRAINING_PROFILE>/data/zones.md` ableiten, sofern keine spezifischere Vorgabe oder trainingslogische Abweichung dagegen spricht.
 - Intervall-Einheiten zu Beginn eines Aufbaus eher kurz und hart planen; in Richtung Race eher länger und race-specific planen.
@@ -368,8 +370,8 @@ Wochenplan-Format:
 - Nach Fertigstellung des HTML-Wochenplans als letzten Schritt zusätzlich ein PDF `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.pdf` aus genau dieser HTML-Datei erzeugen, sodass PDF und HTML dieselbe Darstellung, dasselbe CSS und dieselben SVG-Plots verwenden.
 - Für den PDF-Export nach Möglichkeit Browser-/Print-to-PDF-Rendering der fertigen HTML-Datei verwenden, nicht eine separate manuelle PDF-Nachbildung.
 - Wenn kein lokaler Browser, Headless-Renderer oder PDF-Exportwerkzeug verfügbar ist, dies im Chat klar melden; die HTML-Datei bleibt dann die kanonische Darstellung.
-- Zusätzlich im Repo-Root eine Datei `trainingplan.html` pflegen, die anhand des aktuellen Datums immer auf Marios Plan der aktuellen ISO-Woche `profiles/Mario/plans/YYYY-Www.html` weiterleitet.
-- `trainingplan.html` nicht jede Woche auf einen hart codierten Planpfad aktualisieren; die Datei soll die ISO-Woche per JavaScript berechnen.
+- Zusätzlich im Repo-Root eine Datei `trainingplan.html` pflegen, die auf Marios neuesten gerenderten Wochenplan `profiles/Mario/plans/YYYY-Www.html` weiterleitet.
+- `scripts/render_plan.py` aktualisiert `trainingplan.html` bei jedem Rendern eines Mario-Plans automatisch auf die höchste vorhandene ISO-Woche. Das LLM darf diese Weiterleitung nicht manuell im Rahmen einer Wochenplanung ändern.
 - Wenn ein Plan bewusst für eine andere als die aktuelle ISO-Woche geöffnet werden soll, direkt die konkrete Datei unter `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.html` öffnen.
 - Die HTML-Datei soll nur Struktur und Inhalte enthalten. Gemeinsames Styling liegt in `plan-format/training-plan.css`; aus `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.html` wird es relativ mit `../../../plan-format/training-plan.css` eingebunden.
 - Jede Wochenplan-HTML soll im `<head>` `assets/calendar.png` als Favicon einbinden; aus `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.html` relativ mit `<link rel="icon" type="image/png" href="../../../assets/calendar.png">`.

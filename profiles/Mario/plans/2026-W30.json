@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "week": "2026-W30",
+  "analysis_week": "2026-W29",
+  "summary_override": {
+    "total": "9:45h",
+    "swim": "5200m",
+    "bike": "4:35h",
+    "run": "2:40h"
+  },
+  "days": [
+    {
+      "date": "2026-07-20",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Basic",
+          "amount": "40min",
+          "duration": "40min",
+          "content": [
+            "40min @4:55/km"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "sessions": [
+        {
+          "sport": "swim",
+          "title": "Threshold",
+          "amount": "2400m",
+          "duration": "55min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "16x100m @1:40/100m,20s Pause",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-22",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "2:45h",
+          "duration": "2:45h",
+          "content": [
+            "2:45h @205W NP",
+            "75g Kohlenhydrate/h"
+          ]
+        },
+        {
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "15min",
+          "duration": "15min"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-23",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Threshold",
+          "amount": "50min",
+          "duration": "50min",
+          "content": [
+            "5min @203W",
+            "3x10min @300W,4min @100W",
+            "3min @100W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-24",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Long",
+          "amount": "1:20h",
+          "duration": "1:20h",
+          "content": [
+            "1:20h @4:50/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Aerobic Long",
+          "amount": "2800m",
+          "duration": "65min",
+          "content": [
+            "200m Warmup",
+            "10x50m Technik",
+            "10x100m @1:48/100m,20s Pause",
+            "5x200m @1:50/100m,30s Pause",
+            "100m Cooldown"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Basic",
+          "amount": "60min",
+          "duration": "60min",
+          "content": [
+            "60min @205W"
+          ]
+        },
+        {
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "15min",
+          "duration": "15min"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-26",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Threshold",
+          "amount": "40min",
+          "duration": "40min",
+          "content": [
+            "5min @4:55/km",
+            "4x6min @3:55/km,2min Trabpause",
+            "3min @4:55/km"
+          ]
+        }
+      ]
+    }
+  ]
+}

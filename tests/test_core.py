@@ -4,7 +4,7 @@ import json
 import sys
 import tempfile
 import unittest
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -14,8 +14,11 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 import generate_trend_plots
+import analyze_fit_files
+import download_fit_files
 import update_health
 import update_loads
+import update_zones
 from date_utils import (
     date_range_from_days,
     expand_range_with_overlap,
@@ -27,7 +30,7 @@ from date_utils import (
 from intervals_icu_client import IntervalsError, get_api_key, get_athlete_id, sanitize_activity_name
 from markdown_tables import read_table, render_table, write_text_atomic
 from profile_paths import PROFILE_PLANS_DIR
-from render_plan import resolve_plan_path, validate_plan
+from render_plan import latest_rendered_plan_week, resolve_plan_path, validate_plan
 from validate_repo import validate_planning_readiness
 
 
@@ -129,6 +132,33 @@ class LoadCalculationTests(unittest.TestCase):
             self.assertEqual(rows["2026-06-02"][2:4], ["17", "10"])
 
 
+class ZoneCalculationTests(unittest.TestCase):
+    def test_zones_use_latest_threshold_values(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            data_dir = Path(directory)
+            thresholds = data_dir / "thresholds"
+            thresholds.mkdir()
+            (thresholds / "thresholds_swim.md").write_text(
+                render_table(["Datum", "CSS / min:sec/100m"], [["2026-01-01", "1:35"]]),
+                encoding="utf-8",
+            )
+            (thresholds / "thresholds_bike.md").write_text(
+                render_table(["Datum", "FTP / W"], [["2026-01-01", "312"]]),
+                encoding="utf-8",
+            )
+            (thresholds / "thresholds_run.md").write_text(
+                render_table(
+                    ["Datum", "LT / bpm", "LT / min:sec/km"],
+                    [["2026-01-01", "160", "3:58"]],
+                ),
+                encoding="utf-8",
+            )
+
+            zones = update_zones.build_zones(data_dir)
+            self.assertIn("| Z6 | Anaerobic | 171 | / | 343 | / |", zones)
+            self.assertIn("| Z4 | Threshold | 152 | 166 | 4:16 | 3:51 |", zones)
+
+
 class ConfigurationTests(unittest.TestCase):
     def test_credentials_are_required(self) -> None:
         with self.assertRaises(IntervalsError):
@@ -138,6 +168,119 @@ class ConfigurationTests(unittest.TestCase):
 
     def test_activity_names_are_safe(self) -> None:
         self.assertEqual(sanitize_activity_name("Run 🏃 / Test"), "Run - Test")
+
+    def test_multisport_component_duplicates_are_expected_after_transition(self) -> None:
+        self.assertTrue(
+            download_fit_files.is_multisport_component_duplicate({"Swim"}, "Transition")
+        )
+        self.assertTrue(
+            download_fit_files.is_multisport_component_duplicate(
+                {"Swim", "Transition"}, "Ride"
+            )
+        )
+        self.assertFalse(
+            download_fit_files.is_multisport_component_duplicate({"Run"}, "Run")
+        )
+
+    def test_unchanged_overlap_fit_is_detected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "activity.fit"
+            path.write_bytes(b"same-fit")
+            self.assertTrue(download_fit_files.fit_content_is_unchanged(path, b"same-fit"))
+            self.assertFalse(download_fit_files.fit_content_is_unchanged(path, b"changed-fit"))
+
+    def test_multisport_activity_loads_are_summed(self) -> None:
+        info = analyze_fit_files.FitInfo(
+            Path("2026-06-21 Test Triathlon.fit"),
+            {},
+            {},
+            [],
+            [],
+            datetime(2026, 6, 21, tzinfo=timezone.utc),
+            "multisport",
+        )
+        activities = [
+            {
+                "start_date_local": "2026-06-21T08:00:00",
+                "type": sport,
+                "name": "Test Triathlon",
+                "icu_training_load": load,
+            }
+            for sport, load in (("Swim", 20), ("Ride", 80), ("Run", 50))
+        ]
+        match = analyze_fit_files.match_activity(info, activities)
+        self.assertIsNotNone(match)
+        self.assertEqual(match["icu_training_load"], 150)
+
+    def test_accidental_multisport_finish_restart_is_trimmed(self) -> None:
+        start = datetime(2026, 7, 19, 12, 0, tzinfo=timezone.utc)
+        restart = start + timedelta(seconds=1086)
+        run_session = {
+            "sport": "running",
+            "start_time": start,
+            "total_timer_time": 1176,
+            "total_elapsed_time": 1176,
+            "total_distance": 4971,
+        }
+        retained_lap = {
+            "sport": "running",
+            "start_time": start,
+            "total_timer_time": 1086,
+            "total_elapsed_time": 1086,
+            "total_distance": 4956,
+            "avg_heart_rate": 166,
+            "max_heart_rate": 174,
+        }
+        trailing_lap = {
+            "sport": "running",
+            "start_time": restart,
+            "total_timer_time": 90,
+            "total_elapsed_time": 90,
+            "total_distance": 15,
+            "avg_heart_rate": 142,
+            "max_heart_rate": 171,
+        }
+        messages = {
+            "session": [
+                {"sport": "swimming", "start_time": start - timedelta(minutes=45), "total_timer_time": 600},
+                run_session,
+            ],
+            "lap": [retained_lap, trailing_lap],
+            "record": [
+                {"timestamp": restart - timedelta(seconds=1)},
+                {"timestamp": restart + timedelta(seconds=1)},
+            ],
+            "event": [
+                {"timestamp": restart - timedelta(seconds=1), "event_type": "stop_all"},
+                {"timestamp": restart, "event_type": "start"},
+                {"timestamp": restart + timedelta(seconds=90), "event_type": "stop_all"},
+            ],
+        }
+
+        analyze_fit_files.trim_accidental_multisport_finish_restart(messages)
+
+        self.assertEqual(run_session["total_timer_time"], 1086)
+        self.assertEqual(run_session["total_distance"], 4956)
+        self.assertEqual(messages["lap"], [retained_lap])
+        self.assertEqual(len(messages["record"]), 1)
+
+    def test_local_activity_timestamp_overrides_utc_session_start(self) -> None:
+        utc_start = datetime(2026, 5, 9, 22, 48, tzinfo=timezone.utc)
+        local_start = datetime(2026, 5, 10, 5, 48, tzinfo=timezone.utc)
+        self.assertEqual(
+            analyze_fit_files.local_activity_start(
+                {"activity": [{"local_timestamp": local_start}]}, utc_start
+            ),
+            local_start,
+        )
+
+    def test_hr_drift_ignores_initial_sensor_dropout(self) -> None:
+        start = datetime(2026, 7, 10, tzinfo=timezone.utc)
+        points = []
+        for second in range(1000):
+            heart_rate = 70 if second < 100 else 130
+            points.append((start + timedelta(seconds=second), heart_rate, 3.0))
+        self.assertEqual(analyze_fit_files.hr_drift_from_points(points), "0.0% (stabil)")
 
     def test_demo_profile_is_not_planning_ready(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -172,6 +315,14 @@ class PlanTests(unittest.TestCase):
         other = ROOT / "profiles" / "__other__" / "plans" / "plan.json"
         with self.assertRaises(ValueError):
             resolve_plan_path(str(other))
+
+    def test_latest_rendered_plan_week_uses_week_identifier_not_timestamp(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            plans = Path(directory)
+            (plans / "2026-W28.html").write_text("old", encoding="utf-8")
+            (plans / "2026-W29.html").write_text("new", encoding="utf-8")
+            (plans / "notes.html").write_text("ignore", encoding="utf-8")
+            self.assertEqual(latest_rendered_plan_week(plans), "2026-W29")
 
 
 class TrendPlotTests(unittest.TestCase):
