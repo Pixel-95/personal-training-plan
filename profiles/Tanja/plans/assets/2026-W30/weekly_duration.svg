@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Wochenumfang">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1076" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Wochenumfang</text>
+<line x1="70" y1="74.0" x2="1146" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1146" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1146" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1146" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1146" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">5.8h</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
+<line x1="114.8" y1="74" x2="114.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="114.8" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W18</text>
+<line x1="204.5" y1="74" x2="204.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="294.2" y1="74" x2="294.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="294.2" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W20</text>
+<line x1="383.8" y1="74" x2="383.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="473.5" y1="74" x2="473.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="473.5" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W22</text>
+<line x1="563.2" y1="74" x2="563.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="652.8" y1="74" x2="652.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="652.8" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W24</text>
+<line x1="742.5" y1="74" x2="742.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="832.2" y1="74" x2="832.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="832.2" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W26</text>
+<line x1="921.8" y1="74" x2="921.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="1011.5" y1="74" x2="1011.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1011.5" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W28</text>
+<line x1="1101.2" y1="74" x2="1101.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1101.2" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W29</text>
+<rect x="807.5" y="430.7" width="49.3" height="55.3" rx="2.2" fill="#2f6fa3"/>
+<rect x="807.5" y="388.8" width="49.3" height="41.9" rx="2.2" fill="#b64b3a"/>
+<rect x="897.2" y="479.7" width="49.3" height="6.3" rx="2.2" fill="#2f6fa3"/>
+<rect x="897.2" y="440.6" width="49.3" height="39.1" rx="2.2" fill="#287c71"/>
+<rect x="897.2" y="402.7" width="49.3" height="37.9" rx="2.2" fill="#b64b3a"/>
+<rect x="986.8" y="433.7" width="49.3" height="52.3" rx="2.2" fill="#2f6fa3"/>
+<rect x="986.8" y="280.5" width="49.3" height="153.2" rx="2.2" fill="#287c71"/>
+<rect x="986.8" y="244.3" width="49.3" height="36.2" rx="2.2" fill="#b64b3a"/>
+<rect x="1076.5" y="358.8" width="49.3" height="127.2" rx="2.2" fill="#2f6fa3"/>
+<rect x="1076.5" y="311.5" width="49.3" height="47.4" rx="2.2" fill="#287c71"/>
+<rect x="1076.5" y="127.7" width="49.3" height="183.7" rx="2.2" fill="#b64b3a"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Run</text>
+<circle cx="1119.6" cy="28" r="4.5" fill="#b64b3a"/>
+<text x="1079.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike</text>
+<circle cx="1036.4" cy="28" r="4.5" fill="#287c71"/>
+<text x="996.3999999999999" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Swim</text>
+<circle cx="953.2" cy="28" r="4.5" fill="#2f6fa3"/>
+</svg>
+

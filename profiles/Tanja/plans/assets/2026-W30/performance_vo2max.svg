@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="VO2max">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="992" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">VO2max</text>
+<line x1="70" y1="74.0" x2="1062" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1062" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1062" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1062" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1062" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">21.07.</text>
+<line x1="318.0" y1="74" x2="318.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="318.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.10.</text>
+<line x1="566.0" y1="74" x2="566.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="566.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">19.01.</text>
+<line x1="814.0" y1="74" x2="814.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="814.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.04.</text>
+<line x1="1062.0" y1="74" x2="1062.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1062.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.07.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">48.8</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">41</text>
+<polyline points="685.9,228.3 699.5,282.7 800.4,391.7 819.5,446.1 933.9,282.7 1010.2,255.5 1037.5,233.7 1051.1,173.8" fill="none" stroke="#287c71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="685.9" cy="228.3" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="699.5" cy="282.7" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="800.4" cy="391.7" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="819.5" cy="446.1" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="933.9" cy="282.7" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1010.2" cy="255.5" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1037.5" cy="233.7" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1051.1" cy="173.8" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<polyline points="522.4,228.3 729.5,173.8 762.2,228.3 833.1,173.8 857.6,228.3 865.8,173.8 955.7,228.3 996.6,266.4 1007.5,228.3 1034.7,201.0 1042.9,179.2 1048.4,152.0 1059.3,141.1 1062.0,113.9" fill="none" stroke="#b64b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="522.4" cy="228.3" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="729.5" cy="173.8" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="762.2" cy="228.3" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="833.1" cy="173.8" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="857.6" cy="228.3" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="865.8" cy="173.8" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="955.7" cy="228.3" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="996.6" cy="266.4" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1007.5" cy="228.3" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1034.7" cy="201.0" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1042.9" cy="179.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1048.4" cy="152.0" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1059.3" cy="141.1" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1062.0" cy="113.9" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Run</text>
+<circle cx="1119.6" cy="28" r="4.5" fill="#b64b3a"/>
+<text x="1079.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike</text>
+<circle cx="1036.4" cy="28" r="4.5" fill="#287c71"/>
+<text x="1076" y="173.8" fill="#287c71" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">47</text>
+<text x="1076" y="133.9" fill="#b64b3a" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">48.1</text>
+</svg>
+

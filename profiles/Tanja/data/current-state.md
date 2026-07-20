@@ -1,10 +1,11 @@
 ﻿# Aktueller Zustand
 
-Zuletzt vom LLM zusammengefasst: 2026-06-25
+Zuletzt vom LLM zusammengefasst: 2026-07-20
 
 ## Aktuelle Zusammenfassung
 
-- Am 2026-06-30 findet Tanjas letzter Technik-Schwimmkurs statt. Diesen Termin bei der kurzfristigen Trainingsplanung berücksichtigen.
+- Seit dem Athleten-Update vom 2026-06-25 liegt kein neuer subjektiver Zustandsbericht vor.
+- Der letzte angekündigte Technik-Schwimmkurs fand am 2026-06-30 statt und ist keine aktuelle Terminrestriktion mehr.
 
 ## Neueste Updates
 

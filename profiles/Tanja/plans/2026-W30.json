@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "week": "2026-W30",
+  "analysis_week": "2026-W29",
+  "days": [
+    {
+      "date": "2026-07-20",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-21",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-22",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-23",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-24",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-25",
+      "sessions": []
+    },
+    {
+      "date": "2026-07-26",
+      "sessions": []
+    }
+  ]
+}

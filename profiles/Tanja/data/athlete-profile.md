@@ -1,6 +1,6 @@
 ﻿# Athletenprofil
 
-Stand: 1900-01-01
+Stand: 2026-07-20
 
 ## Person
 
@@ -51,9 +51,7 @@ Aktueller Zustand, Beschwerden und kurzfristige Warnsignale gehören in data/cur
 
 ## Supplements
 
-| Substanz | Einnahme pro Tag |
-|-|-|
-| DEMO Supplement | - |
+Keine Supplements.
 
 ## Ernährung und Race-Fueling
 

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Schlaf + Ruhepuls">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1076" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Schlaf + Ruhepuls</text>
+<defs><linearGradient id="sleep-duration-gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7aa6d8" stop-opacity="0.95"/><stop offset="100%" stop-color="#7aa6d8" stop-opacity="0.2"/></linearGradient></defs>
+<line x1="70" y1="74.0" x2="1146" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1146" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1146" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1146" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1146" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">22.04.</text>
+<line x1="336.0" y1="74" x2="336.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="336.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">14.05.</text>
+<line x1="602.0" y1="74" x2="602.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="602.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">05.06.</text>
+<line x1="880.0" y1="74" x2="880.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="880.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">28.06.</text>
+<line x1="1146.0" y1="74" x2="1146.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1146.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.07.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">9.4h</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
+<text x="1158" y="79" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">100Score</text>
+<rect x="839.8" y="142.4" width="7.9" height="343.6" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="851.9" y="154.9" width="7.9" height="331.1" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="864.0" y="138.7" width="7.9" height="347.3" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="876.1" y="149.0" width="7.9" height="337.0" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="888.1" y="159.3" width="7.9" height="326.7" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="900.2" y="171.7" width="7.9" height="314.3" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="912.3" y="132.8" width="7.9" height="353.2" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="924.4" y="118.1" width="7.9" height="367.9" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="936.5" y="162.9" width="7.9" height="323.1" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="948.6" y="132.8" width="7.9" height="353.2" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="960.7" y="152.7" width="7.9" height="333.3" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="972.8" y="155.6" width="7.9" height="330.4" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="984.9" y="159.3" width="7.9" height="326.7" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="997.0" y="170.3" width="7.9" height="315.7" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1009.0" y="168.1" width="7.9" height="317.9" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1021.1" y="134.3" width="7.9" height="351.7" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1033.2" y="136.5" width="7.9" height="349.5" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1045.3" y="154.1" width="7.9" height="331.9" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1057.4" y="121.8" width="7.9" height="364.2" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1069.5" y="175.4" width="7.9" height="310.6" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1081.6" y="132.1" width="7.9" height="353.9" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1093.7" y="127.7" width="7.9" height="358.3" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1105.8" y="148.2" width="7.9" height="337.8" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1117.9" y="122.5" width="7.9" height="363.5" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1129.9" y="129.2" width="7.9" height="356.8" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<rect x="1142.0" y="179.8" width="7.9" height="306.2" rx="2.2" fill="url(#sleep-duration-gradient)"/>
+<polyline points="843.8,102.8 855.8,135.8 867.9,144.0 880.0,156.4 892.1,135.8 904.2,148.2 916.3,123.4 928.4,135.8 940.5,156.4 952.6,123.4 964.7,135.8 976.7,139.9 988.8,160.5 1000.9,144.0 1013.0,139.9 1025.1,102.8 1037.2,135.8 1049.3,205.8 1061.4,148.2 1073.5,164.6 1085.6,148.2 1097.6,119.3 1109.7,160.5 1121.8,115.2 1133.9,214.1 1146.0,144.0" fill="none" stroke="#6f5aa7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="843.8" cy="102.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="855.8" cy="135.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="867.9" cy="144.0" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="880.0" cy="156.4" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="892.1" cy="135.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="904.2" cy="148.2" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="916.3" cy="123.4" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="928.4" cy="135.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="940.5" cy="156.4" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="952.6" cy="123.4" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="964.7" cy="135.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="976.7" cy="139.9" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="988.8" cy="160.5" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1000.9" cy="144.0" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1013.0" cy="139.9" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1025.1" cy="102.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1037.2" cy="135.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1049.3" cy="205.8" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1061.4" cy="148.2" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1073.5" cy="164.6" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1085.6" cy="148.2" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1097.6" cy="119.3" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1109.7" cy="160.5" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1121.8" cy="115.2" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1133.9" cy="214.1" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1146.0" cy="144.0" r="3.8" fill="#6f5aa7" stroke="#ffffff" stroke-width="1.6"/>
+<polyline points="783.3,387.2 795.4,361.2 831.7,430.5 843.8,430.5 855.8,421.8 867.9,404.5 880.0,387.2 892.1,404.5 904.2,413.2 916.3,395.8 928.4,387.2 940.5,404.5 952.6,404.5 964.7,430.5 976.7,421.8 988.8,413.2 1000.9,465.2 1013.0,465.2 1025.1,439.2 1037.2,439.2 1049.3,404.5 1061.4,430.5 1073.5,430.5 1085.6,413.2 1097.6,421.8 1109.7,404.5 1121.8,404.5 1133.9,413.2 1146.0,413.2" fill="none" stroke="#b64b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="783.3" cy="387.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="795.4" cy="361.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="831.7" cy="430.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="843.8" cy="430.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="855.8" cy="421.8" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="867.9" cy="404.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="880.0" cy="387.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="892.1" cy="404.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="904.2" cy="413.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="916.3" cy="395.8" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="928.4" cy="387.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="940.5" cy="404.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="952.6" cy="404.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="964.7" cy="430.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="976.7" cy="421.8" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="988.8" cy="413.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1000.9" cy="465.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1013.0" cy="465.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1025.1" cy="439.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1037.2" cy="439.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1049.3" cy="404.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1061.4" cy="430.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1073.5" cy="430.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1085.6" cy="413.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1097.6" cy="421.8" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1109.7" cy="404.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1121.8" cy="404.5" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1133.9" cy="413.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1146.0" cy="413.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Ruhepuls</text>
+<circle cx="1085.6" cy="28" r="4.5" fill="#b64b3a"/>
+<text x="1045.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Sleepscore</text>
+<circle cx="961.6" cy="28" r="4.5" fill="#6f5aa7"/>
+<text x="921.5999999999999" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Schlafdauer</text>
+<circle cx="830.8" cy="28" r="4.5" fill="#7aa6d8"/>
+</svg>
+

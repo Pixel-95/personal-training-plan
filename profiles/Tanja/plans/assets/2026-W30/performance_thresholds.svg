@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Thresholds">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="992" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Thresholds</text>
+<line x1="70" y1="74.0" x2="1062" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1062" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1062" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1062" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1062" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">21.07.</text>
+<line x1="318.0" y1="74" x2="318.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="318.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.10.</text>
+<line x1="566.0" y1="74" x2="566.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="566.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">19.01.</text>
+<line x1="814.0" y1="74" x2="814.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="814.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.04.</text>
+<line x1="1062.0" y1="74" x2="1062.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1062.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">20.07.</text>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Run LT</text>
+<circle cx="1099.2" cy="28" r="4.5" fill="#9f2f25"/>
+<text x="1059.2" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike FTP</text>
+<circle cx="988.8" cy="28" r="4.5" fill="#287c71"/>
+<text x="948.8000000000001" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Swim CSS</text>
+<circle cx="878.4" cy="28" r="4.5" fill="#2f6fa3"/>
+<polyline points="604.2,446.1 939.4,113.9" fill="none" stroke="#2f6fa3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="604.2" cy="446.1" r="3.8" fill="#2f6fa3" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="939.4" cy="113.9" r="3.8" fill="#2f6fa3" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1076" y="113.9" fill="#2f6fa3" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">2:32/100m</text>
+<polyline points="969.3,446.1 991.1,113.9" fill="none" stroke="#287c71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="969.3" cy="446.1" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="991.1" cy="113.9" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1076" y="131.9" fill="#287c71" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">163W</text>
+<polyline points="784.0,446.1 824.9,327.5 996.6,374.9 1007.5,327.5 1042.9,113.9" fill="none" stroke="#9f2f25" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="784.0" cy="446.1" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="824.9" cy="327.5" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="996.6" cy="374.9" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1007.5" cy="327.5" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1042.9" cy="113.9" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1076" y="149.9" fill="#9f2f25" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">5:10/km</text>
+</svg>
+

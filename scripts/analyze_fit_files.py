@@ -565,16 +565,16 @@ def normalize_name(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", sanitize_activity_name(name).lower()).strip()
 
 
-def intervals_type_for_sport(sport: str) -> str:
+def intervals_types_for_sport(sport: str) -> set[str]:
     if is_multisport(sport):
-        return ""
+        return set()
     if is_bike(sport):
-        return "Ride"
+        return {"Ride", "VirtualRide"}
     if is_run(sport):
-        return "Run"
+        return {"Run"}
     if is_swim(sport):
-        return "Swim"
-    return ""
+        return {"Swim"}
+    return set()
 
 
 def load_intervals_activities(infos: list[FitInfo]) -> tuple[list[dict[str, Any]], list[str]]:
@@ -602,12 +602,12 @@ def match_activity(info: FitInfo, activities: list[dict[str, Any]]) -> dict[str,
     if not info.start:
         return None
     day = info.start.date().isoformat()
-    target_type = intervals_type_for_sport(info.sport)
+    target_types = intervals_types_for_sport(info.sport)
     candidates = [
         item
         for item in activities
         if str(item.get("start_date_local", ""))[:10] == day
-        and (not target_type or item.get("type") == target_type)
+        and (not target_types or str(item.get("type") or "") in target_types)
     ]
     if not candidates:
         return None
