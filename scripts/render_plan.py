@@ -55,6 +55,7 @@ TOP_LEVEL_KEYS = {"schema_version", "week", "analysis_week", "summary_override",
 DAY_KEYS = {"date", "sessions"}
 SESSION_KEYS = {"sport", "tag", "title", "amount", "duration", "content"}
 SUMMARY_KEYS = {"total", "swim", "bike", "run"}
+EXTERNAL_PROGRAM_VALUE = "extern"
 
 
 def esc(text: Any) -> str:
@@ -203,9 +204,16 @@ def validate_plan(plan: dict[str, Any]) -> None:
             content = session.get("content", [])
             if not isinstance(content, list) or not all(isinstance(item, str) for item in content):
                 raise ValueError(f"Session on {day_str} has invalid content")
-            parse_duration_minutes(session["duration"])
             if session["sport"] == "swim":
-                parse_distance_m(session["amount"])
+                is_external_program = (
+                    session["amount"] == EXTERNAL_PROGRAM_VALUE
+                    and session["duration"] == EXTERNAL_PROGRAM_VALUE
+                )
+                if not is_external_program:
+                    parse_distance_m(session["amount"])
+                    parse_duration_minutes(session["duration"])
+            else:
+                parse_duration_minutes(session["duration"])
 
     override = plan.get("summary_override")
     if override is not None:

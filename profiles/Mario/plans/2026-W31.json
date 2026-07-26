@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "week": "2026-W31",
+  "analysis_week": "2026-W30",
+  "summary_override": {
+    "total": "8:57h + Swim",
+    "swim": "extern",
+    "bike": "5:46h",
+    "run": "2:56h"
+  },
+  "days": [
+    {
+      "date": "2026-07-27",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Basic",
+          "amount": "40min",
+          "duration": "40min",
+          "content": [
+            "40min @4:55/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-28",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Threshold",
+          "amount": "61min",
+          "duration": "61min",
+          "content": [
+            "5min @4:55/km",
+            "3x10min @3:55/km,2min Trabpause",
+            "2min @4:55/km"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "3:30h",
+          "duration": "3:30h",
+          "content": [
+            "3:30h @205W",
+            "75g Kohlenhydrate/h"
+          ]
+        },
+        {
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "15min",
+          "duration": "15min"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Long",
+          "amount": "1:15h",
+          "duration": "1:15h",
+          "content": [
+            "1:15h @4:45/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-07-31",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Threshold",
+          "amount": "61min",
+          "duration": "61min",
+          "content": [
+            "5min @205W",
+            "3x15min @305W,4min @100W",
+            "3min @100W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-01",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Basic",
+          "amount": "75min",
+          "duration": "75min",
+          "content": [
+            "75min @205W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-02",
+      "sessions": []
+    }
+  ]
+}

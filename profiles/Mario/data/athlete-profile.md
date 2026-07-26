@@ -1,6 +1,6 @@
 ﻿# Athletenprofil
 
-Stand: 2026-06-02
+Stand: 2026-07-26
 
 ## Person
 
@@ -62,22 +62,67 @@ Aktueller Zustand, Beschwerden und kurzfristige Warnsignale gehören in `data/cu
 
 ## Supplements
 Alle aufgelisteten Werte sind zusätzliche eingenommen Substanzen, nicht die komplette Tageszufuhr
+Die Tabelle enthält die tägliche Summe aus 2 Omega-3-Kapseln, 2 All-in-One-Premium-Kapseln, 1 Vitamin-D3-Tablette, 1 B-Komplex-Kapsel, 1 Ubiquinol-Kapsel sowie den separat genannten Protein-, Kreatin-, L-Carnitin- und Darmgesundheitsprodukten.
+
 | Substanz | Einnahme pro Tag |
 |-|-|
-| Protein | 45g |
+| Protein | 30g |
 | Kreatin | 6g |
-| Vitamin D | 5500IE |
-| Vitamin K2 | 50µg |
-| Vitamin B12 | 600µg |
-| Folsäure | 600µg |
-| Selen | 30µg |
-| Vitamin E | 25IE |
-| Omega 3 | 925mg |
-| Kupfer | 375µg |
-| Magnesium | 375mg |
-| Ubiquinol Q10 | 310mg |
-| Carnitin | 4g |
 | SuperMikroben®- Premium Biotika von fairment | 2 Kapseln |
+| L-Carnitin | 4.025mg |
+| Vitamin A | 1.000IE |
+| Vitamin D3 | 5.500IE |
+| Vitamin K2 | 50µg |
+| Vitamin E | 75IE |
+| Vitamin C | 62,5mg |
+| Vitamin B1 | 51,65mg |
+| Vitamin B2 | 22,1mg |
+| Vitamin B3 | 117,5mg |
+| Vitamin B5 | 59mg |
+| Vitamin B6 | 27,5mg |
+| Vitamin B7 | 1.075µg |
+| Folat / Folsäure | 600µg |
+| Vitamin B12 | 600µg |
+| Inositol | 30mg |
+| Citicolin (CDP-Cholin) | 15mg |
+| Betain (TMG) | 60mg |
+| NADH | 1mg |
+| Magnesium | 375mg |
+| Calcium | 62,5mg |
+| Zink | 4mg |
+| Selen | 30µg |
+| Eisen | 3mg |
+| Jod | 50µg |
+| Kupfer | 375µg |
+| Bor | 0,5mg |
+| Mangan | 0,5mg |
+| Molybdän | 12,5µg |
+| Chrom | 10µg |
+| Silizium | 10mg |
+| MSM | 25mg |
+| EPA | 660mg |
+| DHA | 465mg |
+| Omega-3/6/9 | 150mg |
+| Ubiquinol Q10 | 300mg |
+| Ubiquinon Q10 | 10mg |
+| Hesperidin | 5mg |
+| EGCG | 23mg |
+| OPC | 50mg |
+| Quercetin | 10mg |
+| Trans-Resveratrol | 10mg |
+| Rutin | 5mg |
+| Astaxanthin | 2mg |
+| L-Glutamin | 50mg |
+| L-Lysin | 50mg |
+| Glycin | 50mg |
+| Taurin | 50mg |
+| Spirulina | 100mg |
+| Chlorella | 100mg |
+| Urweizen- und Gerstengrassaftpulver | 100mg |
+| Brokkoli- und Grünkohlpulver | 100mg |
+| Açai-, Aronia- und Wilde-Heidelbeeren-Pulver | 100mg |
+| Acerola-, Amla- und Hagebuttenextrakt | 100mg |
+| Zitronenschalenöl-Pulver | 20mg |
 
 ## Ernährung und Race-Fueling
 

@@ -1,6 +1,6 @@
 # Aktueller Zustand
 
-Zuletzt vom LLM zusammengefasst: 2026-07-20
+Zuletzt vom LLM zusammengefasst: 2026-07-26
 
 ## Aktuelle Zusammenfassung
 
@@ -16,6 +16,7 @@ Zuletzt vom LLM zusammengefasst: 2026-07-20
 - Subjektiver Status am 2026-07-12: Mario fühlt sich aktuell sehr stark und sieht für Montag keinen Bedarf an einem vollständigen Ruhetag.
 - Der Threshold Run am 2026-07-12 wurde als 3x12min vollständig absolviert, war GAP-basiert mit 13:38min in Z5/Z6, maximal 163bpm und Aerobic Training Effect 3,5 aber härter als ein kontrollierter Schwellenlauf. Die geplanten Pausen wurden eingehalten, ungeplante Stopps oder ein klarer Einbruch sind nicht erkennbar.
 - Swim-Pace-Vorgaben auf Basis der aktuellen CSS wirken im normalen Trainingskontext derzeit eher zu ambitioniert; die Schwimmvorgaben sollten bis zu einer erneuten Validierung mit Vorsicht interpretiert werden.
+- Stand 2026-07-26: Wiederkehrende beidseitige Krämpfe in Waden und Fußsohlen beim Schwimmen, dokumentiert am 2026-07-09 nach etwa 20min beziehungsweise 1.000m in 29°C warmem Wasser. Das Muster spricht zunächst eher für lokale Ermüdung und Fußstellung im Wasser als für einen isolierten Mineralstoffmangel; wegen des starken Schwitzens soll die individuelle Natrium- und Flüssigkeitsbilanz trotzdem überprüft werden.
 - Race-Analyse Rothsee 2026: größtes relatives Potenzial liegt im Schwimmen und in T1; Bike war stark, aber mit vermeidbaren Leistungsspitzen, der Lauf war nicht eingebrochen und hatte noch einen späten Endspurt.
 - Retrospektive Race-Analyse Da Nang 2026: Platz 3 in der Altersklasse bei 4:30:08; auf der flachen Strecke war das Bike mit 2:17:01 bei 226W/236W NP die klare Stärke, der Lauf blieb mit 1:33:05 und starkem Schluss belastbar. Das Schwimmen in laut Uhr 27 bis 29°C warmem Wasser war relativ schwächer; Neoprenstatus und Lufttemperatur sind nicht dokumentiert.
 - Der geplante Radblock am 2026-07-17 und 2026-07-18 wurde mit insgesamt 7:31h Fahrzeit und 280 TSS deutlich belastend: Freitag 5:23h bei 191W NP und 180 TSS, Samstag 2:08h bei 226W NP und 100 TSS.
@@ -29,8 +30,25 @@ Zuletzt vom LLM zusammengefasst: 2026-07-20
 - Die Erholung am 2026-07-20 ist trotz ATL 73, CTL 61, TSB -13 und ACR 1,208 bereits verbessert: HRV 104ms liegt wieder im Korridor, Ruhepuls 40bpm und Schlaf 7:19h bei Score 88. Wegen des sehr hohen Belastungsblocks von Freitag bis Sonntag bleibt ein lockerer Erholungstag sinnvoll.
 - Verfügbarkeit für 2026-W30: Schwimmen am Dienstag und Freitag, Long Bike am Mittwoch und Basic Bike am Samstag. Trotz der hohen Vorwochenbelastung sollen mindestens alle Kerneinheiten der Standardwoche enthalten sein und die Erholung nicht über mehrere Tage ausgedehnt werden.
 - Für 2026-W31 ist voraussichtlich wieder ein Long Bike am Montag vorgesehen. Deshalb liegt der Long Run in W30 am Freitag mit 1:20h, das Threshold Bike am Donnerstag und der kürzere Threshold Run am Sonntag; so folgen weder die beiden langen Einheiten noch Long Run und das nächste Long Bike direkt aufeinander.
+- Stand 2026-07-26: Die W30-Erholung ist subjektiv und anhand der Health-Werte gut. Tages-HRV 110ms und 7-Tage-HRV 105ms liegen im Korridor von 93 bis 127ms, Ruhepuls 37bpm und Schlaf 7:41h bei Score 94 sind unauffällig. Die Alltagsbelastung ist mit 5.310 Schritten im 7-Tage-Mittel moderat.
+- W30 war trotz reduzierter Planung mit rund 10:19h und 453 TSS belastend. Der Long Run am 2026-07-24 war bei 4:53/km GAP, 121bpm und 1,9% HR-Drift aerob sehr stabil; das Long Bike am 2026-07-22 brachte 169 TSS, sodass der aktuelle Load-Status mit ATL 70, CTL 62, TSB -8 und ACR 1,127 keine weitere harte Progression rechtfertigt.
+- Die Bike-Intervalle am 2026-07-23 wurden als 3x10min stabil bei 303 bis 304W gefahren. Die Run-Intervalle am 2026-07-26 lagen in den Arbeitsabschnitten GAP-basiert überwiegend etwa bei 3:36 bis 3:51/km und damit bereits deutlich schneller als das Soll von 3:55/km, bei maximal 161bpm. Für die langfristige Ironman-Entwicklung ist eine Erhöhung der Laufpace deshalb nicht sinnvoll; bei weiterhin guter Kontrolle kann künftig zuerst der Umfang bei Schwellenpace moderat wachsen.
+- Planungspräferenz für 2026-W31: Mario bewertet W30 subjektiv als sehr entspannt und wünscht einen härteren Aufbau. Long Bike soll am Mittwoch oder Donnerstag liegen und gegenüber W30 wachsen, Basic Bike am Samstag. Dienstag ist ausschließlich für einen kurzen Basic- oder Intervalllauf reserviert, der Long Run wird zur Verletzungsprophylaxe auf maximal 1:15h begrenzt. Schwimminhalte und -umfänge folgen künftig einem externen Schwimmprogramm.
+- W31 soll alle Standard-Einheiten enthalten: drei Run-Sessions, drei Bike-Sessions und zwei Swim-Sessions. Die Swim-Sessions liegen am Montag und Donnerstag, das Long Bike am Mittwoch. Der Long Run liegt deshalb am Donnerstag direkt nach dem Long Bike, um die Wochenendregel mit nur einer Session am Samstag einzuhalten.
 
 ## Neueste Updates
+
+### 2026-07-26
+Für W31 sollen drei Run-, drei Bike- und zwei Swim-Sessions geplant werden. Die Swim-Sessions sind Montag und Donnerstag, das Long Bike Mittwoch; zusätzlich wird ein Basic Run ergänzt.
+
+### 2026-07-26
+W30 hat sich subjektiv sehr entspannt angefühlt. Für W31 ist ein härterer Aufbau gewünscht: Basic Bike am Samstag, Long Bike am Mittwoch oder Donnerstag und Dienstag nur ein kurzer Basic- oder Intervalllauf. Der Long Run soll zur Verletzungsprophylaxe maximal 1:15h dauern, darf bei Bedarf schneller sein. Schwimmumfang und -inhalt folgen künftig einem externen Programm.
+
+### 2026-07-26
+Auch das heutige Lauf-Intervall kam mir etwas einfach vor. Sollte ich ev. die Pace oder Dauer der Intervalle erhöhen? Was ist sinnvoller für das langfristige Ziel Ironman mit ca. 10 Monaten Abstand mit zum Zielwettkampf?
+
+### 2026-07-23
+Das heutige Bike-Intervall kam mir sehr einfach vor. Sollte ich ev. die Leistung in den Intervallen deutlich erhöhen?
 
 ### 2026-07-20
 Long Run und Threshold Bike sollen gegenüber dem letzten W30-Vorschlag getauscht werden, damit Long Bike und Long Run nicht direkt aufeinanderfolgen. Der Long Run am Freitag soll zunächst 1:20h dauern.

@@ -40,17 +40,8 @@ Vor jeder Trainingsplanung oder Trainingsbewertung zuerst:
 
 Zentrale Zonenvorgaben:
 - Diese Prozentvorgaben gelten für alle Profile. Beim wöchentlichen Neuberechnen der absoluten Zonen werden nur die Profil-Thresholds ausgetauscht, nicht die Prozentgrenzen.
-- Swim- und Run-Speed-Prozente beziehen sich auf CSS bzw. LT-Speed und werden für `zones.md` in Pace-Grenzen umgerechnet.
+- Run-Speed-Prozente beziehen sich auf LT-Speed und werden für `zones.md` in Pace-Grenzen umgerechnet.
 - Bike-Power-Prozente beziehen sich auf FTP. Run-HR-Prozente beziehen sich auf Run-LTHR. Bike-HR-Prozente beziehen sich auf Bike-HR-Threshold, berechnet als Run-LTHR minus 5.
-
-## Swim-Zonenvorgabe
-
-| Zone | Zonenname | Untere Speed-Grenze / % | Obere Speed-Grenze / % |
-|-|-|-|-|
-| Z5 | Very fast | 103% | 109% |
-| Z4 | Fast | 98% | 103% |
-| Z3 | Moderate | 90% | 98% |
-| Z2 | Easy | 87% | 90% |
 
 ## Bike-Zonenvorgabe
 
@@ -120,7 +111,6 @@ Zwei-Phasen-Planung:
 - Dieselbe inhaltliche Begründung muss beim Finalisieren in die Wochenreview der Analysewoche aufgenommen werden, damit sie in der `Wochenanalyse`-Box des finalen Plans erscheint.
 - Im Chat-Vorschlag keine Von-bis-Angaben verwenden. Immer konkrete Zielwerte nennen, z.B. `295W` statt `290-300W`.
 - Wenn ein fachlicher Zielbereich gemeint ist, im Chat-Vorschlag den Mittelwert oder den sinnvollsten Einzelzielwert verwenden.
-- Swim-Einheiten im Chat-Vorschlag nur mit Session-Typ und Hauptset darstellen, ohne Warmup, Cooldown und Technikblock, z.B. `Aerobic Short Swim (10x100m + 5x200m)`.
 - Endurance-, Basic- und Long-Sessions bei Bike und Run im Chat-Vorschlag kompakt als Session-Typ mit Dauer und Zielwert darstellen, z.B. `Long Run (1:20h @5:00/km)` oder `Basic Bike (60min @200W)`.
 - Ruhetage im Chat-Vorschlag als `Rest` oder leerer Tag darstellen; keine künstliche Session daraus machen.
 - Nach Nutzerkommentaren den Chat-Vorschlag iterativ anpassen und Rückfragen beantworten, ohne Planartefakte zu schreiben.
@@ -243,10 +233,8 @@ Zwei-Phasen-Planung:
 - Chronologische Historientabellen, z.B. VO2max-, Threshold- und absolvierte Race-Listen, mit den neuesten Einträgen oben führen; neue Einträge oben direkt unter dem Tabellenkopf einfügen.
 
 Session-Typen und Trainingslogik:
-- Swim-Session-Typen: `Aerobic Short`, `Aerobic Long`, `Threshold`, `VO2max`.
-- Bei Swim-Einheiten am Anfang standardmäßig `10 x 50m Technik` einplanen; das genügt als Technikanteil.
-- Swim-Hauptsets darf das LLM selbst passend zu Session-Typ, Race-Nähe und aktueller Belastbarkeit wählen.
-- Swim-Hauptsets bewusst einfach halten: pro Einheit darf ein einzelnes Hauptset genügen; wenn mehrere Hauptsets sinnvoll sind, eher nur zwei, maximal drei unterschiedliche Hauptset-Strukturen verwenden.
+- In Wochenplänen grundsätzlich versuchen, alle Einheiten der Standardwoche unterzubringen: drei Run-Sessions, drei Bike-Sessions und zwei Swim-Sessions. Nur bei klaren Gründen wie eingeschränkter Verfügbarkeit, Rennen, Krankheit, Verletzungsrisiko oder einer sonst trainingslogisch schädlichen Belastung davon abweichen.
+- Die zwei Swim-Sessions pro Woche anstreben. Umfang und Inhalt werden durch das externe Schwimmprogramm bestimmt und nicht durch diese Regeln vorgegeben.
 - Bike-Session-Typen: `Long`, `Basic`, `Tempo`, `Threshold`, `VO2max`, `Anaerobic`.
 - Run-Session-Typen: `Long`, `Basic`, `Tempo`, `Threshold`, `VO2max`, `Anaerobic`, optional kurze `Run off Bike` Sessions mit konkreter Pace.
 - Pro Woche und Sportart maximal eine Intervall-Session planen, z.B. maximal ein Bike-Intervall und maximal ein Run-Intervall.
@@ -356,7 +344,7 @@ Wochenplan-Format:
 - `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.json` ist das Zwischenformat, das vom LLM inhaltlich erzeugt oder aktualisiert wird; `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.html` und `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.pdf` sind daraus deterministisch gerenderte Artefakte.
 - Das JSON-Schema des Wochenplans liegt in `plan-format/plan.schema.json` und ist bei neuen oder geänderten Wochenplänen einzuhalten.
 - Das LLM soll Wochenpläne künftig nicht mehr direkt als HTML schreiben, sondern den inhaltlichen Plan in `profiles/<TRAINING_PROFILE>/plans/YYYY-Www.json` pflegen.
-- Jede Tageszeile im JSON enthält `date` und `sessions`; jede Session enthält mindestens `sport`, `title`, `amount` und `duration`, optional `tag` und `content`.
+- Jede Tageszeile im JSON enthält `date` und `sessions`; jede Session enthält mindestens `sport`, `title`, `amount` und `duration`, optional `tag` und `content`. Für eine Swim-Session, deren Umfang und Inhalt durch ein externes Programm bestimmt werden, dürfen `amount` und `duration` beide `extern` sein.
 - `amount` ist der rechts oben angezeigte Wert in der Card; `duration` ist die für Summen und Rendering maßgebliche Dauer der Session. Bei Swim ist `amount` typischerweise die Distanz, während `duration` die geschätzte Dauer für den Gesamtumfang bleibt.
 - Wenn eine Woche eine Race-Session als einen gemeinsamen Block enthält und die vier Umfangsboxen dadurch nicht sauber automatisch aus Swim/Bike/Run ableitbar sind, darf das JSON zusätzlich ein `summary_override` mit `total`, `swim`, `bike` und `run` enthalten.
 - Für Wettkampftage darf ein eigener Session-Typ `race` verwendet werden.
@@ -384,7 +372,6 @@ Wochenplan-Format:
 - Keine abstrakten Zonenangaben in Workout-Vorgaben verwenden. Statt `Z2`, `Z3` usw. konkrete Pace-, Power- oder HR-Werte aus `profiles/<TRAINING_PROFILE>/data/zones.md` ableiten.
 - Pausen bei Intervallen knapp im gleichen Stil wie Belastungen angeben, z.B. `5min @<Pausenleistung>`; keine erklärenden Zusätze wie `zwischen den Intervallen` verwenden.
 - Bei Intervallpausen keine eigene Wiederholungszahl vor die Pause schreiben. Statt `3x16min @300W,2x4min @100W` immer `3x16min @300W,4min @100W` schreiben.
-- Bei Swim-Einheiten immer `200m Warmup` und `100m Cooldown` verwenden, sofern nicht ausdrücklich anders gewünscht.
 - Die Dauer oder der Umfang einer Einheit steht oben rechts in der Session-Karte, auf gleicher Höhe wie das Sportart-Label.
 - Die Dauer oder der Umfang steht nicht im Session-Namen.
 - Session-Beschreibungen bewusst knapp halten. Bei einer einfachen Bike-/Run-Einheit reicht eine einzelne Angabe wie `60min @200W`; bei mehreren Schritten eine kurze Liste im gleichen Stil.
