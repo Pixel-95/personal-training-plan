@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W23/2026-06-01 Weiler-Simmerberg - Cafefahrt.fit",
+  "source_mtime_ns": 1780855316000000000,
+  "start_time": "2026-06-01T18:00:47+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

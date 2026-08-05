@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W29/2026-07-19 Weiler-Simmerberg - Long Run.fit",
+  "source_mtime_ns": 1784574066415619300,
+  "start_time": "2026-07-19T13:10:34+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-19T11:25:36+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 142.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.7611,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T11:28:36+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 144.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.8706,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T11:33:06+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 143.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.9104,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T11:36:06+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 148.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.8946,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T11:37:36+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 148.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.9047,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T11:39:06+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 148.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.8944,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T11:43:36+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 151.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.7437,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T11:49:36+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 141.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.6373,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T12:04:36+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 142.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.5028,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T12:06:06+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 143.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.6888,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T12:09:06+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 145.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.6705,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-19T12:12:06+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 147.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.6541,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

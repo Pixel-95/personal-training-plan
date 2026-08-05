@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W29/2026-07-14 Lindenberg im Allgäu - Long Run.fit",
+  "source_mtime_ns": 1784444727337834800,
+  "start_time": "2026-07-14T19:23:12+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-14T17:47:58+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 122.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.2883,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-14T18:13:57+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 128.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.3295,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-14T18:19:57+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 132.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.3673,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-14T18:22:57+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 133.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.5411,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-14T18:25:57+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 134.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.669,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

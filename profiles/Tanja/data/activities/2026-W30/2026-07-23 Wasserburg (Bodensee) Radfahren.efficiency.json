@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W30/2026-07-23 Wasserburg (Bodensee) Radfahren.fit",
+  "source_mtime_ns": 1785489097444520000,
+  "start_time": "2026-07-23T16:53:45+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

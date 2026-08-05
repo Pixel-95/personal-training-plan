@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W31/2026-07-30 Weiler-Simmerberg - Long Run.fit",
+  "source_mtime_ns": 1785739996450420300,
+  "start_time": "2026-07-30T17:19:07+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-30T15:31:07+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 131.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.6411,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-30T15:37:07+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 133.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.8006,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-30T15:49:07+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 128.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.3555,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-30T15:52:07+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 129.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.2464,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-30T16:10:46+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 134.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.6489,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-30T16:22:46+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 127.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.2651,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

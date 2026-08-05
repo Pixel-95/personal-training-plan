@@ -13,22 +13,20 @@
       "date": "2026-07-27",
       "sessions": [
         {
-          "sport": "run",
-          "title": "Basic",
-          "amount": "40min",
-          "duration": "40min",
+          "sport": "bike",
+          "title": "Long",
+          "amount": "3:30h",
+          "duration": "3:30h",
           "content": [
-            "40min @4:55/km"
+            "3:30h @205W",
+            "75g Kohlenhydrate/h"
           ]
         },
         {
-          "sport": "swim",
-          "title": "Schwimmprogramm",
-          "amount": "extern",
-          "duration": "extern",
-          "content": [
-            "Nach externem Schwimmprogramm"
-          ]
+          "sport": "strength",
+          "title": "Zugseil",
+          "amount": "15min",
+          "duration": "15min"
         }
       ]
     },
@@ -52,20 +50,22 @@
       "date": "2026-07-29",
       "sessions": [
         {
-          "sport": "bike",
-          "title": "Long",
-          "amount": "3:30h",
-          "duration": "3:30h",
+          "sport": "run",
+          "title": "Basic",
+          "amount": "40min",
+          "duration": "40min",
           "content": [
-            "3:30h @205W",
-            "75g Kohlenhydrate/h"
+            "40min @4:55/km"
           ]
         },
         {
-          "sport": "strength",
-          "title": "Zugseil",
-          "amount": "15min",
-          "duration": "15min"
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
         }
       ]
     },

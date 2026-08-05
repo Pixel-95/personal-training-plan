@@ -13,7 +13,9 @@ from pathlib import Path
 
 from markdown_tables import read_table as read_markdown_table
 from markdown_tables import rows_as_dicts, write_text_atomic
+from date_utils import monday_of_iso_week
 from profile_paths import DATA_DIR, PROFILE_PLANS_DIR, ROOT
+from update_efficiency import LOCAL_BAND_BPM, TARGETS, calculate, load_points
 
 
 PLAN_DIR = PROFILE_PLANS_DIR
@@ -66,6 +68,7 @@ RIGHT_COMPACT = 34
 RIGHT_LOAD = 64
 RIGHT_LABELS = 118
 ACTIVE_RIGHT = RIGHT_LABELS
+EFFICIENCY_HISTORY_PRECEDING_WEEKS = 12
 
 
 def set_canvas(width: int, height: int, left: int, right: int, top: int, bottom: int, active_right: int) -> tuple[int, int, int, int, int, int, int]:
@@ -565,9 +568,9 @@ def add_stacked_bars(
 def add_legend(parts: list[str], items: list[tuple[str, str]], y: int = 32) -> None:
     x = W - 24
     for label, color in reversed(items):
-        text_width = len(label) * 6.8
-        icon_text_gap = 16
-        label_gap = 40
+        text_width = len(label) * 8.2
+        icon_text_gap = 12
+        label_gap = 28
         width = text_width + icon_text_gap + label_gap
         parts.append(f'<text x="{x}" y="{y}" text-anchor="end" fill="{COLORS["muted"]}" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">{esc(label)}</text>')
         parts.append(f'<circle cx="{x - text_width - icon_text_gap:.1f}" cy="{y - 4}" r="4.5" fill="{color}"/>')
@@ -921,17 +924,19 @@ def render_weekly_zones(path: Path, current_week: str) -> list[str]:
     previous = previous_week(current_week)
     stats = week_activity_stats(previous)
     width = 1600
-    height = 540
+    height = 378
     panel_gap = 36
     left = 54
     top = 76
     bottom = 58
     inner_w = (width - left * 2 - panel_gap * 2) / 3
+    font_scale = 1180 / width
+    font_size = lambda value: f"{value * font_scale:.1f}"
     panel_titles = [("Swim nach Pace", "swim", "m"), ("Bike nach Power", "bike", "min"), ("Run nach GAP", "run", "min")]
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-label="Zeit in Zonen der Vorwoche">',
         f'<rect x="0" y="0" width="{width}" height="{height}" rx="18" fill="{COLORS["paper"]}"/>',
-        f'<text x="24" y="34" fill="{COLORS["ink"]}" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Zeit in Zonen Vorwoche ({esc(previous)})</text>',
+        f'<text x="24" y="34" fill="{COLORS["ink"]}" font-size="{font_size(24)}" font-weight="700" font-family="Inter, system-ui, sans-serif">Zeit in Zonen Vorwoche ({esc(previous)})</text>',
     ]
     has_data = False
     for panel_idx, (title, sport, unit) in enumerate(panel_titles):
@@ -939,7 +944,7 @@ def render_weekly_zones(path: Path, current_week: str) -> list[str]:
         panel_y = top
         panel_h = height - top - bottom
         parts.append(f'<rect x="{panel_x:.1f}" y="{panel_y:.1f}" width="{inner_w:.1f}" height="{panel_h:.1f}" rx="10" fill="{COLORS["plot"]}" stroke="{COLORS["grid"]}"/>')
-        parts.append(f'<text x="{panel_x + 10:.1f}" y="{panel_y - 14:.1f}" fill="{COLORS["ink"]}" font-size="18" font-weight="700" font-family="Inter, system-ui, sans-serif">{title}</text>')
+        parts.append(f'<text x="{panel_x + 10:.1f}" y="{panel_y - 14:.1f}" fill="{COLORS["ink"]}" font-size="{font_size(18)}" font-weight="700" font-family="Inter, system-ui, sans-serif">{title}</text>')
         zones = list(stats.zones[sport].keys())
         values = list(stats.zones[sport].values())
         total_value = sum(values)
@@ -950,8 +955,8 @@ def render_weekly_zones(path: Path, current_week: str) -> list[str]:
         for i in range(5):
             y = panel_y + i * panel_h / 4
             parts.append(f'<line x1="{panel_x:.1f}" y1="{y:.1f}" x2="{panel_x + inner_w:.1f}" y2="{y:.1f}" stroke="{COLORS["grid"]}" stroke-width="1"/>')
-        parts.append(f'<text x="{panel_x - 8:.1f}" y="{panel_y + 5:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="12" font-family="Inter, system-ui, sans-serif">{hi:.0f}{unit}</text>')
-        parts.append(f'<text x="{panel_x - 8:.1f}" y="{panel_y + panel_h:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="12" font-family="Inter, system-ui, sans-serif">0</text>')
+        parts.append(f'<text x="{panel_x - 8:.1f}" y="{panel_y + 5:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="{font_size(12)}" font-family="Inter, system-ui, sans-serif">{hi:.0f}{unit}</text>')
+        parts.append(f'<text x="{panel_x - 8:.1f}" y="{panel_y + panel_h:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="{font_size(12)}" font-family="Inter, system-ui, sans-serif">0</text>')
         shades = zone_shades(sport)
         bar_w = inner_w / max(len(zones), 1) * 0.55
         for idx, zone in enumerate(zones):
@@ -964,9 +969,9 @@ def render_weekly_zones(path: Path, current_week: str) -> list[str]:
             if raw_value > 0:
                 percent = raw_value / total_value * 100 if total_value > 0 else 0
                 label_y = max(panel_y + 16, y - 18)
-                parts.append(f'<text x="{x:.1f}" y="{label_y:.1f}" text-anchor="middle" fill="{COLORS["ink"]}" font-size="11" font-weight="700" font-family="Inter, system-ui, sans-serif">{esc(zone_amount_label(sport, raw_value))}</text>')
-                parts.append(f'<text x="{x:.1f}" y="{label_y + 13:.1f}" text-anchor="middle" fill="{COLORS["muted"]}" font-size="10.5" font-weight="650" font-family="Inter, system-ui, sans-serif">{percent:.0f}%</text>')
-            parts.append(f'<text x="{x:.1f}" y="{panel_y + panel_h + 22:.1f}" text-anchor="middle" fill="{COLORS["muted"]}" font-size="12" font-family="Inter, system-ui, sans-serif">{zone}</text>')
+                parts.append(f'<text x="{x:.1f}" y="{label_y:.1f}" text-anchor="middle" fill="{COLORS["ink"]}" font-size="{font_size(11)}" font-weight="700" font-family="Inter, system-ui, sans-serif">{esc(zone_amount_label(sport, raw_value))}</text>')
+                parts.append(f'<text x="{x:.1f}" y="{label_y + 13:.1f}" text-anchor="middle" fill="{COLORS["muted"]}" font-size="{font_size(10.5)}" font-weight="650" font-family="Inter, system-ui, sans-serif">{percent:.0f}%</text>')
+            parts.append(f'<text x="{x:.1f}" y="{panel_y + panel_h + 22:.1f}" text-anchor="middle" fill="{COLORS["muted"]}" font-size="{font_size(12)}" font-family="Inter, system-ui, sans-serif">{zone}</text>')
     if not has_data:
         parts.append(f'<text x="{width / 2:.1f}" y="{height / 2:.1f}" text-anchor="middle" fill="{COLORS["muted"]}" font-size="18" font-family="Inter, system-ui, sans-serif">Keine Zonendaten in der Vorwoche</text>')
     write_svg(path, parts)
@@ -974,10 +979,10 @@ def render_weekly_zones(path: Path, current_week: str) -> list[str]:
 
 
 def render_long_sessions(path: Path, current_week: str) -> list[str]:
-    previous_canvas = set_canvas(width=560, height=590, left=58, right=70, top=74, bottom=54, active_right=RIGHT_LOAD)
+    previous_canvas = set_canvas(width=1180, height=540, left=70, right=118, top=74, bottom=54, active_right=RIGHT_LOAD)
     try:
         history_week = previous_week(current_week)
-        series = weekly_stats_series(history_week, 12)
+        series = weekly_stats_series(history_week, 24)
         weeks = [item.week for item in series]
         bike_values = [item.long_session_s["bike"] / 3600 for item in series]
         run_values = [item.long_session_s["run"] / 3600 for item in series]
@@ -1158,6 +1163,192 @@ def render_vo2(path: Path, newest: date) -> list[str]:
     return [] if bike or run else ["VO2max: keine Daten im Zeitraum."]
 
 
+def efficiency_history() -> list[dict[str, str]]:
+    header, rows = read_markdown_table(DATA_DIR / "efficiency" / "efficiency_history.md")
+    return rows_as_dicts(header, rows) if header else []
+
+
+def efficiency_value(row: dict[str, str], sport: str, target: int, column: str = "Wert") -> float | None:
+    raw = row.get(f"{column} @{target} bpm")
+    if sport == "bike":
+        return parse_float(raw)
+    pace_seconds = parse_pace_seconds(raw)
+    return 1000 / pace_seconds if pace_seconds else None
+
+
+def add_efficiency_grid(parts: list[str], x_lo: float, x_hi: float, y_lo: float, y_hi: float, y_unit: str) -> None:
+    for index in range(5):
+        y = TOP + index * (H - TOP - BOTTOM) / 4
+        value = y_hi - index * (y_hi - y_lo) / 4
+        parts.append(f'<line x1="{LEFT}" y1="{y:.1f}" x2="{W - ACTIVE_RIGHT}" y2="{y:.1f}" stroke="{COLORS["grid"]}" stroke-width="1"/>')
+        parts.append(f'<text x="{LEFT - 12}" y="{y + 5:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{value:.0f}{esc(y_unit)}</text>')
+    for index in range(6):
+        value = x_lo + index * (x_hi - x_lo) / 5
+        x = LEFT + index * (W - LEFT - ACTIVE_RIGHT) / 5
+        parts.append(f'<line x1="{x:.1f}" y1="{TOP}" x2="{x:.1f}" y2="{H - BOTTOM}" stroke="{COLORS["grid"]}" stroke-width="1"/>')
+        parts.append(f'<text x="{x:.1f}" y="{H - 36}" text-anchor="middle" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{value:.0f}</text>')
+
+
+def iso_week_label(day: date) -> str:
+    """Format the compact ISO-week label used by weekly time-series plots."""
+    _, week, _ = day.isocalendar()
+    return f"W{week:02d}"
+
+
+def efficiency_history_window(latest_week: date) -> tuple[date, date]:
+    """Return the current ISO week and the twelve preceding ISO weeks."""
+    end = monday_of_week(f"{latest_week.isocalendar().year}-W{latest_week.isocalendar().week:02d}")
+    return end - timedelta(weeks=EFFICIENCY_HISTORY_PRECEDING_WEEKS), end
+
+
+def add_efficiency_history_grid(
+    parts: list[str],
+    start: date,
+    end: date,
+    bike_lo: float,
+    bike_hi: float,
+    run_lo: float,
+    run_hi: float,
+) -> None:
+    for index in range(5):
+        fraction = index / 4
+        y = TOP + fraction * (H - TOP - BOTTOM)
+        bike_value = bike_hi - fraction * (bike_hi - bike_lo)
+        run_value = run_hi - fraction * (run_hi - run_lo)
+        parts.append(f'<line x1="{LEFT}" y1="{y:.1f}" x2="{W - ACTIVE_RIGHT}" y2="{y:.1f}" stroke="{COLORS["grid"]}" stroke-width="1"/>')
+        parts.append(f'<text x="{LEFT - 12}" y="{y + 5:.1f}" text-anchor="end" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{bike_value:.0f}W</text>')
+        parts.append(f'<text x="{W - ACTIVE_RIGHT + 12}" y="{y + 5:.1f}" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{esc(pace_label(1000 / run_value))}/km</text>')
+    week_start = monday_of_week(f"{start.isocalendar().year}-W{start.isocalendar().week:02d}")
+    while week_start <= end:
+        x = x_for(week_start, start, end)
+        parts.append(f'<line x1="{x:.1f}" y1="{TOP}" x2="{x:.1f}" y2="{H - BOTTOM}" stroke="{COLORS["grid"]}" stroke-width="1"/>')
+        parts.append(f'<text x="{x:.1f}" y="{H - 20}" text-anchor="middle" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{iso_week_label(week_start)}</text>')
+        week_start += timedelta(days=7)
+    parts.append(f'<text x="{LEFT}" y="{TOP - 16}" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">Bike (W)</text>')
+    parts.append(f'<text x="{W - ACTIVE_RIGHT + 12}" y="{TOP - 16}" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">Run (min/km)</text>')
+
+
+def add_efficiency_summary(
+    parts: list[str],
+    sport: str,
+    values: dict[int, float | None],
+    top_offset: int = 0,
+    x: float | None = None,
+) -> None:
+    unit = " W" if sport == "bike" else "/km"
+    x = W - ACTIVE_RIGHT + 12 if x is None else x
+    parts.append(f'<text x="{x}" y="{TOP + 5 + top_offset}" fill="{COLORS["muted"]}" font-size="12" font-family="Inter, system-ui, sans-serif">{sport.title()} aktuell</text>')
+    for index, target in enumerate(TARGETS):
+        value = values[target]
+        label = "-" if value is None else (f"{value:.0f}{unit}" if sport == "bike" else f"{pace_label(1000 / value)}{unit}")
+        parts.append(f'<text x="{x}" y="{TOP + 26 + top_offset + index * 20}" fill="{COLORS["ink"]}" font-size="14" font-weight="700" font-family="Inter, system-ui, sans-serif">{target} bpm: {esc(label)}</text>')
+
+
+def render_efficiency_scatter(path: Path, sport: str, newest: date) -> list[str]:
+    previous = set_canvas(1180, 540, 70, 24, 74, 54, 24)
+    try:
+        points = load_points(newest - timedelta(days=89), newest)[sport]
+        result = calculate(points)
+        title = "Bike Power gegen Herzfrequenz" if sport == "bike" else "Run GAP gegen Herzfrequenz"
+        parts = svg_open(f"{title} (90 Tage)")
+        if not points:
+            add_no_data(parts)
+            write_svg(path, parts)
+            return [f"{sport.title()}-Effizienz: keine Daten im 90-Tage-Fenster."]
+        x_values = [point["hr"] for point in points]
+        y_values = [point["output"] for point in points]
+        x_lo, x_hi = min(120, min(x_values)) - 1, max(165, max(x_values)) + 1
+        y_lo, y_hi = domain(y_values)
+        add_efficiency_grid(parts, x_lo, x_hi, y_lo, y_hi, " W" if sport == "bike" else " m/s")
+        for point in points:
+            x = LEFT + (point["hr"] - x_lo) / (x_hi - x_lo) * (W - LEFT - ACTIVE_RIGHT)
+            y = y_for(point["output"], y_lo, y_hi)
+            parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.3" fill="{COLORS["bike"] if sport == "bike" else COLORS["run"]}" opacity="0.58"/>')
+        for target in TARGETS:
+            model = result["models"][target]
+            local_points = result["local_sets"][target]
+            if model and local_points:
+                hrs = [point["hr"] for point in local_points]
+                fit_lo = max(target - LOCAL_BAND_BPM, min(hrs))
+                fit_hi = min(target + LOCAL_BAND_BPM, max(hrs))
+                x1 = LEFT + (fit_lo - x_lo) / (x_hi - x_lo) * (W - LEFT - ACTIVE_RIGHT)
+                x2 = LEFT + (fit_hi - x_lo) / (x_hi - x_lo) * (W - LEFT - ACTIVE_RIGHT)
+                y1 = y_for(model[0] * fit_lo + model[1], y_lo, y_hi)
+                y2 = y_for(model[0] * fit_hi + model[1], y_lo, y_hi)
+                parts.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="{COLORS["ink"]}" stroke-width="3" stroke-linecap="round"/>')
+            marker_x = LEFT + (target - x_lo) / (x_hi - x_lo) * (W - LEFT - ACTIVE_RIGHT)
+            parts.append(f'<line x1="{marker_x:.1f}" y1="{TOP}" x2="{marker_x:.1f}" y2="{H - BOTTOM}" stroke="{COLORS["muted"]}" stroke-width="1.2" stroke-dasharray="3 4"/>')
+        parts.append(f'<text x="{(LEFT + W - ACTIVE_RIGHT) / 2:.1f}" y="{H - 12}" text-anchor="middle" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">Herzfrequenz (bpm)</text>')
+        parts.append(f'<text x="{LEFT}" y="{TOP - 16}" fill="{COLORS["muted"]}" font-size="13" font-family="Inter, system-ui, sans-serif">{len(result["points"])} gewichtete Punkte, {len({point["activity"] for point in result["points"]})} Aktivitäten, {esc(result["status"])}</text>')
+        write_svg(path, parts)
+        return []
+    finally:
+        restore_canvas(previous)
+
+
+def render_efficiency_history(path: Path) -> list[str]:
+    previous = set_canvas(1180, 540, 70, 280, 74, 54, 280)
+    try:
+        rows = efficiency_history()
+        series: dict[str, dict[int, list[tuple[date, float, float | None, float | None]]]] = {sport: {target: [] for target in TARGETS} for sport in ("bike", "run")}
+        for row in rows:
+            try:
+                day = monday_of_iso_week(row["ISO-Woche"])
+            except (KeyError, ValueError):
+                continue
+            sport = row.get("Sport")
+            if sport not in series:
+                continue
+            for target in TARGETS:
+                value = efficiency_value(row, sport, target)
+                if value is None:
+                    continue
+                lower = efficiency_value(row, sport, target, "95%-Untergrenze")
+                upper = efficiency_value(row, sport, target, "95%-Obergrenze")
+                series[sport][target].append((day, value, lower, upper))
+        all_days = [day for sport_data in series.values() for target_data in sport_data.values() for day, *_ in target_data]
+        parts = svg_open("Wöchentliche Effizienztrends")
+        if not all_days:
+            add_no_data(parts)
+            write_svg(path, parts)
+            return ["Effizienztrend: keine Historie verfügbar."]
+        start, end = efficiency_history_window(max(all_days))
+        bike_values = [bound for target_data in series["bike"].values() for _, value, lower, upper in target_data for bound in (value, lower, upper) if bound is not None]
+        run_values = [bound for target_data in series["run"].values() for _, value, lower, upper in target_data for bound in (value, lower, upper) if bound is not None]
+        bike_lo, bike_hi = domain(bike_values)
+        run_lo, run_hi = domain(run_values)
+        add_efficiency_history_grid(parts, start, end, bike_lo, bike_hi, run_lo, run_hi)
+        for sport, colors in (("bike", ("#5aa89e", COLORS["bike"])), ("run", ("#d98272", COLORS["run"]))):
+            lo, hi = (bike_lo, bike_hi) if sport == "bike" else (run_lo, run_hi)
+            for target, color in zip(TARGETS, colors):
+                data = sorted(series[sport][target], key=lambda item: item[0])
+                for day, value, lower, upper in data:
+                    if lower is None or upper is None:
+                        continue
+                    x = x_for(day, start, end)
+                    y_low, y_high = y_for(lower, lo, hi), y_for(upper, lo, hi)
+                    parts.append(f'<line x1="{x:.1f}" y1="{y_low:.1f}" x2="{x:.1f}" y2="{y_high:.1f}" stroke="{color}" stroke-width="1.6"/>')
+                    parts.append(f'<line x1="{x - 4:.1f}" y1="{y_low:.1f}" x2="{x + 4:.1f}" y2="{y_low:.1f}" stroke="{color}" stroke-width="1.6"/>')
+                    parts.append(f'<line x1="{x - 4:.1f}" y1="{y_high:.1f}" x2="{x + 4:.1f}" y2="{y_high:.1f}" stroke="{color}" stroke-width="1.6"/>')
+                points = [Point(day, value) for day, value, _, _ in data]
+                add_line(parts, points, start, end, lo, hi, color, width=3)
+        latest = {
+            sport: {
+                target: (max(series[sport][target], key=lambda item: item[0])[1] if series[sport][target] else None)
+                for target in TARGETS
+            }
+            for sport in series
+        }
+        summary_x = W - 160
+        add_efficiency_summary(parts, "bike", latest["bike"], x=summary_x)
+        add_efficiency_summary(parts, "run", latest["run"], top_offset=66, x=summary_x)
+        add_legend(parts, [("Bike @130 bpm", "#5aa89e"), ("Bike @155 bpm", COLORS["bike"]), ("Run @130 bpm", "#d98272"), ("Run @155 bpm", COLORS["run"])])
+        write_svg(path, parts)
+        return []
+    finally:
+        restore_canvas(previous)
+
+
 def generate(week: str, newest: date) -> list[str]:
     out_dir = TREND_DIR / week
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -1188,6 +1379,9 @@ def generate(week: str, newest: date) -> list[str]:
     warnings += render_loads(out_dir, newest)
     warnings += render_thresholds(out_dir / "performance_thresholds.svg", newest)
     warnings += render_vo2(out_dir / "performance_vo2max.svg", newest)
+    warnings += render_efficiency_history(out_dir / "efficiency_weekly.svg")
+    warnings += render_efficiency_scatter(out_dir / "efficiency_bike.svg", "bike", newest)
+    warnings += render_efficiency_scatter(out_dir / "efficiency_run.svg", "run", newest)
 
     return warnings
 
@@ -1219,6 +1413,18 @@ def trend_section_html(week: str) -> str:
         </div>
       </div>
 
+      <div class="efficiency-section">
+        <h3>Effizienz (90 Tage)</h3>
+        <div class="trend-grid efficiency-weekly-row">
+          <img class="efficiency-weekly" src="{base}/efficiency_weekly.svg" alt="Wöchentlicher Trend der Bike-Power und Run-GAP bei 130 und 155 bpm mit Fehlerbalken">
+          <img src="{base}/weekly_long_sessions.svg" alt="Längste Bike- und Run-Session pro Woche der letzten 12 Wochen">
+        </div>
+        <div class="trend-grid efficiency-sport-row">
+          <img src="{base}/efficiency_bike.svg" alt="Bike-Power gegen Herzfrequenz der letzten 90 Tage, mit lokalen Fits bei 130 und 155 bpm">
+          <img src="{base}/efficiency_run.svg" alt="Run-GAP gegen Herzfrequenz der letzten 90 Tage, mit lokalen Fits bei 130 und 155 bpm">
+        </div>
+      </div>
+
       <div class="trend-middle">
         <div class="trend-middle-top">
           <img src="{base}/weekly_duration.svg" alt="Wochenumfang pro Sportart der letzten 12 Wochen">
@@ -1226,7 +1432,6 @@ def trend_section_html(week: str) -> str:
         </div>
         <div class="trend-middle-bottom">
           <img class="trend-wide" src="{base}/weekly_zones.svg" alt="Zeit und Distanz in Zonen der letzten abgeschlossenen Woche">
-          <img class="trend-narrow" src="{base}/weekly_long_sessions.svg" alt="Längste Bike- und Run-Session pro Woche der letzten 12 Wochen">
         </div>
       </div>
 

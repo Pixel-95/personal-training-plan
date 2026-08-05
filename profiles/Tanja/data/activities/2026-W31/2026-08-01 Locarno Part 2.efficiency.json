@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W31/2026-08-01 Locarno Part 2.fit",
+  "source_mtime_ns": 1785766609554433700,
+  "start_time": "2026-08-01T16:28:44+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

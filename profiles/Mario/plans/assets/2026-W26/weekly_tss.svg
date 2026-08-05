@@ -39,10 +39,10 @@
 <rect x="1076.5" y="355.0" width="49.3" height="98.2" rx="2.2" fill="#287c71"/>
 <rect x="1076.5" y="316.7" width="49.3" height="38.3" rx="2.2" fill="#b64b3a"/>
 <text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Run</text>
-<circle cx="1119.6" cy="28" r="4.5" fill="#b64b3a"/>
-<text x="1079.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike</text>
-<circle cx="1036.4" cy="28" r="4.5" fill="#287c71"/>
-<text x="996.3999999999999" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Swim</text>
-<circle cx="953.2" cy="28" r="4.5" fill="#2f6fa3"/>
+<circle cx="1119.4" cy="28" r="4.5" fill="#b64b3a"/>
+<text x="1091.4" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike</text>
+<circle cx="1046.6" cy="28" r="4.5" fill="#287c71"/>
+<text x="1018.6000000000001" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Swim</text>
+<circle cx="973.8" cy="28" r="4.5" fill="#2f6fa3"/>
 </svg>
 

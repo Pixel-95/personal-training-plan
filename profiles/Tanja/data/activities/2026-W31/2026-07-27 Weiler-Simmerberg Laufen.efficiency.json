@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W31/2026-07-27 Weiler-Simmerberg Laufen.fit",
+  "source_mtime_ns": 1785489098275287900,
+  "start_time": "2026-07-27T18:02:30+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-27T16:19:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 157.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.2583,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-27T16:23:31+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 159.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.1297,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-27T16:29:31+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 143.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.5613,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-27T16:31:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 144.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.4838,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-27T16:34:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 148.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.589,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-27T16:35:31+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 147.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.6666,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-27T16:37:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 147.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.6156,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-27T16:44:31+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 152.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.6615,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

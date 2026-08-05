@@ -12,6 +12,7 @@
 ## Läufe
 | Datum | Name | Typ | Gesamtzeit |
 |-|-|-|-|
+| 2025-05-10 | Sempacher See Lauf | Halbmarathon | 1:57:37 |
 | 2024-12-31 | Kisslegg | 7.7 km Lauf | 0:34:15 |
 | 2024-10-13 | Bregenz | 8.33 km Lauf | 0:40:19 |
 

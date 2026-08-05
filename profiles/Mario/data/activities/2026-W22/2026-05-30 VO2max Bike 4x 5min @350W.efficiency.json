@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W22/2026-05-30 VO2max Bike 4x 5min @350W.fit",
+  "source_mtime_ns": 1780391570000000000,
+  "start_time": "2026-05-30T21:04:43+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

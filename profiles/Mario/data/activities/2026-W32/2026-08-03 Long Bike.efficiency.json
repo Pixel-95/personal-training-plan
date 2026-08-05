@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W32/2026-08-03 Long Bike.fit",
+  "source_mtime_ns": 1785948567810764700,
+  "start_time": "2026-08-03T17:50:01+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-08-03T16:05:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T16:08:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.5,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T16:11:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T16:20:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 113.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T16:23:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 113.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T16:26:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 113.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T16:53:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 116.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T17:08:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 116.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T17:50:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-03T17:56:01+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 123.0,
+          "temperature_c": null,
+          "power_w": 229.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W30/2026-07-25 Alpsee Cafefahrt - Part 1.fit",
+  "source_mtime_ns": 1785078785460208600,
+  "start_time": "2026-07-25T13:09:18+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

@@ -1,0 +1,6 @@
+| ISO-Woche | Sport | Datenstand | 90-Tage-Fenster | Wert @130 bpm | 95%-Untergrenze @130 bpm | 95%-Obergrenze @130 bpm | Wert @155 bpm | 95%-Untergrenze @155 bpm | 95%-Obergrenze @155 bpm | Einheit | Punkte | Aktivitäten | Fit-Güte R² | Status |
+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+| 2026-W31 | run | 2026-08-02 | 2026-05-05 bis 2026-08-02 | 4:52 | 5:00 | 4:44 | 4:11 | 4:27 | 3:59 | min:sec/km | 84 | 18 | 0.065 | robust |
+| 2026-W31 | bike | 2026-08-02 | 2026-05-05 bis 2026-08-02 | 223.1 | 216.1 | 228.1 | 305.2 | 300.2 | 311.2 | W | 128 | 15 | 0.334 | robust |
+| 2026-W30 | run | 2026-07-26 | 2026-04-28 bis 2026-07-26 | 4:56 | 5:04 | 4:49 | 4:13 | 4:29 | 4:00 | min:sec/km | 74 | 15 | 0.024 | robust |
+| 2026-W30 | bike | 2026-07-26 | 2026-04-28 bis 2026-07-26 | 223.1 | 216.1 | 228.1 | 303.3 | 299.4 | 319.9 | W | 96 | 13 | 0.345 | robust |

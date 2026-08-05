@@ -316,17 +316,13 @@ h1 {
 
 .trend-middle-bottom {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 12px;
   align-items: start;
 }
 
 .trend-middle-bottom .trend-wide {
-  grid-column: span 3;
-}
-
-.trend-middle-bottom .trend-narrow {
-  grid-column: span 1;
+  grid-column: auto;
 }
 
 .trend-board .trend-group {
@@ -360,6 +356,32 @@ h1 {
   grid-template-columns: 1fr;
 }
 
+.efficiency-section {
+  margin-top: 12px;
+}
+
+.efficiency-section h3 {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.efficiency-weekly {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.efficiency-sport-row {
+  margin-top: 12px;
+}
+
 .trend-grid img {
   display: block;
   width: 100%;
@@ -383,8 +405,7 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .trend-middle-bottom .trend-wide,
-  .trend-middle-bottom .trend-narrow {
+  .trend-middle-bottom .trend-wide {
     grid-column: auto;
   }
 }
@@ -562,7 +583,7 @@ h1 {
   }
 
   .trend-middle-bottom {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 
@@ -654,13 +675,13 @@ h1 {
     font-size: 9px;
   }
 
-  body.pdf-mobile .trend-middle-bottom .trend-wide,
-  body.pdf-mobile .trend-middle-bottom .trend-narrow {
+  body.pdf-mobile .trend-middle-bottom .trend-wide {
     grid-column: auto;
   }
 
   body.pdf-mobile .trend-grid img,
-  body.pdf-mobile .trend-middle img {
+  body.pdf-mobile .trend-middle img,
+  body.pdf-mobile .efficiency-weekly {
     width: 100%;
     height: 250px;
     object-fit: contain;

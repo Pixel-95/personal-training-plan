@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import re
 from dataclasses import dataclass
@@ -16,6 +17,7 @@ import fitdecode
 from intervals_icu_client import IntervalsClient, IntervalsError, sanitize_activity_name
 from markdown_tables import write_text_atomic
 from profile_paths import DATA_DIR, ROOT
+from efficiency import FILTER_VERSION, SCHEMA_VERSION, component_records, extract_points, normalized_sport
 
 
 ACTIVITIES_DIR = DATA_DIR / "activities"
@@ -1189,15 +1191,67 @@ def needs_analysis(path: Path) -> bool:
     return not md.exists() or path.stat().st_mtime > md.stat().st_mtime
 
 
+def efficiency_path(path: Path) -> Path:
+    return path.with_suffix(".efficiency.json")
+
+
+def needs_efficiency(info: FitInfo) -> bool:
+    target = efficiency_path(info.path)
+    if not target.exists() or info.path.stat().st_mtime > target.stat().st_mtime:
+        return True
+    try:
+        payload = json.loads(target.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return True
+    return payload.get("filter_version") != FILTER_VERSION or payload.get("schema_version") != SCHEMA_VERSION
+
+
+def efficiency_sports(info: FitInfo) -> list[str]:
+    sports = {normalized_sport(info.sport)}
+    sports.update(normalized_sport(session.get("sport")) for session in info.messages.get("session", []))
+    return sorted(sport for sport in sports if sport)
+
+
+def write_efficiency(info: FitInfo, dry_run: bool) -> None:
+    target = efficiency_path(info.path)
+    sports: dict[str, dict[str, Any]] = {}
+    for sport in efficiency_sports(info):
+        points = extract_points(component_records(info.messages, sport, info.sport), sport)
+        sports[sport] = {"points": points}
+    if not sports:
+        return
+    payload = {
+        "schema_version": SCHEMA_VERSION,
+        "filter_version": FILTER_VERSION,
+        "source_fit": str(info.path.relative_to(ROOT)).replace("\\", "/"),
+        "source_mtime_ns": info.path.stat().st_mtime_ns,
+        "start_time": info.start.isoformat() if info.start else None,
+        "sports": sports,
+    }
+    if dry_run:
+        print(f"Would write {target.relative_to(ROOT)}")
+        return
+    write_text_atomic(target, json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
+    print(f"WROTE {target.relative_to(ROOT)}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Analyze FIT files into Markdown summaries.")
     parser.add_argument("--dry-run", action="store_true", help="Report changes without writing.")
     parser.add_argument("--force", action="store_true", help="Recreate all Activity Markdown summaries, even when they are not older than the FIT file.")
+    parser.add_argument("--efficiency-since", help="Create missing/stale efficiency JSON files on or after YYYY-MM-DD without rewriting Markdown summaries.")
     args = parser.parse_args()
 
     fit_paths = sorted(ACTIVITIES_DIR.rglob("*.fit"))
     infos = [read_fit(path) for path in fit_paths]
     open_infos = infos if args.force else [info for info in infos if needs_analysis(info.path)]
+    efficiency_since = date.fromisoformat(args.efficiency_since) if args.efficiency_since else None
+    efficiency_infos = [
+        info for info in infos
+        if (args.force or needs_efficiency(info))
+        and (efficiency_since is None or (info.start is not None and info.start.date() >= efficiency_since))
+        and efficiency_sports(info)
+    ]
     activities, warnings = load_intervals_activities(open_infos or infos)
 
     print(f"FIT files: {len(fit_paths)}")
@@ -1208,6 +1262,8 @@ def main() -> int:
             warnings.append(f"{info.path.name}: no unique Intervals.icu match")
         write_summary(info, activity, args.dry_run, warnings)
         update_histories(info, infos, args.dry_run, warnings)
+    for info in efficiency_infos:
+        write_efficiency(info, args.dry_run)
 
     if warnings:
         print("WARNINGS:")

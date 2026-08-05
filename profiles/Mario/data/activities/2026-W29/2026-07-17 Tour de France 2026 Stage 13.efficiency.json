@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W29/2026-07-17 Tour de France 2026 Stage 13.fit",
+  "source_mtime_ns": 1784444729555751700,
+  "start_time": "2026-07-17T10:01:53+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-07-17T11:34:46+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 111.0,
+          "temperature_c": null,
+          "power_w": 164.5
+        }
+      ]
+    }
+  }
+}

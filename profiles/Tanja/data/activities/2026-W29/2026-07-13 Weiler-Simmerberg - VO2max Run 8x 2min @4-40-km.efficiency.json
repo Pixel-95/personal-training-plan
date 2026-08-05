@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W29/2026-07-13 Weiler-Simmerberg - VO2max Run 8x 2min @4-40-km.fit",
+  "source_mtime_ns": 1784574062567644000,
+  "start_time": "2026-07-13T19:40:26+00:00",
+  "sports": {
+    "run": {
+      "points": []
+    }
+  }
+}

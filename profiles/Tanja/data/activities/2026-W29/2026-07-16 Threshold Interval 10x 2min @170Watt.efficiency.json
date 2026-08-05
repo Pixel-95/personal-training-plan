@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W29/2026-07-16 Threshold Interval 10x 2min @170Watt.fit",
+  "source_mtime_ns": 1784574064878293300,
+  "start_time": "2026-07-16T12:14:13+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

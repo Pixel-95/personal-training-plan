@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W32/2026-08-04 Weiler-Simmerberg - Threshold Run 3x 10min @3-55-km.fit",
+  "source_mtime_ns": 1785948568087286800,
+  "start_time": "2026-08-04T17:42:08+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-08-04T16:00:05+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 154.0,
+          "temperature_c": null,
+          "gap_speed_mps": 4.3826,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

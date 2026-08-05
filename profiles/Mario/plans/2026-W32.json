@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "week": "2026-W32",
+  "analysis_week": "2026-W31",
+  "summary_override": {
+    "total": "7:57h + Swim",
+    "swim": "extern",
+    "bike": "5:01h",
+    "run": "2:16h"
+  },
+  "days": [
+    {
+      "date": "2026-08-03",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "3:00h",
+          "duration": "3:00h",
+          "content": [
+            "3:00h @230W",
+            "75g Kohlenhydrate/h"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-04",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Long",
+          "amount": "1:15h",
+          "duration": "1:15h",
+          "content": [
+            "1:15h @4:45/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Threshold",
+          "amount": "61min",
+          "duration": "61min",
+          "content": [
+            "15min @4:55/km",
+            "3x10min @3:55/km,2min Trabpause",
+            "12min @4:55/km"
+          ]
+        },
+        {
+          "sport": "bike",
+          "title": "Threshold",
+          "amount": "61min",
+          "duration": "61min",
+          "content": [
+            "5min @205W",
+            "3x15min @310W,4min @100W",
+            "3min @100W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Basic",
+          "amount": "60min",
+          "duration": "60min",
+          "content": [
+            "60min @230W"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-07",
+      "sessions": []
+    },
+    {
+      "date": "2026-08-08",
+      "sessions": []
+    },
+    {
+      "date": "2026-08-09",
+      "sessions": []
+    }
+  ]
+}

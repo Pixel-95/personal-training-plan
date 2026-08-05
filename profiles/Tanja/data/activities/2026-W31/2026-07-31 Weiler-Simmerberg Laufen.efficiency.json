@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W31/2026-07-31 Weiler-Simmerberg Laufen.fit",
+  "source_mtime_ns": 1785766608895997300,
+  "start_time": "2026-07-31T17:42:29+00:00",
+  "sports": {
+    "run": {
+      "points": []
+    }
+  }
+}

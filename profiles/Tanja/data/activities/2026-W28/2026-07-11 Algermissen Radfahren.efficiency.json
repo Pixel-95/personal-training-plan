@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W28/2026-07-11 Algermissen Radfahren.fit",
+  "source_mtime_ns": 1784574062049204700,
+  "start_time": "2026-07-11T10:31:53+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

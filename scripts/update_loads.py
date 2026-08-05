@@ -52,6 +52,13 @@ def fmt_number(value: float) -> str:
     return f"{value:.1f}".rstrip("0").rstrip(".")
 
 
+def initial_load_seed(start: date, end: date, tss_totals: dict[date, float]) -> float:
+    """Use the mean daily TSS of the most recent half of the available period."""
+    days = list(inclusive_dates(start, end))
+    recent_days = days[len(days) // 2 :]
+    return sum(tss_totals.get(day, 0.0) for day in recent_days) / len(recent_days)
+
+
 def calculate(
     loads_path: Path = LOADS_PATH,
     activities_dir: Path = ACTIVITIES_DIR,
@@ -67,19 +74,15 @@ def calculate(
     newest_candidates = [date.fromisoformat(day) for day in existing] + list(tss_totals)
     end = max(newest_candidates + ([newest] if newest else []))
 
-    start_row = existing.get(start_key)
-    has_seed = bool(start_row and start_row[2] != "-" and start_row[3] != "-")
-    if has_seed and start_row is not None:
-        atl = float(start_row[2])
-        ctl = float(start_row[3])
-    else:
-        atl = 0.0
-        ctl = 0.0
+    measured_end = max(tss_totals) if tss_totals else max(date.fromisoformat(day) for day in existing)
+    seed = initial_load_seed(start, measured_end, tss_totals)
+    atl = seed
+    ctl = seed
 
     rows: dict[str, list[str]] = {}
     for day in inclusive_dates(start, end):
         tss = tss_totals.get(day, 0.0)
-        if day != start or not has_seed:
+        if day != start:
             atl = atl + (tss - atl) / 7
             ctl = ctl + (tss - ctl) / 42
         tsb = ctl - atl

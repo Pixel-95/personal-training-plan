@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W31/2026-07-31 Threshold Bike 3x 15min @310W.fit",
+  "source_mtime_ns": 1785739996934674900,
+  "start_time": "2026-07-31T13:49:40+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-07-31T12:00:10+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 143.0,
+          "temperature_c": null,
+          "power_w": 310.0
+        },
+        {
+          "timestamp": "2026-07-31T12:01:40+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 144.0,
+          "temperature_c": null,
+          "power_w": 309.0
+        },
+        {
+          "timestamp": "2026-07-31T12:10:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 143.0,
+          "temperature_c": null,
+          "power_w": 310.0
+        },
+        {
+          "timestamp": "2026-07-31T12:13:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 147.0,
+          "temperature_c": null,
+          "power_w": 310.0
+        },
+        {
+          "timestamp": "2026-07-31T12:15:11+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 148.0,
+          "temperature_c": null,
+          "power_w": 310.0
+        },
+        {
+          "timestamp": "2026-07-31T12:18:11+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 151.0,
+          "temperature_c": null,
+          "power_w": 309.0
+        },
+        {
+          "timestamp": "2026-07-31T12:19:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 151.0,
+          "temperature_c": null,
+          "power_w": 309.0
+        },
+        {
+          "timestamp": "2026-07-31T12:30:11+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 151.0,
+          "temperature_c": null,
+          "power_w": 309.0
+        },
+        {
+          "timestamp": "2026-07-31T12:31:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 152.0,
+          "temperature_c": null,
+          "power_w": 309.0
+        },
+        {
+          "timestamp": "2026-07-31T12:33:11+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 153.0,
+          "temperature_c": null,
+          "power_w": 310.0
+        },
+        {
+          "timestamp": "2026-07-31T12:34:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 154.0,
+          "temperature_c": null,
+          "power_w": 310.0
+        },
+        {
+          "timestamp": "2026-07-31T12:36:11+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 154.0,
+          "temperature_c": null,
+          "power_w": 310.0
+        },
+        {
+          "timestamp": "2026-07-31T12:37:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "power_w": 310.0
+        }
+      ]
+    }
+  }
+}

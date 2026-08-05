@@ -1,11 +1,11 @@
 ﻿# Aktueller Zustand
 
-Zuletzt vom LLM zusammengefasst: 2026-07-20
+Zuletzt vom LLM zusammengefasst: 2026-08-03
 
 ## Aktuelle Zusammenfassung
 
-- Seit dem Athleten-Update vom 2026-06-25 liegt kein neuer subjektiver Zustandsbericht vor.
-- Der letzte angekündigte Technik-Schwimmkurs fand am 2026-06-30 statt und ist keine aktuelle Terminrestriktion mehr.
+- Bis einschließlich 2026-08-03 liegt seit dem Athleten-Update vom 2026-06-25 kein neuer subjektiver Zustandsbericht vor.
+- Der angekündigte letzte Technik-Schwimmkurs vom 2026-06-30 ist keine aktuelle Terminrestriktion mehr.
 
 ## Neueste Updates
 

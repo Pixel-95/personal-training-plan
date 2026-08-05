@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W24/2026-06-09 Weiler-Simmerberg - Basic Run.fit",
+  "source_mtime_ns": 1781512591068255600,
+  "start_time": "2026-06-09T16:48:25+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-06-09T15:02:38+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 147.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.885,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-06-09T15:05:38+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 145.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.8732,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-06-09T15:07:08+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 144.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.8564,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-06-09T15:14:38+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 130.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.3488,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

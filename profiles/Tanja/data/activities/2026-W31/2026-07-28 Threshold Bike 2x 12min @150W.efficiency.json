@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W31/2026-07-28 Threshold Bike 2x 12min @150W.fit",
+  "source_mtime_ns": 1785489098546579300,
+  "start_time": "2026-07-28T17:26:31+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-07-28T15:37:02+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 150.0,
+          "temperature_c": null,
+          "power_w": 150.0
+        },
+        {
+          "timestamp": "2026-07-28T15:38:32+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 151.0,
+          "temperature_c": null,
+          "power_w": 150.0
+        }
+      ]
+    }
+  }
+}

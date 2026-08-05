@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W28/2026-07-09 Hannover - Basic Run.fit",
+  "source_mtime_ns": 1783861260923771300,
+  "start_time": "2026-07-09T18:44:08+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-09T16:56:09+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 123.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.4012,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-09T16:59:09+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.4173,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-09T17:02:09+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.4899,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-09T17:05:09+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.4206,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

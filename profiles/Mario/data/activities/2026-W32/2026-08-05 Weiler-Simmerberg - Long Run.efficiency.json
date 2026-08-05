@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W32/2026-08-05 Weiler-Simmerberg - Long Run.fit",
+  "source_mtime_ns": 1785948570041426200,
+  "start_time": "2026-08-05T14:38:44+00:00",
+  "sports": {
+    "run": {
+      "points": []
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W29/2026-07-15 Weiler-Simmerberg Laufen.fit",
+  "source_mtime_ns": 1784574063315538300,
+  "start_time": "2026-07-15T17:21:58+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-15T15:43:00+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 138.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.7519,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-15T16:07:00+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 136.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.6395,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

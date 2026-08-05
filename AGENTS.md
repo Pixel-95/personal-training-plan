@@ -147,7 +147,7 @@ Zwei-Phasen-Planung:
 - `profiles/<TRAINING_PROFILE>/data/health/loads.md`: Vor jeder Trainingsplan-Erzeugung neu berechnen und mit den Spalten `Datum`, `Tages-TSS`, `ATL`, `CTL`, `TSB`, `ACR` führen.
 - `profiles/<TRAINING_PROFILE>/data/health/loads.md`: Für jeden Kalendertag eine Zeile schreiben; neueste Einträge oben.
 - `profiles/<TRAINING_PROFILE>/data/health/loads.md`: `Tages-TSS` als Summe aller Activity-`TSS`-Werte dieses Kalendertags berechnen; Ruhetage oder Tage ohne Aktivitäts-`TSS` mit `0` eintragen.
-- `profiles/<TRAINING_PROFILE>/data/health/loads.md`: Der älteste vorhandene Eintrag mit ATL/CTL gilt als Startwert; ältere Werte nicht rückwirkend neu erfinden, außer der Nutzer verlangt es ausdrücklich.
+- `profiles/<TRAINING_PROFILE>/data/health/loads.md`: Bei jeder Neuberechnung den Anfangswert für ATL und CTL aus dem arithmetischen Mittel der Tages-TSS in der jüngeren Hälfte des gesamten verfügbaren Kalendertag-Zeitraums ableiten. Damit wird die Startverzerrung durch ATL/CTL = 0 vermieden; ältere Werte werden bei diesem Verfahren bewusst neu berechnet.
 - `profiles/<TRAINING_PROFILE>/data/health/loads.md`: Ab dem Startwert ATL und CTL vorwärts berechnen mit `ATL_heute = ATL_gestern + (TSS_heute - ATL_gestern) / 7` und `CTL_heute = CTL_gestern + (TSS_heute - CTL_gestern) / 42`.
 - `profiles/<TRAINING_PROFILE>/data/health/loads.md`: `TSB = CTL - ATL` berechnen.
 - `profiles/<TRAINING_PROFILE>/data/health/loads.md`: `ACR = ATL / CTL` berechnen; wenn `CTL = 0`, `ACR` als `-` eintragen.

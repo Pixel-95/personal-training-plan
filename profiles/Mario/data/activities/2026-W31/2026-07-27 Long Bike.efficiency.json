@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W31/2026-07-27 Long Bike.fit",
+  "source_mtime_ns": 1785739995366758000,
+  "start_time": "2026-07-27T16:08:29+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-07-27T14:20:29+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T14:23:29+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 121.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T14:26:29+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 122.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T14:29:29+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T14:38:29+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 117.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T14:47:29+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 117.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T16:04:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 121.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T16:07:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.0,
+          "temperature_c": null,
+          "power_w": 229.0
+        },
+        {
+          "timestamp": "2026-07-27T16:10:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.0,
+          "temperature_c": null,
+          "power_w": 229.0
+        },
+        {
+          "timestamp": "2026-07-27T16:13:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T16:19:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T16:22:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.0,
+          "temperature_c": null,
+          "power_w": 229.0
+        },
+        {
+          "timestamp": "2026-07-27T16:25:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T16:28:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 121.0,
+          "temperature_c": null,
+          "power_w": 229.0
+        },
+        {
+          "timestamp": "2026-07-27T16:31:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T16:34:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 119.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T16:40:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T16:55:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-07-27T17:04:43+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 122.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        }
+      ]
+    }
+  }
+}

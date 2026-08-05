@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W23/2026-06-07 Bodensee-Umrundung - Tag 2.fit",
+  "source_mtime_ns": 1780861960093978200,
+  "start_time": "2026-06-07T08:24:14+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

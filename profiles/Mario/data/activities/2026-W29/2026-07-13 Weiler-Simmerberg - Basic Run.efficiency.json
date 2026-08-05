@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W29/2026-07-13 Weiler-Simmerberg - Basic Run.fit",
+  "source_mtime_ns": 1784444726338545700,
+  "start_time": "2026-07-13T19:40:28+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-13T17:55:28+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 132.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.6329,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

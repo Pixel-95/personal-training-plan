@@ -96,6 +96,13 @@ def main() -> int:
         print("Skipped: no Intervals.icu API key found for the active profile.")
         codes.append(2)
 
+    codes.append(
+        run_step(
+            "Efficiency update",
+            ["scripts/update_efficiency.py", "--week", analysis_week, *dry],
+        )
+    )
+
     review_path = DATA_DIR / "activities" / analysis_week / f"review_{analysis_week}.md"
     plan_path = ROOT / "profiles" / PROFILE / "plans" / f"{target_week}.json"
 

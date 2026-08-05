@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W28/2026-07-10 Algermissen Laufen.fit",
+  "source_mtime_ns": 1784574061227372700,
+  "start_time": "2026-07-10T19:00:20+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-10T17:13:50+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 154.0,
+          "temperature_c": null,
+          "gap_speed_mps": 2.9598,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-10T17:18:20+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 164.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.2366,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-10T17:21:20+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 168.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.334,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-10T17:24:20+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 170.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.248,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-10T17:25:50+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 170.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.2418,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-10T17:27:20+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 171.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.2698,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

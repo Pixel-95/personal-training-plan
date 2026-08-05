@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W28/2026-07-12 Weiler-Simmerberg - Threshold Run 3x 12min @4-00-km.fit",
+  "source_mtime_ns": 1784444724749284300,
+  "start_time": "2026-07-12T20:10:44+00:00",
+  "sports": {
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-07-12T18:28:45+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 159.0,
+          "temperature_c": null,
+          "gap_speed_mps": 4.585,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-12T18:30:15+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 160.0,
+          "temperature_c": null,
+          "gap_speed_mps": 4.4699,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-12T18:43:45+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 153.0,
+          "temperature_c": null,
+          "gap_speed_mps": 4.1013,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-12T18:45:15+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 154.0,
+          "temperature_c": null,
+          "gap_speed_mps": 4.0222,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-12T18:48:15+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "gap_speed_mps": 4.0899,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-07-12T18:49:45+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "gap_speed_mps": 4.1521,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W28/2026-07-06 Threshold Bike 4x 12min @305W.fit",
+  "source_mtime_ns": 1783861259530161200,
+  "start_time": "2026-07-06T18:15:41+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-07-06T16:54:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 144.0,
+          "temperature_c": null,
+          "power_w": 304.0
+        },
+        {
+          "timestamp": "2026-07-06T17:06:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 146.0,
+          "temperature_c": null,
+          "power_w": 304.0
+        },
+        {
+          "timestamp": "2026-07-06T17:08:11+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 146.0,
+          "temperature_c": null,
+          "power_w": 305.0
+        },
+        {
+          "timestamp": "2026-07-06T17:09:41+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 146.0,
+          "temperature_c": null,
+          "power_w": 304.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W23/2026-06-04 Weiler-Simmerberg - Threshold Run 6x 3min @4-00km.fit",
+  "source_mtime_ns": 1780855396000000000,
+  "start_time": "2026-06-04T18:53:22+00:00",
+  "sports": {
+    "run": {
+      "points": []
+    }
+  }
+}

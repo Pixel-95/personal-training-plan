@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W19/2026-05-10 Ironman 70.3 Da Nang.fit",
+  "source_mtime_ns": 1784110463726033900,
+  "start_time": "2026-05-10T05:48:32+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-05-09T23:48:40+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 139.0,
+          "temperature_c": null,
+          "power_w": 252.0
+        },
+        {
+          "timestamp": "2026-05-10T00:03:40+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 136.0,
+          "temperature_c": null,
+          "power_w": 244.5
+        },
+        {
+          "timestamp": "2026-05-10T00:06:40+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 134.0,
+          "temperature_c": null,
+          "power_w": 240.0
+        },
+        {
+          "timestamp": "2026-05-10T00:09:40+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 134.0,
+          "temperature_c": null,
+          "power_w": 244.0
+        },
+        {
+          "timestamp": "2026-05-10T00:31:12+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 143.0,
+          "temperature_c": null,
+          "power_w": 253.0
+        },
+        {
+          "timestamp": "2026-05-10T00:37:12+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 141.0,
+          "temperature_c": null,
+          "power_w": 252.0
+        }
+      ]
+    },
+    "run": {
+      "points": [
+        {
+          "timestamp": "2026-05-10T01:57:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.9773,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:06:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.8836,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:07:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.8333,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:33:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 156.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.7303,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:34:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 156.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.5912,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:36:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.5273,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:37:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 156.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.5085,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:42:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.6142,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:43:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 156.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.6838,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:45:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 156.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.812,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:48:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 155.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.5671,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:49:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 154.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.5459,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:52:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 157.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.7883,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:55:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 161.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.9167,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:57:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 162.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.9399,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T02:58:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 163.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.938,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T03:00:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 164.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.9385,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T03:01:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 163.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.8853,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T03:03:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 163.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.9346,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T03:04:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 163.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.8881,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T03:07:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 162.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.8464,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T03:09:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 162.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.7844,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T03:13:56+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 167.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.9461,
+          "gap_method": "grade_adjusted"
+        },
+        {
+          "timestamp": "2026-05-10T03:15:26+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 167.0,
+          "temperature_c": null,
+          "gap_speed_mps": 3.9387,
+          "gap_method": "grade_adjusted"
+        }
+      ]
+    }
+  }
+}

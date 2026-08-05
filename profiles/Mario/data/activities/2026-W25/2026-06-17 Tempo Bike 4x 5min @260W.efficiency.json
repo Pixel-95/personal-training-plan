@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W25/2026-06-17 Tempo Bike 4x 5min @260W.fit",
+  "source_mtime_ns": 1782116751530408400,
+  "start_time": "2026-06-17T16:29:10+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

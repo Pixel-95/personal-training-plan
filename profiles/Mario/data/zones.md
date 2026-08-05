@@ -13,20 +13,20 @@
 
 | Zone | Zonenname | Untere HR-Grenze / bpm | Obere HR-Grenze / bpm | Untere Power-Grenze / W | Obere Power-Grenze / W |
 |-|-|-|-|-|-|
-| Z6 | Anaerobic | 172 | / | 343 | / |
-| Z5 | VO2max | 162 | 172 | 328 | 343 |
-| Z4 | Threshold | 148 | 162 | 281 | 328 |
-| Z3 | Tempo | 128 | 148 | 231 | 281 |
-| Z2 | Endurance | 117 | 128 | 175 | 231 |
-| Z1 | Recovery | / | 117 | / | 175 |
+| Z6 | Anaerobic | 168 | / | 339 | / |
+| Z5 | VO2max | 159 | 168 | 323 | 339 |
+| Z4 | Threshold | 145 | 159 | 277 | 323 |
+| Z3 | Tempo | 125 | 145 | 228 | 277 |
+| Z2 | Endurance | 115 | 125 | 172 | 228 |
+| Z1 | Recovery | / | 115 | / | 172 |
 
 ## Run
 
 | Zone | Zonenname | Untere HR-Grenze / bpm | Obere HR-Grenze / bpm | Untere Pace-Grenze / min:sec/km | Obere Pace-Grenze / min:sec/km |
 |-|-|-|-|-|-|
-| Z6 | Anaerobic | 177 | / | 3:37 | / |
-| Z5 | VO2max | 167 | 177 | 3:47 | 3:37 |
-| Z4 | Threshold | 153 | 167 | 4:12 | 3:47 |
-| Z3 | Tempo | 140 | 153 | 4:29 | 4:12 |
-| Z2 | Endurance | 129 | 140 | 4:53 | 4:29 |
-| Z1 | Recovery | / | 129 | / | 4:53 |
+| Z6 | Anaerobic | 174 | / | 3:35 | / |
+| Z5 | VO2max | 164 | 174 | 3:45 | 3:35 |
+| Z4 | Threshold | 150 | 164 | 4:09 | 3:45 |
+| Z3 | Tempo | 137 | 150 | 4:27 | 4:09 |
+| Z2 | Endurance | 126 | 137 | 4:50 | 4:27 |
+| Z1 | Recovery | / | 126 | / | 4:50 |

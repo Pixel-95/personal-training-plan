@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W27/2026-07-01 Threshold Bike 2x 12min @150W.fit",
+  "source_mtime_ns": 1784574059198956700,
+  "start_time": "2026-07-01T12:55:11+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

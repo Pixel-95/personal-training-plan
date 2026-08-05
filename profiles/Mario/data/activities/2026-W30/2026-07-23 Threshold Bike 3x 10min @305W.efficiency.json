@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W30/2026-07-23 Threshold Bike 3x 10min @305W.fit",
+  "source_mtime_ns": 1784888352340419400,
+  "start_time": "2026-07-23T19:26:22+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

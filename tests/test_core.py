@@ -16,7 +16,9 @@ if str(SCRIPTS) not in sys.path:
 import generate_trend_plots
 import analyze_fit_files
 import download_fit_files
+import efficiency
 import update_health
+import update_efficiency
 import update_loads
 import update_zones
 from date_utils import (
@@ -108,18 +110,22 @@ class LoadCalculationTests(unittest.TestCase):
         root.mkdir(parents=True, exist_ok=True)
         (root / f"{day} Test.md").write_text(f"TSS: {tss}\n", encoding="utf-8")
 
-    def test_first_activity_contributes_to_new_load_history(self) -> None:
+    def test_first_load_uses_recent_half_of_daily_tss_as_seed(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)
             activities = base / "activities"
-            self.write_activity(activities, "2026-06-01", "70")
+            for day, tss in enumerate((20, 40, 60, 80), start=1):
+                self.write_activity(activities, f"2026-06-{day:02d}", str(tss))
             rows = update_loads.calculate(base / "loads.md", activities)
-            self.assertEqual(rows["2026-06-01"][1:4], ["70", "10", "2"])
+            self.assertEqual(rows["2026-06-01"][1:4], ["20", "70", "70"])
+            self.assertEqual(rows["2026-06-02"][2:4], ["66", "69"])
 
-    def test_existing_seed_is_preserved(self) -> None:
+    def test_existing_seed_is_replaced_when_recalculating_history(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)
             loads = base / "loads.md"
+            activities = base / "activities"
+            self.write_activity(activities, "2026-06-01", "70")
             loads.write_text(
                 render_table(
                     update_loads.HEADER,
@@ -127,9 +133,9 @@ class LoadCalculationTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
-            rows = update_loads.calculate(loads, base / "activities", date(2026, 6, 2))
-            self.assertEqual(rows["2026-06-01"][2:4], ["20", "10"])
-            self.assertEqual(rows["2026-06-02"][2:4], ["17", "10"])
+            rows = update_loads.calculate(loads, activities, date(2026, 6, 2))
+            self.assertEqual(rows["2026-06-01"][2:4], ["70", "70"])
+            self.assertEqual(rows["2026-06-02"][2:4], ["60", "68"])
 
 
 class ZoneCalculationTests(unittest.TestCase):
@@ -274,6 +280,103 @@ class ConfigurationTests(unittest.TestCase):
             local_start,
         )
 
+
+class EfficiencyTests(unittest.TestCase):
+    def records(self, start: datetime, seconds: int, *, sport: str = "bike", stable: bool = True) -> list[dict]:
+        result = []
+        for second in range(seconds):
+            output = 220 if stable else (180 if second % 2 else 260)
+            record = {"timestamp": start + timedelta(seconds=second), "heart_rate": 130, "distance": second * 3, "enhanced_altitude": 100 + second * .01}
+            if sport == "bike":
+                record["power"] = output
+            else:
+                record["enhanced_speed"] = 3.2 if stable else (2.8 if second % 2 else 3.6)
+            result.append(record)
+        return result
+
+    def test_warmup_and_post_stop_are_excluded(self) -> None:
+        start = datetime(2026, 7, 1, tzinfo=timezone.utc)
+        records = self.records(start, 700) + self.records(start + timedelta(seconds=800), 600)
+        points = efficiency.extract_points(records, "bike")
+        self.assertTrue(points)
+        self.assertTrue(all(datetime.fromisoformat(point["timestamp"]) >= start + timedelta(seconds=980) for point in points))
+
+    def test_unstable_or_missing_records_are_rejected(self) -> None:
+        start = datetime(2026, 7, 1, tzinfo=timezone.utc)
+        self.assertEqual(efficiency.extract_points(self.records(start, 1200, stable=False), "bike"), [])
+        self.assertEqual(efficiency.extract_points([{"timestamp": start, "power": 220}], "bike"), [])
+
+    def test_gradual_hr_rise_is_accepted_but_rapid_hr_rise_is_rejected(self) -> None:
+        start = datetime(2026, 7, 1, tzinfo=timezone.utc)
+        gradual = self.records(start, 1200)
+        rapid = self.records(start, 1200)
+        for second, record in enumerate(gradual):
+            record["heart_rate"] = 125 + second / 120
+        for second, record in enumerate(rapid):
+            record["heart_rate"] = 125 + second / 20
+        self.assertTrue(efficiency.extract_points(gradual, "bike"))
+        self.assertEqual(efficiency.extract_points(rapid, "bike"), [])
+
+    def test_first_window_after_power_transition_is_rejected(self) -> None:
+        start = datetime(2026, 7, 1, tzinfo=timezone.utc)
+        records = self.records(start, 1200)
+        for second, record in enumerate(records):
+            record["power"] = 150 if second < 700 else 300
+        points = efficiency.extract_points(records, "bike")
+        self.assertTrue(points)
+        self.assertTrue(all(datetime.fromisoformat(point["timestamp"]) >= start + timedelta(seconds=900) for point in points))
+
+    def test_short_upper_interval_can_contribute_after_settling(self) -> None:
+        start = datetime(2026, 7, 1, tzinfo=timezone.utc)
+        records = self.records(start, 1200)
+        for second, record in enumerate(records):
+            if 700 <= second < 1000:
+                record["power"] = 300
+                record["heart_rate"] = 150
+            else:
+                record["power"] = 150
+                record["heart_rate"] = 130
+        points = efficiency.extract_points(records, "bike")
+        self.assertTrue(any(datetime.fromisoformat(point["timestamp"]) == start + timedelta(seconds=810) for point in points))
+
+    def test_run_gap_uses_grade_and_falls_back_to_pace(self) -> None:
+        start = datetime(2026, 7, 1, tzinfo=timezone.utc)
+        hilly = efficiency.extract_points(self.records(start, 1200, sport="run"), "run")
+        flat = self.records(start, 1200, sport="run")
+        for record in flat:
+            record.pop("enhanced_altitude")
+        fallback = efficiency.extract_points(flat, "run")
+        self.assertTrue(hilly and fallback)
+        self.assertEqual(fallback[0]["gap_method"], "pace_fallback")
+        self.assertNotEqual(hilly[0]["gap_speed_mps"], fallback[0]["gap_speed_mps"])
+
+    def test_coverage_and_week_replacement(self) -> None:
+        points = []
+        for activity in range(5):
+            for hr in (124, 128, 132, 136):
+                points.append({"hr": hr, "output": 2 * hr, "activity": f"a{activity}"})
+        result = update_efficiency.calculate(points)
+        self.assertEqual(result["status"], "vorläufig")
+        for activity in range(5):
+            for hr in (149, 153, 157, 161):
+                points.append({"hr": hr, "output": 2 * hr, "activity": f"b{activity}"})
+        result = update_efficiency.calculate(points)
+        self.assertEqual(result["status"], "robust")
+        self.assertIsNotNone(result["values"][130])
+        self.assertIsNotNone(result["values"][155])
+        self.assertIsNotNone(result["intervals"][130])
+        self.assertIsNotNone(result["intervals"][155])
+        rows = update_efficiency.upsert([["2026-W31", "bike", "old"]], [["2026-W31", "bike", "new"]])
+        self.assertEqual(rows, [["2026-W31", "bike", "new"]])
+
+    def test_efficiency_history_uses_iso_week_labels(self) -> None:
+        self.assertEqual(generate_trend_plots.iso_week_label(date(2026, 7, 20)), "W30")
+        self.assertEqual(generate_trend_plots.iso_week_label(date(2026, 7, 27)), "W31")
+        self.assertEqual(
+            generate_trend_plots.efficiency_history_window(date(2026, 7, 27)),
+            (date(2026, 5, 4), date(2026, 7, 27)),
+        )
+
     def test_hr_drift_ignores_initial_sensor_dropout(self) -> None:
         start = datetime(2026, 7, 10, tzinfo=timezone.utc)
         points = []
@@ -360,6 +463,9 @@ class TrendPlotTests(unittest.TestCase):
 
                 self.assertIn("body_steps.svg", generate_trend_plots.trend_section_html("2026-W26"))
                 self.assertNotIn("body_calories.svg", generate_trend_plots.trend_section_html("2026-W26"))
+                self.assertIn("efficiency_weekly.svg", generate_trend_plots.trend_section_html("2026-W26"))
+                self.assertIn("efficiency_bike.svg", generate_trend_plots.trend_section_html("2026-W26"))
+                self.assertIn("efficiency_run.svg", generate_trend_plots.trend_section_html("2026-W26"))
 
                 (health_dir / "calories.md").write_text(
                     render_table(

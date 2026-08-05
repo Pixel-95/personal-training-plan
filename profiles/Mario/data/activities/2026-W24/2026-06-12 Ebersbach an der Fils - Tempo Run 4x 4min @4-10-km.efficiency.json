@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W24/2026-06-12 Ebersbach an der Fils - Tempo Run 4x 4min @4-10-km.fit",
+  "source_mtime_ns": 1781512591978421900,
+  "start_time": "2026-06-12T14:38:59+00:00",
+  "sports": {
+    "run": {
+      "points": []
+    }
+  }
+}
