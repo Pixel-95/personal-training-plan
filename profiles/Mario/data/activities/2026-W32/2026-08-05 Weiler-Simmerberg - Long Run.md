@@ -12,17 +12,17 @@ Auswertung: 2026-08-05
 - Distanz: 14952m
 - Kalorien: 887kcal
 - Avg GAP: 4:38/km
-- Avg HR: 93bpm
+- Avg HR: - (Sensorartefakte)
 - Max HR: 144bpm
 - TSS: 79
 - Aerobic Training Effect: 2.6
 - Anaerobic Training Effect: 0
-- Effizienz: 0.0386m/s/bpm (4:38/km GAP @ 93bpm)
-- HR-Drift: -6.8% (moderat driftend)
+- Effizienz: -
+- HR-Drift: nicht sinnvoll berechenbar
 
 ## Bericht
 
-Die Einheit war ein Lauf über 1:12:42 mit einem durchschnittlichen GAP von 4:38/km. Mit TSS 79, 93bpm im Schnitt und 144bpm maximal war der Reiz insgesamt gut einzuordnen. Der Training Effect lag aerob bei 2.6 und anaerob bei 0. Für die Planung ist besonders relevant, ob GAP, Herzfrequenz, Pausen und mögliche Beschwerden zusammenpassen. Die HR-Drift lag bei -6.8% (moderat driftend) und hilft bei der Einordnung der aeroben Stabilität. Die Einheit sollte zusammen mit subjektivem Feedback und dem Wochenkontext für die weitere Planung bewertet werden.
+Die Einheit war ein Lauf über 1:12:42 mit einem durchschnittlichen GAP von 4:38/km. Der TSS von 79 bleibt nutzbar, die durchschnittliche Herzfrequenz ist wegen längerer Sensoraussetzer unzuverlässig. Der Training Effect lag aerob bei 2.6 und anaerob bei 0. Für die Planung ist besonders relevant, ob GAP, Herzfrequenz, Pausen und mögliche Beschwerden zusammenpassen. Eine belastbare HR-Drift war aus dieser Datei nicht sinnvoll ableitbar. Die Einheit sollte zusammen mit subjektivem Feedback und dem Wochenkontext für die weitere Planung bewertet werden.
 
 ## Einordnung
 

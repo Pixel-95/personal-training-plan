@@ -676,7 +676,29 @@ def get_tss(info: FitInfo, activity: dict[str, Any] | None, warnings: list[str])
     return "-"
 
 
+def heart_rate_is_reliable(info: FitInfo) -> bool:
+    """Reject sessions with prolonged, physiologically implausible HR dropouts."""
+    if not (is_bike(info.sport) or is_run(info.sport)):
+        return True
+    samples: list[float] = []
+    for record in info.records:
+        heart_rate = value(record, "heart_rate")
+        output = value(record, "power") if is_bike(info.sport) else value(record, "enhanced_speed", "speed")
+        if heart_rate in (None, "") or output in (None, ""):
+            continue
+        if float(heart_rate) > 0 and float(output) > 0:
+            samples.append(float(heart_rate))
+    if len(samples) < 60:
+        return True
+    maximum = max(samples)
+    minimum_plausible = max(70.0, maximum * 0.55)
+    low_fraction = sum(heart_rate < minimum_plausible for heart_rate in samples) / len(samples)
+    return not (maximum >= 120 and max(samples) - min(samples) >= 40 and low_fraction >= 0.1)
+
+
 def efficiency(info: FitInfo) -> str:
+    if not heart_rate_is_reliable(info):
+        return "-"
     avg_hr = value(info.session, "avg_heart_rate", "avg_hr")
     if not avg_hr:
         return "-"
@@ -701,6 +723,8 @@ def hr_drift(info: FitInfo) -> str:
         return "-"
     if "basic" not in name and "long" not in name:
         return "-"
+    if not heart_rate_is_reliable(info):
+        return "nicht sinnvoll berechenbar"
     points: list[tuple[datetime, float, float]] = []
     if is_bike(info.sport):
         for rec in info.records:
@@ -937,8 +961,9 @@ def summarize(info: FitInfo, tss: str) -> list[str]:
             lines.append(f"- Avg GAP: {gap_label_from_summary(value(session, 'enhanced_avg_speed', 'avg_speed'), value(session, 'total_distance'), value(session, 'total_ascent'))}")
         else:
             lines.append(f"- Avg Pace: {pace_from_speed(value(session, 'enhanced_avg_speed', 'avg_speed'), swim=swim)}")
+    reliable_hr = heart_rate_is_reliable(info)
     lines.extend([
-        f"- Avg HR: {fmt(value(session, 'avg_heart_rate'), 'bpm')}",
+        f"- Avg HR: {fmt(value(session, 'avg_heart_rate'), 'bpm') if reliable_hr else '- (Sensorartefakte)'}",
         f"- Max HR: {fmt(value(session, 'max_heart_rate'), 'bpm')}",
         f"- TSS: {tss}",
         f"- Aerobic Training Effect: {fmt(value(session, 'total_training_effect'), digits=1)}",
@@ -956,6 +981,7 @@ def report(info: FitInfo, tss: str, activity: dict[str, Any] | None) -> str:
     max_hr = fmt(value(session, "max_heart_rate"), "bpm")
     aerobic = fmt(value(session, "total_training_effect"), digits=1)
     anaerobic = fmt(value(session, "total_anaerobic_training_effect"), digits=1)
+    reliable_hr = heart_rate_is_reliable(info)
     if is_multisport(info.sport):
         sentences = [
             f"Die Einheit war ein Triathlon über {duration} mit {avg_hr} im Schnitt und {max_hr} maximal.",
@@ -980,7 +1006,11 @@ def report(info: FitInfo, tss: str, activity: dict[str, Any] | None) -> str:
         )
         sentences = [
             f"Die Einheit war ein Lauf über {duration} mit einem durchschnittlichen GAP von {gap}.",
-            f"Mit TSS {tss}, {avg_hr} im Schnitt und {max_hr} maximal war der Reiz insgesamt gut einzuordnen.",
+            (
+                f"Mit TSS {tss}, {avg_hr} im Schnitt und {max_hr} maximal war der Reiz insgesamt gut einzuordnen."
+                if reliable_hr
+                else f"Der TSS von {tss} bleibt nutzbar, die durchschnittliche Herzfrequenz ist wegen längerer Sensoraussetzer unzuverlässig."
+            ),
             f"Der Training Effect lag aerob bei {aerobic} und anaerob bei {anaerobic}.",
             "Für die Planung ist besonders relevant, ob GAP, Herzfrequenz, Pausen und mögliche Beschwerden zusammenpassen.",
         ]

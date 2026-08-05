@@ -32,6 +32,8 @@ Die Standard-Verfügbarkeit steht in `data/availability.md`.
 | Bevorzugter Ruhetag | Samstag oder Sonntag |
 | Indoor Bike Setup | Smart Trainer mit Powermeter |
 | Outdoor Bike Setup | Rennrad mit Powermeter / Triathlonrad mit Powermeter |
+| Triathlonrad | Canyon Speedmax CFR |
+| Aerodynamik-Test | `data/aerodynamics/2026-04-24-cda-tests/assessment.md`, aktuelles 24°-Setup mit CdA etwa 0,214m² |
 | Radstrecken | oft hügelig im Allgäu |
 | Laufuntergrund | asphaltierte Straße, üblicherweise leichte stetige Steigung |
 | Krafttraining / Mobility | Zugseil verfügbar, optional Stabi |

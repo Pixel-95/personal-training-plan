@@ -385,6 +385,30 @@ class EfficiencyTests(unittest.TestCase):
             points.append((start + timedelta(seconds=second), heart_rate, 3.0))
         self.assertEqual(analyze_fit_files.hr_drift_from_points(points), "0.0% (stabil)")
 
+    def test_prolonged_heart_rate_dropouts_are_rejected(self) -> None:
+        start = datetime(2026, 8, 5, tzinfo=timezone.utc)
+        records = []
+        for second in range(600):
+            heart_rate = 65 if second < 180 else 135
+            records.append({
+                "timestamp": start + timedelta(seconds=second),
+                "heart_rate": heart_rate,
+                "enhanced_speed": 3.3,
+                "distance": second * 3.3,
+            })
+        info = analyze_fit_files.FitInfo(
+            Path("2026-08-05 Long Run.fit"),
+            {"record": records},
+            {"avg_heart_rate": 114},
+            [],
+            records,
+            start,
+            "running",
+        )
+        self.assertFalse(analyze_fit_files.heart_rate_is_reliable(info))
+        self.assertEqual(analyze_fit_files.efficiency(info), "-")
+        self.assertEqual(analyze_fit_files.hr_drift(info), "nicht sinnvoll berechenbar")
+
     def test_demo_profile_is_not_planning_ready(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             data_dir = Path(directory)

@@ -1,17 +1,17 @@
 # Aktueller Zustand
 
-Zuletzt vom LLM zusammengefasst: 2026-08-03
+Zuletzt vom LLM zusammengefasst: 2026-08-05
 
 ## Aktuelle Zusammenfassung
 
-- Stand 2026-08-03: W31 war mit etwa 13:02h und 504 TSS sehr belastend. Long Bike (3:00h, 229W, 145 TSS, 0,6% HR-Drift), Long Run (1:07h, 4:39/km GAP, 72 TSS, 3,8% HR-Drift) und Threshold Bike (3x15min bei 309 bis 310W) wurden stabil absolviert.
-- Der Threshold Run vom 2026-07-28 lag mit 3x10min deutlich schneller als die Vorgabe, ungefähr bei 3:31 bis 3:54/km GAP. Künftige Schwellenläufe bleiben deshalb bei 3:55/km, eine schnellere Vorgabe ist nicht angezeigt.
-- Die zwei Schwimmeinheiten in W31 umfassten 3.500m und waren überwiegend locker. Die aktuelle CSS von 1:35/100m bleibt für Training und Freiwasser nicht ausreichend validiert, deshalb sind saubere, kontrollierte Wiederholungen und das externe Schwimmprogramm maßgeblich.
-- Die lockere Radausfahrt am 2026-08-01 (3:48h aktiv, 82 TSS) und der Canyoning-Zustieg am 2026-08-02 (1:21h, 13 TSS) sind zusätzliche Belastung, aber keine strukturierten Schlüsseleinheiten.
-- Stand 2026-08-03 ist die Readiness gut: HRV 118ms und 7-Tage-HRV 113ms liegen im 90-Tage-Korridor von 96 bis 127ms, Ruhepuls 36bpm sowie 8:06h Schlaf bei Score 97 sind unauffällig. Das 7-Tage-Schrittmittel beträgt 7.448, die höhere Alltagsbelastung am 2026-07-28 bis 2026-07-30 ist zu beachten.
-- Gewicht und Körperfett liegen am 2026-08-03 bei 78,4kg und 13,7%, die 7-Tage-Mittel bei 79,23kg und 13,50%. Für den 2026-08-01 und 2026-08-02 fehlen Intervals.icu-Werte, daher keine Trendaussage aus diesen Einzeltagen ableiten.
-- Der Load-Status erholt sich nach W31: ATL 57, CTL 62, TSB +5 und ACR 0,922 am 2026-08-03. Die hohe Vorwochenlast erlaubt eine vollständige, aber nicht progressiv verschärfte W32.
-- Für 2026-W32 besteht nur von Montag bis Donnerstag Trainingszeit, mit Schwimmen am Dienstag und Donnerstag sowie Rest von Freitag bis Sonntag. Es sollen Long Run, Interval Run, drei Bike- und zwei Swim-Sessions ohne Basic Run untergebracht werden.
+- Stand 2026-08-05 wurden in W32 bereits 350 TSS in drei Tagen absolviert: Long Bike 3:00h bei 230W, Threshold Run 3x10min, Threshold Bike 3x15min bei 309 bis 310W, Long Run 1:13h bei 4:38/km GAP und eine Swim-Session.
+- Das Long Bike am 2026-08-03 war mit 230W, 120bpm und 4,7% HR-Drift noch ausreichend stabil, aber deutlich fordernder als das Long Bike der Vorwoche. Das Threshold Bike am 2026-08-05 wurde erneut konstant umgesetzt, die aktuelle FTP liegt bei 308W.
+- Die Arbeitsabschnitte des Threshold Runs am 2026-08-04 lagen erneut überwiegend schneller als die Vorgabe von 3:55/km. Die aktuelle Run-Schwelle liegt bei 158bpm und 3:52/km, eine weitere Verschärfung der Zielpace ist momentan nicht angezeigt.
+- Beim Long Run am 2026-08-05 hatte die Herzfrequenzmessung längere Aussetzer. ØHF, Effizienz und HR-Drift dieser Einheit sind nicht verwertbar; Dauer, GAP, Lauftechnik und TSS bleiben nutzbar.
+- Die Swim-Session am 2026-08-04 umfasste nur 925m aktive Distanz in 1:11h. Die CSS von 1:35/100m und der Freiwassertransfer bleiben nicht ausreichend validiert, Schwimmen ist weiterhin der größte disziplinspezifische Entwicklungsbereich.
+- Stand 2026-08-05 ist die Readiness trotz der hohen Dreitageslast unauffällig: HRV 108ms und 7-Tage-HRV 115ms liegen im 90-Tage-Korridor von 96 bis 128ms, Ruhepuls 38bpm sowie 8:14h Schlaf bei Score 91 sind stabil.
+- Gewicht und Körperfett liegen am 2026-08-05 bei 79,4kg und 13,5%, die 7-Tage-Mittel bei 79,10kg und 13,47%. Gegenüber Mitte Juni ist das Gewicht deutlich gesunken, zuletzt aber weitgehend stabil.
+- Der Load-Status ist am 2026-08-05 mit ATL 85, CTL 74, TSB -11 und ACR 1,155 erhöht, aber noch kontrolliert. Die geplanten Ruhetage von Freitag bis Sonntag sind nach der komprimierten Belastung notwendig.
 
 ## Neueste Updates
 
