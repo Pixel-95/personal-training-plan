@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "week": "2026-W33",
+  "analysis_week": "2026-W32",
+  "summary_override": {
+    "total": "9:30h + Swim",
+    "swim": "extern",
+    "bike": "3:45h + Race",
+    "run": "1:15h + Race"
+  },
+  "days": [
+    {
+      "date": "2026-08-10",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Long, Triathlonrad-Test",
+          "amount": "3:00h",
+          "duration": "3:00h",
+          "content": [
+            "3:00h @220W",
+            "Aeroposition und komplettes Race-Setup testen",
+            "80g Kohlenhydrate/h"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "sessions": [
+        {
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
+        },
+        {
+          "sport": "run",
+          "title": "Basic",
+          "amount": "45min",
+          "duration": "45min",
+          "content": [
+            "45min @4:45/km"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Activation",
+          "amount": "45min",
+          "duration": "45min",
+          "content": [
+            "11min @205W",
+            "3x3min @310W,3min @100W",
+            "16min @205W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "sessions": [
+        {
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
+        },
+        {
+          "sport": "run",
+          "title": "Activation",
+          "amount": "30min",
+          "duration": "30min",
+          "content": [
+            "30min @4:50/km",
+            "4x20s @3:35/km innerhalb der 30min"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-14",
+      "sessions": []
+    },
+    {
+      "date": "2026-08-15",
+      "sessions": [
+        {
+          "sport": "race",
+          "title": "Nordschwarzwald Triathlon",
+          "amount": "Kurztriathlon",
+          "duration": "2:15h",
+          "content": [
+            "Trainingswettkampf ohne Taper",
+            "Kontrolliert und technisch sauber absolvieren"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-16",
+      "sessions": [
+        {
+          "sport": "race",
+          "title": "Thiersee Triathlon",
+          "amount": "Kurztriathlon",
+          "duration": "2:15h",
+          "content": [
+            "Trainingswettkampf ohne Taper",
+            "Bei schweren Beinen kontrolliert starten"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 from datetime import date
 from pathlib import Path
 
@@ -54,6 +55,19 @@ def download_fit(client: IntervalsClient, activity_id: str) -> tuple[bytes, str,
 
 def fit_content_is_unchanged(path: Path, data: bytes) -> bool:
     return path.exists() and path.read_bytes() == data
+
+
+def existing_identical_fit(data: bytes, target: Path) -> Path | None:
+    """Return an existing FIT with identical bytes, excluding its intended target."""
+    digest = hashlib.sha256(data).digest()
+    for path in (DATA_DIR / "activities").rglob("*.fit"):
+        if path.resolve() == target.resolve():
+            continue
+        if path.stat().st_size != len(data):
+            continue
+        if hashlib.sha256(path.read_bytes()).digest() == digest:
+            return path
+    return None
 
 
 def main() -> int:
@@ -131,6 +145,14 @@ def main() -> int:
         if fit_content_is_unchanged(target, data):
             skipped += 1
             print(f"SKIP unchanged overlap {target.relative_to(ROOT)}")
+            continue
+        duplicate = existing_identical_fit(data, target)
+        if duplicate:
+            skipped += 1
+            print(
+                f"SKIP identical FIT {activity_id} -> {target.relative_to(ROOT)} "
+                f"(already stored as {duplicate.relative_to(ROOT)})"
+            )
             continue
         write_bytes_atomic(target, data)
         downloaded += 1

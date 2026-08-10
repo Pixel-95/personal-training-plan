@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Run GAP gegen Herzfrequenz (90 Tage)">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1086" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Run GAP gegen Herzfrequenz (90 Tage)</text>
+<line x1="70" y1="74.0" x2="1156" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="79.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">5 m/s</text>
+<line x1="70" y1="177.0" x2="1156" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="182.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">4 m/s</text>
+<line x1="70" y1="280.0" x2="1156" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="285.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">4 m/s</text>
+<line x1="70" y1="383.0" x2="1156" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="388.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">3 m/s</text>
+<line x1="70" y1="486.0" x2="1156" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="491.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">3 m/s</text>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">115</text>
+<line x1="287.2" y1="74" x2="287.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="287.2" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">125</text>
+<line x1="504.4" y1="74" x2="504.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="504.4" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">135</text>
+<line x1="721.6" y1="74" x2="721.6" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="721.6" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">146</text>
+<line x1="938.8" y1="74" x2="938.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="938.8" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">156</text>
+<line x1="1156.0" y1="74" x2="1156.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1156.0" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">166</text>
+<circle cx="900.5" cy="256.2" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="751.4" cy="251.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="708.8" cy="254.2" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="687.5" cy="257.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="389.4" cy="357.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="857.9" cy="209.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="857.9" cy="215.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="730.1" cy="285.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="751.4" cy="316.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="857.9" cy="244.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="964.4" cy="256.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="964.4" cy="247.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="1049.5" cy="217.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="815.3" cy="250.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="815.3" cy="208.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="240.4" cy="347.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="176.5" cy="344.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="155.2" cy="329.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="176.5" cy="343.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="219.1" cy="362.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="325.5" cy="346.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="389.4" cy="405.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="453.3" cy="375.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="368.1" cy="377.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="389.4" cy="397.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="389.4" cy="404.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="410.7" cy="387.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="410.7" cy="354.7" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="432.0" cy="397.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="474.6" cy="366.2" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="1006.9" cy="113.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="1028.2" cy="136.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="879.2" cy="209.2" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="900.5" cy="224.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="921.8" cy="211.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="921.8" cy="199.2" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="432.0" cy="301.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="219.1" cy="369.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="346.8" cy="361.4" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="432.0" cy="354.0" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="453.3" cy="319.7" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="474.6" cy="294.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="1049.5" cy="255.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="133.9" cy="403.0" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="133.9" cy="396.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="91.3" cy="446.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="133.9" cy="422.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="240.4" cy="387.0" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="155.2" cy="424.2" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="240.4" cy="402.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="964.4" cy="151.0" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="921.8" cy="200.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="325.5" cy="299.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="176.5" cy="377.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="410.7" cy="300.0" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="453.3" cy="268.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="346.8" cy="356.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="368.1" cy="377.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="474.6" cy="298.4" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="325.5" cy="374.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="900.5" cy="153.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<line x1="176.5" y1="379.7" x2="474.6" y2="327.1" stroke="#1d252d" stroke-width="3" stroke-linecap="round"/>
+<line x1="389.4" y1="74" x2="389.4" y2="486" stroke="#66717d" stroke-width="1.2" stroke-dasharray="3 4"/>
+<line x1="730.1" y1="296.3" x2="1028.2" y2="143.4" stroke="#1d252d" stroke-width="3" stroke-linecap="round"/>
+<line x1="921.8" y1="74" x2="921.8" y2="486" stroke="#66717d" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="613.0" y="528" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">Herzfrequenz (bpm)</text>
+<text x="70" y="58" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">61 gewichtete Punkte, 18 Aktivitäten, robust</text>
+</svg>
+

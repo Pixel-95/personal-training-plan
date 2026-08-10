@@ -10,5 +10,5 @@ Für W32 werden wegen der Verfügbarkeit alle sieben Einheiten auf Montag bis Do
 
 | Kennzahl | Swim | Bike | Run |
 |-|-|-|-|
-| Dauer | 1:55h | 7:41h | 2:26h |
-| TSS | 27 | 298 | 166 |
+| Dauer | 2:56h | 7:41h | 2:26h |
+| TSS | 39 | 298 | 166 |
