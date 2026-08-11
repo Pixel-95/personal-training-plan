@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "week": "2026-W33",
+  "analysis_week": "2026-W32",
+  "summary_override": {
+    "total": "2:15h plus externer Swim und Hyrox Camp",
+    "swim": "2x extern",
+    "bike": "0:45h",
+    "run": "0:35h"
+  },
+  "days": [
+    {
+      "date": "2026-08-10",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Basic Bike",
+          "amount": "45min",
+          "duration": "45min",
+          "content": [
+            "10 min @80 W einrollen",
+            "30 min @100 W fahren",
+            "5 min @75 W ausrollen",
+            "Bei zunehmendem Muskelkater oder schweren Beinen: Einheit beenden."
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "sessions": [
+        {
+          "sport": "swim",
+          "title": "Schwimmen nach externem Plan",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Externen Schwimmplan absolvieren."
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Basic Run",
+          "amount": "35min",
+          "duration": "35min",
+          "content": [
+            "35 min @6:05/km laufen.",
+            "Bei deutlich stärkerem Muskelkater: Rest statt des Laufs."
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-13",
+      "sessions": [
+        {
+          "sport": "swim",
+          "title": "Freiwasser-Swim nach externem Plan",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Externen Freiwasser-Schwimmplan absolvieren."
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-14",
+      "sessions": []
+    },
+    {
+      "date": "2026-08-15",
+      "sessions": [
+        {
+          "sport": "strength",
+          "title": "Hyrox Camp",
+          "amount": "Camp",
+          "duration": "6h",
+          "content": [
+            "Als Kraft-, Lauf- und Beinbelastung einordnen.",
+            "Kein weiteres Training ergänzen."
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-16",
+      "sessions": [
+        {
+          "sport": "strength",
+          "title": "Hyrox Camp",
+          "amount": "Camp",
+          "duration": "6h",
+          "content": [
+            "Als Kraft-, Lauf- und Beinbelastung einordnen.",
+            "Kein weiteres Training ergänzen."
+          ]
+        }
+      ]
+    }
+  ]
+}

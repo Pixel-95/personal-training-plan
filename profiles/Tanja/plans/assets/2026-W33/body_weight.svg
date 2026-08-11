@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Gewicht">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="992" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Gewicht</text>
+<defs>
+  <linearGradient id="weightBarFade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b9c3cf" stop-opacity="0.78"/>
+    <stop offset="100%" stop-color="#b9c3cf" stop-opacity="0.18"/>
+  </linearGradient>
+</defs>
+<line x1="70" y1="74.0" x2="1062" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1062" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1062" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1062" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1062" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">13.05.</text>
+<line x1="315.2" y1="74" x2="315.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="315.2" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">04.06.</text>
+<line x1="560.4" y1="74" x2="560.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="560.4" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">26.06.</text>
+<line x1="816.8" y1="74" x2="816.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="816.8" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">19.07.</text>
+<line x1="1062.0" y1="74" x2="1062.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1062.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">10.08.</text>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">63.4kg</text>
+<text x="58" y="271.8" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">60.7kg</text>
+<text x="58" y="285.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">31.0%</text>
+<text x="58" y="486.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">26.8%</text>
+<line x1="70" y1="280.0" x2="1062" y2="280.0" stroke="#e8ecf1" stroke-width="1" stroke-dasharray="6 8"/>
+<rect x="545.3" y="161.5" width="7.9" height="324.5" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="556.5" y="146.3" width="7.9" height="339.7" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="567.6" y="207.1" width="7.9" height="278.9" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="578.8" y="222.2" width="7.9" height="263.8" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="589.9" y="176.7" width="7.9" height="309.3" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="601.0" y="146.3" width="7.9" height="339.7" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="623.3" y="153.9" width="7.9" height="332.1" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="634.5" y="169.1" width="7.9" height="316.9" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="645.6" y="161.5" width="7.9" height="324.5" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="656.8" y="138.7" width="7.9" height="347.3" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="679.1" y="146.3" width="7.9" height="339.7" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="690.2" y="191.9" width="7.9" height="294.1" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="701.4" y="176.7" width="7.9" height="309.3" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="712.5" y="252.6" width="7.9" height="233.4" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="723.6" y="207.1" width="7.9" height="278.9" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="734.8" y="146.3" width="7.9" height="339.7" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="745.9" y="93.1" width="7.9" height="392.9" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="757.1" y="100.7" width="7.9" height="385.3" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="768.2" y="123.5" width="7.9" height="362.5" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="779.4" y="161.5" width="7.9" height="324.5" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="824.0" y="199.5" width="7.9" height="286.5" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="846.3" y="222.2" width="7.9" height="263.8" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="857.4" y="191.9" width="7.9" height="294.1" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="868.5" y="199.5" width="7.9" height="286.5" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="890.8" y="169.1" width="7.9" height="316.9" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="902.0" y="153.9" width="7.9" height="332.1" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="913.1" y="184.3" width="7.9" height="301.7" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="935.4" y="161.5" width="7.9" height="324.5" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="946.6" y="131.1" width="7.9" height="354.9" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="980.0" y="184.3" width="7.9" height="301.7" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="1058.0" y="138.7" width="7.9" height="347.3" rx="1.8" fill="url(#weightBarFade)" opacity="1.0"/>
+<rect x="546.8" y="324.4" width="5.0" height="161.6" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="557.9" y="299.9" width="5.0" height="186.1" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="569.1" y="343.9" width="5.0" height="142.1" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="580.2" y="304.8" width="5.0" height="181.2" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="591.4" y="378.1" width="5.0" height="107.9" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="602.5" y="387.9" width="5.0" height="98.1" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="624.8" y="397.7" width="5.0" height="88.3" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="636.0" y="368.3" width="5.0" height="117.7" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="647.1" y="334.1" width="5.0" height="151.9" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="658.3" y="407.4" width="5.0" height="78.6" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="680.6" y="368.3" width="5.0" height="117.7" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="691.7" y="363.5" width="5.0" height="122.5" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="702.8" y="427.0" width="5.0" height="59.0" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="714.0" y="358.6" width="5.0" height="127.4" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="725.1" y="387.9" width="5.0" height="98.1" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="736.3" y="412.3" width="5.0" height="73.7" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="747.4" y="412.3" width="5.0" height="73.7" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="758.6" y="397.7" width="5.0" height="88.3" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="769.7" y="387.9" width="5.0" height="98.1" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="780.9" y="397.7" width="5.0" height="88.3" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="825.5" y="412.3" width="5.0" height="73.7" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="847.7" y="407.4" width="5.0" height="78.6" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="858.9" y="387.9" width="5.0" height="98.1" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="870.0" y="363.5" width="5.0" height="122.5" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="892.3" y="412.3" width="5.0" height="73.7" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="903.5" y="397.7" width="5.0" height="88.3" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="914.6" y="407.4" width="5.0" height="78.6" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="936.9" y="378.1" width="5.0" height="107.9" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="948.1" y="387.9" width="5.0" height="98.1" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="981.5" y="407.4" width="5.0" height="78.6" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<rect x="1059.5" y="466.1" width="5.0" height="19.9" rx="1.8" fill="#ff4f55" opacity="0.82"/>
+<polyline points="582.7,184.3 593.9,182.0 605.0,172.9 616.2,172.9 627.3,170.6 638.4,176.7 649.6,165.3 660.7,157.7 671.9,153.9 683.0,153.9 694.2,157.7 705.3,163.8 716.5,169.1 727.6,180.5 738.8,180.5 749.9,173.6 761.1,164.5 772.2,150.9 783.3,147.8 794.5,132.6 805.6,123.5 816.8,119.7 827.9,146.3 872.5,203.3 883.7,203.3 894.8,197.2 906.0,186.6 917.1,185.8 928.2,182.0 939.4,171.4 950.5,161.5 961.7,161.5 972.8,157.7 984.0,165.3" fill="none" stroke="#1d252d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="582.7" cy="184.3" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="593.9" cy="182.0" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="605.0" cy="172.9" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="616.2" cy="172.9" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="627.3" cy="170.6" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="638.4" cy="176.7" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="649.6" cy="165.3" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="660.7" cy="157.7" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="671.9" cy="153.9" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="683.0" cy="153.9" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="694.2" cy="157.7" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="705.3" cy="163.8" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="716.5" cy="169.1" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="727.6" cy="180.5" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="738.8" cy="180.5" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="749.9" cy="173.6" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="761.1" cy="164.5" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="772.2" cy="150.9" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="783.3" cy="147.8" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="794.5" cy="132.6" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="805.6" cy="123.5" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="816.8" cy="119.7" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="827.9" cy="146.3" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="872.5" cy="203.3" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="883.7" cy="203.3" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="894.8" cy="197.2" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="906.0" cy="186.6" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="917.1" cy="185.8" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="928.2" cy="182.0" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="939.4" cy="171.4" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="950.5" cy="161.5" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="961.7" cy="161.5" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="972.8" cy="157.7" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="984.0" cy="165.3" r="4.2" fill="#1d252d" stroke="#ffffff" stroke-width="1.6"/>
+<polyline points="582.7,318.0 593.9,324.4 605.0,338.0 616.2,338.0 627.3,353.7 638.4,369.3 649.6,366.9 660.7,383.0 671.9,384.5 683.0,378.1 694.2,374.7 705.3,377.1 716.5,374.7 727.6,381.5 738.8,383.0 749.9,388.9 761.1,394.7 772.2,399.6 783.3,396.7 794.5,398.6 805.6,402.5 816.8,398.6 827.9,398.6 872.5,392.8 883.7,392.8 894.8,402.5 906.0,397.7 917.1,400.1 928.2,397.7 939.4,394.2 950.5,397.7 961.7,397.7 972.8,392.8 984.0,395.2" fill="none" stroke="#9f2f25" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="582.7" cy="318.0" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="593.9" cy="324.4" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="605.0" cy="338.0" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="616.2" cy="338.0" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="627.3" cy="353.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="638.4" cy="369.3" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="649.6" cy="366.9" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="660.7" cy="383.0" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="671.9" cy="384.5" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="683.0" cy="378.1" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="694.2" cy="374.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="705.3" cy="377.1" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="716.5" cy="374.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="727.6" cy="381.5" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="738.8" cy="383.0" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="749.9" cy="388.9" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="761.1" cy="394.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="772.2" cy="399.6" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="783.3" cy="396.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="794.5" cy="398.6" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="805.6" cy="402.5" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="816.8" cy="398.6" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="827.9" cy="398.6" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="872.5" cy="392.8" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="883.7" cy="392.8" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="894.8" cy="402.5" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="906.0" cy="397.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="917.1" cy="400.1" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="928.2" cy="397.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="939.4" cy="394.2" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="950.5" cy="397.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="961.7" cy="397.7" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="972.8" cy="392.8" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="984.0" cy="395.2" r="4.2" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">7-Tage-Mittel Körperfett</text>
+<circle cx="947.2" cy="28" r="4.5" fill="#9f2f25"/>
+<text x="919.2" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">7-Tage-Mittel Gewicht</text>
+<circle cx="735.0" cy="28" r="4.5" fill="#1d252d"/>
+<text x="1076" y="165.3" fill="#1d252d" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">62.15kg</text>
+<text x="1076" y="415.2" fill="#9f2f25" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">28.65%</text>
+</svg>
+

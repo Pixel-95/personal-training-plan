@@ -64,7 +64,7 @@ Aktueller Zustand, Beschwerden und kurzfristige Warnsignale gehören in `data/cu
 
 ## Supplements
 Alle aufgelisteten Werte sind zusätzliche eingenommen Substanzen, nicht die komplette Tageszufuhr
-Die Tabelle enthält die tägliche Summe aus 2 Omega-3-Kapseln, 2 All-in-One-Premium-Kapseln, 1 Vitamin-D3-Tablette, 1 B-Komplex-Kapsel, 1 Ubiquinol-Kapsel sowie den separat genannten Protein-, Kreatin-, L-Carnitin- und Darmgesundheitsprodukten.
+Die Tabelle enthält die tägliche Summe aus 2 Omega-3-Kapseln, 2 All-in-One-Premium-Kapseln, 1 Vitamin-D3-Tablette, 1 Ubiquinol-Kapsel sowie den separat genannten Protein-, Kreatin-, L-Carnitin- und Darmgesundheitsprodukten.
 
 | Substanz | Einnahme pro Tag |
 |-|-|
@@ -77,18 +77,17 @@ Die Tabelle enthält die tägliche Summe aus 2 Omega-3-Kapseln, 2 All-in-One-Pre
 | Vitamin K2 | 50µg |
 | Vitamin E | 75IE |
 | Vitamin C | 62,5mg |
-| Vitamin B1 | 51,65mg |
-| Vitamin B2 | 22,1mg |
-| Vitamin B3 | 117,5mg |
-| Vitamin B5 | 59mg |
-| Vitamin B6 | 27,5mg |
-| Vitamin B7 | 1.075µg |
-| Folat / Folsäure | 600µg |
-| Vitamin B12 | 600µg |
-| Inositol | 30mg |
-| Citicolin (CDP-Cholin) | 15mg |
-| Betain (TMG) | 60mg |
-| NADH | 1mg |
+| Vitamin B1 | 1,65mg |
+| Vitamin B2 | 2,1mg |
+| Vitamin B3 | 17,5mg |
+| Vitamin B5 | 9mg |
+| Vitamin B6 | 7,5mg |
+| Vitamin B7 | 75µg |
+| Folat / Folsäure | 200µg |
+| Vitamin B12 | 100µg |
+| Inositol | 5mg |
+| Citicolin (CDP-Cholin) | 5mg |
+| Betain (TMG) | 10mg |
 | Magnesium | 375mg |
 | Calcium | 62,5mg |
 | Zink | 4mg |
