@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Run GAP gegen Herzfrequenz (90 Tage)">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1086" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Run GAP gegen Herzfrequenz (90 Tage)</text>
+<line x1="70" y1="74.0" x2="1156" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="79.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">3 m/s</text>
+<line x1="70" y1="177.0" x2="1156" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="182.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">3 m/s</text>
+<line x1="70" y1="280.0" x2="1156" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="285.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">3 m/s</text>
+<line x1="70" y1="383.0" x2="1156" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="388.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">3 m/s</text>
+<line x1="70" y1="486.0" x2="1156" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="491.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">2 m/s</text>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">119</text>
+<line x1="287.2" y1="74" x2="287.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="287.2" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">130</text>
+<line x1="504.4" y1="74" x2="504.4" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="504.4" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">140</text>
+<line x1="721.6" y1="74" x2="721.6" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="721.6" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">151</text>
+<line x1="938.8" y1="74" x2="938.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="938.8" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">161</text>
+<line x1="1156.0" y1="74" x2="1156.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1156.0" y="504" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">172</text>
+<circle cx="807.7" cy="234.7" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="889.6" cy="280.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="889.6" cy="286.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="807.7" cy="381.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="807.7" cy="389.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="848.6" cy="374.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="848.6" cy="402.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="930.6" cy="446.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="418.3" cy="338.2" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="787.2" cy="241.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="992.1" cy="147.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="1074.0" cy="113.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="1115.0" cy="143.2" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="1115.0" cy="145.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="1135.5" cy="135.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="459.3" cy="312.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="418.3" cy="350.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="541.3" cy="309.4" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="582.3" cy="272.0" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="561.8" cy="258.4" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="664.2" cy="263.8" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="664.2" cy="260.4" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="664.2" cy="263.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="725.7" cy="315.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="520.8" cy="351.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="541.3" cy="397.5" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="561.8" cy="334.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="602.8" cy="340.3" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="643.7" cy="345.9" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="848.6" cy="139.7" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="889.6" cy="183.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="561.8" cy="377.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="582.3" cy="404.0" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="664.2" cy="368.1" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="643.7" cy="341.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="643.7" cy="359.0" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="746.2" cy="343.4" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="254.4" cy="420.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="315.9" cy="379.4" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<circle cx="336.4" cy="356.6" r="3.3" fill="#b64b3a" opacity="0.58"/>
+<line x1="295.4" y1="74" x2="295.4" y2="486" stroke="#66717d" stroke-width="1.2" stroke-dasharray="3 4"/>
+<line x1="602.8" y1="350.7" x2="992.1" y2="242.2" stroke="#1d252d" stroke-width="3" stroke-linecap="round"/>
+<line x1="807.7" y1="74" x2="807.7" y2="486" stroke="#66717d" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="613.0" y="528" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">Herzfrequenz (bpm)</text>
+<text x="70" y="58" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">40 gewichtete Punkte, 8 Aktivitäten, vorläufig</text>
+</svg>
+

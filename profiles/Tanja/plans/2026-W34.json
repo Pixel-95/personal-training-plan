@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "week": "2026-W34",
+  "analysis_week": "2026-W33",
+  "summary_override": {
+    "total": "3:00h plus 2x externer Swim",
+    "swim": "2x extern",
+    "bike": "2:15h",
+    "run": "1:00h"
+  },
+  "days": [
+    { "date": "2026-08-17", "sessions": [] },
+    { "date": "2026-08-18", "sessions": [] },
+    { "date": "2026-08-19", "sessions": [{ "sport": "swim", "title": "Schwimmen nach externem Plan", "amount": "extern", "duration": "extern", "content": ["Externen Plan nur locker oder technisch absolvieren, keine harten Intervalle.", "Nur starten bei klarer Symptombesserung und mindestens 24 h ohne Fieber.", "Bei verstärkten Symptomen, Brustbeschwerden, Atemnot oder ungewöhnlicher Müdigkeit sofort beenden."] }] },
+    { "date": "2026-08-20", "sessions": [{ "sport": "bike", "title": "Basic Bike", "amount": "60min", "duration": "60min", "content": ["10 min @80 W einrollen", "45 min @100 W fahren", "5 min @75 W ausrollen", "Nur absolvieren, wenn das Schwimmen am Mittwoch ohne Symptomzunahme vertragen wurde."] }] },
+    { "date": "2026-08-21", "sessions": [{ "sport": "run", "title": "Long Run", "amount": "60min", "duration": "60min", "content": ["60 min @6:00/km laufen.", "Bei zunehmender Erschöpfung, erhöhtem Atemaufwand oder Rückkehr von Infektsymptomen sofort beenden."] }] },
+    { "date": "2026-08-22", "sessions": [{ "sport": "swim", "title": "Schwimmen nach externem Plan", "amount": "extern", "duration": "extern", "content": ["Externen Plan nur locker oder technisch absolvieren, keine harten Intervalle.", "Bei nicht vollständig abgeklungenen Infektsymptomen die Einheit auslassen."] }] },
+    { "date": "2026-08-23", "sessions": [{ "sport": "bike", "title": "Basic Bike", "amount": "75min", "duration": "75min", "content": ["10 min @80 W einrollen", "60 min @100 W fahren", "5 min @75 W ausrollen", "Nur absolvieren, wenn die Einheiten von Mittwoch bis Samstag ohne Rückfall vertragen wurden."] }] }
+  ]
+}

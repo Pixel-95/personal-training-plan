@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W33/2026-08-11 Weiler-Simmerberg - Basic Run.fit",
+  "source_mtime_ns": 1786960477307476600,
+  "start_time": "2026-08-11T16:41:58+00:00",
+  "sports": {
+    "run": {
+      "points": []
+    }
+  }
+}

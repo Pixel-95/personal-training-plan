@@ -1,19 +1,26 @@
 # Aktueller Zustand
 
-Zuletzt vom LLM zusammengefasst: 2026-08-09
+Zuletzt vom LLM zusammengefasst: 2026-08-17
 
 ## Aktuelle Zusammenfassung
 
-- W32 umfasst bis 2026-08-09 423 TSS: Long Bike 3:00h bei 230W, Threshold Run 3x10min, Threshold Bike 3x15min bei 309 bis 310W, Long Run 1:13h bei 4:38/km GAP, Basic Bike und zwei Swim-Sessions. Die drei Canyoning-Zustiege ergänzen 1:22h und 16 TSS an Outdoor-/Alltagsbelastung.
-- Das Long Bike am 2026-08-03 war mit 230W, 120bpm und 4,7% HR-Drift ausreichend stabil, aber fordernder als das Long Bike der Vorwoche. Das Basic Bike am 2026-08-06 bestätigte bei derselben Leistung 112bpm und 0,6% HR-Drift, die aktuelle FTP liegt bei 308W.
-- Die Arbeitsabschnitte des Threshold Runs am 2026-08-04 lagen erneut überwiegend schneller als die Vorgabe von 3:55/km. Die aktuelle Run-Schwelle liegt bei 158bpm und 3:52/km, eine weitere Verschärfung der Zielpace ist momentan nicht angezeigt.
-- Beim Long Run am 2026-08-05 hatte die Herzfrequenzmessung längere Aussetzer. ØHF, Effizienz und HR-Drift dieser Einheit sind nicht verwertbar; Dauer, GAP, Lauftechnik und TSS bleiben nutzbar.
-- Die Swim-Sessions vom 2026-08-04 und 2026-08-06 umfassten 925m beziehungsweise 2.400m aktive Distanz. Die CSS von 1:35/100m und der Freiwassertransfer bleiben nicht ausreichend validiert, Schwimmen ist weiterhin der größte disziplinspezifische Entwicklungsbereich.
-- Stand 2026-08-09 ist die Readiness nach den ruhigeren Canyoning-Tagen gut: HRV 123ms und 7-Tage-HRV 115ms liegen im 90-Tage-Korridor von 97 bis 128ms, Ruhepuls 38bpm sowie 8:13h Schlaf bei Score 84 sind stabil.
-- Gewicht und Körperfett liegen am 2026-08-09 bei 79,7kg und 13,7%, die 7-Tage-Mittel bei 79,54kg und 13,76%. Die Schwankungen der letzten Tage sprechen nicht für einen klaren kurzfristigen Gewichtsverlusttrend.
-- Der Load-Status ist am 2026-08-09 mit ATL 54, CTL 69, TSB +15 und ACR 0,781 nach der hohen Wochenmitte klar erholt. Das erlaubt einen kontrollierten Long-Bike-Test zu Wochenbeginn, aber keine zusätzliche harte Bike- oder Lauf-Session vor den Triathlons am 15. und 16. August.
+- Der Nordschwarzwald Triathlon am 2026-08-15 wurde bei 26,2°C Wassertemperatur und 32°C Lufttemperatur ohne Neopren in 58:57 beendet: Platz 3 gesamt, Platz 2 von 44 in M30. Das Bike war mit 29:12 die schnellste Zeit des gesamten Feldes; Schwimmen (6:54, Rang 14 gesamt) und Lauf (19:11, Rang 4 gesamt) lagen relativ dahinter.
+- Der Thiersee Triathlon am 2026-08-16 folgte ohne Neopren bei 24,8°C Wasser und 28°C Lufttemperatur in 2:15:27: Platz 16 der Männer und Platz 4 von 49 in M30-34. Das Bike (1:03:09, Rang 6 der Männer) und der Lauf (40:46, Rang 9) waren klar stärker als das Schwimmen (29:29, Rang 84).
+- Die zwei Wettkämpfe verursachten am 2026-08-15 und 2026-08-16 92 beziehungsweise 166 TSS. Am 2026-08-17 liegen ATL 63, CTL 69, TSB +6 und ACR 0,907 vor, damit ist die akute Last erhöht, aber nicht auffällig entgleist.
+- Die Erholung am Tag nach Thiersee ist unauffällig: HRV 116ms und 7-Tage-HRV 109ms liegen im 90-Tage-Korridor von 97 bis 129ms, Ruhepuls 39bpm sowie 8:15h Schlaf bei Score 90 sind stabil.
+- Gewicht und Körperfett liegen am 2026-08-17 bei 80,1kg und 13,9%, die 7-Tage-Mittel bei 79,72kg und 13,28%. Die kurzfristige Gewichtszunahme nach dem Rennwochenende ist ohne zusätzliche Symptome nicht als Körperfettzunahme zu interpretieren.
+- Die aktuelle FTP wurde am 2026-08-12 auf 310W aktualisiert. Die Radleistungen der Rennen bestätigen die hohe wettkampfspezifische Leistungsfähigkeit, der größte disziplinspezifische Entwicklungsbereich bleibt der Freiwasser-Schwimmtransfer.
+- Für 2026-W34 ist Dienstag ausschließlich für Run verfügbar; Montag sowie Mittwoch bis Sonntag sind vollständig verfügbar, Freitag mit ausdrücklichem Bike-Wunsch.
 
 ## Neueste Updates
+
+### 2026-08-17
+Verfügbarkeit für 2026-W34: Montag alles, Dienstag nur Run, Mittwoch bis Sonntag alles. Am Freitag ist Bike ausdrücklich gewünscht. Die Woche soll möglichst vollständig, aber klar langdistanzorientiert geplant werden.
+
+Für den W34-Vorschlag sind harte Intervalle gewünscht: Bike 3x15min mindestens 310W und Run 3x10min mindestens 3:55/km. Long Bike und Donnerstag werden getauscht; zusätzlich soll am Sonntag ein Long Run von etwa 1:15h stattfinden.
+
+### 2026-08-17
+Nagold: Wassertemperatur 26,2°C, Lufttemperatur 32°C, Luftfeuchtigkeit 30%, kein Neopren. Thiersee: Wassertemperatur 24,8°C, Lufttemperatur 28°C, Luftfeuchtigkeit 45%, kein Neopren.
 
 ### 2026-08-06
 Das heutige Basic Bike habe ich direkt nach dem Aufstehen nüchtern gemacht. Es waren nur ca 20 Grad.

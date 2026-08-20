@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Tanja/data/activities/2026-W33/2026-08-10 Weiler-Simmerberg Radfahren.fit",
+  "source_mtime_ns": 1786966688781955200,
+  "start_time": "2026-08-10T18:28:51+00:00",
+  "sports": {
+    "bike": {
+      "points": []
+    }
+  }
+}

@@ -24,9 +24,9 @@
 
 | Zone | Zonenname | Untere HR-Grenze / bpm | Obere HR-Grenze / bpm | Untere Pace-Grenze / min:sec/km | Obere Pace-Grenze / min:sec/km |
 |-|-|-|-|-|-|
-| Z6 | Anaerobic | 184 | / | 4:42 | / |
-| Z5 | VO2max | 174 | 184 | 4:56 | 4:42 |
-| Z4 | Threshold | 159 | 174 | 5:28 | 4:56 |
-| Z3 | Tempo | 145 | 159 | 5:51 | 5:28 |
-| Z2 | Endurance | 134 | 145 | 6:21 | 5:51 |
-| Z1 | Recovery | / | 134 | / | 6:21 |
+| Z6 | Anaerobic | 184 | / | 4:38 | / |
+| Z5 | VO2max | 174 | 184 | 4:51 | 4:38 |
+| Z4 | Threshold | 159 | 174 | 5:23 | 4:51 |
+| Z3 | Tempo | 145 | 159 | 5:45 | 5:23 |
+| Z2 | Endurance | 134 | 145 | 6:15 | 5:45 |
+| Z1 | Recovery | / | 134 | / | 6:15 |

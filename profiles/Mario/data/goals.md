@@ -12,8 +12,8 @@
 | ✅ | 2026-05-10 | Ironman 70.3 Da Nang | Mittel | 3 | x1 | 8 |
 | ✅ | 2026-06-21 | Rothsee Triathlon | Kurz | 8 | x3 | 9 |
 | ✅ | 2026-07-19 | Kratschmayer Triathlon Waldenburg | Sprint | 1 | x1 | 10 |
-| 🎯 | 2026-08-15 | Nordschwarzwald Triathlon | Kurz |  | x1 | (8) |
-| 🎯 | 2026-08-16 | Thiersee Triathlon | Kurz |  | x1 | (8) |
+| ✅ | 2026-08-15 | Nordschwarzwald Triathlon | Kurz | 2 | x1 | 9 |
+| ✅ | 2026-08-16 | Thiersee Triathlon | Kurz | 4 | x1 | 7 |
 | 🎯 | 2026-08-29 | Schwarzachtal Triathlon | Sprint |  | x1 | (8) |
 | 🎯 | 2026-08-30 | Aischgrund Triathlon | Sprint |  | x1 | (8) |
 | 🎯 | 2026-09-06 | Löhne Triathlon | Sprint |  | x1 | (8) |
@@ -22,6 +22,6 @@
 | 🎯 | 2026-10-16 | Ironman 70.3 Sharm El-Sheikh | Mittel |  | x1 | (8) |
 
 ### Gesamt
-27
+43
 ### Gesamt-Prognose
-27 + 7 * (8) = 83
+43 + 5 * (8) = 83

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W33/2026-08-13 Weiler-Simmerberg Laufen.fit",
+  "source_mtime_ns": 1786960478394608400,
+  "start_time": "2026-08-13T17:17:49+00:00",
+  "sports": {
+    "run": {
+      "points": []
+    }
+  }
+}

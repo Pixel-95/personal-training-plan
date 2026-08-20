@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Thresholds">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="992" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Thresholds</text>
+<line x1="70" y1="74.0" x2="1062" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1062" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1062" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1062" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1062" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">18.08.</text>
+<line x1="318.0" y1="74" x2="318.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="318.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">17.11.</text>
+<line x1="566.0" y1="74" x2="566.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="566.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">16.02.</text>
+<line x1="814.0" y1="74" x2="814.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="814.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">18.05.</text>
+<line x1="1062.0" y1="74" x2="1062.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1062.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">17.08.</text>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Run LT</text>
+<circle cx="1094.8" cy="28" r="4.5" fill="#9f2f25"/>
+<text x="1066.8" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike FTP</text>
+<circle cx="989.2" cy="28" r="4.5" fill="#287c71"/>
+<text x="961.1999999999999" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Swim CSS</text>
+<circle cx="883.6" cy="28" r="4.5" fill="#2f6fa3"/>
+<polyline points="527.8,446.1 863.1,113.9" fill="none" stroke="#2f6fa3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="527.8" cy="446.1" r="3.8" fill="#2f6fa3" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="863.1" cy="113.9" r="3.8" fill="#2f6fa3" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1076" y="113.9" fill="#2f6fa3" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">2:32/100m</text>
+<polyline points="893.0,446.1 914.8,321.5 974.8,113.9 1007.5,280.0" fill="none" stroke="#287c71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="893.0" cy="446.1" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="914.8" cy="321.5" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="974.8" cy="113.9" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1007.5" cy="280.0" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1076" y="298.0" fill="#287c71" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">164W</text>
+<polyline points="707.7,446.1 748.6,376.9 920.3,404.6 931.2,376.9 966.6,252.3 985.7,183.1 1015.7,183.1 1023.8,113.9" fill="none" stroke="#9f2f25" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="707.7" cy="446.1" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="748.6" cy="376.9" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="920.3" cy="404.6" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="931.2" cy="376.9" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="966.6" cy="252.3" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="985.7" cy="183.1" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1015.7" cy="183.1" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="1023.8" cy="113.9" r="3.8" fill="#9f2f25" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1076" y="149.9" fill="#9f2f25" font-size="15" font-weight="800" font-family="Inter, system-ui, sans-serif">5:00/km</text>
+</svg>
+

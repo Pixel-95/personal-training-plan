@@ -1,8 +1,6 @@
 # Geplant
 | Datum | Name | Typ | Wichtigkeit / 10 |
 |-|-|-|-|
-| 2026-08-15 | Nordschwarzwald Triathlon | Kurz Triathlon | 1 |
-| 2026-08-16 | Thiersee Triathlon | Kurz Triathlon | 1 |
 | 2026-08-29 | Schwarzachtal Triathlon | Sprint Triathlon | 1 |
 | 2026-08-30 | Aischgrund Triathlon | Sprint Triathlon | 1 |
 | 2026-09-06 | Löhne Triathlon | Sprint Triathlon | 1 |
@@ -16,6 +14,8 @@
 ## Triathlon
 | Datum | Name | Typ | Gesamtzeit | Schwimm-Zeit | T1 | Bike-Zeit | T2 | Lauf-Zeit |
 |-|-|-|-|-|-|-|-|-|
+| 2026-08-16 | Thiersee Triathlon | Kurz Triathlon | 2:15:27 | 00:29:28 | 00:02:01 | 01:03:09 | 00:01:07 | 00:39:42 |
+| 2026-08-15 | Nordschwarzwald Triathlon | Kurz Triathlon | 00:58:57 | 00:06:54 | 00:02:45 | 00:29:11 | 00:00:56 | 00:19:11 |
 | 2026-07-19 | Kratschmayer Triathlon Waldenburg | Sprint Triathlon | 1:04:37 | 00:10:20 | 00:01:52 | 00:33:37 | 00:00:47 | 00:18:01 |
 | 2026-06-21 | Deutsche Meisterschaft Rothsee Triathlon | Olympische Distanz Triathlon | 02:19:04 | 00:28:05 | 02:40 | 01:04:51 | 01:46 | 00:41:43 |
 | 2026-05-10 | Ironman 70.3 Da Nang (Vietnam) | Ironman 70.3 | 4:30:08 | 0:32:37 | 0:03:14 | 2:17:35 | 0:03:24 | 1:33:18 |

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W33/2026-08-12 Bike Sweat Test.fit",
+  "source_mtime_ns": 1786960478010429600,
+  "start_time": "2026-08-12T17:53:09+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-08-12T16:11:09+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 120.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-12T16:32:09+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 129.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-12T16:38:09+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 129.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-12T16:44:09+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 128.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        }
+      ]
+    }
+  }
+}

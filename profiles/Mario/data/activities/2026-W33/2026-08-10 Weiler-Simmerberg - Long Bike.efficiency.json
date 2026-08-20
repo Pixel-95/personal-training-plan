@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "filter_version": "v1.5-asymmetric-equilibrium",
+  "source_fit": "profiles/Mario/data/activities/2026-W33/2026-08-10 Weiler-Simmerberg - Long Bike.fit",
+  "source_mtime_ns": 1786960477015925000,
+  "start_time": "2026-08-10T18:29:49+00:00",
+  "sports": {
+    "bike": {
+      "points": [
+        {
+          "timestamp": "2026-08-10T18:18:39+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 110.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-10T18:21:39+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 111.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-10T18:27:39+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 110.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-10T18:33:39+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 111.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-10T18:36:39+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 111.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        },
+        {
+          "timestamp": "2026-08-10T18:48:39+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 114.0,
+          "temperature_c": null,
+          "power_w": 229.0
+        },
+        {
+          "timestamp": "2026-08-10T18:57:39+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 115.0,
+          "temperature_c": null,
+          "power_w": 229.0
+        },
+        {
+          "timestamp": "2026-08-10T19:03:39+00:00",
+          "duration_s": 180,
+          "heart_rate_bpm": 118.0,
+          "temperature_c": null,
+          "power_w": 230.0
+        }
+      ]
+    }
+  }
+}

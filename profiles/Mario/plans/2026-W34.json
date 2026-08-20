@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "week": "2026-W34",
+  "analysis_week": "2026-W33",
+  "summary_override": {
+    "total": "9:30h + Swim",
+    "swim": "extern",
+    "bike": "6:15h",
+    "run": "3:15h"
+  },
+  "days": [
+    {
+      "date": "2026-08-17",
+      "sessions": []
+    },
+    {
+      "date": "2026-08-18",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Basic",
+          "amount": "50min",
+          "duration": "50min",
+          "content": [
+            "50min @4:50/km"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-19",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Threshold",
+          "amount": "90min",
+          "duration": "90min",
+          "content": [
+            "20min @200W",
+            "3x15min @310W, 5min @100W",
+            "15min @200W",
+            "In Aero-Position fahren"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-20",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Long",
+          "amount": "3:30h",
+          "duration": "3:30h",
+          "content": [
+            "3:30h @210W",
+            "Stabil in Aero-Position fahren",
+            "80g Kohlenhydrate/h",
+            "600ml Flüssigkeit/h",
+            "1000mg Natrium/h"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-21",
+      "sessions": [
+        {
+          "sport": "bike",
+          "title": "Basic",
+          "amount": "75min",
+          "duration": "75min",
+          "content": [
+            "75min @200W"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-22",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Threshold",
+          "amount": "70min",
+          "duration": "70min",
+          "content": [
+            "15min @4:50/km",
+            "3x10min @3:55/km, 3min @5:00/km",
+            "19min @4:50/km"
+          ]
+        },
+        {
+          "sport": "swim",
+          "title": "Schwimmprogramm",
+          "amount": "extern",
+          "duration": "extern",
+          "content": [
+            "Nach externem Schwimmprogramm"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-08-23",
+      "sessions": [
+        {
+          "sport": "run",
+          "title": "Long",
+          "amount": "75min",
+          "duration": "75min",
+          "content": [
+            "75min @4:50/km",
+            "Ohne Endbeschleunigung"
+          ]
+        }
+      ]
+    }
+  ]
+}

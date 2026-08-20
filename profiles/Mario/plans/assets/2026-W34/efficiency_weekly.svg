@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Wöchentliche Effizienztrends">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="830" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Wöchentliche Effizienztrends</text>
+<line x1="70" y1="74.0" x2="900" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="79.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">332W</text>
+<text x="912" y="79.0" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">3:52/km</text>
+<line x1="70" y1="177.0" x2="900" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="182.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">300W</text>
+<text x="912" y="182.0" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">4:08/km</text>
+<line x1="70" y1="280.0" x2="900" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="285.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">268W</text>
+<text x="912" y="285.0" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">4:27/km</text>
+<line x1="70" y1="383.0" x2="900" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="388.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">236W</text>
+<text x="912" y="388.0" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">4:49/km</text>
+<line x1="70" y1="486.0" x2="900" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="491.0" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">204W</text>
+<text x="912" y="491.0" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">5:14/km</text>
+<line x1="70.0" y1="74" x2="70.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="70.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W21</text>
+<line x1="139.2" y1="74" x2="139.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="139.2" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W22</text>
+<line x1="208.3" y1="74" x2="208.3" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="208.3" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W23</text>
+<line x1="277.5" y1="74" x2="277.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="277.5" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W24</text>
+<line x1="346.7" y1="74" x2="346.7" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="346.7" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W25</text>
+<line x1="415.8" y1="74" x2="415.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="415.8" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W26</text>
+<line x1="485.0" y1="74" x2="485.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="485.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W27</text>
+<line x1="554.2" y1="74" x2="554.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="554.2" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W28</text>
+<line x1="623.3" y1="74" x2="623.3" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="623.3" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W29</text>
+<line x1="692.5" y1="74" x2="692.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="692.5" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W30</text>
+<line x1="761.7" y1="74" x2="761.7" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="761.7" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W31</text>
+<line x1="830.8" y1="74" x2="830.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="830.8" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W32</text>
+<line x1="900.0" y1="74" x2="900.0" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="900.0" y="520" text-anchor="middle" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">W33</text>
+<text x="70" y="58" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">Bike (W)</text>
+<text x="912" y="58" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">Run (min/km)</text>
+<line x1="692.5" y1="446.1" x2="692.5" y2="407.7" stroke="#5aa89e" stroke-width="1.6"/>
+<line x1="688.5" y1="446.1" x2="696.5" y2="446.1" stroke="#5aa89e" stroke-width="1.6"/>
+<line x1="688.5" y1="407.7" x2="696.5" y2="407.7" stroke="#5aa89e" stroke-width="1.6"/>
+<line x1="761.7" y1="446.1" x2="761.7" y2="407.7" stroke="#5aa89e" stroke-width="1.6"/>
+<line x1="757.7" y1="446.1" x2="765.7" y2="446.1" stroke="#5aa89e" stroke-width="1.6"/>
+<line x1="757.7" y1="407.7" x2="765.7" y2="407.7" stroke="#5aa89e" stroke-width="1.6"/>
+<line x1="900.0" y1="443.2" x2="900.0" y2="414.4" stroke="#5aa89e" stroke-width="1.6"/>
+<line x1="896.0" y1="443.2" x2="904.0" y2="443.2" stroke="#5aa89e" stroke-width="1.6"/>
+<line x1="896.0" y1="414.4" x2="904.0" y2="414.4" stroke="#5aa89e" stroke-width="1.6"/>
+<polyline points="692.5,423.7 761.7,423.7 900.0,433.3" fill="none" stroke="#5aa89e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="692.5" cy="423.7" r="3.8" fill="#5aa89e" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="761.7" cy="423.7" r="3.8" fill="#5aa89e" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="900.0" cy="433.3" r="3.8" fill="#5aa89e" stroke="#ffffff" stroke-width="1.6"/>
+<line x1="692.5" y1="179.5" x2="692.5" y2="113.9" stroke="#287c71" stroke-width="1.6"/>
+<line x1="688.5" y1="179.5" x2="696.5" y2="179.5" stroke="#287c71" stroke-width="1.6"/>
+<line x1="688.5" y1="113.9" x2="696.5" y2="113.9" stroke="#287c71" stroke-width="1.6"/>
+<line x1="761.7" y1="176.9" x2="761.7" y2="141.7" stroke="#287c71" stroke-width="1.6"/>
+<line x1="757.7" y1="176.9" x2="765.7" y2="176.9" stroke="#287c71" stroke-width="1.6"/>
+<line x1="757.7" y1="141.7" x2="765.7" y2="141.7" stroke="#287c71" stroke-width="1.6"/>
+<line x1="900.0" y1="168.0" x2="900.0" y2="121.6" stroke="#287c71" stroke-width="1.6"/>
+<line x1="896.0" y1="168.0" x2="904.0" y2="168.0" stroke="#287c71" stroke-width="1.6"/>
+<line x1="896.0" y1="121.6" x2="904.0" y2="121.6" stroke="#287c71" stroke-width="1.6"/>
+<polyline points="692.5,167.0 761.7,160.9 900.0,152.6" fill="none" stroke="#287c71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="692.5" cy="167.0" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="761.7" cy="160.9" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="900.0" cy="152.6" r="3.8" fill="#287c71" stroke="#ffffff" stroke-width="1.6"/>
+<line x1="692.5" y1="446.1" x2="692.5" y2="383.9" stroke="#d98272" stroke-width="1.6"/>
+<line x1="688.5" y1="446.1" x2="696.5" y2="446.1" stroke="#d98272" stroke-width="1.6"/>
+<line x1="688.5" y1="383.9" x2="696.5" y2="383.9" stroke="#d98272" stroke-width="1.6"/>
+<line x1="761.7" y1="430.2" x2="761.7" y2="361.8" stroke="#d98272" stroke-width="1.6"/>
+<line x1="757.7" y1="430.2" x2="765.7" y2="430.2" stroke="#d98272" stroke-width="1.6"/>
+<line x1="757.7" y1="361.8" x2="765.7" y2="361.8" stroke="#d98272" stroke-width="1.6"/>
+<line x1="900.0" y1="430.2" x2="900.0" y2="361.8" stroke="#d98272" stroke-width="1.6"/>
+<line x1="896.0" y1="430.2" x2="904.0" y2="430.2" stroke="#d98272" stroke-width="1.6"/>
+<line x1="896.0" y1="361.8" x2="904.0" y2="361.8" stroke="#d98272" stroke-width="1.6"/>
+<polyline points="692.5,413.7 761.7,396.9 900.0,396.9" fill="none" stroke="#d98272" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="692.5" cy="413.7" r="3.8" fill="#d98272" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="761.7" cy="396.9" r="3.8" fill="#d98272" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="900.0" cy="396.9" r="3.8" fill="#d98272" stroke="#ffffff" stroke-width="1.6"/>
+<line x1="692.5" y1="290.2" x2="692.5" y2="126.6" stroke="#b64b3a" stroke-width="1.6"/>
+<line x1="688.5" y1="290.2" x2="696.5" y2="290.2" stroke="#b64b3a" stroke-width="1.6"/>
+<line x1="688.5" y1="126.6" x2="696.5" y2="126.6" stroke="#b64b3a" stroke-width="1.6"/>
+<line x1="761.7" y1="280.1" x2="761.7" y2="120.3" stroke="#b64b3a" stroke-width="1.6"/>
+<line x1="757.7" y1="280.1" x2="765.7" y2="280.1" stroke="#b64b3a" stroke-width="1.6"/>
+<line x1="757.7" y1="120.3" x2="765.7" y2="120.3" stroke="#b64b3a" stroke-width="1.6"/>
+<line x1="900.0" y1="181.5" x2="900.0" y2="113.9" stroke="#b64b3a" stroke-width="1.6"/>
+<line x1="896.0" y1="181.5" x2="904.0" y2="181.5" stroke="#b64b3a" stroke-width="1.6"/>
+<line x1="896.0" y1="113.9" x2="904.0" y2="113.9" stroke="#b64b3a" stroke-width="1.6"/>
+<polyline points="692.5,204.6 761.7,193.1 900.0,139.2" fill="none" stroke="#b64b3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="692.5" cy="204.6" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="761.7" cy="193.1" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<circle cx="900.0" cy="139.2" r="3.8" fill="#b64b3a" stroke="#ffffff" stroke-width="1.6"/>
+<text x="1020" y="79" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">Bike aktuell</text>
+<text x="1020" y="100" fill="#1d252d" font-size="14" font-weight="700" font-family="Inter, system-ui, sans-serif">130 bpm: 220 W</text>
+<text x="1020" y="120" fill="#1d252d" font-size="14" font-weight="700" font-family="Inter, system-ui, sans-serif">155 bpm: 308 W</text>
+<text x="1020" y="145" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">Run aktuell</text>
+<text x="1020" y="166" fill="#1d252d" font-size="14" font-weight="700" font-family="Inter, system-ui, sans-serif">130 bpm: 4:52/km</text>
+<text x="1020" y="186" fill="#1d252d" font-size="14" font-weight="700" font-family="Inter, system-ui, sans-serif">155 bpm: 4:02/km</text>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Run @155 bpm</text>
+<circle cx="1045.6" cy="28" r="4.5" fill="#b64b3a"/>
+<text x="1017.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Run @130 bpm</text>
+<circle cx="907.2" cy="28" r="4.5" fill="#d98272"/>
+<text x="879.2" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike @155 bpm</text>
+<circle cx="760.6" cy="28" r="4.5" fill="#287c71"/>
+<text x="732.6" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike @130 bpm</text>
+<circle cx="614.0" cy="28" r="4.5" fill="#5aa89e"/>
+</svg>
+

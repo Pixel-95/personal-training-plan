@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 540" role="img" aria-label="Wochen-TSS">
+<rect x="0" y="0" width="1180" height="540" rx="18" fill="#ffffff"/>
+<rect x="70" y="74" width="1076" height="412" rx="10" fill="#fbfcfd" stroke="#e8ecf1"/>
+<text x="24" y="34" fill="#1d252d" font-size="24" font-weight="700" font-family="Inter, system-ui, sans-serif">Wochen-TSS</text>
+<line x1="70" y1="74.0" x2="1146" y2="74.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="177.0" x2="1146" y2="177.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="280.0" x2="1146" y2="280.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="383.0" x2="1146" y2="383.0" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="70" y1="486.0" x2="1146" y2="486.0" stroke="#e8ecf1" stroke-width="1"/>
+<text x="58" y="79" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">689</text>
+<text x="58" y="486" text-anchor="end" fill="#66717d" font-size="13" font-family="Inter, system-ui, sans-serif">0</text>
+<line x1="114.8" y1="74" x2="114.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="114.8" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W22</text>
+<line x1="204.5" y1="74" x2="204.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="294.2" y1="74" x2="294.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="294.2" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W24</text>
+<line x1="383.8" y1="74" x2="383.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="473.5" y1="74" x2="473.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="473.5" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W26</text>
+<line x1="563.2" y1="74" x2="563.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="652.8" y1="74" x2="652.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="652.8" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W28</text>
+<line x1="742.5" y1="74" x2="742.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="832.2" y1="74" x2="832.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="832.2" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W30</text>
+<line x1="921.8" y1="74" x2="921.8" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<line x1="1011.5" y1="74" x2="1011.5" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1011.5" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W32</text>
+<line x1="1101.2" y1="74" x2="1101.2" y2="486" stroke="#e8ecf1" stroke-width="1"/>
+<text x="1101.2" y="520.0" text-anchor="middle" fill="#66717d" font-size="12" font-family="Inter, system-ui, sans-serif">W33</text>
+<rect x="90.2" y="414.7" width="49.3" height="71.3" rx="2.2" fill="#287c71"/>
+<rect x="179.8" y="447.3" width="49.3" height="38.7" rx="2.2" fill="#2f6fa3"/>
+<rect x="179.8" y="205.2" width="49.3" height="242.0" rx="2.2" fill="#287c71"/>
+<rect x="179.8" y="127.7" width="49.3" height="77.5" rx="2.2" fill="#b64b3a"/>
+<rect x="269.5" y="456.7" width="49.3" height="29.3" rx="2.2" fill="#2f6fa3"/>
+<rect x="269.5" y="300.1" width="49.3" height="156.6" rx="2.2" fill="#287c71"/>
+<rect x="269.5" y="218.2" width="49.3" height="81.9" rx="2.2" fill="#b64b3a"/>
+<rect x="359.2" y="453.1" width="49.3" height="32.9" rx="2.2" fill="#2f6fa3"/>
+<rect x="359.2" y="355.0" width="49.3" height="98.2" rx="2.2" fill="#287c71"/>
+<rect x="359.2" y="316.7" width="49.3" height="38.3" rx="2.2" fill="#b64b3a"/>
+<rect x="448.8" y="462.7" width="49.3" height="23.3" rx="2.2" fill="#2f6fa3"/>
+<rect x="448.8" y="236.8" width="49.3" height="225.9" rx="2.2" fill="#287c71"/>
+<rect x="448.8" y="205.1" width="49.3" height="31.7" rx="2.2" fill="#b64b3a"/>
+<rect x="538.5" y="477.6" width="49.3" height="8.4" rx="2.2" fill="#2f6fa3"/>
+<rect x="538.5" y="331.1" width="49.3" height="146.6" rx="2.2" fill="#287c71"/>
+<rect x="538.5" y="298.2" width="49.3" height="32.9" rx="2.2" fill="#b64b3a"/>
+<rect x="628.2" y="475.8" width="49.3" height="10.2" rx="2.2" fill="#2f6fa3"/>
+<rect x="628.2" y="318.3" width="49.3" height="157.6" rx="2.2" fill="#287c71"/>
+<rect x="628.2" y="213.6" width="49.3" height="104.6" rx="2.2" fill="#b64b3a"/>
+<rect x="717.8" y="480.0" width="49.3" height="6.0" rx="2.2" fill="#2f6fa3"/>
+<rect x="717.8" y="236.7" width="49.3" height="243.3" rx="2.2" fill="#287c71"/>
+<rect x="717.8" y="145.3" width="49.3" height="91.5" rx="2.2" fill="#b64b3a"/>
+<rect x="807.5" y="473.4" width="49.3" height="12.6" rx="2.2" fill="#2f6fa3"/>
+<rect x="807.5" y="311.4" width="49.3" height="162.0" rx="2.2" fill="#287c71"/>
+<rect x="807.5" y="223.0" width="49.3" height="88.5" rx="2.2" fill="#b64b3a"/>
+<rect x="897.2" y="462.7" width="49.3" height="23.3" rx="2.2" fill="#2f6fa3"/>
+<rect x="897.2" y="284.5" width="49.3" height="178.1" rx="2.2" fill="#287c71"/>
+<rect x="897.2" y="185.3" width="49.3" height="99.2" rx="2.2" fill="#b64b3a"/>
+<rect x="986.8" y="473.4" width="49.3" height="12.6" rx="2.2" fill="#2f6fa3"/>
+<rect x="986.8" y="320.4" width="49.3" height="153.0" rx="2.2" fill="#287c71"/>
+<rect x="986.8" y="242.7" width="49.3" height="77.7" rx="2.2" fill="#b64b3a"/>
+<rect x="1076.5" y="447.5" width="49.3" height="38.5" rx="2.2" fill="#2f6fa3"/>
+<rect x="1076.5" y="354.2" width="49.3" height="93.3" rx="2.2" fill="#287c71"/>
+<rect x="1076.5" y="312.4" width="49.3" height="41.8" rx="2.2" fill="#b64b3a"/>
+<text x="1156" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Run</text>
+<circle cx="1119.4" cy="28" r="4.5" fill="#b64b3a"/>
+<text x="1091.4" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Bike</text>
+<circle cx="1046.6" cy="28" r="4.5" fill="#287c71"/>
+<text x="1018.6000000000001" y="32" text-anchor="end" fill="#66717d" font-size="14" font-weight="650" font-family="Inter, system-ui, sans-serif">Swim</text>
+<circle cx="973.8" cy="28" r="4.5" fill="#2f6fa3"/>
+</svg>
+
